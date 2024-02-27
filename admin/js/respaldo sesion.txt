@@ -1,0 +1,93 @@
+eventListeners();
+function eventListeners(){
+    document.querySelector('#sesion').addEventListener('submit', iniciarsesion);
+}
+
+function iniciarsesion(e){
+    //PARA LOS MENSAJES SE ESTA UTILIZANDO SWEETALERT2
+    e.preventDefault();
+    var tipo = document.querySelector('#tipo').value; //Se obtiene el valor del formulario, para corroborar que si viene de ahi.
+
+    if(tipo === 'login'){
+
+        var email = document.querySelector('#email').value;
+        var password = document.querySelector('#password').value;
+    
+        if(email != ''){ //PRIMER MENSAJE DE ERROR
+            if(password != ''){    //SEGUNDO MENSAJE DE ERROR
+                //CONTENIDO SI LOS CAMPOS FUERON DIFERENTES DE VACIO
+
+                var DatosLogin = new FormData();    //Se crea un objeto de tipo FormData para almacenar la informacion que se validara.
+                DatosLogin.append('email',email);  //Se agrega la variable email al formdata
+                DatosLogin.append('password', password);    //Se agrega la variable password al formdata
+                DatosLogin.append('accion', tipo);   //Se agrega la variable tipo al formdata.
+
+                var xhr = new XMLHttpRequest(); //Se crea un objeto XML
+                xhr.open('POST', 'includes/modelo/sesion.php', true);   //Se especifica en que metodo, a donde y si es asincrono.
+                xhr.onload = function(){
+
+                    if(this.status === 200){    //Se valida que el estado haya sido exitoso, de aceptacion.
+
+                        var respuesta = JSON.parse(xhr.responseText);   //Se guarda la respuesta que retorna sesion.php
+                        console.log(respuesta); //OPCION PARA VER QUE RETORNA SESION.PHP
+                        if(respuesta.respuesta === 'success'){
+
+                            setTimeout("location.href='index.php'", 1000); //Se redirigira al index.
+
+                            const Toast = Swal.mixin({  ////Se asigna propiedades al Toast que se mostrara.
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 2000
+                              })
+                              
+                            Toast.fire({    ////Mensaje exitoso
+                                icon: respuesta.respuesta,
+                                title: respuesta.mensaje
+                            })
+
+                        }else{
+
+                            Swal.fire(
+                                'Error',
+                                respuesta.mensaje,
+                                respuesta.respuesta,
+                                'Volver a intentar'
+                            )
+
+                        }
+
+                    }else{  //Si no fue un estado exitoso mostrar un mensaje de error.
+
+                        Swal.fire(
+                            'Error',
+                            'Sucedio un error',
+                            'error',
+                            'Aceptar'
+                        )
+
+                    }
+
+                }
+                xhr.send(DatosLogin);   //Enviamos los datos
+
+            }else{
+                Swal.fire( //SEGUNDO MENSAJE DE ERROR
+                    'Completa el campo',    //TITLE
+                    'Contraseña',   //TEXT
+                    'error',    //TYPE
+                    'Aceptar'   //CONFIRMBUTTONTEXT
+                )
+            }
+        }else{  //PRIMER MENSAJE DE ERROR
+            Swal.fire(
+                'Completa el campo',    //TITLE
+                'Email',  //TEXT
+                'error',  //TYPE
+                'Aceptar'   //CONFIRMBUTTONTEXT
+            )
+        }
+
+    }
+
+}
