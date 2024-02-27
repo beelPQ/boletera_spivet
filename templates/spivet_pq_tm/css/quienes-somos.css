@@ -1,0 +1,120 @@
+.nosotros {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 50px;
+}
+
+.nosotros h1 {
+    color: var(--morado);
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.nosotros__header {
+    display: flex;
+    gap: 86px;
+    margin-bottom: 70px;
+}
+
+.nosotros__imagen img {
+    width: 100%;
+}
+
+.nosotros__header > div {
+    width: 50%;
+}
+
+.nosotros__intro {
+    font-size: 18px;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.nosotros__mision_vision {
+    display: flex;
+    gap: 80px;
+    margin-bottom: 70px;
+}
+
+.nosotros__mision_vision > div {
+    width: 50%;
+}
+
+.nosotros__mision_vision img {
+    margin: 0 auto;
+    width: 86px;
+    margin-bottom: 22px;
+}
+
+.nosotros__mision_vision h1 {
+    text-align: left;
+    font-size: 27px;
+    margin-bottom: 21px;
+}
+
+.nosotros__mision_vision p {
+    font-size: 15px;
+}
+
+.nosotros__imagen_footer {
+    margin-bottom: 70px;
+}
+
+@media only screen and (max-width: 768px) and (min-width: 300px)  {
+    
+    .nosotros {
+        padding: 15px;
+    }
+
+    .nosotros h1 {
+        font-size: 25px;
+        margin-bottom: 25px;
+    }
+
+    .nosotros__header {
+        gap: 15px;
+        margin-bottom: 25px;
+        flex-flow: wrap;
+    }
+
+    .nosotros__header > div {
+        width: 100%;
+    }
+
+    .nosotros__intro {
+        font-size: 12px;
+    }
+
+
+    .nosotros__mision_vision {
+        gap: 15px;
+        margin-bottom: 25px;
+        flex-flow: wrap;
+    }
+
+    .nosotros__mision_vision > div {
+        width: 100%;
+    }
+
+    .nosotros__mision_vision p {
+        font-size: 12px;
+    }
+
+    .nosotros__imagen_footer img {
+        width: 100%;
+    }
+    
+    .nosotros__imagen_footer {
+        margin-bottom: 25px;
+    }
+
+    .nosotros__video_footer iframe{
+        height: 300px;
+    }
+    
+}

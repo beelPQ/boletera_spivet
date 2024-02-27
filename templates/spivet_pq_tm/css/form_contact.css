@@ -1,0 +1,151 @@
+
+.content-form{ 
+    position: absolute; 
+    right: 2rem;
+    bottom: 0;
+}
+
+.content-form-window{
+    width: 420px;
+    height: auto;
+    background: #fff;
+    box-shadow: 0px 0px 33px -10px rgba(92,92,92,0.71);
+    padding: 1.5rem;
+    transition: 0.8s ease;
+    font-family: Poppins;
+    border-radius: 5px;
+    opacity: 1;
+    position: fixed;
+    bottom: 0;
+    right: 2rem;
+    z-index : 1000;
+}
+
+.content-form-body .form-control, .form-select{
+    border: solid 2px #973f7d!important;
+    font-size: 13px!important; 
+    font-family: Poppins, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.content-form-body .form-control:focus , .form-select:focus{
+    box-shadow: 0 0 0 .25rem rgba(151, 63, 125, 0.36)!important;
+}
+
+.content-form-body .form-control.is-invalid, .form-select.is-invalid{
+    border: solid 2px rgb(226, 12, 12)!important;
+    /* box-shadow: 0 0 0 .25rem rgba(168, 2, 2, 0.36)!important; */
+}
+
+#formContact .form-select{
+    color: #000; 
+}
+
+#formContact .form-select option {
+    color: #000; 
+}
+
+.msg_error{
+    color: #a10505;
+    font-size: 13px;
+}
+
+.content-form-body-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0rem;
+}
+
+.content-form-body-button .btn-send-data-disabled{
+    width: 240px;
+    height: 38px;
+    border: none;
+    background: #993d86b5;
+    transition: 0.5s;
+    color: #fff;
+    border-radius: 4px;
+    cursor : unset;
+}
+
+.content-form-body-button .btn-send-data-contact{
+    width: 240px;
+    height: 38px;
+    border: none;
+    background: #993d86;
+    transition: 0.5s;
+    color: #fff;
+    border-radius: 4px;
+}
+.content-form-body-button .btn-send-data-contact:hover{
+    background: #f1b42f;
+    color: #000;
+    transform: translateY(-4px);
+}
+
+.content-form-window.form-hiden{
+    transform: translateY(550px);
+    transition: 0.8s ease;
+    opacity: 0;
+}
+.content-form-head{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.content-form-head span{
+    font-weight: bold;
+}
+.content-form-head button{
+    float: right;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background-color: transparent;
+    background-image: url('/modules/mod_form_contact/tmpl/src/img/xmark-solid.svg');
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+}
+
+.content-form-body-aviso{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.content-form-body-aviso .label-aviso-contact{
+    font-size:12px;
+    margin-left: 6px;
+}
+.content-form-body-aviso .label-aviso-contact a{
+    color: #993d86; 
+}
+
+.btn-send-data-sweet{
+    width : 180px;
+    background: #993d86;
+    transition: 0.5s;
+}
+
+.btn-send-data-sweet:hover{
+    background: #f1b42f;
+    color: #000;
+    transform: translateY(-4px);
+}
+
+.check-aviso{
+    display: flex!important;
+    justify-content: center!important;
+}
+
+.iti
+{
+  max-height: 2.5rem;
+}
+
+
+
+@media only screen and (max-width: 500px)  {
+    .content-form-window{
+        width: auto;
+        right: 0;
+    }
+}

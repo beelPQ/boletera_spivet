@@ -1,0 +1,258 @@
+@media screen and (max-width: 1321px) {
+    body.spivet {
+        & .container-header {
+            #to_pqoverlay {
+                padding: 0 2rem;
+            }
+        }
+    }
+}
+@media screen and (max-width: 1024px) {
+    body.spivet {
+        & .pqoverlay-screen {
+            & ul.mod-menu__sub {
+                &.show {
+                    flex: 1 auto;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1024px) {
+    body.spivet {
+        & .pqoverlay-screen {
+            & ul.mod-menu__sub {
+                &.show {
+                    padding-bottom: 6rem;
+                    // gap: 1.6rem;
+                    gap: 1rem;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 990px) {
+    body.spivet {
+        & .container-header {
+            & .mod-menu {
+                flex: 0 0 0%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 850px) {
+    body.spivet {
+        & .container-header {
+            #to_pqoverlay {
+                padding: 0 1rem;
+            }
+            & .pqoverlay-screen {
+                &.show, &.show.show_submenu {
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+                & .mod-menu {
+                    gap: 1rem;
+                }
+                & ul.mod-menu__sub {
+                    &.show {
+                        // padding-bottom: 4rem;
+                        // gap: 1.6rem;
+                        padding-bottom: 2rem;
+                        gap: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    body.spivet {
+        & .container-header {
+            & .pqoverlay-screen {
+                & .mod-menu {
+                    gap: 1rem;
+                }
+                & ul.mod-menu__sub {
+                    &.show {
+                        padding-top: 2.5rem;
+                        padding-bottom: 1rem;
+                        padding-left: 1rem;
+                        padding-right: 1rem;
+                        gap: 1rem;
+                        & li {
+                            & a {
+                                gap: 0.6rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #to_pqoverlay {
+                & .mod_menu {
+                    display: none;
+                }
+                .navbar-brand {
+                   
+                    .brand-logo-sm { 
+                        display: block;
+                        img{width: 190px; }
+                    }
+                    .brand-logo-lg {
+                        display: none; 
+                    }
+                }
+
+                .textlink{ 
+                    font-size: 15px;
+                    &-inscription{ 
+                        margin: 0 1rem;
+                    }
+                    &-login{ 
+                        margin: 0 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 660px) {
+    body.spivet {
+        & .container-header {
+            & .pqoverlay-screen {
+                &.show, &.show.show_submenu {
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding-bottom: 1rem;
+                }
+                & .mod-menu-show {
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+                & .mod-menu {
+                    // gap: 1rem;
+                }
+                & .line__spacer {
+                    position: relative;
+                    &::before {
+                        content: '';
+                        width: calc(100vw / 2.6);
+                        height: 1px;
+                        background-color: white;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateX(-65%);
+                    }
+                    &::after {
+                        content: '';
+                        width: calc(100vw / 2.6);
+                        height: 1px;
+                        background-color: white;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateX(65%);
+                    }
+
+                    & img {
+                    }
+                    & .line { display: none; }
+                }
+                & ul.mod-menu__sub {
+                    &.show {
+                        animation: submenu_show_movil 0.5s ease both;
+                        // padding-top: 2.5rem;
+                        // padding-bottom: 1rem;
+                        // padding-left: 1rem;
+                        // padding-right: 1rem;
+                        // gap: 1rem;
+                        // & li {
+                        //     & a {
+                        //         gap: 0.6rem;
+                        //     }
+                        // }
+                        gap: 0.5rem!important;
+                    }
+                    &.hide {
+                        animation: submenu_hide_movil 0.5s ease both;
+                    }
+                    //gap: 0.5rem;
+                }
+            }
+
+            #to_pqoverlay {
+                
+                .textlink{ 
+                    font-size: 12px;
+                    &-inscription{ 
+                        margin: 0 2px;
+                    }
+                    &-login{ 
+                        margin: 0 2px;
+                    }
+                }
+            }
+            
+        }
+        
+    }
+}
+@media screen and (max-width: 300px) {
+    body.spivet {
+        & .container-header {
+            & .pqoverlay-screen {
+                &.show, &.show.show_submenu {
+                }
+                & .mod-menu-show {
+                }
+                & .mod-menu {
+                }
+                & .line__spacer {
+
+                }
+                & ul.mod-menu__sub {
+                    &.show {
+                        flex-wrap: nowrap;
+                        align-items: baseline;
+                        overflow-y: auto;
+                    }
+                    &.hide {
+                    }
+                }
+            }
+
+           
+        }
+    }
+
+    .option_movil{
+        display: block!important;
+    }
+
+    #to_pqoverlay {
+        
+        .navbar-brand { 
+            .brand-logo-sm { 
+                display: block;
+                img { width: 140px!important; }
+            }
+            
+        }
+
+        .textlink{ 
+            font-size: 15px;
+            &-inscription{ 
+                
+                margin: 0 1rem;
+            }
+            &-login{ 
+                margin: 0 1rem;
+                display: none;
+            }
+        }
+    }
+   
+}
+

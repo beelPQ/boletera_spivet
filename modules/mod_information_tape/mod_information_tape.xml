@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Modulo de cinta superior</name>
+    <author>Piquero</author>
+    <version>1.0.0</version>
+    <description>Módulo de cinta para anuncios o promociones para la parte superior del sitio</description>
+    <files>
+        <filename>mod_information_tape.xml</filename>
+        <filename module="mod_information_tape">mod_information_tape.php</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename> 
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field 
+                    name="informationTape" 
+                    type="editor" 
+                    label="Descripcion video"
+                    description=""  
+                    filter="safehtml" /> 
+            </fieldset>
+        </fields>
+    </config>
+</extension>

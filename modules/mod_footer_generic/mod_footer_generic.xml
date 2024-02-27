@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Footer</name>
+    <author>Piquero</author>
+    <version>1.0.0</version>
+    <description>Módulo para administrar el footer de pagina</description>
+    <files>
+        <filename>mod_footer_generic.xml</filename>
+        <filename module="mod_footer_generic">mod_footer_generic.php</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename> 
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+
+                <field name="note" type="note" label="Logo principal de footer" />
+                <field
+					name="logoFooter"
+					type="media"
+					label="Logo de footer" 
+                    class="col-md-1"
+				/>
+                <field name="myspacer0" type="spacer" hr="true" preview_width="100%"/> 
+                <field name="note1" type="note" label="Primera columna (Información de contacto)" />
+                <field
+					name="titleContacto"
+					type="text"
+					label="Titulo de columna"
+                    default="Contato"
+				/>
+                <field
+                    name="itemContact"
+                    type="subform"
+                    label="Crear nuevo item. Max. 4"
+                    description="Subform Field Description"
+                    multiple="true"
+                    min="1"
+                    max="4">
+                    <form>  
+                        <field name="itemIconContact" type="media" label="Icon / Imagen" /> 
+                        <field name="itemTitleContact" type="text" label="Texto" /> 
+                        
+                        <field name="addLinkRedirectContact" type="list" default="0" required="true" 
+                        label="Crear boton de redireccionamiento" description="" >
+                            <option value="">Seleccionar</option>
+                            <option value="1">Si</option>
+                            <option value="0">JNO</option>
+                        </field>
+                        <field name="itemUrlLink" type="text" label="Url de redireccionamiento" showon="addLinkRedirectContact:1"/>  
+                    </form>
+                </field> 
+
+
+
+
+                <field name="myspacer1" type="spacer" hr="true" preview_width="100%"/>
+                <field name="note2" type="note" label="Segunda columna (Redes sociales)" />
+                <field
+					name="titleRedes"
+					type="text"
+					label="Titulo de columna"
+                    default="Redes Sociales"
+				/>
+                 <field
+                    name="itemRedes"
+                    type="subform"
+                    label="Crear nuevo item. Max. 4"
+                    description="Subform Field Description"
+                    multiple="true"
+                    min="1"
+                    max="4">
+                    <form>  
+                        <field name="itemIconRed" type="media" label="Icon / Imagen" /> 
+                        <field name="itemTitleRed" type="text" label="Texto" />
+                        <field name="addLinkRedirectContact" type="list" default="0" required="true" 
+                        label="Crear boton de redireccionamiento" description="" >
+                            <option value="">Seleccionar</option>
+                            <option value="1">Si</option>
+                            <option value="0">JNO</option>
+                        </field>
+                        <field name="itemUrlLink" type="text" label="Url de redireccionamiento" showon="addLinkRedirectContact:1"/>  
+                    </form>
+                </field> 
+
+ 
+                <field name="myspacer3" type="spacer" hr="true" preview_width="100%"/>
+                
+                <field name="note3" type="note" label="Tercera columna (Redes sociales)" />
+                <field
+					name="titleGeneric"
+					type="text"
+					label="Titulo de columna"
+                    default="Mas información"
+				/>
+                <field
+                    name="itemGeneric"
+                    type="subform"
+                    label="Crear nuevo item. Max. 4"
+                    description="Subform Field Description"
+                    multiple="true"
+                    min="1"
+                    max="4">
+                    <form>  
+                        <field name="itemIconGeneric" type="media" label="Icon / Imagen" /> 
+                        <field name="itemTitleGeneric" type="text" label="Texto" />
+                        <field name="addLinkRedirectGeneric" type="list" default="0" required="true" 
+                        label="Crear boton de redireccionamiento" description="" >
+                            <option value="">Seleccionar</option>
+                            <option value="1">Si</option>
+                            <option value="0">JNO</option>
+                        </field>
+                        <field name="itemUrlLinkGeneric" type="text" label="Url de redireccionamiento" showon="addLinkRedirectGeneric:1"/>  
+                    </form>
+                </field> 
+            </fieldset>
+
+            <fieldset name="creditos" label="Creditos">
+                <field name="note4" type="note" label="Seccion de Creditos, Aqui se administran las redirecciones de Aviso de privacidad, Politicas, Compatibilidad etc." />
+                
+                <field name="textCredits" 
+                rows="3"
+                cols="100"
+                type="textarea" 
+                label="Texto de creditos" /> 
+
+                <field
+                    name="itemCredits"
+                    type="subform"
+                    label="Items de creditos max. 3"
+                    description="Subform Field Description"
+                    multiple="true"
+                    
+                    min="1"
+                    max="3">
+                    <form>   
+                        <field name="itemTitleCredit" type="text" label="Titulo de credito" required="true" /> 
+                        <field name="itemUrlLink" type="text" label="Url de redireccionamiento"  required="true"/>  
+                    </form>
+                </field>  
+            </fieldset>
+        </fields>
+    </config>
+</extension>

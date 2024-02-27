@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Formulario de carrito</name>
+    <author>Piquero</author>
+    <creationDate>August 2023</creationDate>
+    <authorEmail>desarrollo02@piquero.com.mx</authorEmail>
+    <version>1.0.0</version>
+    <description>Módulo para visualizar el carrito y el formualario de compra</description>
+    <files>
+        <filename>mod_buycarform.xml</filename>
+        <filename module="mod_buycarform">mod_buycarform.php</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename> 
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                
+            </fieldset>
+        </fields>
+    </config>
+</extension>

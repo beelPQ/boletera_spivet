@@ -1,0 +1,73 @@
+:root{
+    --background-navbar : #00000049;
+    --backgorund-navbar-scroll : #0000009c;
+    --bg-body : #000;
+}
+body{
+    background-color: var( --bg-body ) ; 
+    &.no_scroll{
+        overflow: hidden;
+    }
+    .spinner {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        z-index: 1100;
+        background-color: rgba(0, 0, 0, 0.973);
+        overflow: hidden;
+        transition: 0.5s;
+        .loader{
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background-image: url("../img/template/spinner.gif");
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        &::after{
+            content: "Cargando";
+            position: absolute;
+            font-size: .8rem;
+            bottom: 35%;
+            color: #fff;
+        }
+    }
+}
+
+.container-header{
+    background: var(--background-navbar);
+    position: sticky;
+    top: 0;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,.1);
+    z-index: 1020;
+    display: flex;
+    flex-direction: column;
+
+    &.anouncement-available{
+        padding: 15px;
+    }
+    //contenedor de logo header navbar
+    .navbar-brand{
+        width: 100%;
+        img{
+            //width: 50px;
+            max-width: 100px;
+        }
+    } 
+    //estilos del menu cortina
+    .mod-menu{
+        flex: 1 1 0%;
+    }
+
+    
+}
+
+.header-black{ 
+    background: #000;
+}
+
+
+

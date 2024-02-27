@@ -1,0 +1,739 @@
+/* Oferta academica */
+
+.ofertaacademica__contenido {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.ofertaacademica__contenido {
+    background: url(../img/inicio/fondo_oferta_academica.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 40px;
+    /*height: 550px;*/
+}
+
+h1.ofertaacademica__titulo {
+    background: var(--amarillo);
+    text-align: center;
+    font-size: 35px;
+    padding: 10px;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+
+ul.ofertaacademica__tipos {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    list-style: none;
+    padding: 0px;
+    margin-bottom: 35px;
+}
+
+ul.ofertaacademica__tipos li:hover {
+    transition: 0.3s;
+    background-color: #fff;
+    color: #000;
+}
+
+ul.ofertaacademica__tipos li {
+    border: 1px solid var(--blanco);
+    color: var(--blanco);
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 7px;
+    padding: 5px 25px;
+    cursor: pointer;
+}
+
+ul.ofertaacademica__tipos .active {
+    background-color: var(--blanco);
+    color: #000000;
+}
+
+.ofertaacademica__modalidades {
+    margin-top: 55px;
+}
+
+.ofertaacademica__modalidades .nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    justify-content: center;
+    gap: 40px;
+}
+
+.ofertaacademica__modalidades .nav-tabs .nav-link {
+    border-color: #e9ecef #e9ecef #dee2e6;
+    width: 120px;
+    text-align: center;
+    color: var(--blanco);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+    color: #495057 !important;
+}
+
+.carrusel_modalidad {
+    display: block;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+.carrusel_modalidad .item {
+    padding: 0px 30px;
+}
+
+.carrusel_modalidad  img {
+    width: 100%;
+}
+
+.carrusel_modalidad .owl-nav.disabled {
+    display: block !important;
+}
+
+
+.carrusel_modalidad  .owl-prev {
+    position: absolute;
+    top: 50%;
+    font-size: 30px;
+    left: -10px;
+    color: var(--blanco);
+}
+
+.carrusel_modalidad  .owl-next {
+    position: absolute;
+    top: 50%;
+    font-size: 30px;
+    right: -15px;
+    color: var(--blanco);
+}
+
+.item__carrera__nombre {
+    position: absolute;
+    z-index: 1;
+    width: 91%;
+    bottom: 15px;
+    left: 15px;
+}
+
+.item__carrera__nombre h1 {
+    color: var(--blanco);
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    word-wrap: break-word;
+}
+
+.item__carrera__nombre p {
+    color: var(--amarillo);
+    font-size: 16px;
+    font-weight: 700;
+    word-wrap: break-word;
+    margin: 0px;
+}
+
+.item__carrera__nombre span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin: 0px;
+    display: block;
+}
+
+.item__carrera img{
+    border-radius: 12px;
+}
+
+.item__carrera {
+    position: relative;
+    display: block;
+}
+
+/* certificaciones */
+
+.certificaciones {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 60px;
+}
+
+.certificaciones__titulo {
+    color: #1E112C;
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.carrusel_certificaciones .item {
+    padding: 0px 30px;
+}
+
+.carrusel_certificaciones  img {
+    width: 100%;
+    height: 130px;
+    object-fit: scale-down;
+}
+
+.carrusel_certificaciones .owl-nav.disabled {
+    display: block !important;
+}
+
+
+.carrusel_certificaciones  .owl-prev {
+    position: absolute;
+    top: 25%;
+    font-size: 30px;
+    left: -10px;
+}
+
+.carrusel_certificaciones  .owl-next {
+    position: absolute;
+    top: 25%;
+    font-size: 30px;
+    right: -15px;
+}
+
+/* Instalaciones */
+
+.instalaciones_content {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem;
+    
+    background-color: var(--moradoDark);
+    background: rgb(55,31,82);
+    background: linear-gradient(180deg, rgba(55,31,82,0.94859950816264) 34%, rgba(44,25,67,1) 64%, rgba(55,31,82,0.9598039899553571) 91%);;
+}
+.instalaciones_content .title {
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    line-height: 1;
+    text-wrap: balance;
+    word-wrap: anywhere;
+}
+.instalaciones_content .title.lg {
+    font-size: 4.5rem;
+    font-weight: bold;
+}
+.instalaciones_content_top,
+.instalaciones_content_bottom {
+    display: flex;
+    gap: 2rem;
+    max-width: 1650px;
+}
+.instalaciones_content_bottom {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+.instalaciones_content_top-left,
+.instalaciones_content_top-right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    /*justify-content: center;*/
+    justify-content: space-evenly;
+    
+    view-timeline-name: --imageinstTop;
+    view-timeline-axis: block;
+    
+    
+    animation-timeline: --imageinstTop;
+    animation-name: showInstallationsTop;
+    animation-range: entry 25% cover 50%;
+    animation-fill-mode: both; /* Indica la dirección de la animación*/
+    
+}
+.instalaciones_content_bottom-left,
+.instalaciones_content_bottom-right {
+    
+    view-timeline-name: --imageinstBottom;
+    view-timeline-axis: block;
+    
+    
+    animation-timeline: --imageinstBottom;
+    animation-name: showInstallationsBottom;
+    animation-range: entry 25% cover 50%;
+    animation-fill-mode: both; /* Indica la dirección de la animación*/
+    
+}
+.instalaciones_content_top-left .title {
+    color: white;
+    
+}
+.instalaciones_content_top-left .title.lg {
+    color: var(--morado);
+}
+.instalaciones_content_top-right .title.lg {
+    color: var(--amarillo);
+}
+
+.instalaciones_content figure {
+    
+}
+.instalaciones_content figure img {
+    width: 100%;
+    border-radius: 3px;
+    box-shadow: 0 0px 11px rgba(0 0 0 / 30%);
+    
+}
+.instalaciones_content_bottom-left figure {
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+.instalaciones_content_bottom-right figure {
+    margin-bottom: 2rem;
+}
+.instalaciones_content_bottom-right figure img {
+    width: 85%;
+}
+
+
+/* Beneficios */
+
+.beneficios {
+    background: url("../img/inicio/fondo_beneficios.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 40px;
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.beneficios__header {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 35px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.beneficios__titulo {
+    color: var(--blanco);
+    font-size: 33px;
+    font-weight: 400;
+    word-wrap: break-word;
+    width: 76%;
+}
+
+.beneficios__titulo span {
+    color: #FECE00;
+}
+
+.beneficios__intro {
+    color: var(--blanco);
+    font-size: 14px;
+    font-weight: 500;
+    word-wrap: break-word;
+    width: 44%;
+}
+
+.beneficios__boton {
+    width: 30%;
+}
+
+.beneficios__boton a {
+    border: 1px solid rgba(255, 255, 255, 1);
+    color: var(--blanco);
+    font-size: 14.40px;
+    font-weight: 700;
+    word-wrap: break-word;
+    padding: 10px;
+    display: block;
+    text-align: center;
+}
+
+.beneficios__lista {
+    display: flex;
+    text-align: center;
+    gap: 130px;
+    margin-top: 90px;
+    margin-bottom: 40px;
+    align-items: baseline;
+}
+.beneficios__items{
+    padding: 0 1rem;
+}
+.beneficios__items__icon {
+    margin-bottom: 15px;
+}
+
+.beneficios__items__titulo {
+    color: var(--blanco);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.beneficios__items__intro {
+    color: var(--blanco);
+    font-size: 14px;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+
+/* Nuestra alianzas */
+
+.nuestras_alianzas {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 60px;
+}
+
+.nuestrasalianzas__titulo {
+    color: #1E112C;
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.carrusel_nuestrasalianzas  img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+}
+
+.carrusel_nuestrasalianzas .owl-nav.disabled {
+    display: block !important;
+}
+
+
+.carrusel_nuestrasalianzas  .owl-prev {
+    position: absolute;
+    top: 25%;
+    font-size: 30px;
+    left: -10px;
+}
+
+.carrusel_nuestrasalianzas  .owl-next {
+    position: absolute;
+    top: 25%;
+    font-size: 30px;
+    right: -15px;
+}
+
+/* Loading */
+
+.ofertaacademica__loading{
+    align-items: center;
+    display: flex;
+    height: 65%;
+    justify-content: center;
+    margin: 0;
+  }
+  
+.loader {
+    width: 60px;
+}
+
+.loader-wheel {
+    animation: spin 1s infinite linear;
+    border: 7px solid rgba(30, 30, 30, 0.5);
+    border-left: 7px solid #fff;
+    border-radius: 50%;
+    height: 60px;
+    margin-bottom: 10px;
+    width: 60px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+@media only screen and (max-width: 1300px) {
+    .beneficios__lista{
+        gap : 70px;
+        justify-content: space-evenly;
+    }
+    .beneficios__items{
+        padding: 0 1px;
+    }
+    
+}
+
+@media only screen and (max-width: 1024px) {
+    .instalaciones_content .title {
+        font-size: 2rem;
+    }
+    .instalaciones_content .title.lg {
+        font-size: 3rem;
+    }
+    .carrusel_modalidad .item {
+        padding: 0px 20px;
+    }
+    .certificaciones__titulo { 
+        font-size: 30px; 
+    }
+    .beneficios__lista{
+        gap : 40px; 
+    }
+    .nuestrasalianzas__titulo{
+        font-size: 30px;
+    }
+}
+@media only screen and (max-width: 870px) {
+    .instalaciones_content .title {
+        font-size: 1.8rem;
+    }
+    .instalaciones_content .title.lg {
+        font-size: 2.6rem;
+    }
+    .beneficios__lista{
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .beneficios__items{
+        width :250px;
+    }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 300px)  {
+
+    div#banner img {
+        width: 100%;
+    }
+
+    h1.ofertaacademica__titulo {
+        font-size: 20px;
+    }
+
+    .ofertaacademica__contenido {
+        padding: 15px;
+        height: auto;
+    }
+
+    ul.ofertaacademica__tipos {
+        margin-bottom: 20px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    ul.ofertaacademica__tipos li {
+        font-size: 12px;
+        padding: 5px 10px;
+        width: 48%;
+    }
+
+    .ofertaacademica__modalidades {
+        margin-top: 30px;
+    }
+
+    .ofertaacademica__modalidades .nav-tabs {
+        gap: 10px;
+    }
+
+    .ofertaacademica__modalidades .nav-tabs .nav-link {
+        width: 95px;
+        font-size: 12px;
+    }
+
+    .carrusel_modalidad {
+        margin-bottom: 25px;
+        margin-top: 25px;
+    }
+
+    .carrusel_modalidad .item {
+        padding: 0px 20px;
+    }
+
+    .carrusel_modalidad .owl-prev {
+        left: -7px;
+    }
+
+    .carrusel_modalidad .owl-next {
+        right: -7px;
+    }
+
+    .certificaciones {
+        padding: 15px;
+    }
+
+    .certificaciones__titulo {
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+    
+    .nuestrasalianzas__titulo{
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+    
+
+    .carrusel_certificaciones .item {
+        padding: 13px 15px;
+    }
+
+    .carrusel_certificaciones img {
+        height: 120px;
+    }
+
+    .carrusel_certificaciones .owl-next {
+        top: 35%;
+        right: -7px;
+    }
+
+    .carrusel_certificaciones .owl-prev {
+        top: 35%;
+    }
+
+    .beneficios {
+        padding: 15px;
+    }
+
+    .beneficios__header {
+        margin-bottom: 20px;
+        margin-top: 20px;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .beneficios__titulo {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .beneficios__intro {
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .beneficios__boton {
+        width: 200px;
+    }
+
+    .beneficios__lista {
+        gap: 15px;
+        margin-top: 25px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .beneficios__items__intro {
+        margin-bottom: 15px;
+    }
+
+    .nuestras_alianzas {
+        padding: 15px;
+    }
+
+    
+    .carrusel_nuestrasalianzas .item {
+        padding: 2rem 10px;
+    }
+
+    .carrusel_nuestrasalianzas img {
+        height: 101px;
+    }
+
+    .carrusel_nuestrasalianzas .owl-next {
+        top: 35%;
+        font-size: 25px;
+        right: -7px;
+    }
+    
+    .instalaciones_content .title {
+        width: 100%;
+        text-align: center;
+        font-size: 2.3rem;
+    }
+    .instalaciones_content .title.lg {
+        font-size: 3.3rem;
+    }
+    .instalaciones_content_top,
+    .instalaciones_content_bottom {
+        flex-wrap: wrap;
+        padding: 0;
+    }
+    .instalaciones_content_top-left,
+    .instalaciones_content_top-right {
+        width: 100%;
+    }
+
+    .instalaciones_content_bottom-left figure {
+        margin: 0;
+    }
+    .instalaciones_content_bottom-right figure img {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+   .carrusel_modalidad .item {
+        padding: 0px 7rem;
+    }
+}
+
+
+@media only screen and (max-width: 520px) {
+    .instalaciones_content .title {
+        font-size: 1.5rem;
+    }
+    .instalaciones_content .title.lg {
+        font-size: 2rem;
+    }
+    
+}
+
+@media only screen and (max-width: 470px) {
+    .carrusel_modalidad .item {
+        padding: 0px 3rem;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .carrusel_modalidad .item {
+        padding: 0px 2rem;
+    }
+}
+
+
+
+@keyframes showInstallationsTop {
+    0% {
+        opacity: 0;
+        scale: 25%;
+        /*transform: translateX(-200%);*/
+    }
+    100% {
+        opacity: 1;
+        scale: 100%;
+        /*transform: translateX(0);*/
+    }
+}
+@keyframes showInstallationsBottom {
+    0% {
+        opacity: 0;
+        scale: 15%;
+        /*transform: translateX(400%);*/
+    }
+    100% {
+        opacity: 1;
+        scale: 100%;
+        /*transform: translateX(0);*/
+    }
+}
+
+

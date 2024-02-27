@@ -1,0 +1,21 @@
+/* slider principal */ 
+#carouselPrincipal{
+    max-height: 750px;
+    .carousel-item {
+        position: relative;
+        max-height: 750px!important;
+        .image-slider{
+            height: 750px!important;
+            object-fit: cover;
+        }
+        &-video{
+            width: 100%;
+        }
+        .carousel-caption-text-advanced{
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+        
+    }
+}

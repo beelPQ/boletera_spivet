@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Oferta detalle</name>
+    <author>Piquero</author> 
+    <version>1.0.0</version>
+    <description>Módulo para visualizar el detalle de oferta/servicio</description>
+    <files>
+        <filename>mod_oferta_detail.xml</filename>
+        <filename module="mod_oferta_detail">mod_oferta_detail.php</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename> 
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+
+                <field 
+                    name="colorButton"
+                    type="color"
+                    label="Color de boton"
+                    description="El título se mostrará en grande del lado Izq. del contenido" />
+
+                <field
+                    name="colorBorderBoton"
+                    type="color"
+                    label="Color de borde de boton"
+                    description="Ingresa el detalle de la sección"
+                    filter="safehtml" />
+                    
+            </fieldset>
+        </fields>
+    </config>
+</extension>

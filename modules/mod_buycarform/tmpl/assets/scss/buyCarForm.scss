@@ -1,0 +1,571 @@
+    :root{
+        --color_pq_text : #000;
+        --color_pq_overscreen : #fff;
+    }
+    @import "partials/buttons";
+
+    #to_pqoverlay{
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1); 
+    }
+
+    .flex{
+        display: flex;
+    }
+    .flex-col{
+        flex-direction: column;
+    }
+    .flex-row{
+        flex-direction: row;
+    }
+    .main-backimage{
+        padding: 0!important;
+    }
+    .buycar-body{
+        display: flex;
+        flex-direction: row;
+    }
+    .content-buycar-form{
+        
+        width: 100%;
+        /* height: 100vh; */
+        background-color: white;
+        //font-family: 'Poppins'!important;
+        .buycar{
+            padding: 2rem;
+            &-header{ 
+                justify-content: space-between;
+                .button-back{
+
+                    button{
+                        background: transparent;
+                        border: none;
+                    }
+                    a{
+                        text-decoration: none;
+                        font-weight: bold;
+                        color: #000;
+                    }   
+                }
+                .title-section{
+                    //font-family: Ubuntu;
+                    font-size: 20px;
+                    font-weight: bold;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: normal;
+                    color: #01002F;
+                }
+            }
+
+            &-body{
+                gap: 1.5rem;
+                padding: 0 2rem;
+                .content-form{
+                    flex-basis: 60%; 
+                    justify-content: right;
+                    position: relative!important;
+                }
+                .form{
+                    /* flex-basis: 60%; */
+                    width: auto;
+                    max-width: 800px; 
+                    margin-top: 4rem;
+                    padding: 2rem;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+                    border: solid 1px #838383;
+                    background-color: var(--color_pq_primary);
+
+                    .title-form{
+                        //font-family: Ubuntu;
+                        font-size: 20px;
+                        font-weight: bold;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: normal;
+                        color: var(--color_pq_text);
+                        
+                    }
+
+                    form{
+                        margin-top: 10px;
+                        input, select{
+                            border: solid 1px black;
+                            height: 38px;
+                        }
+
+                        .select-mod{
+                            position: relative;
+                            select{
+                                padding: 0px 1rem;
+                            }
+                            .icon-select{
+                                position: absolute;
+                                right: 15px;
+                                top: 50px;
+                            }
+                        }
+
+                        .subtitle-action{
+                            //font-family: Ubuntu;
+                            font-size: 20px;
+                            font-weight: bold;
+                            font-stretch: normal;
+                            font-style: normal;
+                            line-height: normal;
+                            color: var(--color_pq_text);
+                            margin-top: 2.5rem;
+                        }
+                        .iti__flag-container{
+                            max-height: 40px;
+                        }
+                        .msg_error{
+                            color: red;
+                        }
+                        .contentRadBtn-invoice{
+                            margin-top: -6px;
+                            display: flex;
+                            input[type="radio"]{
+                                display: none !important;
+                            }
+                            input[type="radio"]+label{
+                                flex-direction: column;
+                                position: relative;
+                                padding-left: 1.3em;
+                                margin-top: 1.3rem;
+                                margin-bottom: 1.3rem;
+                                margin-right: 2rem;
+                                display: flex;
+                                align-items: flex-start;
+                            }
+
+                            input[type="radio"]+label{
+                                &::before{
+                                    display: block;
+                                    position: absolute;
+                                    content: ' ';
+                                    border: 1px solid var(--color_pq_text);
+                                    border-radius: 50%;
+                                    width: .8em;
+                                    height: .8em;
+                                    left: 0.05em;
+                                    top: 6px;
+                                }
+                            }
+                            input[type="radio"]:checked+label::before{
+                                background-color: var(--color_pq_text);
+                            }
+                        }
+
+                        /*----------------------Estilos boton adjuntar------------------*/
+                        .deleteFile{
+                            color:green;
+                            font-size: 14.4px;
+                            
+                        }
+
+                        .btnCleanFile{
+                            cursor:pointer;
+                            margin-left: 5px;
+                        }
+
+                        .inputAttach {
+                            width: 0.1px;
+                            height: 0.1px;
+                            opacity: 0;
+                            overflow: hidden;
+                            position: absolute;
+                            z-index: -1;
+                        }
+
+                        .labelAttach { 
+                            background-color:var(--secondary-color-text-color);
+                            color:var(--main-color);
+                            border: 1px solid var(--color_pq_text);
+                            font-weight: bold;
+                            width: 240px;
+                            height: 38px;
+                            margin-top: 10px;
+                            display: flex;
+                            justify-content: center;
+                            
+                            align-items: center;
+                        }
+
+                        /* .textAttach{
+                            color:var(--main-color);
+                        } */
+
+                        .hidden{
+                            display: none;
+                           
+                        }
+                        .show{
+                            display: block;
+                           
+                        }
+                        
+                        /*----------------------Fin estilos boton adjuntar------------------*/
+                        
+                       
+
+                    }
+                }
+                .content-car{
+                    flex-basis: 40%;
+                    margin-top: 4rem;
+                   /*  width: 200px;
+                    height: 300px;
+                    background: black; */
+                    .divContentSumPayDesk{
+                        width:427px;
+                        height : fit-content; 
+                        padding: 31px 20px 42px 31px;
+                        border-radius: 7px;
+                        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+                        border: solid 1px #838383;
+                        background-color: var(--color_pq_primary);
+                    }
+                }
+            }
+        }
+    }
+
+    .is-invalid{
+        border: solid 1px #bd0000!important;
+    }
+
+
+    //ESTILOS DEL CARRITO DE COMPRA
+    #contentSummaryPaymentMobile {
+        display: none;
+    }
+    
+    #contentSummaryPaymentMobile *, #contentSummaryPaymentDesktop * {
+        background-color: var(--color_pq_text);
+        color: var(--color_pq_overscreen);
+    }
+    
+    @media(max-width: 1090px) {
+        #contentSummaryPaymentMobile {
+            display: unset;
+        }
+    }
+    
+    .label-deploySumPay {
+        position: absolute;
+        right: 48px;
+    }
+    
+    .accordion-header-text {
+        margin-left: 25px;
+    }
+    
+    .accordion-button::after {
+        background-image: url('../img/icons/icon_deploy.svg');
+        margin-top: 13px;
+        background-size: 100%; 
+        width: 15px;
+    }
+    
+    .accordion-button:not(.collapsed)::after {
+        background-image: url('../img/icons/icon_deploy.svg');
+        margin-top: -6px;
+    }
+    
+    .accordion-button:not(.collapsed){
+    
+        box-shadow : none!important;
+    }
+
+    .contentItemsPayment {}
+    
+    .contentItemsCupon {
+        border-top: solid 1px var(--color_pq_overscreen);
+        border-bottom: solid 1px var(--color_pq_overscreen);
+        padding: 22px 5px;
+    }
+
+    .clickDeploySumPayDesktop{
+        font-weight: bold;
+    }
+    
+    .label-deploySumPay{
+        font-weight: lighter;
+    }
+
+    
+    
+    .contentItemsTotal {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-top: 25px;
+    }
+    
+    .contentItemsTotal div {
+        width: 50%;
+    }
+    
+    .rowItemPayment {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 22px;
+    }
+    
+    .itemPayment_name {
+        width: 50%;
+    }
+    
+    .itemPayment_price {
+        width: 50%;
+        text-align: right;
+    }
+    
+    .deleteProduct, .deleteLodging {
+        font-size: 12px;
+        color: #f00 !important;
+        cursor: pointer;
+    }
+    
+    .content-payment{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px; 
+    }
+
+
+    .content-aviso{
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .aviso-privacity{
+            border-radius: 4px;
+            width: 100%;
+            height: 4rem;
+            border: solid 1px var(--color_pq_text);
+            background-color: rgba(114, 170, 190, 0.21);
+            padding: 5px;
+
+            .contentcheck-aviso{
+                display: flex;  
+            }
+
+            .contentcheck-aviso{
+                display: flex;
+                font-weight: bold;
+                input[type="checkbox"]{
+                    display: none !important;
+                }
+
+                input[type="checkbox"]+label{
+                    flex-direction: row;
+                    position: relative;
+                    padding-left: 1.3em;
+                    display: flex;
+                    align-items: flex-start;
+                }
+
+                input[type="checkbox"]+label{
+                    &::before{
+                        display: block;
+                        position: absolute;
+                        content: ' ';
+                        border: 1px solid var(--color_pq_text);
+                        border-radius: 1%;
+                        width: .8em;
+                        height: .8em;
+                        left: 0.05em;
+                        top: 6px;
+                        transition: 0.3s;
+                    }
+                }
+                input[type="checkbox"]:checked+label::before {
+                    content: '\f00c';
+                    font-family: FontAwesome;
+                    transform: rotate(360deg);
+                    color: var(--main-color);
+                    background-color: transparent;
+                    border: none;
+                    top: 0;
+                }
+            }
+
+        }
+
+    }
+
+    
+    
+
+     //FIN ESTILOS DEL CARRITO DE COMPRA
+
+
+
+     //ESTILOS PANTALLA DE CONFIRMACION PAGO---------------------------------------------------------
+    .icon_confirm{
+        width:102px;
+        height:102px;
+    }
+
+    .title_confirm{
+      //font-family: Gotham;
+      font-size: 20px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #01002f;
+
+      margin-bottom:20px;
+    }
+
+    .table__actions__success{
+        /* margin-top: 85px;
+        width: 60%; */
+        height: 70vh;
+    }
+
+    .body_confirm {
+        border-collapse: collapse;
+        padding:70px;
+    }
+
+    .legend__registro__success {
+        margin-top: 30px;
+        margin-bottom: 60px;
+
+        //font-family: Gotham;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000;
+        
+    }
+
+    .legend__send__email {
+        margin-bottom: 60px;
+
+        //font-family: Gotham;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000;
+    }
+
+    .content__buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 1rem;
+    }
+
+   
+
+    @media(max-width: 1300px) {
+        .table__actions__success {
+            width: 80%;
+        }
+    }
+
+    @media(max-width: 990px) {
+        
+        .content__buttons {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content__buttons :nth-child(1) { order: 3; }
+        .content__buttons :nth-child(2) { order: 2; }
+        .content__buttons :nth-child(3) { order: 1; }
+    }
+
+    @media(max-width: 960px) {
+        
+        .table__actions__success {
+            width: 100%;
+        }
+    }
+
+    @media(max-width: 750px) {
+        
+        .content__buttons .custom-button1, .content__buttons .custom-button2{
+            width: 240px;
+            margin-top: 15px;
+        }
+    }
+
+    @media(max-width: 370px) {
+        .body_confirm {
+            padding:30px;
+        }
+    }
+    //FIN ESTILOS PANTALLA DE CONFIRMACION PAGO---------------------------------------------------------
+
+
+    //ESTILOS CUPON-------------------------------------------------------------------------------
+    .inputsCupon {
+        display: flex;
+        flex-direction: row;
+        gap: 2.5rem;
+        height: 38px;
+        .input-cupon{
+            background-color:#fff !important;
+            color:var(--color_pq_text) !important;
+        }
+
+        .btn-cupon {
+          flex-basis: 50%;
+          border: 1px solid #fff;
+          border-radius: 4px;
+          transition: 0.5s; 
+
+          &:hover{
+            transform: translateY(-4px);
+            /* background: var(--color_pq_overscreen)!important;
+            color: var(--color_pq_text)!important; */
+          }
+        }
+        .btn-cupon-dis {
+            flex-basis: 50%;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            transition: 0.5s;  
+          }
+    }
+    //FIN ESTILOS CUPON-------------------------------------------------------------------------------
+
+
+    //Clases de botones sweet alert
+    .confirm-btn-alert{
+        width: 140px;
+        height: 38px;
+        background: #01002F!important;
+        color: white!important;
+        //font-family: Ubuntu;
+        display: flex!important;
+        justify-content: center!important;
+        align-items: center!important;
+        &:focus{
+            box-shadow: #02005e!important;
+        }
+    }
+
+    .flecha-atras{
+        width: 19px;
+        height: 19px;
+    }

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Modulo generico avanzado PQ</name>
+    <author>Piquero</author>
+    <version>1.0.0</version>
+    <description>Módulo avanzado para vistas/apartados completos</description>
+    <files>
+        <filename>mod_generic_advance_pq.xml</filename>
+        <filename module="mod_generic_advance_pq">mod_generic_advance_pq.php</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename> 
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="note1" type="note" label="Este modulo te permite administrar la informacion con mas opciones de reacomodo" />
+                <field name="note2" type="note" label="Seccion 1 titulo" />
+                <field name="titleGeneric" type="text" label="Titulo de sección centrado"  /> 
+                <field name="colorTitles" type="color" label="Color de titulos" default="fff" /> 
+                <field name="addSubtitleSect1" type="list" default="0" required="true" label="Agregar subtitulo">
+                    <option value="">Seleccionar</option>
+                    <option value="0">No</option>
+                    <option value="1">Si</option>
+                </field>
+                <field name="subtitleSection1" type="text" label="Subtitulo de sección centrado" showon="addSubtitleSect1:1" />  
+
+                <field name="backgroundSect1" type="list" default="" required="true" label="Tipo de fondo para la seccion">
+                    <option value="">Seleccionar</option>
+                    <option value="0">Color</option>
+                    <option value="1">Imagen</option>
+                </field>
+
+                <field name="backgroundColorSec1" type="color" label="Color de fondo" showon="backgroundSect1:0" />  
+                <field name="backgroundImageSec1" type="media" label="Imagen de fondo" showon="backgroundSect1:1" />  
+                <field name="colorDescriptions" type="color" label="Color de textos ó descripciones" default="fff" /> 
+                <field name="note3" type="note" label="Tipo de distribución de contenido" />
+                <field name="distributionSect1" type="list" default="0" required="true" label="Tipo de fondo para la seccion">
+                    <option value="">Seleccionar</option>
+                    <option value="0">1 Columna</option>
+                    <option value="1">2 Columnas</option>
+                </field>
+
+                <field
+                    name="itemsDistribution1Col"
+                    type="subform"
+                    label="Items de información max. 4"
+                    description="Subform Field Description"
+                    multiple="true"
+                    min="1"
+                    max="4" showon="distributionSect1:0">
+                    <form> 
+                        <field name="itemImageCol1" type="media" label="Imagen" /> 
+                        <field 
+                            name="itemTextCol1" 
+                            type="editor" 
+                            label="Texto"
+                            description=""  
+                            filter="safehtml"/>   
+                    </form>
+                </field>
+
+                <field
+                    name="itemsDistribution2Cols"
+                    type="subform"
+                    label="Items de información max. 4"
+                    description="Subform Field Description"
+                    multiple="true"
+                    min="1"
+                    max="4" showon="distributionSect1:1">
+                    <form> 
+                        <field name="positionImageCol2" type="list" default="0" required="true" label="Posicion de imagen" showon="distributionSect1:1">
+                            <option value="">Seleccionar</option>
+                            <option value="1">Derecha</option>
+                            <option value="0">Izquierda</option>
+                        </field> 
+                        <field name="itemImageCol2" type="media" label="Imagen" /> 
+                        <field 
+                            name="itemTextCol2" 
+                            type="editor" 
+                            label="Texto"
+                            description=""  
+                            filter="safehtml"/>   
+                    </form>
+                </field>
+
+            </fieldset>
+            
+
+        </fields>
+
+        <!-- Seccion 6 Alianzas -->
+        <fieldset name="section2" label="Seccion 2 (Misión y Visión)">
+
+         </fieldset>
+    </config>
+</extension>

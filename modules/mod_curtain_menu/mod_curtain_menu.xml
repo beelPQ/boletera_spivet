@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="module" client="site" method="upgrade">
+	<name>mod_menu</name>
+	<author>Piquero Tecnología y Deportes</author>
+	<creationDate>August 2023</creationDate>
+	<copyright>(C) 2005 Open Source Matters, Inc.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>piqueromg@piquero.com.mx</authorEmail>
+	<authorUrl>piquero.com.mx</authorUrl>
+	<version>3.1.0</version>
+	<description>MOD_MENU_XML_DESCRIPTION</description>
+	<namespace path="src">Joomla\Module\Menu</namespace>
+	<files>
+		<filename module="mod_curtain_menu">mod_curtain_menu.php</filename>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+	</files>
+	<languages>
+		<language tag="es-ES">language/es-ES/mod_curtain_menu.ini</language>
+		<language tag="es-ES">language/es-ES/mod_curtain_menu.sys.ini</language>
+	</languages>
+	<help key="Site_Modules:_Menu" />
+	<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldprefix="Joomla\Component\Menus\Administrator\Field">
+				<field
+					name="menutype"
+					type="menu"
+					label="Seleccionar menú"
+					clientid="0"
+				/>
+
+				<field
+					name="base"
+					type="modal_menu"
+					label="Elemento de menú base"
+					select="true"
+					new="true"
+					edit="true"
+					clear="true"
+					filter="integer"
+					>
+					<option value="">JCURRENT</option>
+				</field>
+
+				<field
+					name="startLevel"
+					type="list"
+					label="Nivel inicial"
+					default="1"
+					filter="integer"
+					validate="options"
+					>
+					<option value="1">J1</option>
+					<option value="2">J2</option>
+					<option value="3">J3</option>
+					<option value="4">J4</option>
+					<option value="5">J5</option>
+					<option value="6">J6</option>
+					<option value="7">J7</option>
+					<option value="8">J8</option>
+					<option value="9">J9</option>
+					<option value="10">J10</option>
+				</field>
+
+				<field
+					name="endLevel"
+					type="list"
+					label="Nivel final"
+					default="0"
+					filter="integer"
+					validate="options"
+					>
+					<option value="0">JALL</option>
+					<option value="1">J1</option>
+					<option value="2">J2</option>
+					<option value="3">J3</option>
+					<option value="4">J4</option>
+					<option value="5">J5</option>
+					<option value="6">J6</option>
+					<option value="7">J7</option>
+					<option value="8">J8</option>
+					<option value="9">J9</option>
+					<option value="10">J10</option>
+				</field>
+
+				<field
+					name="showAllChildren"
+					type="radio"
+					layout="joomla.form.field.radio.switcher"
+					label="Elementos del submenú"
+					default="1"
+					filter="integer"
+					>
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+
+				<!-- =================================== -->
+				<field type="spacer" name="spacer00" hr="true" />
+				<!-- <field name="typeMenu" type="radio" default="0" label="MOD_MENU_FIELD_TYPEMENU_LABEL" description="" class="btn-group btn-group-yesno">
+					<option value="1">MOD_MENU_TYPE_CPURTAIN</option>
+					<option value="0">MOD_MENU_TYPE_NORMAL</option>
+				</field> -->
+				<!-- showon="typeMenu:1" -->
+				<field name="showSubMenu" 
+					type="radio"
+					default="0"
+					label="Mostrar subniveles"
+					description=""
+					class="btn-group btn-group-yesno"
+					>
+					<option value="1">Mostrar</option>
+					<option value="0">Ocultar</option>
+				</field>
+
+			</fieldset>
+
+			<fieldset name="advanced">
+				<field
+					name="tag_id"
+					type="text"
+					label="'ID' de la etiqueta"
+				/>
+
+				<field
+					name="class_sfx"
+					type="text"
+					label="Clase CSS"
+					validate="CssIdentifier"
+				/>
+
+				<field
+					name="window_open"
+					type="text"
+					label="Posición de destino"
+					description="MOD_MENU_FIELD_TARGET_DESC"
+				/>
+
+				<field
+					name="layout"
+					type="modulelayout"
+					label="Layout"
+					class="form-select"
+					default="_:default"
+					validate="moduleLayout"
+				/>
+
+				<field
+					name="moduleclass_sfx"
+					type="textarea"
+					label="Module Class"
+					rows="3"
+					validate="CssIdentifier"
+				/>
+
+				<field
+					name="cache"
+					type="list"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					default="1"
+					filter="integer"
+					validate="options"
+					>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="number"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					default="900"
+					filter="integer"
+				/>
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="itemid"
+					>
+					<option value="itemid"></option>
+				</field>
+
+				<!-- =================================== -->
+				<field type="spacer" name="spacer0" hr="true" />
+				<field name="bgCurtainColor" type="color"  format="rgba"
+					label="Color de fondo de la cortina"
+					description="" />
+				<field name="txtCurtainColor" type="color"  format="rgba"
+					label=" Color de texto de la cortina "
+					description="" />
+				<field name="txtCurtainColorHamburger" type="color"  format="rgba"
+					label=" Color de texto de icono de menu"
+					description="" />
+				<field name="txtCurtainColorLineSpace" type="color"  format="rgba"
+					label=" Color de linea separadora menu"
+					description="" />
+				<field type="spacer" name="spacer00" hr="true" />
+
+				<field name="addPrimayLogo" 
+					type="radio"
+					default="0"
+					label="Agregar el logo del sitio"
+					description="El logo se mostrará en la esquina superior izquierda"
+					class="btn-group btn-group-yesno"
+					showon="typeMenu:1">
+					<option value="1">SI AGREGAR</option>
+					<option value="0">NO AGREGAR</option>
+				</field>
+				<field 
+					name="sponsor"
+					type="media"
+					label="Agergar imagen de patrocinador"
+					description="La imagen seleccionanda aparecerá posicionado en la esquina inferior derecha"
+					directory="/"
+					showon="typeMenu:1"
+				/>
+				<field 
+					name="iconoMenu"
+					type="media"
+					label="Agergar icono"
+					description="Este icono aparece en la parte centrar del menú, entre los títulos principales y los subtítulos"
+					directory="/"
+					showon="typeMenu:1"
+				/>
+				<field 
+					name="backImage"
+					type="media"
+					label="Agergar imagen de fondo"
+					description="La imagen seleccionanda aparecerá posicionado en la esquina inferior derecha como fondo del menú cortina"
+					directory="/"
+					showon="typeMenu:1"
+				/>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>

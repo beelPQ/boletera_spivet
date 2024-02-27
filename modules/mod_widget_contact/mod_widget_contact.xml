@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Modulo de widget contactanos</name>
+    <author>Piquero</author>
+    <version>1.0.0</version>
+    <description>Módulo de widget multiplataforma contacto</description>
+    <files>
+        <filename>mod_widget_contact.xml</filename>
+        <filename module="mod_widget_contact">mod_widget_contact.php</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename> 
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+					name="iconWidgetPrinicipal"
+					type="media"
+					label="Icono principal de widget"
+				/>
+
+                <field
+					name="iconWidgetWhatsapp"
+					type="media"
+					label="Icono de widget whatsapp"
+				/>
+                <field
+					name="numberWhats"
+					type="text"
+					label="Numero al cual llegaran los mensajes de whatsapp"
+				/>
+
+                <field
+					name="iconWidgetForm"
+					type="media"
+					label="Icono de widget formulario"
+				/>
+                <field
+					name="numberWhatsSoporte"
+					type="text"
+					label="Numero al cual llegaran los mensajes de whatsapp para soporte tecnico"
+				/>
+                <field
+					name="iconWidgetMessanger"
+					type="media"
+					label="Icono de widget messanger"
+				/>
+                 <field
+					name="linkMess"
+					type="text"
+					label="Link de messanger"
+				/>
+
+                <field
+					name="iconWidgetShared"
+					type="media"
+					label="Icono de widget compartir"
+				/>
+
+                
+            </fieldset>
+        </fields>
+    </config>
+</extension>
