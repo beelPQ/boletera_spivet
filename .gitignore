@@ -17,20 +17,21 @@
 /files/adjuntos/
 /files/comprobantes/
 
-/api/
-/libraries/
-/media/
-/plugins/
-cache/
-cli/
-tmp/
+# /api/
+# /libraries/
+# /media/
+# /plugins/
+# cache/
+# cli/
+# tmp/
+# includes/
 
-/templates/spivet_pq_tm/php/dompdf/
-templates/cassiopeia/
+# /templates/spivet_pq_tm/php/dompdf/
+# templates/cassiopeia/
 
 /archivos/cursos_talleres/
 /boletera.zip
 /boletera.sql
 
-configuration.php
+# configuration.php
 
