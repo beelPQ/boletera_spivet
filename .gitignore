@@ -1,0 +1,16 @@
+
+administrator/cache/autoload_psr4.php
+
+files/adjuntos/
+files/comprobantes/
+
+libraries/
+media/
+plugins/
+
+
+templates/spivet_pq_tm/php/dompdf/
+
+archivos/cursos_talleres/
+boletera.zip
+boletera.sql
