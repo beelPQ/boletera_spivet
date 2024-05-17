@@ -14,15 +14,15 @@
                     <tr>
                         <td class="body_confirm" align="center">
 
-                            <div class="title_confirm"><?php if($cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3){ echo '¡SOLICITUD EXITOSA!';}else{ echo '¡COMPRA EXITOSA!';} ?></div>
+                            <div class="title_confirm"><?php if($cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3 || $cobro['forma_depago_IDsystemapades']==5){ echo '¡SOLICITUD EXITOSA!';}else{ echo '¡COMPRA EXITOSA!';} ?></div>
 
-                            <img class="icon_confirm" src="/images/Spivet/Logos/logo_spivet.png" style="width: 250px;"><br><br>
+                            <img class="icon_confirm" src="/images/Spivet/Header/logo_spivet_grande.png" style="width: 250px;"><br><br>
 
                             <div class="legend__registro__success">Número de compra: <?php echo $cobro['cobroscata_idregcobro']; ?></div>
                             <div class="legend__send__email">
 
                                 <?php 
-                                    if($cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3){ 
+                                    if($cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3 || $cobro['forma_depago_IDsystemapades']==5 || $cobro['forma_depago_IDsystemapades']==6){ 
                                          echo 'Hemos enviado la solicitud de pago a su correo electrónico.<br>Favor revisar casilla de spam. ';
                                     }else{ 
                                         echo 'Hemos enviado el comprobante de compra a su correo electrónico.<br>Favor revisar casilla de spam. ';
@@ -68,7 +68,8 @@
             $imgBarcode = "data:image/png;base64," . base64_encode(file_get_contents($urlBarcode));
 
 
-            $urlLogo = $dominio['configuracion_valor']."/images/logo_carpey.png";
+            //$urlLogo = $dominio['configuracion_valor']."/images/logo_carpey.png";
+            $urlLogo = $dominio['configuracion_valor']."/images/Spivet/Header/275290806_2458784477608685_3611484289664577033_n-Photoroom 1.png";
             $imgLogo = "data:image/png;base64," . base64_encode(file_get_contents($urlLogo));
 
 

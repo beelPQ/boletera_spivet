@@ -11,123 +11,137 @@
 
 				$total_before_commissions=$_POST["total_before_commissions"];
 				$moneda=$_POST["moneda"];
-				//$id_formapago=$_POST["code"];
-				$id_formapago = 4;//El 4 es de mercado pago
-
-
-				$myDatabase = new myDataBase();
-				$mysqli = $myDatabase->conect_mysqli();
-
-				if(is_null($mysqli)==false){
-
-
-					$query = " SELECT 
-									*
-								FROM catalogo_forma_depago
-								WHERE IDsystemapades=".$id_formapago."
-								";
-	        		$resultado = $mysqli->query($query);
-	        		$formpago = mysqli_fetch_array($resultado);
-
-
-	        		if( isset($formpago['IDsystemapades']) ){
-
-	        			if( is_null($formpago['IDsystemapades'])==false ){
-
-	        				$comision_dinero = 0;
-	        				if( $moneda=='MXN' ){
-	        					$comision_dinero = $formpago['comision_pesos'];
-	        				}else if( $moneda=='USD' ){
-	        					$comision_dinero = $formpago['comision_dolares'];
-	        				}
-
-
-	        				$comision_porcentaje = 0;
-	        				$comision_porcentaje_monto = 0;
-	        				if($id_formapago=='1' || $id_formapago=='2' || $id_formapago=='3'){
-
-				        		if( $moneda=='MXN' ){
-		        					
-		        					$query = " SELECT 
-													idsystemcomper,openpay_porcentaje
-												FROM comisiones_porcentajes
-												WHERE mxnlimiteinferior<=".$total_before_commissions." AND mxnlimitesuperior>=".$total_before_commissions."
-												";
-					        		$resultado = $mysqli->query($query);
-					        		$row_comm_perc = mysqli_fetch_array($resultado);
-
-		        				}else if( $moneda=='USD' ){
-		        					
-		        					$query = " SELECT 
-													idsystemcomper,openpay_porcentaje
-												FROM comisiones_porcentajes
-												WHERE usdlimiteinferior<=".$total_before_commissions." AND usdlimitesuperior>=".$total_before_commissions."
-												";
-					        		$resultado = $mysqli->query($query);
-					        		$row_comm_perc = mysqli_fetch_array($resultado);
-
-		        				}
-
-
-				        		if( isset($row_comm_perc['idsystemcomper']) ){
-
-				        			if( is_null($row_comm_perc['idsystemcomper'])==false ){
-
-				        				$comision_porcentaje = $row_comm_perc['openpay_porcentaje'];
-				        				$comision_porcentaje_monto = $total_before_commissions * ($row_comm_perc['openpay_porcentaje']/100);
-				        			}
-				        		}
-
-	        				}
-	        				
-	        				//Calculo de comision en porcentaje para mercado pago
-							if($id_formapago == '4'){
-								$queryComisionMP = "SELECT * FROM catalogo_forma_depago WHERE IDsystemapades = 4";
-								$res = $mysqli->query($queryComisionMP);
-						
-								if($res->num_rows > 0){
-									$obj = mysqli_fetch_assoc($res);
-									//$comision_porcentaje_monto = $total_before_commissions * ($row_comm_perc['openpay_porcentaje']/100);
-									$comision_porcentaje_monto = $total_before_commissions * ($obj['comision_porcentajeinicial']/100);
-									$comision_total = $comision_porcentaje_monto + doubleval($obj["comision_pesos"]);
-									$comision_porcentaje = doubleval($obj["comision_porcentajeinicial"]) ;
-								}
-							}
-
-	        				$comision_total = $comision_porcentaje_monto + $comision_dinero;
-
-	        				$response = [
-								'result' => 'success',
-								'comision' => $comision_total,
-								'comision_porcentaje' => $comision_porcentaje
-							];
-
-
-	        			}else{
-
-		        			$response = [
-								'result' => 'error',
-								'message' => '[2] No se pudo calcular las comisiones.'
-							];
-
-		        		}
-
-	        		}else{
-
-	        			$response = [
-							'result' => 'error',
-							'message' => '[1] No se pudo calcular las comisiones.'
-						];
-
-	        		}
-
-
-				}else{
-					$response = [
-						'result' => 'error',
-						'message' => 'No se pudo realizar la petición de las comisiones.'
+				$id_formapago=$_POST["code"];
+				//$id_formapago = 4;//El 4 es de mercado pago
+				
+				
+				if($id_formapago==5 || $id_formapago==6){
+				    //si la forma de pago no utiliza una vtp
+				    
+				    $response = [
+						'result' => 'success',
+						'comision' => 0,
+						'comision_porcentaje' => 0
 					];
-				}
+				    
+				}else{
+				    
+				    $myDatabase = new myDataBase();
+    				$mysqli = $myDatabase->conect_mysqli();
+    
+    				if(is_null($mysqli)==false){
+    
+    
+    					$query = " SELECT 
+    									*
+    								FROM catalogo_forma_depago
+    								WHERE IDsystemapades=".$id_formapago."
+    								";
+    	        		$resultado = $mysqli->query($query);
+    	        		$formpago = mysqli_fetch_array($resultado);
+    
+    
+    	        		if( isset($formpago['IDsystemapades']) ){
+    
+    	        			if( is_null($formpago['IDsystemapades'])==false ){
+    
+    	        				$comision_dinero = 0;
+    	        				if( $moneda=='MXN' ){
+    	        					$comision_dinero = $formpago['comision_pesos'];
+    	        				}else if( $moneda=='USD' ){
+    	        					$comision_dinero = $formpago['comision_dolares'];
+    	        				}
+    
+    
+    	        				$comision_porcentaje = 0;
+    	        				$comision_porcentaje_monto = 0;
+    	        				if($id_formapago=='1' || $id_formapago=='2' || $id_formapago=='3'){
+    
+    				        		if( $moneda=='MXN' ){
+    		        					
+    		        					$query = " SELECT 
+    													idsystemcomper,openpay_porcentaje
+    												FROM comisiones_porcentajes
+    												WHERE mxnlimiteinferior<=".$total_before_commissions." AND mxnlimitesuperior>=".$total_before_commissions."
+    												";
+    					        		$resultado = $mysqli->query($query);
+    					        		$row_comm_perc = mysqli_fetch_array($resultado);
+    
+    		        				}else if( $moneda=='USD' ){
+    		        					
+    		        					$query = " SELECT 
+    													idsystemcomper,openpay_porcentaje
+    												FROM comisiones_porcentajes
+    												WHERE usdlimiteinferior<=".$total_before_commissions." AND usdlimitesuperior>=".$total_before_commissions."
+    												";
+    					        		$resultado = $mysqli->query($query);
+    					        		$row_comm_perc = mysqli_fetch_array($resultado);
+    
+    		        				}
+    
+    
+    				        		if( isset($row_comm_perc['idsystemcomper']) ){
+    
+    				        			if( is_null($row_comm_perc['idsystemcomper'])==false ){
+    
+    				        				$comision_porcentaje = $row_comm_perc['openpay_porcentaje'];
+    				        				$comision_porcentaje_monto = $total_before_commissions * ($row_comm_perc['openpay_porcentaje']/100);
+    				        			}
+    				        		}
+    
+    	        				}
+    	        				
+    	        				//Calculo de comision en porcentaje para mercado pago
+    							if($id_formapago == '4'){
+    								$queryComisionMP = "SELECT * FROM catalogo_forma_depago WHERE IDsystemapades = 4";
+    								$res = $mysqli->query($queryComisionMP);
+    						
+    								if($res->num_rows > 0){
+    									$obj = mysqli_fetch_assoc($res);
+    									//$comision_porcentaje_monto = $total_before_commissions * ($row_comm_perc['openpay_porcentaje']/100);
+    									$comision_porcentaje_monto = $total_before_commissions * ($obj['comision_porcentajeinicial']/100);
+    									$comision_total = $comision_porcentaje_monto + doubleval($obj["comision_pesos"]);
+    									$comision_porcentaje = doubleval($obj["comision_porcentajeinicial"]) ;
+    								}
+    							}
+    
+    	        				$comision_total = $comision_porcentaje_monto + $comision_dinero;
+    
+    	        				$response = [
+    								'result' => 'success',
+    								'comision' => $comision_total,
+    								'comision_porcentaje' => $comision_porcentaje
+    							];
+    
+    
+    	        			}else{
+    
+    		        			$response = [
+    								'result' => 'error',
+    								'message' => '[2] No se pudo calcular las comisiones.'
+    							];
+    
+    		        		}
+    
+    	        		}else{
+    
+    	        			$response = [
+    							'result' => 'error',
+    							'message' => '[1] No se pudo calcular las comisiones.'
+    						];
+    
+    	        		}
+    
+    
+    				}else{
+    					$response = [
+    						'result' => 'error',
+    						'message' => 'No se pudo realizar la petición de las comisiones.'
+    					];
+    				}
+    				
+				    
+				}//fin else, si se utliza una vtp
 
 
 			}catch (Exception $e) {

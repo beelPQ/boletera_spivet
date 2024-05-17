@@ -421,7 +421,9 @@
                 $myDatabase = new myDataBase();
                 $con = $myDatabase->conect_mysqli();
                 if( !is_null($con) ){
-                    $sentence = "SELECT * FROM catalogo_categorias_programas";
+                    $sentence = "SELECT idsystemcatproon, categorias_programas_nombre FROM catalogo_categorias_programas ccp
+                    INNER JOIN catalogo_productos cp ON cp.categorias_programasonline_idsystemcatproon = ccp.idsystemcatproon 
+                    WHERE cp.catalogo_productos_publicado = 1 GROUP BY idsystemcatproon";
                     $exec = $con->query($sentence);
 
                     while ($row = $exec->fetch_array(MYSQLI_ASSOC)) {

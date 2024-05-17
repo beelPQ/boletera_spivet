@@ -184,18 +184,59 @@
 
 				<!-- =================================== -->
 				<field type="spacer" name="spacer0" hr="true" />
-				<field name="bgCurtainColor" type="color"  format="rgba"
+				<field 
+					name="bgCurtainColor"
+					type="color"
+					format="rgba"
 					label="Color de fondo de la cortina"
 					description="" />
-				<field name="txtCurtainColor" type="color"  format="rgba"
+				<field 
+					name="bgCurtainColorPriv"
+					type="color"
+					format="rgba"
+					label="Color de fondo de la cortina privado"
+					description="" />
+				<field
+					name="txtCurtainColor"
+					type="color"  format="rgba"
 					label=" Color de texto de la cortina "
-					description="" />
-				<field name="txtCurtainColorHamburger" type="color"  format="rgba"
-					label=" Color de texto de icono de menu"
-					description="" />
-				<field name="txtCurtainColorLineSpace" type="color"  format="rgba"
+					description=""
+				/>
+				<field
+					name="txtCurtainColorHover"
+					type="color"  format="rgba"
+					label=" Color de texto de la cortina al pasar el mouse"
+					description=""
+				/>
+				<field
+					name="txtCurtainColorHoverPriv"
+					type="color"  format="rgba"
+					label=" Color de texto de la cortina privada al pasar el mouse"
+					description=""
+				/>
+				<field 
+					name="txtCurtainColorHamburger"
+					type="color"
+					format="rgba"
+					label=" Color de lineas del icono de menú público"
+					description="Lineas horizontales(Menú hamburguesa)"
+				/>
+				<field 
+					name="txtCurtainColorHamburgerRegistered"
+					type="color"
+					format="rgba"
+					label=" Color de lineas del icono de menú privado"
+					description="Lineas horizontales(Menú hamburguesa)"
+				/>
+				<field 
+					name="txtCurtainColorLineSpace"
+					type="color"
+					format="rgba"
 					label=" Color de linea separadora menu"
-					description="" />
+					description="Es la linea divisora entre las opciones principales y el submenú"
+				/>
+
+
 				<field type="spacer" name="spacer00" hr="true" />
 
 				<field name="addPrimayLogo" 
@@ -211,7 +252,7 @@
 				<field 
 					name="sponsor"
 					type="media"
-					label="Agergar imagen de patrocinador"
+					label="Agregar imagen de patrocinador"
 					description="La imagen seleccionanda aparecerá posicionado en la esquina inferior derecha"
 					directory="/"
 					showon="typeMenu:1"
@@ -219,7 +260,7 @@
 				<field 
 					name="iconoMenu"
 					type="media"
-					label="Agergar icono"
+					label="Agregar icono"
 					description="Este icono aparece en la parte centrar del menú, entre los títulos principales y los subtítulos"
 					directory="/"
 					showon="typeMenu:1"
@@ -227,7 +268,7 @@
 				<field 
 					name="backImage"
 					type="media"
-					label="Agergar imagen de fondo"
+					label="Agregar imagen de fondo"
 					description="La imagen seleccionanda aparecerá posicionado en la esquina inferior derecha como fondo del menú cortina"
 					directory="/"
 					showon="typeMenu:1"

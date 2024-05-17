@@ -1,0 +1,809 @@
+:root{
+    --color_pq_text : #000;
+    --color_pq_overscreen : #fff;
+}
+@import "skeleton";
+@import "buttons";
+@import "input_search";
+@import "acordition_movil";
+
+
+
+
+
+body.spivet{
+    background-color: #000;
+}
+
+
+#headerContent{
+    z-index: 1000;
+    /* position: fixed !important; */
+    top: 0;
+    width:100%;
+    height: 5rem;
+}
+
+.flex{
+    display: flex;
+}
+.flex-col{
+    flex-direction: column;
+}
+
+#to_pqoverlay{
+    /* position: fixed;
+    height: 4.5rem;
+    background: rgb(0, 0, 0);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1); */
+    display: flex;
+    max-height: 100px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,0); 
+}
+
+ 
+#contentSummaryPaymentMobile{
+    position: fixed;
+    width: 100%;
+    top: 4.5rem;
+}
+
+
+
+
+.buycar_content {
+    background: #fff;
+    height: 100%;
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins'!important;
+    min-height: 75vh;
+
+    .section_title1{
+        font-size: 20px;
+        //
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        color: #01002F;
+        margin-top: 3rem;
+    }
+
+    .title__reg{
+        width: 100%;
+    }
+
+
+    .mainContent{
+         
+
+        width:1245px;
+        margin:auto;
+        margin-top:91px;
+        display:flex;
+        flex-direction:row;
+        
+
+        .selectionProducts{
+            width:818px;
+            
+
+            .contentFilters{
+                width:700px;
+            }
+
+            .contentProducts{
+                width:700px;
+
+                
+
+                .card__gt {
+                   
+                    width: 100%;
+                    height: auto;
+                    max-height: 280px;
+                    
+                    border-radius: 15px;
+                    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+                    border: solid 1px #d1d1d1;
+
+                    display: flex;
+                   
+                    margin-bottom:54px;
+
+                    .card__gt__slider_image{
+
+                        width: 40%;
+                        /* height: 100%; */
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit:cover;
+                            border-radius: 15px 0px 0px 15px;
+                        }
+                    }
+
+                    .card__gt__content{
+
+                        position: relative;
+
+                        background-color: #fff;
+                        width: 60%;
+                        /* height: 100%; */
+
+                        border-radius: 0px 15px 15px 0px;
+                        display: flex;
+
+                        flex-direction: column;
+
+                        padding:8px 15px;
+
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: normal;
+                        letter-spacing: normal;
+
+                        .card__gt__stock{
+                            margin-bottom:5px;
+                            text-align:right; 
+                            
+                            font-size: 15px;
+                            font-weight: bold;
+                            color: #18ac00;
+                        }
+
+                        .card__gt__amountPrice{
+
+                            margin-bottom:20px;
+                            text-align:right;
+
+                            span{
+                                
+                                font-size: 18px;
+                                font-weight: bold;
+                                color: var(--color_pq_text);
+
+                            }
+
+                            s{
+                                
+                                font-size: 16px;
+                                font-weight: normal;
+                                color: var(--color_pq_text);
+                            }
+
+                        }
+
+                        .card__gt__details{
+
+                            //margin-bottom:30px;
+
+                            .card__gt__details__name{
+
+                                margin-bottom:5px;
+
+                                text-align: left;
+
+                                
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: var(--color_pq_text);
+                                a{
+                                    text-decoration: none;
+                                    color: var(--color_pq_text);
+                                }
+                            }
+
+                            .card__gt__details__prices{
+
+                                margin-bottom:5px;
+
+                                text-align: left;
+
+                                
+                                font-size: 15px;
+                                font-weight: bold;
+                                color: var(--color_pq_secondary);
+
+                            }
+
+                            .card__gt__details__description{
+
+                                text-align: left; 
+                                font-size: 13.4px;
+                                font-weight: normal;
+                                color: var(--color_pq_text); 
+                                p{
+                                    margin-bottom: 2px;
+                                }
+                                a{
+                                    text-decoration: none;
+                                    color: var(--color_pq_text);
+                                    font-weight: bold;
+                                    &:hover{
+                                        text-decoration: underline;
+                                    }
+                                }
+                                .card__gt__modal__link{
+                                    background-color:#fff;
+                                    border:none;
+                                    font-weight: bold;
+                                }
+                            }
+
+
+                        }
+
+                        .card__gt__modal{
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+                            margin-bottom: 10px;
+                            margin-right: 10px;
+                            .addItemCar{
+
+                            }
+                        }
+ 
+                    }
+
+                }
+
+
+            }
+
+            .content-button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .btn-views-products{
+                    @extend .btn-normal;
+                    background: var(--color_pq_text);
+                    color: white; 
+                    margin-bottom: 3rem;
+                    transition: 0.5s;
+                    &:hover{
+                        transform: translateY(-4px);
+                        box-shadow: 0px 7px 16px -4px rgba(0,0,0,0.75);
+                    }
+                }
+            }
+        }
+
+        
+
+        .divContentSumPayDesk{
+            width:427px;
+            height : fit-content;
+            
+            padding: 31px 20px 42px 31px;
+            border-radius: 7px;
+            box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+            border: solid 1px #838383;
+            background-color: var(--color_pq_primary);
+
+           
+        }
+
+        @media(max-width: 1275px) {
+            .mainContent{
+                padding: 1rem;
+            }
+            .selectionProducts{
+                width:60%;
+
+                .contentFilters{
+                    width:95%;
+                }
+
+                .contentProducts{
+                    width:95%;
+                }
+            }
+
+
+            .divContentSumPayDesk{
+                width:40%;
+            }
+        }
+
+        @media(max-width: 980px) {
+            #headerContent{
+                background: #000!important;
+            }
+            .selectionProducts{
+                width:100%;
+
+                .contentFilters{
+                    width:95%;
+                    margin:auto;
+                }
+
+                .contentProducts{
+                    width:95%;
+                    margin:auto;
+                }
+            }
+
+            .divContentSumPayDesk {
+                display: none;
+            }
+            .content-accordition-movil{
+                margin-top: 3.5rem; 
+                min-height: 50vh;
+            }
+
+        }
+
+    }
+
+
+    @media(max-width: 1275px) {
+        .mainContent{
+            width:100%;
+            padding: 1rem;
+        }
+        
+    }
+
+
+}
+
+
+.modal-header{
+    background: var(--color_pq_text);
+}
+.text-selected-modality{
+    font-weight: bold;
+}
+
+.button-accept-modal{
+    width: 180px;
+    height: 38px;
+    background: var(--color_pq_text);
+    border: none;
+    border-radius: 5px;
+    &:hover{
+        background: var(--color_pq_text); 
+        
+    }
+}
+.button-cerrar-modal{
+    width: 180px;
+    height: 38px;
+    background: white;
+    border: solid 1px var(--color_pq_text);
+    border-radius: 5px;
+    color: var(--color_pq_text);
+    &:hover{
+        border: solid 1px var(--color_pq_text); 
+        background: white;
+        color: var(--color_pq_text);
+    }
+}
+.btn-close{
+    color: white;
+    font-weight: bold;
+}
+
+
+
+.contentRadBtn-modality{
+    display: flex;
+    padding: 0 2rem;
+    input[type="radio"]{
+        display: none !important;
+    }
+    input[type="radio"]+label{
+        flex-direction: column;
+        position: relative;
+        padding-left: 1.3em;
+        margin-top: 1.3rem;
+        margin-bottom: 1.3rem;
+        margin-right: 2rem;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    input[type="radio"]+label{
+        &::before{
+            display: block;
+            position: absolute;
+            content: ' ';
+            border: 1px solid var(--color_pq_text);
+            border-radius: 50%;
+            width: .8em;
+            height: .8em;
+            left: 0.05em;
+            top: 6px;
+        }
+    }
+    input[type="radio"]:checked+label::before{
+        background-color: var(--color_pq_text);
+    }
+}
+
+
+@media(max-width: 980px) {
+    .content-accordition-movil{
+        margin-top: 3.5rem;
+    }
+    .buycar_content {
+        margin-top: 160px;
+    }
+
+    .footer-data-info{
+        display: none;
+    }
+
+    .footer{
+        height: auto;
+        z-index: 20;
+    }
+
+
+}
+
+
+.collpase-form-general{
+    width: 200px;
+    height: 200px;
+    background-color: #f00;
+}
+
+
+.content-button-payment{
+    display: none;
+}
+.space-content-movil{
+    display: none;
+}
+
+
+
+#contentSummaryPaymentMobile, #accoritionCarBuyForm{
+    display: none;
+}
+#contentSummaryPaymentMobile{
+    z-index: 100;
+}
+
+#contentSummaryPaymentMobile *, #contentSummaryPaymentDesktop * {
+    background-color: var(--color_pq_text);
+    color: var(--color_pq_overscreen);
+}
+
+@media(max-width: 980px) {
+    #contentSummaryPaymentMobile, #accoritionCarBuyForm {
+        display: unset;
+        font-family: 'Poppins';
+    }
+    .buycar_content{
+        display: none;
+    }
+    .space-content-movil{
+        display: block;
+        height: 28vh;
+    }
+    
+    .content-button-payment{
+        margin: 0 0rem;
+        display: block;
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        .button-payment-sec{
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            width: 100%;
+            height: 5rem;
+            background: #000000;
+            border-bottom: solid 1px #fff;
+            button{
+                width: 240px;
+                height: 38px;
+                background: #838383;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                
+            }
+        }
+    }
+
+    .footer{
+        height: auto!important;
+        position: relative;
+        bottom: 0rem;
+        text-align: center;
+        .footer-data-info{
+            display: none!important;
+        }
+
+    }
+
+}
+
+.label-deploySumPay {
+    position: absolute;
+    right: 48px;
+}
+
+.accordion-header-text {
+    margin-left: 25px;
+}
+
+.accordion-button::after {
+    background-image: url('../img/icons/icon_deploy.svg');
+    margin-top: 13px;
+    background-size: 100%; 
+    width: 15px;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url('../img/icons/icon_deploy.svg'); 
+    margin-top: -6px;
+   
+}
+
+.accordion-button:not(.collapsed){
+    
+    box-shadow : none!important;
+}
+
+.contentItemsPayment {}
+
+.contentItemsCupon {
+    border-top: solid 1px var(--color_pq_overscreen);
+    border-bottom: solid 1px var(--color_pq_overscreen);
+    padding: 22px 5px;
+}
+.clickDeploySumPayMobile{
+    font-weight: bold;
+}
+.clickDeploySumPayDesktop{
+    font-weight: bold;
+}
+
+.label-deploySumPay{
+    font-weight: lighter;
+}
+
+.contentItemsTotal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 25px;
+}
+
+.contentItemsTotal div {
+    width: 50%;
+}
+
+.rowItemPayment {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 22px;
+}
+
+.itemPayment_name {
+    width: 50%;
+}
+
+.itemPayment_price {
+    width: 50%;
+    text-align: right;
+}
+
+.deleteProduct, .deleteLodging {
+    font-size: 12px;
+    color: #f00 !important;
+    cursor: pointer;
+}
+
+.content-payment{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; 
+}
+
+
+
+
+//ESTILOS PANTALLA DE CONFIRMACION PAGO---------------------------------------------------------
+.icon_confirm{
+    width:102px;
+    height:102px;
+}
+
+.title_confirm{
+  font-family: Gotham;
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #01002f;
+
+  margin-bottom:20px;
+}
+
+.table__actions__success{
+    margin-top: 85px;
+    width: 60%;
+}
+
+.body_confirm {
+    border-collapse: collapse;
+    padding:70px;
+}
+
+.legend__registro__success {
+    margin-top: 30px;
+    margin-bottom: 60px;
+
+    font-family: Gotham;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000;
+    
+}
+
+.legend__send__email {
+    margin-bottom: 60px;
+
+    font-family: Gotham;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000;
+}
+
+.content__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+
+
+@media(max-width: 1300px) {
+    .table__actions__success {
+        width: 80%;
+    }
+    .card__gt__details__description{
+        height: 70px;
+        
+        overflow: hidden;
+        
+    }
+}
+
+@media(max-width: 1150px) {
+    .card__gt { 
+        height: 270px!important;
+        max-height: 280px; 
+        .card__gt__slider_image{
+            width: 33%!important;
+        }
+        .card__gt__content{
+            width: 66%!important;
+        }
+    }
+   
+    .card__gt__details__description{
+        height: 62px; 
+        overflow: hidden;
+        
+    }
+}
+
+@media(max-width: 990px) {
+    
+    .content__buttons {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content__buttons :nth-child(1) { order: 3; }
+    .content__buttons :nth-child(2) { order: 2; }
+    .content__buttons :nth-child(3) { order: 1; }
+
+    .card__gt__details__description{
+        height: 40px;
+        
+        overflow: hidden;
+        
+    }
+}
+
+@media(max-width: 960px) {
+    
+    .table__actions__success {
+        width: 100%;
+    }
+}
+
+@media(max-width: 750px) {
+    
+    .content__buttons .custom-button1, .content__buttons .custom-button2{
+        width: 240px;
+        margin-top: 15px;
+    }
+}
+
+@media(max-width: 370px) {
+    .body_confirm {
+        padding:30px;
+    }
+}
+//FIN ESTILOS PANTALLA DE CONFIRMACION PAGO---------------------------------------------------------
+
+
+
+//ESTILOS CUPON-------------------------------------------------------------------------------
+.inputsCupon {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+
+    .input-cupon{
+        background-color:#fff !important;
+        color:var(--color_pq_text) !important;
+    }
+
+    .btn-cupon {
+      flex-basis: 50%;
+      border: 1px solid #fff;
+      border-radius: 4px;
+    }
+}
+//FIN ESTILOS CUPON-------------------------------------------------------------------------------
+
+
+
+@import "mediaquerys";
+
+
+//Clases de botones sweet alert
+.confirm-btn-alert{
+    width: 140px;
+    height: 38px;
+    background: #01002F!important;
+    color: white!important;
+    
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+    &:focus{
+        box-shadow: #02005e!important;
+    }
+}
+
+.circle-count-items{
+    width: 19px;
+    height: 19px;
+}

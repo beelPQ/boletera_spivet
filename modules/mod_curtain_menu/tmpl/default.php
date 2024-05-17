@@ -59,8 +59,12 @@ if ($typeMenu == 1) {
 echo $tagsCourtainTop; 
 //Se obtienen los colores para el menu cortina
 $bgColorCurtain = $params->get('bgCurtainColor', '#fff');
+$bgCurtainColorPriv = $params->get('bgCurtainColorPriv', '#fff');
 $txtColorCurtain = $params->get('txtCurtainColor', '#000');
+$txtCurtainColorHover = $params->get('txtCurtainColorHover', '#f0d800');
+$txtCurtainColorHoverPriv = $params->get('txtCurtainColorHoverPriv', '#f0d800');
 $txtColorIconMenu = $params->get('txtCurtainColorHamburger', '#000');
+$txtColorIconMenuReg = $params->get('txtCurtainColorHamburgerRegistered', '#000');
 $txtColorLineSpace = $params->get('txtCurtainColorLineSpace', '#000');
 // The menu class is deprecated. Use mod-menu instead
 
@@ -74,8 +78,12 @@ echo "<span hidden id='dataAddMenu' data-addlogosite='$addPrimayLogo' data-iconM
 <style>
     :root {
         --bgcolor_pq_curtain: <?= $bgColorCurtain ?>;
+        --bgcolor_pq_curtain_priv: <?= $bgCurtainColorPriv ?>;
         --color_pq_curtain: <?= $txtColorCurtain ?>;
+        --color_hover_options: <?= $txtCurtainColorHover ?>;
+        --color_hover_options_priv: <?= $txtCurtainColorHoverPriv ?>;
         --color_pq_icon_menu : <?= $txtColorIconMenu?>;
+        --color_pq_icon_menu_priv : <?= $txtColorIconMenuReg?>;
         --color_pq_line_menu : <?= $txtColorLineSpace?>
     }
 </style>

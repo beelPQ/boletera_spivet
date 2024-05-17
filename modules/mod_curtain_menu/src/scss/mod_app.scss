@@ -15,9 +15,6 @@
 // https://www.cdnfonts.com/gotham-6.font
 @import url('https://fonts.cdnfonts.com/css/gotham-6');
 
-:root{
-    --color-hover-options: #f0d800;
-}
 
 body.spivet {
     .container-header {
@@ -28,6 +25,9 @@ body.spivet {
         // animation-range: 0 200px;
         &:is(.incar) {
             position: relative !important;
+        }
+        &.registered {
+            background-color: var(--bgcolor_pq_curtain_priv);
         }
     }
     & #to_pqoverlay {
@@ -178,7 +178,7 @@ body.spivet {
                     }
                     &:not(.active) { 
                         & a { color: var(--color_pq_curtain); }
-                     } 
+                    }
                 }
             }
     
@@ -227,6 +227,11 @@ body.spivet {
             $lineMainTranslateYBe: -10px;
             $lineMainTranslateYAf: 10px;
             $heightLineSplit: 2px;
+            
+            // $colorLinesHamburger: var(--color-registered);
+            // &:not(.invertcolor) {
+            //     $colorLinesHamburger: var(--color-guest);
+            // }
 
             position: relative;
             display: inline-flex;
@@ -255,6 +260,7 @@ body.spivet {
                     width: inherit;
                     height: $heightLineSplit;
                     background-color: var(--color_pq_icon_menu);
+                    // background-color: $colorLinesHamburger;
                     //background-color: #fff;
                     transition: transform 0.5s;
                 }
@@ -271,8 +277,9 @@ body.spivet {
             &.white {
                 .line-main::after, .line-main::before,
                 .line-split::after, .line-split::before {
-                    //background-color: var(--color_pq_overscreen);
-                    background-color: #fff;
+                    // background-color: var(--color_pq_overscreen);
+                    background-color: white;
+                    // background-color: $colorLinesHamburger;
                 }
             }
             &.blue {
@@ -280,6 +287,20 @@ body.spivet {
                 .line-split::after, .line-split::before  {
                     //background-color: var(--color_pq_textoverscreen);
                     background-color: #fff;
+                    // background-color: $colorLinesHamburger;
+                }
+            }
+
+            &.invertcolor {
+                .line-main::after, .line-main::before,
+                .line-split::after, .line-split::before {
+                    background-color: var(--color_pq_icon_menu_priv);
+                }
+                &.white {
+                    .line-main::after, .line-main::before,
+                    .line-split::after, .line-split::before {
+                        background-color: var(--color_pq_icon_menu_priv);
+                    }
                 }
             }
 
@@ -298,6 +319,7 @@ body.spivet {
             // background-color: var(--color_pq_primary);
             //background-color: var(--bgcolor_pq_curtain);
             background-color: var(--bgcolor_pq_curtain);
+            
             &.show { animation: pqoverlay_show 0.5s ease both; }
             &.hide { animation: pqoverlay_hide 0.5s ease both; }
             & .line__spacer { display: none; }
@@ -379,7 +401,8 @@ body.spivet {
                         display: flex;
                         transition: display .7s ease;
                         overflow: auto;
-                        color: #f0d800;
+                        // color: #f0d800;
+                        color: var(--color_pq_line_menu); // ? Color diferente en título se submenu
                     }
                     &.hide {
                         animation: submenu_hide 0.6s ease both;
@@ -421,16 +444,17 @@ body.spivet {
                             }
                             &:hover,
                             &:focus {
-                                color: var(--color_pq_curtain);
+                                // color: var(--color_pq_curtain);
+                                color: var(--color_hover_options) !important;
                             }
-                            &:hover {
-                                color: var(--color-hover-options);
-                                &:not(.disablelink) {
-                                    /* &::after {
-                                        width: 100%;
-                                    } */
-                                }
-                            }
+                            // &:hover {
+                            //     color: var(--color-hover-options);
+                            //     // &:not(.disablelink) {
+                            //     //     /* &::after {
+                            //     //         width: 100%;
+                            //     //     } */
+                            //     // }
+                            // }
                             & .sub__item__image {
                                 width: 40px;
                                 height: 40px;
@@ -588,6 +612,31 @@ body.spivet {
                     object-fit: contain;
                 }
             }
+
+            &#pqOverlayScreen.registered {
+                background-color: var(--bgcolor_pq_curtain_priv);
+                ul {
+                    &.view_submenu {
+                        li.nav-item {
+                            a {
+                                color: black
+                            }
+                        }
+                    }
+                    &.menu__sub__item {
+                        .mod-menu__sub {
+                            li.nav-item {
+                                a {
+                                    color: var(--color_pq_icon_menu_priv);
+                                    &:hover {
+                                        color: var(--color_hover_options_priv);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -614,7 +663,7 @@ body.spivet {
         //padding: 10px;
         animation: desplazamiento 50s linear infinite; /* Ajusta la duración según tus preferencias */
     } 
-  }
+}
 
 @keyframes adjust-header {
     to {

@@ -1,0 +1,64 @@
+
+    //button pagar
+    .payment-button{
+        width: 280px;
+        height: 38px;
+        background: var(--color_pq_text);
+        border: none;
+        color: white;
+        border-radius: 5px;
+        transition: 0.5s;
+        &:hover{
+            transform: translateY(-4px);
+            box-shadow: 0px 7px 16px -4px rgba(0,0,0,0.75);
+        }
+    }
+
+    .btn-normal{
+        width: 280px;
+        height: 38px;
+        border-radius: 5px;
+        border: none;
+        transition: 0.5s;
+    }
+
+    .custom-button1{
+        @extend .payment-button;
+    }
+
+    .custom-button2{
+        @extend .payment-button;
+        
+        background: white;
+        color: var(--color_pq_text);
+        border: 1px solid var(--color_pq_text);
+    }
+    
+
+    //animacion button card
+    .btn-animation{ 
+        font-weight: bold;
+        transition: 0.5s;
+        &:hover{
+            transform: translateY(-4px);
+            box-shadow: 0px 7px 16px -4px rgba(0,0,0,0.75);
+        }
+    }
+
+    .btn-curso-not-available{
+        background: #f4f4f4;
+        color: #00000082;
+        font-weight: bold;
+    } 
+
+    .btnPrimary{
+        @extend .btn-normal;
+        color: #fff;
+        background: #000;
+    }
+
+    .btnRed{
+        @extend .btn-normal;
+        background: #c50000;
+        color: #fff;
+    }

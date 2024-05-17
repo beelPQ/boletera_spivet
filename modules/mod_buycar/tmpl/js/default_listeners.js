@@ -1,8 +1,12 @@
 
+const eventModalMP = (tipo) => {
+    document.querySelector("#btnModalPayment").click();
+    initSdkMP(tipo);
+}
 
 window.addEventListener('load', (event) => {
 
-    
+
 
     const inputSearch = `
     <div class="input-search"> 
@@ -56,8 +60,8 @@ window.addEventListener('load', (event) => {
                     <input type="text" class="form-control" id="cp" name="cp" maxlength="5">
                 </div>
                 <div class="col-md-6 select-mod">
-                    <label for="inputPassword4" class="form-label">ESTADO</label>
-                    <select name="state" id="state" class="form-control">
+                    <label for="inputPassword4" class="form-label">PAIS</label>
+                    <select name="country" id="country" class="form-control">
                         <!-- content dinamyc -->
                     </select>
                     <svg class="icon-select" width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,8 +69,8 @@ window.addEventListener('load', (event) => {
                     </svg>
                 </div>
                 <div class="col-md-6 select-mod">
-                    <label for="inputPassword4" class="form-label">MUNICIPIO</label>
-                    <select name="towns" id="towns" class="form-control">
+                    <label for="inputPassword4" class="form-label">ESTADO</label>
+                    <select name="state" id="state" class="form-control">
                         <option value="no_selected" selected disabled>Seleccionar</option>
                         <!-- content dinamyc -->
                     </select>
@@ -169,8 +173,8 @@ window.addEventListener('load', (event) => {
                     <input type="hidden" name="token_id" id="token_id">
                 </div>
 
-                <span class="subtitle-action">¿DESEA AGREGAR FACTURA?</span>
-                <div class="contentRadBtn-invoice">
+                <span class="subtitle-action" style="display:none;">¿DESEA AGREGAR FACTURA?</span>
+                <div class="contentRadBtn-invoice" style="display:none;">
                     <input type="radio" id="addInvoice_yes" class="input__radio__invoice" name="addInvoice" value="1" > 
                     <label for="addInvoice_yes">Sí requiero factura</label>
                 
@@ -178,7 +182,7 @@ window.addEventListener('load', (event) => {
                     <label for="addInvoice_no">No requiero factura</label>
                 </div>
 
-                <div class="form-group content-attach-file hidden" >
+                <div class="form-group content-attach-file hidden" style="display:none;" >
                     <label class="label_formulario">ADJUNTAR CONSTANCIA </label>
                     <br>
                     <label for="inputConsFiscal" class="btn labelAttach">
@@ -207,13 +211,9 @@ window.addEventListener('load', (event) => {
 
     let cartMobile = `
         <div class="accordion accordion-flush" id="contentSummaryPaymentMobile"><?php //id se usa en el div de abajo ?>
-                  
             <div class="accordion-item">
-
                 <h2 class="accordion-header" id="headingSumPayMobile"> <?php //id se usa en el div de abajo ?>
-
                     <button  class="accordion-button clickDeploySumPayMobile collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSumPayMobile" aria-expanded="false" aria-controls="collapseSumPayMobile">
-
                         <div type="button" class="position-relative clickDeploySumPayMobile" >
                           <img class="clickDeploySumPayMobile" src="/modules/mod_buycar/tmpl/img/icons/icon_counter.svg">
                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-light text-dark clickDeploySumPayMobile counterItems" >0</span>
@@ -273,7 +273,7 @@ window.addEventListener('load', (event) => {
                 <h2 class="accordion-header">
                     <button id="collapStepSelectedCourse" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
                         aria-expanded="true" aria-controls="collapseOne">
-                        <span class="mark-important">Paso 1:</span>Seleccion del curso
+                        <span class="mark-important">Paso 1:</span>&nbsp;Seleccion del curso
                         <span class="status-section-unfinished status-selected-course"></span>
                     </button>
                 </h2>
@@ -295,7 +295,7 @@ window.addEventListener('load', (event) => {
                 <h2 class="accordion-header">
                     <button id="collapStepDataPerson" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <span class="mark-important">Paso 2:</span>Datos personales
+                        <span class="mark-important">Paso 2:</span>&nbsp;Datos personales
                         <span class="status-section-unfinished status-form"></span>
                     </button>
                 </h2>
@@ -305,11 +305,11 @@ window.addEventListener('load', (event) => {
                     </div>
                 </div>
             </div>
-            <div class="accordion-item" style='display: none;'>
+            <div class="accordion-item" >
                 <h2 class="accordion-header">
                     <button id="collapPaymentFinal" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <span class="mark-important">Paso 3:</span>Método de pago y facturación
+                        <span class="mark-important">Paso 3:</span>&nbsp;Método de pago
                         <span class="status-section-unfinished status-form "></span>
                     </button>
                 </h2>
@@ -328,27 +328,24 @@ window.addEventListener('load', (event) => {
     //console.log(document.querySelector("#headerContent"));
     //let contentHeaderSite = document.querySelector("#headerContent");
     //document.querySelector("#headerContent").innerHTML += cartMobile; 
-    document.querySelector("#headerContent").insertAdjacentHTML("afterend", cartMobile); 
+    document.querySelector("#headerContent").insertAdjacentHTML("afterend", cartMobile);
     //console.log(document.querySelector("#headerContent"));
     $('#typeFilterMovil').multiselect();
-    
-    const eventModalMP = (tipo) => {
-        document.querySelector("#btnModalPayment").click();
-        initSdkMP(tipo);
-    }
-    
+
+
+
     const validateRecaptcha = (tipo) => {
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6LevnX0pAAAAAM8b4qITJ6OHfpRdAZN1DF32xdpt', {action: 'formulario_pago'}).then(function(token) {
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LevnX0pAAAAAM8b4qITJ6OHfpRdAZN1DF32xdpt', { action: 'formulario_pago' }).then(function (token) {
                 //console.log(token);
                 const dataVelidateR = new FormData();    //Se crea un objeto de tipo FormData para almacenar la informacion que se validara.
                 dataVelidateR.append('token', token);   //Se agrega la variable tipo al formdata.
                 const xhrValRecaptcha = new XMLHttpRequest(); //Se crea un objeto XML
                 xhrValRecaptcha.open('POST', '/modules/mod_buycarform/tmpl/model/validateRecaptcha.php', true);   //Se especifica en que metodo, a donde y si es asincrono.
-                xhrValRecaptcha.onload = function(){
+                xhrValRecaptcha.onload = function () {
                     const response = JSON.parse(this.response);
                     console.log(response);
-                    if( !response.reqStatus ) {
+                    if (!response.reqStatus) {
                         Swal.fire(
                             'Error en reCaptcha',    //TITLE
                             'El reCaptcha no fue reconocido para este sitio',  //TEXT
@@ -356,10 +353,11 @@ window.addEventListener('load', (event) => {
                             'Aceptar'   //CONFIRMBUTTONTEXT
                         );
                         return;
-                    }else{
-                        eventModalMP(tipo);
+                    } else {
+                        //eventModalMP(tipo);
+                        proccessPago(tipo);
                     }
-                   
+
                 }
                 xhrValRecaptcha.send(dataVelidateR);   //Enviamos los datos
             });
@@ -368,33 +366,25 @@ window.addEventListener('load', (event) => {
 
 
     document.addEventListener("click", (e) => {
-        
-            
-        if( e.target ) {
+        if (e.target) {
 
             let element = e.target;
             let elementID = e.target.id;
             let elementClass = e.target.classList;
 
-            if( elementClass.contains('clickDeploySumPayMobile') ){
+            if (elementClass.contains('clickDeploySumPayMobile')) {
                 btnSumPayChange('Mobile');
-            }else if(elementClass.contains('clickDeploySumPayDesktop')){
+            } else if (elementClass.contains('clickDeploySumPayDesktop')) {
                 btnSumPayChange('Desktop');
-                
-            }else if( elementClass.contains('btnAdd') ){
-            
-
+            } else if (elementClass.contains('btnAdd')) {
                 let isInCart = verifyProductInCart(element.dataset.code);
-
-                if(isInCart==0){
-                    if(element.dataset.modality == "Mixto"){
+                if (isInCart == 0) {
+                    if (element.dataset.modality == "Mixto") {
                         document.querySelector(`#btnModality`).click();
                         document.querySelector(`.modal-backdrop`).style.zIndex = "0";
                         document.querySelector(`.modal-backdrop`).style.background = "transparent";
                         document.querySelector(`.main-backimage`).style.zIndex = "1";
                         document.querySelector(`#staticBackdrop`).style.background = "#0000009e";
-                        
-
                         const btnAccept = document.querySelector("#btnSelectionModality");
                         btnAccept.dataset.code = element.dataset.code;
                         btnAccept.dataset.name = element.dataset.name;
@@ -403,81 +393,116 @@ window.addEventListener('load', (event) => {
                         btnAccept.dataset.modality = "Virtual";
 
                         //addItem(element.dataset.code,element.dataset.name,element.dataset.pricemxn,element.dataset.priceusd,'Product');  
-                    }else{
-                        addItem(element.dataset.code,element.dataset.name,element.dataset.pricemxn,element.dataset.priceusd,'Product', element.dataset.modality);
+                    } else {
+                        addItem(element.dataset.code, element.dataset.name, element.dataset.pricemxn, element.dataset.priceusd, 'Product', element.dataset.modality);
                     }
                     //addItem(element.dataset.code,element.dataset.name,element.dataset.pricemxn,element.dataset.priceusd,'Product');
                 }
-               
 
-            }else if(elementClass.contains('deleteProduct')){
 
+            } else if (elementClass.contains('deleteProduct')) {
                 deleteProduct(element);
-                
-            }else if(elementClass.contains(`btn-payment-view-one`)){
-                //if(localStorage.getItem("nextView")){}
-                let path = window.location.origin;
-                localStorage.setItem("nextView", 1);
-                location.href = `${path}/formulario-de-pago`;
-            }else if(elementID == "btnSelectionModality"){
+            } else if (elementClass.contains(`btn-payment-view-one`)) {
+                // ? Verificamos primero si existe un usario logeado [Moroni - 15May2024]
+                const inlogin = localStorage.getItem('inlogin') || '';
+                const dataId = document.body.getAttribute('data-id') || '';
+                const dataName = document.body.getAttribute('data-name') || '';
+                const dataEmail = document.body.getAttribute('data-email') || '';
+                localStorage.setItem('nextView', 1);
+                if (dataId == '' && dataName == '' && dataEmail == '') {
+                    // Verificamos que se haya seleccionado un producto
+                    const textContentTotal = document.querySelector('.label-total')?.textContent;
+                    const textTotalValue = textContentTotal !== undefined && parseFloat(textContentTotal.replace('$', '')) > 0 ? 
+                        parseFloat(textContentTotal.replace('$', '')) : 0;
+                    const subtotalTmp = localStorage.getItem('subtotal')??0;
+                    const amountTmp = localStorage.getItem('amount')??0;
+                    if( textTotalValue == 0 || parseFloat(textTotalValue) == 0 || parseFloat(textTotalValue) == 0) {
+                        Swal.fire({
+                            title: "No hay productos en el carrito",
+                            text: "Agregue al menos un producto al carrito para continuar",
+                            icon: "warning",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#000",
+                            allowOutsideClick: false,
+                            allowEscapeKey: false
+                        });
+                        localStorage.removeItem('nextView');
+                        return;
+                    }
+                    // Validación si la sesión esta activa pero los datos del usuario no
+                    if(inlogin.trim() == '' ) {
+                        Swal.fire({
+                            title: "No se puede acceder al sguiente paso del proceso",
+                            text: "Consulte al administrador del sitio [ERR_00S51ON_U2]",
+                            icon: "warning",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonColor: "#000",
+                            allowOutsideClick: false,
+                            allowEscapeKey: false
+                        });
+                        localStorage.removeItem('nextView');
+                        return;
+                    }
+                    // Mandamos al usuario al login antes de continuar
+                    const spinner = document.querySelector(`.spinner`);
+                    spinner.classList.add('logUser');
+                    spinner.removeAttribute('style');
 
-                let isInCart = verifyProductInCart(element.dataset.code);
-                if(isInCart==0){
-                    addItem(element.dataset.code,element.dataset.name,element.dataset.pricemxn,element.dataset.priceusd,'Product', element.dataset.modality);
+                    // Abrir una nueva ventana del navegador
+                    // window.open(inlogin, '_blank');
+                    window.open(inlogin, '_self');
+
+                }
+                else{
+                    //if(localStorage.getItem("nextView")){}
+                    let path = window.location.origin;
+                    // localStorage.setItem("nextView", 1); // ? Comentado [Moroni - 15May2024]
+                    location.href = `${path}/formulario-de-pago`;
                 }
 
+            } else if (elementID == "btnSelectionModality") {
+                let isInCart = verifyProductInCart(element.dataset.code);
+                if (isInCart == 0) {
+                    addItem(element.dataset.code, element.dataset.name, element.dataset.pricemxn, element.dataset.priceusd, 'Product', element.dataset.modality);
+                }
                 $('#staticBackdrop').modal('hide')
 
-            }else if(elementClass.contains('btnCleanFile')){
-                
-                document.querySelector('#'+element.dataset.idfile).value = '';
-               
-                document.querySelector('#delete_'+element.dataset.idfile).value='';
-                document.querySelector('#delete_'+element.dataset.idfile).setAttribute("hidden","");
-                validateStep3();
-               
-            }else if( elementClass.contains('btn-payment-movil') ){
+            } else if (elementClass.contains('btnCleanFile')) {
+                document.querySelector('#' + element.dataset.idfile).value = '';
 
+                document.querySelector('#delete_' + element.dataset.idfile).value = '';
+                document.querySelector('#delete_' + element.dataset.idfile).setAttribute("hidden", "");
+                validateStep3();
+
+            } else if (elementClass.contains('btn-payment-movil')) {
                 //document.querySelector(`.spinner`).style.display = 'flex'
-                
+
                 //proccessPago();
                 //document.querySelector("#btnModalPayment").click();
                 //initSdkMP("Movil");
                 validateRecaptcha("Movil");
 
-            }else if(elementID=='btnExit'){ 
+            } else if (elementID == 'btnExit') {
                 location.href = '/';
-            }else if(elementClass.contains('btn-cupon')){
-                
-                document.querySelector(`.spinner`).style.display = 'flex'; 
+            } else if (elementClass.contains('btn-cupon')) {
+                document.querySelector(`.spinner`).style.display = 'flex';
                 apply_cupon();
-                
-            }   
-            
-            
+            }
+            if (elementID == "btnClosedModal") {
+                location.reload();
+            }
         }
-        
-        
     })
 
-
     document.addEventListener("error", (e) => {
-        
-            
-        if( e.target ) {
-
+        if (e.target) {
             let element = e.target;
             let elementID = e.target.id;
             let elementClass = e.target.classList;
-
-            if(elementClass.contains('imgFile')){
+            if (elementClass.contains('imgFile')) {
                 element.src = 'modules/mod_buycar/tmpl/img/notfound.jpg';
             }
-            
-            
         }
-        
-        
     })
 
     /**
@@ -494,96 +519,97 @@ window.addEventListener('load', (event) => {
      */
     const inputSearchDesktop = document.querySelector(`#txtSearchDesktop`);
     inputSearchDesktop.addEventListener('keyup', (event) => {
-        if(event.keyCode === 13){  
+        if (event.keyCode === 13) {
             const selectedFilterDescktop = [...$("#typeFilterDesktop :selected")].map(e => e.value);
-            if(selectedFilterDescktop == "" && inputSearchDesktop.value == ""){
-                
-                getAllProducts(selectedFilterDescktop, inputSearchDesktop.value, "activo", 3, "init"); 
-                
+            if (selectedFilterDescktop == "" && inputSearchDesktop.value == "") {
+
+                getAllProducts(selectedFilterDescktop, inputSearchDesktop.value, "activo", 3, "init");
+
                 document.querySelector(`#btnViewProducts`).style.display = "block";
-            }else{
+            } else {
                 document.querySelector(`#btnViewProducts`).style.display = "none";
-                getAllProducts(selectedFilterDescktop, inputSearchDesktop.value); 
+                getAllProducts(selectedFilterDescktop, inputSearchDesktop.value);
             }
-            
+
         }
     });
 
     const iconDescktop = document.querySelector(`#btnSearchInputDesktop`);
     iconDescktop.addEventListener(`click`, (e) => {
         const selectedFilterDescktop = [...$("#typeFilterDesktop :selected")].map(e => e.value);
-            if(selectedFilterDescktop == "" && inputSearchDesktop.value == ""){
-                
-                getAllProducts(selectedFilterDescktop, inputSearchDesktop.value, "activo", 3, "init"); 
-                
-                document.querySelector(`#btnViewProducts`).style.display = "block";
-            }else{
-                document.querySelector(`#btnViewProducts`).style.display = "none";
-                getAllProducts(selectedFilterDescktop, inputSearchDesktop.value); 
-            }
+        if (selectedFilterDescktop == "" && inputSearchDesktop.value == "") {
+
+            getAllProducts(selectedFilterDescktop, inputSearchDesktop.value, "activo", 3, "init");
+
+            document.querySelector(`#btnViewProducts`).style.display = "block";
+        } else {
+            document.querySelector(`#btnViewProducts`).style.display = "none";
+            getAllProducts(selectedFilterDescktop, inputSearchDesktop.value);
+        }
     });
 
 
-    
+
 
     /**
      * *Evento de enter en inputfilter Movil
      */
     const inputSearchMovil = document.querySelector(`#txtSearchMovil`);
     inputSearchMovil.addEventListener('keyup', (event) => {
-        if(event.keyCode === 13){  
+        if (event.keyCode === 13) {
             const selectedFilterDescktop = [...$("#typeFilterDesktop :selected")].map(e => e.value);
-            if(selectedFilterDescktop == "" && inputSearchMovil.value == ""){
-                
-                getAllProducts(selectedFilterDescktop, inputSearchMovil.value, "activo", 3, "init"); 
+            if (selectedFilterDescktop == "" && inputSearchMovil.value == "") {
+
+                getAllProducts(selectedFilterDescktop, inputSearchMovil.value, "activo", 3, "init");
                 document.querySelector(`#btnViewProductsMovil`).style.display = "block";
-            }else{
+            } else {
                 document.querySelector(`#btnViewProductsMovil`).style.display = "none";
-                getAllProducts(selectedFilterDescktop, inputSearchMovil.value); 
+                getAllProducts(selectedFilterDescktop, inputSearchMovil.value);
             }
-            
+
         }
     });
 
-    
+
     const iconMovil = document.querySelector(`#btnSearchInputMovil`);
     iconMovil.addEventListener(`click`, (e) => {
         const selectedFilterMovil = [...$("#typeFilterMovil :selected")].map(e => e.value);
-            if(selectedFilterMovil == "" && inputSearchMovil.value == ""){
-                
-                getAllProducts(selectedFilterMovil, inputSearchMovil.value, "activo", 3, "init"); 
-                
-                document.querySelector(`#btnViewProductsMovil`).style.display = "block";
-            }else{
-                document.querySelector(`#btnViewProductsMovil`).style.display = "none";
-                getAllProducts(selectedFilterMovil, inputSearchMovil.value); 
-            }
+        if (selectedFilterMovil == "" && inputSearchMovil.value == "") {
+
+            getAllProducts(selectedFilterMovil, inputSearchMovil.value, "activo", 3, "init");
+
+            document.querySelector(`#btnViewProductsMovil`).style.display = "block";
+        } else {
+            document.querySelector(`#btnViewProductsMovil`).style.display = "none";
+            getAllProducts(selectedFilterMovil, inputSearchMovil.value);
+        }
     });
 
 
     const btnViewAllProducts = document.querySelector(`#btnViewProducts`);
     btnViewAllProducts.addEventListener('click', (e) => {
-        getAllProducts("","","", 0 ,"");
+        getAllProducts("", "", "", 0, "");
         btnViewAllProducts.style.display = "none";
     });
 
     const btnViewAllProductsMovil = document.querySelector(`#btnViewProductsMovil`);
     btnViewAllProductsMovil.addEventListener('click', (e) => {
-        getAllProducts("","","", 0 ,"");
+        getAllProducts("", "", "", 0, "");
         btnViewAllProductsMovil.style.display = "none";
     });
 
 
     //Eventos de formulario paso 2
-    const form = document.querySelector(`#formPaymentCourses`); 
-    const selectStates = form.querySelector(`#state`);
-    selectStates.addEventListener('change', (e) => {
-        
-        if(selectStates.value !== ""){
-            getTowns(selectStates.value);
-        }else{ 
+    const form = document.querySelector(`#formPaymentCourses`);
+    const selectCountry = form.querySelector(`#country`);
+    selectCountry.addEventListener('change', (e) => {
+
+        if (selectCountry.value !== "") {
+            //getTowns(selectCountry.value);
+            getStates(selectCountry.value);
+        } else {
         }
-        
+
     });
 
 
@@ -592,45 +618,45 @@ window.addEventListener('load', (event) => {
     const inputName = form.querySelectorAll(`input`);
     inputName.forEach(element => {
         element.addEventListener('blur', (e) => {
-            const element = e.target; 
+            const element = e.target;
             validateInput(element);
             //console.log(nErrors);
             validateFormDataPersonStatus();
-        }); 
-        
-        
+        });
+
+
     });
- 
+
 
 
     const selectName = form.querySelectorAll(`select`);
     selectName.forEach(element => {
         element.addEventListener('blur', (e) => {
-            const element = e.target; 
+            const element = e.target;
             validateSelect(element);
             console.log(nErrors);
             validateFormDataPersonStatus();
-        }); 
+        });
     });
 
 
 
     const inputtel = form.querySelector(`#telwhat`);
     inputtel.addEventListener('keypress', (e) => {
-        if (!validateTel(e)){
+        if (!validateTel(e)) {
             e.preventDefault();
         }
     });
 
     const checkWithView = () => {
-        const ancho = window.innerWidth; 
+        const ancho = window.innerWidth;
         const header = document.querySelector(`#headerContent`);
-        if(ancho < 980){ 
-            if(!header.classList.contains("header-black")){
+        if (ancho < 980) {
+            if (!header.classList.contains("header-black")) {
                 header.classList.add("header-black");
             }
-        }else{ 
-            if(header.classList.contains("header-black")){
+        } else {
+            if (header.classList.contains("header-black")) {
                 header.classList.remove("header-black");
             }
         }
@@ -644,7 +670,7 @@ window.addEventListener('load', (event) => {
 
 
 
-     const formPayment = document.querySelector(`#formDataPayment`); 
+    const formPayment = document.querySelector(`#formDataPayment`);
     const selectPayment = formPayment.querySelector(`#optionsPayment`);
     selectPayment.addEventListener(`blur`, (e) => {
         validateStep3();
@@ -668,14 +694,14 @@ window.addEventListener('load', (event) => {
     });
 
 
-     const inputAttach = formPayment.querySelector(`.inputAttach`);
-    inputAttach.addEventListener('change', (e) => { 
+    const inputAttach = formPayment.querySelector(`.inputAttach`);
+    inputAttach.addEventListener('change', (e) => {
         validateStep3();
         return fileValidation(inputAttach.id);
 
-        
+
     });
-    
+
 
     const inputAddInvoie = formPayment.querySelector(`#addInvoice_yes`);
     inputAddInvoie.addEventListener('change', (e) => {
@@ -712,11 +738,11 @@ window.addEventListener('load', (event) => {
     inputInvoieNo.addEventListener('change', (e) => {
         formPayment.querySelector(`.content-attach-file`).classList.remove('show');
         formPayment.querySelector(`.content-attach-file`).classList.add('hidden');
-        
-        if(document.querySelector(`.btnCleanFile`)!==null){
+
+        if (document.querySelector(`.btnCleanFile`) !== null) {
             document.querySelector(`.btnCleanFile`).click();
         }
-        
+
         validateStep3();
         /* if(selectPayment.value != 0){
             if(statusStep3.classList.contains('status-section-unfinished')){
@@ -731,7 +757,7 @@ window.addEventListener('load', (event) => {
             finalStep3 = 1;
             validateStepsComplete();
         } */
-        
+
         calculate_total();
     });
 
@@ -741,84 +767,84 @@ window.addEventListener('load', (event) => {
     collapseSteptwo.addEventListener('click', (e) => {
         const collapseSteoOne = document.querySelector(`#collapStepSelectedCourse`);
         const buttonStepOne = document.querySelector(`#collapStepSelectedCourse`);
-        if(corusesItemsList === 0){
-            setTimeout(() => {  
+        if (corusesItemsList === 0) {
+            setTimeout(() => {
 
-                collapseSteptwo.classList.remove('show') 
+                collapseSteptwo.classList.remove('show')
                 buttonStepOne.classList.add('collapsed');
                 buttonStepOne.click();
-                
-                
-            }, 500); 
+
+
+            }, 500);
 
             Swal.fire({
-                title:'Seleccion de curso incompleto',
-                html:'Para continuar es necesario seleccionar un curso', 
-                icon:'warning',
-                confirmButtonText:'Cerrar',
-                customClass: {  confirmButton: 'confirm-btn-alert' },
+                title: 'Seleccion de curso incompleto',
+                html: 'Para continuar es necesario seleccionar un curso',
+                icon: 'warning',
+                confirmButtonText: 'Cerrar',
+                customClass: { confirmButton: 'confirm-btn-alert' },
             });
             setTimeout(() => {
-                movTopScroll();    
+                movTopScroll();
             }, 600);
             //movTopScroll();
-        }else{
+        } else {
             movTopScroll();
         }
-       
+
     });
 
     const collapseFinal = document.querySelector(`#collapPaymentFinal`);
     collapseFinal.addEventListener(`click`, (e) => {
-        
+
         const buttonCollapseSelectCourse = document.querySelector(`#collapStepSelectedCourse`);
         const buttonCollapseDataPerson = document.querySelector(`#collapStepDataPerson`);
-        const buttonCollpaseFinal = document.querySelector(`#collapPaymentFinal`); 
+        const buttonCollpaseFinal = document.querySelector(`#collapPaymentFinal`);
         const collpseFinal = document.querySelector(`#collapseThree`);
-      
-        
+
+
 
         e.preventDefault();
         const errorsCollapseTwo = refreshStatusCollapseTwo();
-        
-        if(corusesItemsList != 0){ 
-            if(errorsCollapseTwo === 0 ){
+
+        if (corusesItemsList != 0) {
+            if (errorsCollapseTwo === 0) {
 
                 validateStep3();
 
                 const statusForm = document.querySelector(`.status-form`);
                 statusForm.classList.remove(`status-section-unfinished`);
-                statusForm.classList.add(`status-section-final`); 
- 
-            }else{
-                setTimeout(() => { 
-                    collpseFinal.classList.remove('show')  
+                statusForm.classList.add(`status-section-final`);
+
+            } else {
+                setTimeout(() => {
+                    collpseFinal.classList.remove('show')
                     buttonCollpaseFinal.classList.add('collapsed');
                     showErrors();
                     buttonCollapseDataPerson.click();
-                }, 500); 
+                }, 500);
                 Swal.fire({
-                    title:'Datos personales incompleto',
-                    html:'Para continuar es necesario llenar todos los campos', 
-                    icon:'warning',
-                    confirmButtonText:'Cerrar',
-                    customClass: {  confirmButton: 'confirm-btn-alert' },
-                }); 
-                
+                    title: 'Datos personales incompleto',
+                    html: 'Para continuar es necesario llenar todos los campos',
+                    icon: 'warning',
+                    confirmButtonText: 'Cerrar',
+                    customClass: { confirmButton: 'confirm-btn-alert' },
+                });
+
             }
-        }else{
-            setTimeout(() => {  
-                collpseFinal.classList.remove('show') 
+        } else {
+            setTimeout(() => {
+                collpseFinal.classList.remove('show')
                 buttonCollpaseFinal.classList.add('collapsed');
                 buttonCollapseSelectCourse.click();
-            }, 500); 
+            }, 500);
             Swal.fire({
-                title:'Seleccion de curso incompleto',
-                html:'Para continuar es necesario agregar minimo un curso al carrito', 
-                icon:'warning',
-                confirmButtonText:'Cerrar',
-                customClass: {  confirmButton: 'confirm-btn-alert' },
-            }); 
+                title: 'Seleccion de curso incompleto',
+                html: 'Para continuar es necesario agregar minimo un curso al carrito',
+                icon: 'warning',
+                confirmButtonText: 'Cerrar',
+                customClass: { confirmButton: 'confirm-btn-alert' },
+            });
         }
     });
 
@@ -834,12 +860,12 @@ window.addEventListener('load', (event) => {
 
     const optionsPayment = document.querySelector(`#optionsPayment`);
     optionsPayment.addEventListener('change', (e) => {
-        
+
         clean_openpay_tdc();
 
-        if(optionsPayment.value !== ""){
+        if (optionsPayment.value !== "") {
 
-            if(optionsPayment.value == "1"){
+            if (optionsPayment.value == "1") {
 
                 document.querySelector(`#content_openpay_tdc`).removeAttribute("hidden");
 
@@ -850,18 +876,18 @@ window.addEventListener('load', (event) => {
         calculate_total();
 
         validateStep3();
-        
+
     });
 
     window.addEventListener('resize', (e) => {
-        const ancho = window.innerWidth; 
+        const ancho = window.innerWidth;
         const header = document.querySelector(`#headerContent`);
-        if(ancho < 980){ 
-            if(!header.classList.contains("header-black")){
+        if (ancho < 980) {
+            if (!header.classList.contains("header-black")) {
                 header.classList.add("header-black");
             }
-        }else{ 
-            if(header.classList.contains("header-black")){
+        } else {
+            if (header.classList.contains("header-black")) {
                 header.classList.remove("header-black");
             }
         }
@@ -871,22 +897,23 @@ window.addEventListener('load', (event) => {
 
     setLocalVars();
 
-    getAllProducts("","","",3,"");
+    getAllProducts("", "", "", 3, "");
 
     getCategories();
 
     refreshStatusCollapseOne();
-    
-    getStates();
+
+    //getStates();
+    getCountries();
 
     //getOptionsPayment();
 
     initlTelInput();
 
-    setTimeout(function(){
+    setTimeout(function () {
         verifyFormPayIsRequired('load');
     }, 200);
-    
+
 
 
 });
