@@ -52,6 +52,15 @@
 				
 				<field name="nameCompatibilidad" type="text" label="Nombre redireccion Compatibildad" />
 				<field name="urlCompatibilidad" type="text" label="Direccion url de Compatibildad" /> -->
+
+				<field
+					name="backgroundcolorBody"
+					type="color"
+					default="#000"
+					format="rgba"
+					label="Color de fondo del cuerpo"
+					description="Color de fondo general del cuerpo (body) del sito"
+				/>
 				
 				<field type="spacer" name="spacerAdv" hr="true" />
 
@@ -75,6 +84,49 @@
 				<field name="header_logo" type="media" label="Logo Header" /> 
 				<!-- <field name="header_logo_menu" type="media" label="Logo Menu" />
 				<field name="eslogan" type="media" label="Eslogan" /> -->
+
+				<field
+					name="bgcolorHeaderGuestScroll"
+					type="color"
+					default="#0000000"
+					format="rgba"
+					label="Color de fondo del menú al scrollear"
+					description="El color se activa cuando el usuario se desplaza hacia abajo"
+				/>
+
+				<field
+					name="bgcolorHeaderGuest"
+					type="color"
+					default="#000"
+					format="rgba"
+					label="Color de fondo del menú público"
+					description="Color de fondo del menú público"
+				/>
+				<field
+					name="txtcolorHeaderGuest"
+					type="color"
+					default="#fff"
+					format="rgba"
+					label="Color de títulos en menú público"
+					description="Color general en títulos del menú público"
+				/>
+				<field
+					name="bgcolorHeaderRegistered"
+					type="color"
+					default="#fff"
+					format="rgba"
+					label="Color de fondo del menú privado"
+					description="El color cambia una vez que el usuario inicia sesión"
+				/>
+				<field
+					name="txtcolorHeaderRegistered"
+					type="color"
+					default="#000"
+					format="rgba"
+					label="Color de títulos en menú privado"
+					description="Color general en títulos una vez que el usuario inicia sesión"
+				/>
+
 			</fieldset>
 			<!-- Header -->
 

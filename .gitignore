@@ -21,11 +21,16 @@
 /libraries/
 /media/
 /plugins/
-
+cache/
+cli/
+tmp/
 
 /templates/spivet_pq_tm/php/dompdf/
+templates/cassiopeia/
 
 /archivos/cursos_talleres/
 /boletera.zip
 /boletera.sql
+
+configuration.php
 
