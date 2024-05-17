@@ -10,12 +10,13 @@
     require 'PHPMailer/SMTP.php';
     require 'PHPMailer/Exception.php';
 
+    require_once($_SERVER['DOCUMENT_ROOT']."/templates/spivet_pq_tm/php/common.php"); 
 
     require_once "Templates/receipt.php"; 
     require_once "Templates/reception.php";
     
 
-    require_once($_SERVER['DOCUMENT_ROOT']."/templates/spivet_pq_tm/php/common.php"); 
+    
     
 
 
@@ -60,13 +61,29 @@
         $bandReception = 1;
 
     } else if($origen == "Payment"){ 
+        
         $consulta = new Consulta();
         $cobro = $consulta->getPayement($id_cobro);
         $client = $consulta->getClient($cobro['clientes_idsystemcli']); 
-        $email = $client['clientes_email'];//obtenemos el email y desencriptamos 
+        $email = $client['clientes_email'];//obtenemos el email y desencriptamos
+        
         if($cobro['cobroscata_status']==1){
             $subjetMail = "Comprobante de pago|Boletera Spivet";  
             $titleMessage = "Notificador|Boletera Spivet";
+        }else{
+            
+            if($cobro['forma_depago_IDsystemapades']==5){
+                
+                $subjetMail = "Solicitud de pago|Boletera Spivet";  
+                $titleMessage = "Notificador|Boletera Spivet";
+            }
+            
+            if($cobro['forma_depago_IDsystemapades']==6){
+                
+                $subjetMail = "Solicitud de pago|Boletera Spivet";  
+                $titleMessage = "Notificador|Boletera Spivet";
+            }
+            
         }  
         $templatePDF = getTemplateReceipt($id_cobro,'pdf');  
         Common::generatePDF($templatePDF,'../../../../files/comprobantes/'.$cobro['cobroscata_pdf']); 
@@ -77,12 +94,12 @@
      * *Configuracion del correo para el envio de mensaje
      * 
      */ 
-    $hostMail = 'mail.spivet.com.mx';
-    $portMail = 587;
+    $hostMail = 'sandbox.smtp.mailtrap.io'; //'mail.spivet.com.mx';
+    $portMail = 2525; // 587;
     $smtpSecure = 'SSL';
-    $nameMail = 'notificador@spivet.com.mx';
-    $passMail = 'cin24.belmont'; 
-    $fromMail = 'notificador@spivet.com.mx';
+    $nameMail = 'd0295f0adca216'; //'notificador@spivet.com.mx';
+    $passMail = '4869fe0598e4b7'; // 'cin24.belmont'; 
+    $fromMail = 'notificador@boletera.test'; // 'notificador@spivet.com.mx';
     $fromNameMail = $titleMessage;
     $bodyMail = $template;
     $toMail = $email;
@@ -163,10 +180,10 @@
                 $mail->addBCC($addBCC[$i]);
             } */
 
-            //$mail->addBCC('shosvaldo@gmail.com');
-            //$mail->addBCC('shosvaldo@hotmail.com');  
+            $mail->addBCC("shosvaldo@hotmail.com");
             $mail->isHTML(true);                                 
             $mail->Subject = $subjetMail; 
+            //$mail->Subject = "Prueba"; 
             $mail->Body    = $template;
             $mail->AltBody = 'www';
             //echo "Hola mundo";

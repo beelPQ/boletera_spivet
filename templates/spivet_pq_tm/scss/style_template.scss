@@ -1,8 +1,8 @@
-:root{
-    --background-navbar : #00000049;
-    --backgorund-navbar-scroll : #0000009c;
-    --bg-body : #000;
-}
+// :root{
+//     --background-navbar : #00000049;
+//     --backgorund-navbar-scroll : #0000009c;
+//     --bg-body : #000;
+// }
 body{
     background-color: var( --bg-body ) ; 
     &.no_scroll{
@@ -34,11 +34,130 @@ body{
             bottom: 35%;
             color: #fff;
         }
+        &.logUser {
+            &::after{
+                content: "Verificando usuario";
+                position: absolute;
+                font-size: .8rem;
+                bottom: 35%;
+                color: #fff;
+            }
+        }
     }
+
+    // ? Estilos para formulario de logeo y registro
+    main {
+        &.loginContent {
+            width: 100%;
+            padding-block: 3rem;
+            padding-inline: 2rem;
+            background-color: white;
+            .login, .registration, .registration-complete, .reset, .reset-confirm, .reset-complete {
+                max-width: 420px;
+                margin: 0 auto;
+
+                .pretext {
+                    width: 100%;
+                    font-size: 2rem;
+                    text-align: center;
+                }
+                .userdata, fieldset {
+                    .form-group, .control-group {
+                        margin-bottom: .5rem;
+                        label {
+                            span.form-control-feedback {
+                                color: var(--bs-danger);
+                                padding-inline: .3rem;
+                                font-size: 12px;
+                            }
+                        }
+                        .btn {
+                            background-color: var(--bg-body);
+                            border: var(--bs-btn-border-width) solid var(--bg-body);
+                            // transition:border .4s ease;
+                            &:hover {
+                                background-color: var(--amarillo);
+                                border: var(--bs-btn-border-width) solid var(--amarillo);
+                            }
+                        }
+                    }
+                }
+
+                .controls {
+                    .password-group {
+                        .input-password-toggle {
+                            .fas {
+                                opacity: 1;
+                                transition: opacity .3s ease;
+                                width: 18px;
+                                overflow: hidden;
+                                height: 16px;
+                                .op-1 {
+                                    opacity: .1;
+                                }
+                            }
+                        }
+                        meter {
+                            // border: 1px solid #e1e1e1;
+                            border: none;
+                            border-radius: 8px;
+                            background: white;
+                            width: 100%;
+                        }
+                    }
+                    button.btn.btn-primary {
+                        width: 100%;
+                        background-color: var(--bg-body);
+                        border: var(--bs-btn-border-width) solid var(--bg-body);
+                        // transition:border .4s ease;
+                        &:hover {
+                            background-color: var(--amarillo);
+                            border: var(--bs-btn-border-width) solid var(--amarillo);
+                        }
+                    }
+                }
+
+                .loginoptions_content {
+                    li {
+                        height: 37px;
+                        appearance: none;
+                        background-color: var(--bs-body-bg);
+                        background-clip: padding-box;
+                        border: var(--bs-border-width) solid var(--bs-border-color);
+                        border-radius: var(--bs-border-radius);
+                        display: flex;
+                        align-items: center;
+                        padding: .375rem .75rem;
+                        &:first-child {
+                            border-bottom-left-radius: 0;
+                            border-bottom-right-radius: 0;
+                        }
+                        &:last-child {
+                            border-top-left-radius: 0;
+                            border-top-right-radius: 0;
+                            border-top: transparent;
+                        }
+                        a {
+                            color: var(--bs-body-color);
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+            }
+            .reset, .reset-confirm, .reset-complete {
+                legend {
+                    font-size: .8rem;
+                    opacity: .8;
+                }
+            }
+        }
+    }
+
 }
 
 .container-header{
-    background: var(--background-navbar);
+    background: var(--bg-header_scroll);
     position: sticky;
     top: 0;
     box-shadow: 0 4px 10px 0 rgba(0,0,0,.1);

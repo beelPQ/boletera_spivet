@@ -3,22 +3,26 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/templates/spivet_pq_tm/php/common.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers/queries.php");
 
+
+
     //getTemplateReceipt(15,"mail");
     function getTemplateReceipt($id_cobro,$format){
         $generalf = new Common();
         $consulta = new Consulta();
         $cobro = $consulta->getPayement($id_cobro);
         $client = $consulta->getClient($cobro['clientes_idsystemcli']);
+        
+        
 
         $dominio = $consulta->getConfig(9); 
 
         if($format=='mail'){
             
-            $imgLogo = $dominio['configuracion_valor']."/images/Spivet/Logos/logo_spivet.png";
+            $imgLogo = $dominio['configuracion_valor']."/images/Spivet/Header/logo_spivet_grande.png";
             
         }else{
             
-            $urlLogo = $dominio['configuracion_valor']."/images/Spivet/Logos/logo_spivet.png";
+            $urlLogo = $dominio['configuracion_valor']."/images/Spivet/Header/logo_spivet_grande.png";
             $imgLogo = "data:image/png;base64," . base64_encode(file_get_contents($urlLogo));
             //$imgLogo = "";
         }
@@ -137,9 +141,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                 .td__title, .td__title_date{
                     width: 70%;
                 }
-                /* .content-body{
-                    padding: 2rem;
-                } */
+                
                 <?php if($format == "pdf"){ ?>
 
                     .content-body{
@@ -187,21 +189,12 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                     border-radius: 5px;
                     background-color: #000;
                     color: white;
-                    cursor: pointer;
+                    cursor: pointer!important;
                     position: relative;
                 }
 
 
-                /* .table__info__peronal td{
-                    height: 2.5rem;
-                    padding-left: 2rem;
-                    font-size: 16px;
-                    font-family: 'Ubuntu', sans-serif;
-                    font-weight: bold;
-                    background-color: rgba(255, 0, 122, 0.32);
-                    border-bottom: solid 1px #01002f;
-                    border-top: solid 1px #01002f;
-                } */
+              
                 <?php if( $format == "pdf" ){ ?>
                     .table__info__peronal td{
                         height: 2rem;
@@ -209,7 +202,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                         font-size: 13px;
                         font-family: 'Ubuntu', sans-serif;
                         font-weight: bold;
-                        background-color: rgb(255 233 0 / 93%);/**mod_color */
+                        background-color: #f9c809;/**mod_color */
                         border-bottom: solid 1px #01002f;
                         border-top: solid 1px #01002f;
                     }
@@ -220,7 +213,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                         font-size: 16px;
                         font-family: 'Ubuntu', sans-serif;
                         font-weight: bold;
-                        background-color: rgb(255 233 0 / 93%);/**mod_color */
+                        background-color: #f9c809;/**mod_color */
                         border-bottom: solid 1px #01002f;
                         border-top: solid 1px #01002f;
                     }
@@ -235,7 +228,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                     width: 50%;
                     margin-top:1rem;
                     margin-bottom:1rem;
-                    margin-left: 2rem;
+                    /*margin-left: 2rem;
+                    margin-right: 2rem;*/
                     font-family: 'Ubuntu', sans-serif;
                 }
                 .table__info__detail tr{
@@ -255,11 +249,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                         height: 3.5rem;
                     }
                 <?php } ?>
-                /* .table__info__detail td{
-                    font-size: 15px;
-                    width: 2rem;
-                    height: 3.5rem;
-                } */
+                
 
                 <?php if($format == "pdf"){ ?>
                     .space-pdf{
@@ -273,7 +263,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                     .tr-datos-payment{
                         font-size: 13px;
                     }
-                <?php }else{ ?>
                 <?php }?>
 
 
@@ -340,13 +329,11 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                             }
                 <?php } ?>
 
-                .table_inputs{
-                    width: 60%;
-                }
+                
 
                 <?php if($format=='mail'){ ?>
                             .table_inputs{
-                                width: 60%;
+                                width: 100%;
                             }
                 <?php }else{ ?>
                             .table_inputs{
@@ -358,26 +345,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                     width: 33.3%;
                 }
 
-                /* .custom-button1{
-                    width: 240px;
+                
 
-                    <?php if($format=='mail'){ ?>
-                    height:38px;
-                    <?php } ?>
-                    
-
-                    
-                    border-radius: 3px;
-                    border: solid 1px  #01002f;
-                    background-color:  #01002f;
-                    color : white !important;  
-                    
-                    font-size: 14.4px;
-                    font-weight: bold;
-                    
-                    text-decoration: none;
-                    text-align:center;
-                } */
 
                 <?php if($format=='mail'){ ?>
                     .custom-button1{
@@ -412,7 +381,18 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                         
                     }
                 <?php  } ?>
-
+                
+                .td-min {
+                        text-align : center!important;
+                }
+                
+                .detail_compra{
+                    padding : 0rem 2rem;
+                }
+                
+                .td_collapse_title{
+                    height: 26px !important;
+                }
 
                 @media only screen and (max-width: 500px)  {
                     .title_header{
@@ -433,10 +413,10 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                         font-size: 12px;
                     }
                     .table__info__peronal td{
-                        font-size: 14px;
+                        font-size: 11px;
                     }
                     .table__info__detail td{
-                        font-size: 12px;
+                        font-size: 10px;
                     }
                     .table__info__detail{
                         width: 100%;
@@ -446,9 +426,19 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                     }
 
                     .custom-button1{
-                        font-size: 11px;
-
+                        font-size: 11px; 
                     }
+                    .td-min{
+                        width: 250px; 
+                    }
+                    .td-min {
+                        text-align : left!important;
+                    }
+                    
+                    .table_inputs td{
+                        width: 30%;
+                    }
+
                     
                 }
 
@@ -472,7 +462,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                                             echo 'Comprobante de pago';
                                         }else{
 
-                                            if($cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3){
+                                            if($cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3 || $cobro['forma_depago_IDsystemapades']==5 || $cobro['forma_depago_IDsystemapades']==6){
                                                 echo 'Solicitud de pago';
                                             }
 
@@ -509,47 +499,59 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                         </tr> -->
                         <?php if($format == "mail"){ ?>
                        
-                        <tr><td>
-
-                        </td></tr>
-                        <tr>
-                            <td style="width: 200px;" >
-                                <!-- <a href="<?php echo $dominio['configuracion_valor'] ?>/index.php/inicio.html">
-                                    <button class="btn__activate__account">Ir al sitio <span class="icono"></span> </button>
-                                </a> -->
-                                <?php if($cobro['cobroscata_status']==1){?>
-                                    <img class="qr" src="https://chart.googleapis.com/chart?chs=160x160&cht=qr&chl=<?= urlencode($dominio['configuracion_valor']) ?>&choe=UTF-8&chld=1" />
-                                <?php } ?>
-                            </td>
-                            <td>
-                                <!-- <a href="<?php echo $dominio['configuracion_valor'] ?>/files/comprobantes/<?php echo $cobro['cobroscata_pdf'] ?>">
-                                    <button class="btn__activate__account">Descargar comprobante</button>
-                                </a> -->
-                                <span>
-                                    <?php 
-                                        if($cobro['cobroscata_status']==1){
-                                            echo 'Hola '.$client['clientes_nombre'].', gracias por tu pago. A continuación verás los detalles de tu compra. ';
-                                            echo "<br>";
-                                            echo "<br>";
-                                        ?> 
-                                        
-                                        <a href="<?php echo $dominio['configuracion_valor'] ?>/files/comprobantes/<?php echo $cobro['cobroscata_pdf'] ?>">
-                                        <button class="btn__activate__account">Descargar comprobante</button>
-                                    <?php }  ?>
-                                </a>
-                                </span> 
-                            </td>
-                        </tr>
-                        <tr><td>
-                        
-                        </td></tr>
-                        <tr>
-                            <!-- <td>
-                                <a href="<?php echo $dominio['configuracion_valor'] ?>/files/comprobantes/<?php echo $cobro['cobroscata_pdf'] ?>">
-                                    <button class="btn__activate__account">Descargar comprobante</button>
-                                </a>
-                            </td> -->
-                        </tr>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <?php if($cobro['cobroscata_status']==1){?>
+                                        <td style="width: 200px;" >
+                                            <!-- <a href="<?php echo $dominio['configuracion_valor'] ?>/index.php/inicio.html">
+                                                <button class="btn__activate__account">Ir al sitio <span class="icono"></span> </button>
+                                            </a> -->
+                                            <?php if($cobro['cobroscata_status']==1){?>
+                                                <img class="qr" src="https://chart.googleapis.com/chart?chs=160x160&cht=qr&chl=<?= urlencode($dominio['configuracion_valor']) ?>&choe=UTF-8&chld=1" />
+                                            <?php } ?>
+                                        </td>
+                                        <?php } ?>
+                                        <td   >
+                                            <!-- <a href="<?php echo $dominio['configuracion_valor'] ?>/files/comprobantes/<?php echo $cobro['cobroscata_pdf'] ?>">
+                                                <button class="btn__activate__account">Descargar comprobante</button>
+                                            </a> -->
+                                            <span>
+                                                <?php 
+                                                    if($cobro['cobroscata_status']==1){
+                                                        echo 'Hola '.$client['clientes_nombre'].', gracias por tu pago. A continuación verás los detalles de tu compra. ';
+                                                        echo "<br>";
+                                                        echo "<br>";
+                                                    }
+                                                    else{
+                                                        
+                                                        if($cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3 || $cobro['forma_depago_IDsystemapades']==5 || $cobro['forma_depago_IDsystemapades']==6){
+                                                            echo 'Hola '.$client['clientes_nombre'].', a continuación verás los detalles de tu solicitud de pago. ';
+                                                            echo "<br>";
+                                                            echo "<br>";
+                                                        }
+                                                        
+                                                    }
+                                                ?>
+                                                
+                                                    <a href="<?php echo $dominio['configuracion_valor'] ?>/files/comprobantes/<?php echo $cobro['cobroscata_pdf'] ?>">
+                                                    <button class="btn__activate__account" style="">Imprimir comprobante</button>
+                                            </a>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                    <tr><td>
+                                    
+                                    </td></tr>
+                                    <tr>
+                                        <!-- <td>
+                                            <a href="<?php echo $dominio['configuracion_valor'] ?>/files/comprobantes/<?php echo $cobro['cobroscata_pdf'] ?>">
+                                                <button class="btn__activate__account">Descargar comprobante</button>
+                                            </a>
+                                        </td> -->
+                                    </tr>
                         <?php }?>
                         
                     </table>
@@ -583,33 +585,36 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                     </table> 
                     
                 </div>
-                <div class="content_info">
+                <div class="content_info detail_compra">
                     <table class="table__info__detail table_inputs">
                         <tr>
-                            <td>
+                            <td >
                                 <span> <strong>Nombre</strong> </span> <br>
                                 <span> <?php echo $client['clientes_nombre']; ?> </span>
                             </td>
-                            <td>
+                            <td >
                                 <span> <strong>Apellido primario</strong> </span> <br>
                                 <span> <?php echo $client['clientes_apellido1']; ?> </span>
                             </td>
-                            <td>
+                            <td >
                                 <span> <strong>Apellido secundario</strong> </span> <br>
                                 <span> <?php echo $client['clientes_apellido2']; ?> </span>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>
+                            <td >
                                 <span> <strong>Email:</strong> </span> <br>
-                                <span> <?php echo $client['clientes_email'] ?> </span>
+                                <?php  
+                                    $emailMin = substr($client['clientes_email'], 0, 15);
+                                ?>
+                                <span> <?php echo $emailMin."..." ?> </span>
                             </td>
-                            <td>
+                            <td >
                                 <span> <strong>Whatsapp</strong> </span> <br>
                                 <span> <?php echo $client['clientes_telefono'] ?> </span>
                             </td>
-                            <td>
+                            <td >
                                 <span> <strong>Código postal:</strong> </span> <br>
                                 <span> <?php echo $client['clientes_codigopostal']; ?> </span>
                             </td>
@@ -627,16 +632,45 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                     </table> 
                     
                 </div>
-                <div class="content_info">
+                <div class="content_info detail_compra">
                     <table class="table__info__detail table_inputs" style="border-collapse: collapse;">
                         <tr>
                             <td>
+                                <span> <strong>ID Transacción</strong> </span> <br>
+                                <span> <?php echo $cobro['cobroscata_idtransaccion']; ?> </span>
+                            </td>
+                            <td>
+                                <span> <strong>ID Cobro</strong> </span> <br>
+                                <span> <?php echo $cobro['cobroscata_idregcobro']; ?> </span>
+                            </td>
+                            <td>
+                                <?php
+                                    $formapago = $consulta->getFormPay($cobro['forma_depago_IDsystemapades']);
+                                ?>
+
+                                <span> <strong>Forma de pago</strong> </span> <br>
+                                <span> 
+                                    <?php 
+                                        if( $cobro['forma_depago_IDsystemapades']==1 || $cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3 ){
+
+                                            echo $formapago['plataforma'].'-'.$formapago['Nombrepago'];
+
+                                        }else{
+                                            echo $formapago['Nombrepago'];
+                                        }
+                                         
+                                    ?> 
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_collapse_title">
                                 <span> <strong>Item</strong> </span> 
                             </td>
-                            <td>
+                            <td class="td_collapse_title">
                                 <span> <strong>Tipo</strong> </span> 
                             </td>
-                            <td>
+                            <td class="td_collapse_title">
                                 <span> <strong>Precio</strong> </span> 
                             </td>
                         </tr>
@@ -707,46 +741,75 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
 
                 <?php 
                     if($cobro['cobroscata_status']==0){
-                        if($cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3){
+                        if($cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3 || $cobro['forma_depago_IDsystemapades']==5 || $cobro['forma_depago_IDsystemapades']==6){
                 ?>
 
                             <div class="">
                                 <table class="table__info__peronal">
                                     <tr>
                                         <td>
-                                            <span>Hoja de solicitud de pago</span>
+                                            <!--<span>Hoja de solicitud de pago</span>-->
+                                            <span>Instrucciones</span>
                                         </td>
                                     </tr>
                                 </table>   
                             </div>
-                            <div class="content_info">
+                            <div class="content_info detail_compra">
                                 <table class="table__info__detail table_inputs">
                                     <tr>
-                                        <td align="center">
+                                        <td align="" class="td-min">
 
-                                            <?php 
-                                                $empresa = $consulta->infoCompany();
-
-                                                if($empresa['openpay_sandboxmode']==1){
-                                                    $urlDashboard = 'https://sandbox-dashboard.openpay.mx';
-                                                }else{
-                                                    $urlDashboard = 'https://dashboard.openpay.mx';
-                                                }
-
-
-                                                if($cobro['forma_depago_IDsystemapades']==2){
-
-                                                    $urlHoja = $urlDashboard.'/spei-pdf/'.$empresa['openpay_merchantid'].'/'.$cobro['cobroscata_idtransaccion']; 
-
-                                                }else if($cobro['forma_depago_IDsystemapades']==3){
-                                                    
-                                                    $urlHoja = $urlDashboard.'/paynet-pdf/'.$empresa['openpay_merchantid'].'/'.$cobro['cobroscata_idtransaccion_secondary']; 
-                                                }
+                                            <?php
+                                                if($cobro['forma_depago_IDsystemapades']==2 || $cobro['forma_depago_IDsystemapades']==3){
+                                                    $empresa = $consulta->infoCompany();
+    
+                                                    if($empresa['openpay_sandboxmode']==1){
+                                                        $urlDashboard = 'https://sandbox-dashboard.openpay.mx';
+                                                    }else{
+                                                        $urlDashboard = 'https://dashboard.openpay.mx';
+                                                    }
+    
+    
+                                                    if($cobro['forma_depago_IDsystemapades']==2){
+    
+                                                        $urlHoja = $urlDashboard.'/spei-pdf/'.$empresa['openpay_merchantid'].'/'.$cobro['cobroscata_idtransaccion']; 
+    
+                                                    }else if($cobro['forma_depago_IDsystemapades']==3){
+                                                        
+                                                        $urlHoja = $urlDashboard.'/paynet-pdf/'.$empresa['openpay_merchantid'].'/'.$cobro['cobroscata_idtransaccion_secondary']; 
+                                                    }
 
                                                 
                                             ?>
 
-                                            <a class="custom-button1" href="<?php echo $urlHoja; ?>" target="_blank">Descargar solicitud</a>
+                                                    <a class="custom-button1" href="<?php echo $urlHoja; ?>" target="_blank">Descargar solicitud</a>
+                                            
+                                            <?php
+                                                }else if($cobro['forma_depago_IDsystemapades']==5){
+                                                    $empresa = $consulta->infoCompany();
+                                            ?>
+                                                    <span><strong>Pasos para realizar el pago:</strong></span><br>
+                                                    <span><strong>1. Ingresa a la sección de transferencias o pagos a otros bancos y proporciona los datos de la transferencia:</strong></span><br><br>
+                                                    <span><strong>Beneficiario: </strong></span><span><?php echo $empresa['transferencia_beneficiario']; ?></span><br><br>
+                                                    <span><strong>Banco: </strong></span><span><?php echo $empresa['transferencia_banco']; ?></span><br><br>
+                                                    <span><strong>CABLE interbancaria: </strong></span><span><?php echo $empresa['transferencia_clabe']; ?></span><br><br>
+                                                    <span><strong>Concepto de pago: </strong></span><span><?php echo $cobro['cobroscata_idregcobro']; ?></span><br><br>
+                                                    <span><strong>Referencia: </strong></span><span><?php echo $cobro['cobroscata_idregcobro']; ?></span><br><br>
+                                                    <span><strong>Monto: </strong></span><span>$<?php echo number_format($cobro['cobroscata_montotransaccion'],2); ?></span><br><br>
+                                                    
+                                                    <span><strong>2. Luego envía tu comprobante a través del siguiente link (pdf, jpeg, jpg):</strong></span><br><br>
+                                                    <a class="" href="<?php echo $dominio['configuracion_valor']; ?>index.php/adjuntar-comprobante.html/?code=<?php echo Common::encrypt($cobro['idsystemcobrocat']); ?>" target="_blank"><button class="btn__activate__account">Enviar comprobante de pago</button></a>
+                                            
+                                            <?php       
+                                                } else if($cobro['forma_depago_IDsystemapades']==6) {
+                                            ?>
+                                                    <span><strong>Al elegir el método de pago "Efectivo" ud. debe presentarse para efectuar el pago y le otorgarán el acceso correspondiente y 
+                                                    de acuerdo a las políticas de pago vigente del organizador <a href="<?= $dominio['configuracion_valor']."/aviso-de-privacidad" ?>"> (ver aquí)</a>.</strong></span><br>
+                                                   
+                                            <?php
+                                            
+                                                }
+                                            ?>
                                             
                                         </td>
                                         
@@ -761,7 +824,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                     }
                 ?>
 
-                <div class="">
+                <!--<div class="">
                     <table class="table__info__peronal">
                         <tr>
                             <td>
@@ -770,8 +833,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                         </tr>
                     </table> 
                     
-                </div>
-                <div class="content_info">
+                </div>-->
+                <!--<div class="content_info detail_compra">
                     <table class="table__info__detail table_inputs">
                         <tr>
                             <td>
@@ -803,7 +866,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                             </td>
                         </tr>
 
-                        <!-- <tr>
+                         <tr>
                             <td>
                                 <span> <strong>Solicitud de factura:</strong> </span> <br>
                                 <span> <?php if($cobro['facturar']==1){ echo 'Si'; }else{ echo 'No'; }  ?> </span>
@@ -824,12 +887,12 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                             <?php       
                                 } 
                             ?>
-                        </tr> -->
+                        </tr> 
 
                         
 
                     </table>
-                </div>
+                </div>-->
 
 
                 <div class="line__separator"></div>
