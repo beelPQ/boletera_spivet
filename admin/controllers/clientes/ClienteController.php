@@ -25,8 +25,10 @@
             //$email = filter_var($email, FILTER_SANITIZE_STRING);
             $cpostal = $_POST['cpostal'];
             //$cpostal = filter_var($cpostal, FILTER_SANITIZE_STRING);
-            $estado = $_POST['estado'];
-            $municipio = $_POST['municipio'];
+            // $estado = $_POST['estado'];
+            // $municipio = $_POST['municipio'];
+            $id_country = $_POST['country'];
+            $id_state = $_POST['state'];
             
             
 
@@ -48,9 +50,10 @@
                                                         clientes_email=?,
                                                         clientes_telefono=?,
                                                         clientes_codigopostal=?,
-                                                        id_municipio=?
+                                                        id_country=?,
+                                                        id_state=?
                                                 WHERE idsystemcli = ? ");
-                    $query -> bind_param('ssssssii',$name,$lastname1,$lastname2,$email,$phone,$cpostal,$municipio,$id_client);
+                    $query -> bind_param('ssssssiii',$name,$lastname1,$lastname2,$email,$phone,$cpostal,$id_country,$id_state,$id_client);
                     $query -> execute();
                     //$query -> fetch();
 

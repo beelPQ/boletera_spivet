@@ -1,11 +1,11 @@
 var checkbox = $('input[data-id="editar-lista"]'); 
 var datosArray = [];
-for(var i=0 ; i<checkbox.length ; i++){
-    checkbox[i].addEventListener("change", validaCheckbox, false);
-}
+// for(var i=0 ; i<checkbox.length ; i++){
+//     checkbox[i].addEventListener("change", validaCheckbox, false);
+// }
 
 function validaCheckbox(){
-
+    
     datosArray.push($(this).attr('id')); //AGREGAMOS EL VALOR DE ID 
     if( $(this).prop('checked') ) { //SI SE SELECCIONA ENTRA
         

@@ -62,6 +62,19 @@
                                     <p class="aside_opc">Cupones</p>
                                 </a>
                             </li>
+                            
+                            <li class="nav-item">
+                                <a href="index.php?id=checkin" class="nav-link <?php if( $id == 'checkin' ) { ?>active<?php }?>">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <p class="menu-text">Check-In</p>
+                                </a>
+                            </li>
+                            <!--<li class="nav-item">-->
+                            <!--    <a href="index.php?id=lista-cursos-design" class="nav-link <?php if( $id == 'lista-cursos-design' ) { ?>active<?php }?>">-->
+                            <!--        <i class="fas fa-edit"></i>-->
+                            <!--        <p class="menu-text">Diploma</p>-->
+                            <!--    </a>-->
+                            <!--</li>-->
                         <?php } ?>
                         
                         <?php if ($_SESSION['id_rol'] == 3) { ?>
@@ -101,12 +114,44 @@
                         <?php } ?>
 
                         <?php if ($_SESSION['id_rol'] == 1) { ?>
+                            
                             <li class="nav-item">
-                                <a href="index.php?id=configuracion" class="nav-link <?php if ($id === "configuracion") { ?>active<?php } ?>">
+                                <a href="#" class="nav-link">
                                     <i class="fas fa-cog"></i>
-                                    <p>Configuración</p>
+                                    <p>
+                                        Configuración
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
                                 </a>
+                                <ul class="nav nav-treeview" style="display: none;">
+                                    <li class="nav-item <?php if( $id == 'lista-cursos-design' ) { ?>active<?php }?>">
+                                        <a href="index.php?id=lista-cursos-design" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Diseño</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="index.php?id=configuracion" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Configuracion general</p>
+                                        </a>
+                                    </li>
+                                    <!--<li class="nav-item">-->
+                                    <!--    <a href="pages/charts/inline.html" class="nav-link">-->
+                                    <!--        <i class="far fa-circle nav-icon"></i>-->
+                                    <!--        <p>Inline</p>-->
+                                    <!--    </a>-->
+                                    <!--</li>-->
+                                    <!--<li class="nav-item">-->
+                                    <!--    <a href="pages/charts/uplot.html" class="nav-link">-->
+                                    <!--        <i class="far fa-circle nav-icon"></i>-->
+                                    <!--        <p>uPlot</p>-->
+                                    <!--    </a>-->
+                                    <!--</li>-->
+                                </ul>
                             </li>
+                                
+                             
                         <?php } ?>
                     </ul>
                 </li>

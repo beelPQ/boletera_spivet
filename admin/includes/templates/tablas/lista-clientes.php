@@ -22,8 +22,8 @@
                   <th>Email</th>
                   <th>Teléfono</th>
                   <th>Código postal</th>
+                  <th>Pais</th>
                   <th>Estado</th>
-                  <th>Municipio</th>
                   <th>Fecha solicitud</th>
                 </tr>
                 </thead>

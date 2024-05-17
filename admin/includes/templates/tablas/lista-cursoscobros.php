@@ -15,10 +15,11 @@
                   <th>Detalle compra</th>
                   <th>ID compra</th>
                   <th>Fecha pago</th>
-                  <th>Status del pago</th>
+                  <th>Estado del pago</th>
                   <th>Nombre</th>
                   <th>Apellido primario</th>
                   <th>Apellido secundario</th>
+                  <th>Comprobante adjuntado</th>
                 </tr>
                 </thead>
                 <tbody align="center">
@@ -41,11 +42,11 @@
 
 
 <div class="modal fade modalCustom1" id="divModal" tabindex="-1" role="dialog" aria-labelledby="divModal" aria-hidden="true">
-    <div class="modal-dialog modal-xll" role="document"><!-- clase 'modal-lg' para ampliar-->
+    <div class="modal-dialog modal-xll" id="divModalSize" role="document"><!-- clase 'modal-lg' para ampliar-->
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="titleModal"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" id="divModalCloseBtn" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

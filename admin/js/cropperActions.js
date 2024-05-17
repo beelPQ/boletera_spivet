@@ -38,7 +38,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
     var inputFacilitador = document.getElementById('inputFacilitador');
     var inputNota = document.getElementById('inputNota');
-
+    
+   
+    
 
     var $progress = $('.progress');
     var $progressBar = $('.progress-bar');
@@ -54,7 +56,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
     var $modalFacilitador = $('#modalFacilitador');
     var $modalNota = $('#modalNota');
-
+    
+    
+    
     var cropper;
 
     $('[data-toggle="tooltip"]').tooltip();
@@ -286,6 +290,7 @@ window.addEventListener('DOMContentLoaded', function () {
       }
     });
      /* seccion input thumbs */
+
 
     /* seccion modalThumb */
     $modalThumb1.on('shown.bs.modal', function () {

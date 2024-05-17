@@ -1164,7 +1164,65 @@ if($_POST){
         
     }
     
+    else if ($_POST['opcion'] == 'coursesEvents') {
+        require_once('../../php/conexion.php');
+        $mysqli = conectar();
+        $response = array(
+            'status'=> false,
+            'message'=> '',
+            'description'=> '',
+            'data'=> []
+        );
+        $query = $mysqli->prepare("SELECT idsystemcatpro, catalogo_productos_sku, catalogo_productos_nombre FROM catalogo_productos ORDER BY catalogo_productos_sku DESC");
+        // Verificar si la preparación de la consulta tuvo éxito
+        if (!$query) {
+            $response['status'] = false;
+            $response['message'] = "Error en la preparación de la consulta";
+            $response['description'] = $mysqli->error;
+            die(json_encode($response));
+            exit();
+        }
+        $query->execute();
+        // Verificar si la ejecución de la consulta tuvo éxito
+        if ($query->errno) {
+            $response['status'] = false;
+            $response['message'] = "Error al ejecutar la consulta";
+            $response['description'] = $query->error;
+            die(json_encode($response));
+            exit();
+        }
+        $query->bind_result($idProd, $skuProd, $nameProd);
+        // $query->fetch();
+        $dataResult = array();
+        // Iterar sobre las filas de resultados
+        while ($query->fetch()) {
+            array_push($dataResult, [
+                "id" => $idProd,
+                "sku" => $skuProd,
+                "name" => $nameProd,
+            ]);
+        }
+        $response['status'] = true;
+        $response['message'] = "Registros encontrados";
+        $response['data'] = $dataResult;
+        $query->close();
+        $mysqli->close();
+        die(json_encode($response));
+    }
     
+    
+    else if ($_POST['opcion'] == 'busquedaManual') {
+        require_once('../../php/conexion.php');
+        $mysqli = conectar();
+        $response = array(
+            'status'=> false,
+            'message'=> 'Ingresamos... ',
+            'description'=> '',
+            'data'=> []
+        );
+        $mysqli->close();
+        die(json_encode($response));
+    }
 }
 
 ?>

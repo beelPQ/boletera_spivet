@@ -1,6 +1,6 @@
 <?php
 
-
+$accion = '';
 include 'includes/funciones/logueo.php';
 require_once('php/conexion.php');
 require_once('php/consulta.php');
@@ -82,6 +82,15 @@ if ($_SESSION['id_logueo'] === "") {
   */
   ?>
 
+    <?php if( $id == 'checkin' ){ ?>
+        <link rel="stylesheet" href="css/checkin.min.css">
+    <?php } ?>
+    <?php if( strpos($id, "design_diploma") !== false ){?>
+        <link rel="stylesheet" href="css/design_diploma.min.css?v=<?= time() ?>"> 
+    <?php } ?>
+    <?php if( strpos($id, "design_credencial") !== false ){?>
+        <link rel="stylesheet" href="css/design_credencial.min.css?v=<?= time() ?>"> 
+    <?php } ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -94,7 +103,7 @@ if ($_SESSION['id_logueo'] === "") {
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+          <a class="nav-link" id="collapseMenu" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
       </ul>
     </nav>

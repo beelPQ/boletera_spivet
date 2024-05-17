@@ -134,14 +134,36 @@
   <script src="js/editar.js?v=<?= time() ?>"></script>
 <?php } ?>
 
-<script src="js/irEditar.js?v=<?= time() ?>"></script>
+<?php if( $id == 'checkin' ){ ?>
+        <!-- input telefono con bandera  -->
+        <!--<script src="tools/inputtelephone/js/intlTelInput.js"></script>-->
+        <script src="js/checkin/checkin.js"></script>
+<?php } ?>
+
+<?php if( $id != 'checkin' ){ ?><script src="js/irEditar.js?v=<?= time() ?>"></script><?php } ?>
+
+
+<?php if( strpos($id, "design_diploma") !== false ){?>
+    <script src="js/design/design_diploma.min.js?v=<?= time() ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+<?php  } ?>
+
+<?php if( strpos($id, "design_credencial") !== false ){?>
+    <script src="js/design/design_credencial.min.js?v=<?= time() ?>"></script> 
+    <script src="https://unpkg.com/jquery@3/dist/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap@4/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
+    <script src="js/cropper/custom_functions_cropper.js?v=<?= time() ?>"></script> 
+    <script src="js/cropper/cropper.js?v=<?= time() ?>"></script> 
+<?php  } ?>
+
 <script src="js/acciones.js?v=<?= time() ?>"></script>
 <script>
-  <?php if ($id == 'diploma_curos_talleres' || $id == 'cursos_cobros' || $id == 'cupones' || $id == 'clientes' || $id == 'servicios' || $id == 'usuarios') { 
+  <?php if ($id == 'diploma_curos_talleres' || $id == 'cursos_cobros' || $id == 'cupones' || $id == 'clientes' || $id == 'servicios' || $id == 'usuarios' || $id == 'lista-cursos-design' ) { 
 
        
 
-        if($id == 'diploma_curos_talleres' || $id == 'servicios'){
+        if($id == 'diploma_curos_talleres' || $id == 'servicios' || $id == 'lista-cursos-design' ){
   ?>
           let customTable1_order_column = [1,'asc'];
   <?php

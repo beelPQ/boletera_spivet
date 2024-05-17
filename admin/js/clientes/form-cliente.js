@@ -17,8 +17,8 @@ const validateFormFilled = (e) => {
         { name: 'phone', legend: 'Proporcione un teléfono'},
         { name: 'email', legend: 'Proporcione un email'},
         { name: 'cpostal', legend: 'Proporcione un código postal'},
-        { name: 'estado', legend: 'Seleccione un estado'},
-        { name: 'municipio', legend: 'Seleccione un municipio'}
+         { name: 'country', legend: 'Seleccione un pais'},
+        { name: 'state', legend: 'Seleccione un estado'}
 
     ]
    
@@ -177,25 +177,26 @@ const sendFormData = (formData) => {
 
 
 
-document.getElementById('estado').addEventListener("change", () => {
+document.getElementById('country').addEventListener("change", () => {
 
-    let estado = document.getElementById('estado').value;
-    let municipio = document.getElementById('municipio');
+    let country = document.getElementById('country').value;
+    let state = document.getElementById('state');
     
-    if( estado!="----" ){
+    if( country!="----" ){
         
         $.ajax({
             url: 'controllers/general/GeneralController.php',
             method: "POST",
-            data: {option: 'getEstadoMunicipios',code:estado},
+            //data: {option: 'getEstadoMunicipios',code:estado},
+            data: {option: 'getStatesCountry',code:country},
             dataType: "json",
             success: function (res) {
                 
-                municipio.innerHTML = res.munis;
+                state.innerHTML = res.munis;
 
             },error: function(){
                 
-                municipio.innerHTML = '<option value="----">Selecciona estado</option>';
+                state.innerHTML = '<option value="----">Selecciona estado</option>';
                 Swal.fire(
                     'Error',
                     'Hubo un error en la petición',

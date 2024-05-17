@@ -556,7 +556,107 @@
         $mysqli -> close();
 
     }
+    
+    /**
+     * Funcion que retorna los registros de la tabla de diploma
+     * la cual sirve para diseñar el diploma por taller
+     **/ 
+    function mostrar_diplomasCursosDesign(){
+        
+        $mysqli = conectar();
+        $html = "";
+        //Se obtiene el total de categorias con su nombre para impresion donde id_global = 1.
 
+        
+        
+        $query = "SELECT catPro.idsystemcatpro, catPro.catalogo_productos_sku, 
+            catCategProd.categorias_programas_nombre, catPro.catalogo_productos_nombre, 
+            catPro.catalogo_productos_fechainicio, catPro.catalogo_productos_fechafin,
+            cpm.modalidad_nombre,
+            catPro.catalogo_productos_incluye 
+            FROM catalogo_productos AS catPro
+            LEFT JOIN catalogo_categorias_programas AS catCategProd 
+            ON (catPro.categorias_programasonline_idsystemcatproon = catCategProd.idsystemcatproon)
+            LEFT JOIN catalogo_producto_modalidad AS cpm 
+            ON cpm.idsystemprodmod = catPro.producto_modalidad_idsystemprodmod
+            ORDER BY catPro.catalogo_productos_sku ASC";
+
+        $resultado = $mysqli->query($query);
+        $index = 1;
+        while($row = mysqli_fetch_array($resultado)){
+
+            $skuProd = '';
+            $nameProd = '';
+            $tipoProd = '';
+            $initialDateProd ='';
+            $EndDateProd ='';
+            $preciomxProd = 0;
+            $btnDescto = '';
+            $btnAction = '';
+            $stock = 0;
+            $modality = "";
+            $duration = "";
+            $descCorta = "";
+            $infoObjetivo = "";
+
+            // if( is_null($row['catalogo_productos_sku']) === false ) { $skuProd = $row['catalogo_productos_sku']; }
+            if( is_null($row['catalogo_productos_nombre']) === false ) { $nameProd = $row['catalogo_productos_nombre']; }
+            if( is_null($row['categorias_programas_nombre']) === false ) { $tipoProd = $row['categorias_programas_nombre']; }
+            if( is_null($row['catalogo_productos_fechainicio']) === false ) { $initialDateProd = date('d/m/Y',strtotime($row['catalogo_productos_fechainicio'])); }
+            if( is_null($row['catalogo_productos_fechafin']) === false ) { $EndDateProd = date('d/m/Y',strtotime($row['catalogo_productos_fechafin'])); }
+            // if( is_null($row['catalogo_productos_preciomx']) === false ) { $preciomxProd = number_format($row['catalogo_productos_preciomx'],2); }
+            if( is_null($row['modalidad_nombre']) === false ) { $modality = $row['modalidad_nombre']; }
+            // if( is_null($row['catalogo_productos_duracion']) === false ) { $duration = $row['catalogo_productos_duracion']; }
+            // if( is_null($row['catalogo_productos_descripcioncorta']) === false ) { $descCorta = $row['catalogo_productos_descripcioncorta']; }
+            // if( is_null($row['catalogo_productos_incluye']) === false ) { $infoObjetivo = $row['catalogo_productos_incluye']; }
+            // if( is_null($row['descuentos_idsystemdescuento']) === false ) { 
+                // $btnDescto = '<button type="button" class="btn botonFormulario" onclick="modalDescuento('.$row['idsystemcatpro'].')">Ver</button>';
+            // }
+            // if( $row['catalogo_productos_publicado'] == 1){ $disponible='Sí'; }else{ $disponible='No'; }
+            $stock = $row['catalogo_productos_stock'];
+
+            $descriptionCorta = '';
+            $objetivo = '';
+
+            $desSinCharacters = strip_tags($descCorta);
+            $objSinCharacters = strip_tags($infoObjetivo);
+            if( strlen($desSinCharacters) > 49){
+                $descriptionCorta = substr($desSinCharacters, 0, 50)."...";
+            }else{
+                $descriptionCorta = $desSinCharacters;
+            }
+
+            if( strlen($objSinCharacters) > 49 ){
+                $objetivo = $objLimit = substr($objSinCharacters, 0, 50)."...";
+            }else{
+                $objetivo = $objSinCharacters;
+            }
+
+            
+            $btnAction = '<a href="index.php?id=design_diploma:'.$row['idsystemcatpro'].'" ><button type="button" class="btn botonFormulario" >Diseñar diploma</button></a>';
+            $btnActionCred = '<a href="index.php?id=design_credencial:'.$row['idsystemcatpro'].'" ><button type="button" class="btn botonFormulario" >Diseñar credencial</button></a>';
+
+            $html.="
+            <tr>
+                <td> $index </td> 
+                <td>$nameProd</td> 
+                <td>$modality</td>
+                <td>$initialDateProd</td>
+                <td>$EndDateProd</td>
+                <td>$btnAction</td>
+                <td>$btnActionCred</td>
+            </tr>";
+            // <td>$stock</td>
+
+            unset($disponible);
+            
+         $index  ++;
+        }
+
+        echo $html;
+        $mysqli -> close();
+
+    }
 
     function mostrar_cursos_cobros(){
 
@@ -572,7 +672,8 @@
                         cobroscata_moneda,
                         forma_depago_IDsystemapades,
                         cobroscata_adjunto,
-                        cobroscata_fechapago 
+                        cobroscata_fechapago,
+                        cobroscata_adjunto
                     FROM catalogo_cobros ORDER BY idsystemcobrocat DESC";
         $resultado = $mysqli->query($query);
         
@@ -596,18 +697,18 @@
 
             if($row['cobroscata_status']==0){
                
-                $status_pago='<span class="textInactive">Pendiente</span>';
+                $status_pago='<span class="textInactive withClick" onclick="modalStatus('.$row['idsystemcobrocat'].','.$row['cobroscata_status'].','.$row['cobroscata_idregcobro'].')">Pendiente</span>';
       
             }
             else if($row['cobroscata_status']==1){
 
                $status_pago='<span class="textActive">Pagado</span>';
                
-            }/*else if($row['cobroscata_status']==2){
+            }else if($row['cobroscata_status']==2){
 
-               $status_pago='Cancelado';
+               $status_pago='<span class="textCanceled">Cancelado</span>';
 
-            }*/
+            }
 
             
             $html .= '
@@ -624,7 +725,23 @@
                 <td>' . $cliente['clientes_nombre'] . '</td>
                 <td>' . $cliente['clientes_apellido1'] . '</td>
                 <td>' . $cliente['clientes_apellido2'] . '</td>
+                <td>
                 ';
+                    if($row['cobroscata_adjunto']!='' && is_null($row['cobroscata_adjunto'])==false){
+                        
+                        if( file_exists('../files/adjuntos/'.$row['cobroscata_adjunto']) ){
+                            
+                            $html.='<a href="../files/adjuntos/'.$row['cobroscata_adjunto'].'?v='.time().'" target="_blank"><button type="button" class="btn botonFormulario" >Ver</button></a>';
+                            
+                        }else{
+                            $html.='No se encontró el adjunto';
+                        }
+                        
+                    }else{
+                         $html.='Sin adjunto';
+                    }
+                
+        $html.='</td>';
                             
             $html.='
                

@@ -34,14 +34,25 @@
             
 
             
-            $query = $mysqli->prepare(" SELECT m.municipio,e.estado
-                                        FROM municipios AS m
-                                        INNER JOIN estados_municipios AS em ON m.id=em.municipios_id
-                                        INNER JOIN estados AS e ON e.id=em.estados_id
-                                        WHERE m.id = ?");
-            $query -> bind_param('i',$row['id_municipio']);
+            // $query = $mysqli->prepare(" SELECT m.municipio,e.estado
+            //                             FROM municipios AS m
+            //                             INNER JOIN estados_municipios AS em ON m.id=em.municipios_id
+            //                             INNER JOIN estados AS e ON e.id=em.estados_id
+            //                             WHERE m.id = ?");
+            // $query -> bind_param('i',$row['id_municipio']);
+            // $query -> execute();
+            // $query -> bind_result($municipio,$estado);
+            // $query -> fetch();
+            // $query -> close();
+            
+             $query = $mysqli->prepare("SELECT co.country, st.state 
+                                        FROM country_states AS cs 
+                                        INNER JOIN countries AS co ON co.id_country = cs.id_country 
+                                        INNER JOIN states AS st ON st.id_state = cs.id_state 
+                                        WHERE co.id_country = ? and cs.id_state = ?");
+            $query -> bind_param('ii',$row['id_country'], $row['id_state']);
             $query -> execute();
-            $query -> bind_result($municipio,$estado);
+            $query -> bind_result($country,$state);
             $query -> fetch();
             $query -> close();
             
@@ -58,8 +69,8 @@
                 <td>' . $row['clientes_email'] . '</td>
                 <td>' . $row['clientes_telefono'] . '</td>
                 <td>' . $row['clientes_codigopostal'] . '</td>
-                <td>' . $estado . '</td>
-                <td>' . $municipio . '</td>
+                <td>' . $country . '</td>
+                <td>' . $state . '</td>
                 <td>' . date('d/m/Y H:i:s',strtotime($row['clientes_fechacreacion'])) . '</td>
                 
             </tr>
@@ -78,7 +89,10 @@
         $html = "";
 
 
-        $query = " SELECT * FROM catalogo_clientes WHERE idsystemcli =".$id;
+       $query = " SELECT cc.*, co.country, st.state FROM catalogo_clientes  cc
+        INNER JOIN countries AS co ON co.id_country = cc.id_country
+        INNER JOIN states AS st ON st.id_state = cc.id_state
+        WHERE idsystemcli =".$id;
         $resultado = $mysqli->query($query);
         $row = mysqli_fetch_array($resultado);
 
@@ -88,16 +102,18 @@
             if( is_null($row['idsystemcli'])==false ){
 
 
-                $query = $mysqli->prepare(" SELECT e.id
-                                            FROM municipios AS m
-                                            INNER JOIN estados_municipios AS em ON m.id=em.municipios_id
-                                            INNER JOIN estados AS e ON e.id=em.estados_id
-                                            WHERE m.id = ?");
-                $query -> bind_param('i',$row['id_municipio']);
-                $query -> execute();
-                $query -> bind_result($estado);
-                $query -> fetch();
-                $query -> close();
+                // $query = $mysqli->prepare(" SELECT e.id
+                //                             FROM municipios AS m
+                //                             INNER JOIN estados_municipios AS em ON m.id=em.municipios_id
+                //                             INNER JOIN estados AS e ON e.id=em.estados_id
+                //                             WHERE m.id = ?");
+                // $query -> bind_param('i',$row['id_municipio']);
+                // $query -> execute();
+                // $query -> bind_result($estado);
+                // $query -> fetch();
+                // $query -> close();
+                
+                
                 
             
                 $html='
@@ -189,17 +205,17 @@
 
                         <div class="col-sm-3">
                             <div class="form-group">
-                                 <label>Estado*:</label>
-                                <select  class="form-control " name="estado" id="estado">';
+                                 <label>Pais*:</label>
+                                <select  class="form-control " name="country" id="country">';
 
-                                    $query = " SELECT id,estado FROM estados ORDER BY estado";
+                                    $query = " SELECT id_country, country FROM countries ORDER BY id_country";
                                     $consulta = $mysqli->query($query);
                                     $default = '';
                                     while ($row2 = mysqli_fetch_array($consulta)) {
-                                        if ($estado == $row2['id']) {
+                                        if ($row["id_country"] == $row2['id_country']) {
                                             $default = 'selected';
                                         }
-                                        $html .= '<option value="' . $row2['id'] . '" ' . $default . '>' . $row2['estado'] . '</option>';
+                                        $html .= '<option value="' . $row2['id_country'] . '" ' . $default . '>' . $row2['country'] . '</option>';
                                         if ($default != '') {
                                             $default = '';
                                         }
@@ -213,17 +229,20 @@
 
                         <div class="col-sm-3">
                             <div class="form-group">
-                                 <label>Municipio*:</label>
-                                <select  class="form-control " name="municipio" id="municipio">';
+                                 <label>Estado*:</label>
+                                <select  class="form-control " name="state" id="state">';
 
-                                    $query = " SELECT m.id,m.municipio FROM estados_municipios AS em INNER JOIN municipios AS m ON em.municipios_id=m.id WHERE em.estados_id=".$estado." ORDER BY m.municipio";
+                                    $query = " SELECT st.id_state, st.state 
+                                    FROM country_states AS cs
+                                    INNER JOIN states AS st ON st.id_state = cs.id_state
+                                    WHERE cs.id_country=".$row["id_country"]." ORDER BY st.id_state";
                                     $consulta = $mysqli->query($query);
                                     $default = '';
                                     while ($row2 = mysqli_fetch_array($consulta)) {
-                                        if ($row['id_municipio'] == $row2['id']) {
+                                        if ($row['id_state'] == $row2['id_state']) {
                                             $default = 'selected';
                                         }
-                                        $html .= '<option value="' . $row2['id'] . '" ' . $default . '>' . $row2['municipio'] . '</option>';
+                                        $html .= '<option value="' . $row2['id_state'] . '" ' . $default . '>' . $row2['state'] . '</option>';
                                         if ($default != '') {
                                             $default = '';
                                         }
