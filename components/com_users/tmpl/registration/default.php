@@ -49,7 +49,14 @@ $wa->useScript('keepalive')
         <?php endif; ?>
         <div class="com-users-registration__submit control-group">
             <div class="controls">
-                <button type="submit" class="com-users-registration__register btn btn-primary validate">
+                <?php
+                    // ? Agregamo el botón btn_reguser, para registrar primero el usuario en la BD del dashboard antes que en joomla
+                    // ? haciendo uso de las validaciones proporcionadas por el formulario de Joomla
+                ?>
+                <button type="submit" class="com-users-registration__register btn btn-primary validate" id="btn_reguser" >
+                    <?php echo Text::_('JREGISTER'); ?>
+                </button>
+                <button type="submit" class="com-users-registration__register btn btn-primary validate" hidden id="btnRegisterUser" >
                     <?php echo Text::_('JREGISTER'); ?>
                 </button>
                 <input type="hidden" name="option" value="com_users">

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Formulario adjuntar</name>
+    <author>Piquero</author>
+    <version>1.0.0</version>
+    <description>Módulo para el formulario de ajuntar comprobantes de pago</description>
+	<creationDate>July 2021</creationDate>
+    <files>
+        <filename>mod_form_attach_file.xml</filename>
+        <filename module="mod_form_attach_file">mod_form_attach_file.php</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename> 
+        <scriptfile>script.php</scriptfile>
+    </files>
+</extension>
