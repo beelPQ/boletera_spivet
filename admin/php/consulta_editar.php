@@ -1,10 +1,11 @@
 <?php
 
-	function editar_canastaproducto($id){
+function editar_canastaproducto($id)
+{
 
-        $mysqli = conectar();
-        $html = "";
-        $query = $mysqli->prepare(" SELECT 
+    $mysqli = conectar();
+    $html = "";
+    $query = $mysqli->prepare(" SELECT 
                                         sku,
                                         id_canasta_categoria,
                                         nombre,
@@ -17,57 +18,52 @@
                                         disponible,
                                         id_canasta_producto_estado   
                             FROM canastas_productos WHERE id_canasta_producto = ?");
-        $query -> bind_param('i',$id);
-        $query -> execute();
-        $query -> bind_result($sku,$idcategoria,$nombre,$medida,$stock,$precio,$preciodescuento,$rutathumb,$iddescuento,$disponible,$idestado);
-        $query -> fetch();
-        $query -> close();
-        
-        $existe === false;
-        if($sku){
+    $query->bind_param('i', $id);
+    $query->execute();
+    $query->bind_result($sku, $idcategoria, $nombre, $medida, $stock, $precio, $preciodescuento, $rutathumb, $iddescuento, $disponible, $idestado);
+    $query->fetch();
+    $query->close();
 
-            if($medida=='KG'){
+    $existe = false;
+    if ($sku) {
 
-                $cpcion1_medida='';
-                $cpcion2_medida='SELECTED';
-                $cpcion3_medida='';
-                $cpcion4_medida='';
+        if ($medida == 'KG') {
 
-            }else if($medida=='Pieza'){
+            $cpcion1_medida = '';
+            $cpcion2_medida = 'SELECTED';
+            $cpcion3_medida = '';
+            $cpcion4_medida = '';
+        } else if ($medida == 'Pieza') {
 
-                $cpcion1_medida='';
-                $cpcion2_medida='';
-                $cpcion3_medida='SELECTED';
-                $cpcion4_medida='';
+            $cpcion1_medida = '';
+            $cpcion2_medida = '';
+            $cpcion3_medida = 'SELECTED';
+            $cpcion4_medida = '';
+        } else if ($medida == 'Racimo') {
 
-            }else if($medida=='Racimo'){
+            $cpcion1_medida = '';
+            $cpcion2_medida = '';
+            $cpcion3_medida = '';
+            $cpcion4_medida = 'SELECTED';
+        } else {
 
-                $cpcion1_medida='';
-                $cpcion2_medida='';
-                $cpcion3_medida='';
-                $cpcion4_medida='SELECTED';
-
-            }else{
-
-                $cpcion1_medida='SELECTED';
-                $cpcion2_medida='';
-                $cpcion3_medida='';
-                $cpcion4_medida='';
-
-            }
+            $cpcion1_medida = 'SELECTED';
+            $cpcion2_medida = '';
+            $cpcion3_medida = '';
+            $cpcion4_medida = '';
+        }
 
 
-            if($rutathumb!='' && is_null($rutathumb)==false){
+        if ($rutathumb != '' && is_null($rutathumb) == false) {
 
-                $arraythumb = explode('/', $rutathumb);
-                $thumb = $arraythumb[count($arraythumb)-1];
+            $arraythumb = explode('/', $rutathumb);
+            $thumb = $arraythumb[count($arraythumb) - 1];
+        } else {
+            $thumb = '';
+        }
 
-            }else{
-                $thumb='';
-            }
 
-            
-            $html='
+        $html = '
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label>Sku</label>
@@ -77,7 +73,7 @@
                             class="form-control"
                             placeholder="Identificador"
                             maxlength="19"
-                            value="'.$sku.'">
+                            value="' . $sku . '">
                     </div>
                 </div>
 
@@ -85,8 +81,8 @@
                     <div class="form-group">
                         <label>Categoria</label>
                         <select id="categoria" class="form-control">';
-                                  $html.=lista_canastacategorias($idcategoria);
-                $html.='</select>
+        $html .= lista_canastacategorias($idcategoria);
+        $html .= '</select>
                     </div>
                 </div>
 
@@ -99,7 +95,7 @@
                             class="form-control"
                             placeholder="texto"
                             maxlength="69"
-                            value="'.$nombre.'">
+                            value="' . $nombre . '">
                     </div>
                 </div>
 
@@ -107,8 +103,8 @@
                     <div class="form-group">
                         <label>Estado de producto</label>
                         <select id="estado" class="form-control">';
-                                  $html.=lista_canastasProductosEstados($idestado);
-                $html.='</select>
+        $html .= lista_canastasProductosEstados($idestado);
+        $html .= '</select>
                     </div>
                 </div>
 
@@ -116,10 +112,10 @@
                     <div class="form-group">
                         <label>Unidad de medida</label>
                         <select id="medida" class="form-control">
-                            <option '.$cpcion1_medida.'>----</option>
-                            <option '.$cpcion2_medida.'>KG</option>
-                            <option '.$cpcion3_medida.'>Pieza</option>
-                            <option '.$cpcion4_medida.'>Racimo</option>
+                            <option ' . $cpcion1_medida . '>----</option>
+                            <option ' . $cpcion2_medida . '>KG</option>
+                            <option ' . $cpcion3_medida . '>Pieza</option>
+                            <option ' . $cpcion4_medida . '>Racimo</option>
                         </select>
                     </div>
                 </div>
@@ -133,7 +129,7 @@
                             class="form-control"
                             placeholder="texto"
                             maxlength="7"
-                            value="'.$stock.'">
+                            value="' . $stock . '">
                     </div>
                 </div>
 
@@ -146,12 +142,12 @@
                             class="form-control"
                             placeholder="Precio"
                             maxlength="13"
-                            value="'.$precio.'">
+                            value="' . $precio . '">
                     </div>
                 </div>
 
                 <div class="col-sm-12">
-                     <label>Actualizar thumb(jpg,jpeg,png - Máximo 5MB): '.$thumb.'</label>                  
+                     <label>Actualizar thumb(jpg,jpeg,png - Máximo 5MB): ' . $thumb . '</label>                  
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -162,124 +158,120 @@
             ';
 
 
-            if( is_null($iddescuento)==false && $iddescuento!=''){
-                $opcion1_checkdesc='';
-                $opcion2_checkdesc='SELECTED';
-            }else{
-                $opcion1_checkdesc='SELECTED';
-                $opcion2_checkdesc='';
-                $iddescuento=0;
-            }
+        if (is_null($iddescuento) == false && $iddescuento != '') {
+            $opcion1_checkdesc = '';
+            $opcion2_checkdesc = 'SELECTED';
+        } else {
+            $opcion1_checkdesc = 'SELECTED';
+            $opcion2_checkdesc = '';
+            $iddescuento = 0;
+        }
 
-            $html.='
+        $html .= '
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>Incluir descuento:</label>
                             <select id="check_descuento" class="form-control">
-                                <option value="0" '.$opcion1_checkdesc.'>No</option>
-                                <option value="1" '.$opcion2_checkdesc.'>Sí</option>
+                                <option value="0" ' . $opcion1_checkdesc . '>No</option>
+                                <option value="1" ' . $opcion2_checkdesc . '>Sí</option>
                             </select>
                         </div>
                     </div>
                     ';
 
-                    $html.=formulario_descuento_producto($mysqli,$iddescuento,$preciodescuento/*,$precio2descuento*/,'descuentos');
+        $html .= formulario_descuento_producto($mysqli, $iddescuento, $preciodescuento/*,$precio2descuento*/, 'descuentos');
 
 
 
-                    if($disponible==1){
-                        $opcion2='SELECTED';
-                        $opcion1='';
-                    }else{
-                        $opcion2='';
-                        $opcion1='SELECTED';
-                    }
-                   
-            $html.='      
+        if ($disponible == 1) {
+            $opcion2 = 'SELECTED';
+            $opcion1 = '';
+        } else {
+            $opcion2 = '';
+            $opcion1 = 'SELECTED';
+        }
+
+        $html .= '      
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>Publicar:</label>
                             <select id="disponible" class="form-control">
-                                <option value="0" '.$opcion1.'>No</option>
-                                <option value="1" '.$opcion2.'>Sí</option>
+                                <option value="0" ' . $opcion1 . '>No</option>
+                                <option value="1" ' . $opcion2 . '>Sí</option>
                             </select>
                         </div>
                     </div>
-                    '; 
+                    ';
 
-                   
 
-                   $html.='
+
+        $html .= '
                     <div class="col-sm-12">
                         <input type="hidden" id="tipo" value="canastaproducto">
-                        <input type="hidden" id="id_editar" value="'.$id.'">
+                        <input type="hidden" id="id_editar" value="' . $id . '">
                         <button type="submit" class="btn botonFormulario">Guardar</button>
                         <a href="index.php?id=canasta_productos" class="btn botonFormulario" >Cancelar</a>
                     </div>
                 </div>
             
             ';
-            
-            $existe = true;
-            
-        }
-        
-        $mysqli->close();
-        
-        if ($existe === true) {
-            echo $html;
-        } else {
-            echo '<label>No se ha encontrado ningún producto con ese ID</label>';
-        }
-        
-        
-    
+
+        $existe = true;
+    }
+
+    $mysqli->close();
+
+    if ($existe === true) {
+        echo $html;
+    } else {
+        echo '<label>No se ha encontrado ningún producto con ese ID</label>';
+    }
+}
+
+
+function formulario_descuento_producto($mysqli, $iddescuento, $precio1, $descBD)
+{
+
+    if ($descBD == 'catalogo_descuentos') {
+        $mysqli = conectar();
     }
 
 
-    function formulario_descuento_producto($mysqli,$iddescuento,$precio1,$descBD){
+    if ($iddescuento == 0) {
+        $mostrar_form = 'display:none;';
 
-        if($descBD=='catalogo_descuentos'){
-            $mysqli = conectar();
-        }
-        
-        
-        if($iddescuento==0){
-            $mostrar_form='display:none;';
+        $opcion1_formato = 'selected';
+        $opcion2_formato = '';
+        $opcion3_formato = '';
 
-            $opcion1_formato='selected';
-            $opcion2_formato='';
-            $opcion3_formato='';
-            
-            $mostrar_dinero='display:none;';
+        $mostrar_dinero = 'display:none;';
 
-            $cantidad1='';
-            $cantidad2='';
+        $cantidad1 = '';
+        $cantidad2 = '';
 
-        
-            $diai=0;
-            $mesi=0;
-            $anioi=0;
-            $horai=24;
-            $mini=60;
-         
-            $diaf=0;
-            $mesf=0;
-            $aniof=0;
-            $horaf=24;
-            $minf=60;
 
-            $opcion1_estatus='selected';
-            $opcion2_estatus='';
-            $opcion3_estatus='';
+        $diai = 0;
+        $mesi = 0;
+        $anioi = 0;
+        $horai = 24;
+        $mini = 60;
 
-        }else{
-            $mostrar_form='';
+        $diaf = 0;
+        $mesf = 0;
+        $aniof = 0;
+        $horaf = 24;
+        $minf = 60;
 
-            
-            if($descBD=='descuentos'){
+        $opcion1_estatus = 'selected';
+        $opcion2_estatus = '';
+        $opcion3_estatus = '';
+    } else {
+        $mostrar_form = '';
 
-                $query = $mysqli->prepare(" SELECT 
+
+        if ($descBD == 'descuentos') {
+
+            $query = $mysqli->prepare(" SELECT 
                                         formato_descuento,
                                         cantidad_descuento,
                                         cantidad2_descuento,
@@ -287,11 +279,10 @@
                                         valido_hasta,
                                         estatus_descuento          
                             FROM descuentos WHERE id_descuento = ?");
+        } else if ($descBD == 'catalogo_descuentos') {
 
-            }else if($descBD=='catalogo_descuentos'){
-            
-                
-                $query = $mysqli->prepare(" SELECT 
+
+            $query = $mysqli->prepare(" SELECT 
                                         descuento_formato,
                                         descuento_cantidad,
                                         descuento_cantidad2,
@@ -299,17 +290,16 @@
                                         descuento_valido_hasta,
                                         descuento_estatus          
                             FROM catalogo_descuentos WHERE idsystemdescuento = ?");
+        }
 
-            }
-            
-            $query -> bind_param('i',$iddescuento);
-            $query -> execute();
-            $query -> bind_result($formato_descuento,$cantidad1,$cantidad2,$valido_desde,$valido_hasta,$estatus);
-            $query -> fetch();
-            $query -> close();
-            
+        $query->bind_param('i', $iddescuento);
+        $query->execute();
+        $query->bind_result($formato_descuento, $cantidad1, $cantidad2, $valido_desde, $valido_hasta, $estatus);
+        $query->fetch();
+        $query->close();
 
-            /*
+
+        /*
             $formato_descuento='Porcentaje';
             $cantidad1=10;
             $cantidad2=0;
@@ -318,57 +308,55 @@
             $estatus=1;
             */
 
-            if($formato_descuento=='Porcentaje'){
-                $opcion1_formato='';
-                $opcion2_formato='selected';
-                $opcion3_formato='';
-                
-                $mostrar_dinero='display:none;';
+        if ($formato_descuento == 'Porcentaje') {
+            $opcion1_formato = '';
+            $opcion2_formato = 'selected';
+            $opcion3_formato = '';
 
-            }else if($formato_descuento=='Dinero'){
-                $opcion1_formato='';
-                $opcion2_formato='';
-                $opcion3_formato='selected';
-                
-                $mostrar_dinero='';
-            }else{
-                $opcion1_formato='selected';
-                $opcion2_formato='';
-                $opcion3_formato='';
-                
-                $mostrar_dinero='display:none;';
-            }
+            $mostrar_dinero = 'display:none;';
+        } else if ($formato_descuento == 'Dinero') {
+            $opcion1_formato = '';
+            $opcion2_formato = '';
+            $opcion3_formato = 'selected';
 
-            $diai=date('d',strtotime($valido_desde));
-            $mesi=date('m',strtotime($valido_desde));
-            $anioi=date('Y',strtotime($valido_desde));
-            $horai=date('H',strtotime($valido_desde));
-            $mini=date('i',strtotime($valido_desde));
-            
+            $mostrar_dinero = '';
+        } else {
+            $opcion1_formato = 'selected';
+            $opcion2_formato = '';
+            $opcion3_formato = '';
 
-            $diaf=date('d',strtotime($valido_hasta));
-            $mesf=date('m',strtotime($valido_hasta));
-            $aniof=date('Y',strtotime($valido_hasta));
-            $horaf=date('H',strtotime($valido_hasta));
-            $minf=date('i',strtotime($valido_hasta));
-
-            if($estatus==1){
-                $opcion1_estatus='';
-                $opcion2_estatus='';
-                $opcion3_estatus='selected';
-            }else{
-                $opcion1_estatus='';
-                $opcion2_estatus='selected';
-                $opcion3_estatus='';
-            }
-
+            $mostrar_dinero = 'display:none;';
         }
-        
 
-        
-        $form_desc='
+        $diai = date('d', strtotime($valido_desde));
+        $mesi = date('m', strtotime($valido_desde));
+        $anioi = date('Y', strtotime($valido_desde));
+        $horai = date('H', strtotime($valido_desde));
+        $mini = date('i', strtotime($valido_desde));
 
-            <div class="card card-blue direct-chat direct-chat-dark" id="div_descuento" style="'.$mostrar_form.'">
+
+        $diaf = date('d', strtotime($valido_hasta));
+        $mesf = date('m', strtotime($valido_hasta));
+        $aniof = date('Y', strtotime($valido_hasta));
+        $horaf = date('H', strtotime($valido_hasta));
+        $minf = date('i', strtotime($valido_hasta));
+
+        if ($estatus == 1) {
+            $opcion1_estatus = '';
+            $opcion2_estatus = '';
+            $opcion3_estatus = 'selected';
+        } else {
+            $opcion1_estatus = '';
+            $opcion2_estatus = 'selected';
+            $opcion3_estatus = '';
+        }
+    }
+
+
+
+    $form_desc = '
+
+            <div class="card card-blue direct-chat direct-chat-dark" id="div_descuento" style="' . $mostrar_form . '">
                 <div class="card-header card-personalizado" >
                     <h3 class="card-title">Asignar descuento</h3>
                     <div class="card-tools">
@@ -382,20 +370,20 @@
                             <div class="form-group">
                                 <label>Tipo descuento:</label>
                                 <select id="tipo_descuento" class="form-control">
-                                        <option '.$opcion1_formato.'>----</option>
-                                        <option value="Porcentaje" '.$opcion2_formato.'>% Porcentaje</option>
-                                        <option value="Dinero" '.$opcion3_formato.'>$ Dinero</option>
+                                        <option ' . $opcion1_formato . '>----</option>
+                                        <option value="Porcentaje" ' . $opcion2_formato . '>% Porcentaje</option>
+                                        <option value="Dinero" ' . $opcion3_formato . '>$ Dinero</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label>Cantidad<span id="span_lblmxn" style="'.$mostrar_dinero.'">(MXN)</span></label>
+                                <label>Cantidad<span id="span_lblmxn" style="' . $mostrar_dinero . '">(MXN)</span></label>
                                 <input
                                     type="text"
                                     id="cantidad1"
                                     class="form-control"
-                                    value="'.$cantidad1.'"
+                                    value="' . $cantidad1 . '"
                                     placeholder="número con o sin decimales"
                                     maxlength="9">
                             </div>
@@ -404,7 +392,7 @@
                         <div class="col-sm-4"></div>
                         ';
 
-            /*
+    /*
             $form_desc.='
                         <div class="col-sm-4" >
                             <div class="form-group" id="div_cantidad2" style="'.$mostrar_dinero.'">
@@ -418,42 +406,42 @@
                                     maxlength="9">
                             </div>
                         </div>';
-            */            
-                       
-                        date_default_timezone_set('America/Mexico_City');
-                        $anio_actual=date('Y');
-                        $anio_max= $anio_actual+10;
+            */
 
-                        if($anioi>0 && $anioi<$anio_actual){
-                            $anio_min=$anioi;
-                        }else{
-                            $anio_min=$anio_actual;
-                        }
-                        $form_desc.=inputs_fecha(1,'inicio',$anio_min,$anio_max,$diai,$mesi,$anioi);
-                        $form_desc.=inputs_hora(1,'inicio',$horai,$mini); 
-                        $form_desc.='<div class="col-sm-4" ></div>'; 
-                        
-                        
+    date_default_timezone_set('America/Mexico_City');
+    $anio_actual = date('Y');
+    $anio_max = $anio_actual + 10;
 
-                        if($aniof>0 && $aniof<$anio_actual){
-                            $anio_min=$aniof;
-                        }else{
-                            $anio_min=$anio_actual;
-                        }
+    if ($anioi > 0 && $anioi < $anio_actual) {
+        $anio_min = $anioi;
+    } else {
+        $anio_min = $anio_actual;
+    }
+    $form_desc .= inputs_fecha(1, 'inicio', $anio_min, $anio_max, $diai, $mesi, $anioi);
+    $form_desc .= inputs_hora(1, 'inicio', $horai, $mini);
+    $form_desc .= '<div class="col-sm-4" ></div>';
 
-                        $form_desc.=inputs_fecha(2,'fin',$anio_min,$anio_max,$diaf,$mesf,$aniof);
-                        $form_desc.=inputs_hora(2,'fin',$horaf,$minf);
-                        $form_desc.='<div class="col-sm-4" ></div>'; 
-                        
 
-        $form_desc.='
+
+    if ($aniof > 0 && $aniof < $anio_actual) {
+        $anio_min = $aniof;
+    } else {
+        $anio_min = $anio_actual;
+    }
+
+    $form_desc .= inputs_fecha(2, 'fin', $anio_min, $anio_max, $diaf, $mesf, $aniof);
+    $form_desc .= inputs_hora(2, 'fin', $horaf, $minf);
+    $form_desc .= '<div class="col-sm-4" ></div>';
+
+
+    $form_desc .= '
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label>Estado:</label>
                                 <select id="descuento_estado" class="form-control">
-                                    <option '.$opcion1_estatus.'>----</option>
-                                    <option value="0" '.$opcion2_estatus.'>Desactivado</option>
-                                    <option value="1" '.$opcion3_estatus.'>Activado</option>
+                                    <option ' . $opcion1_estatus . '>----</option>
+                                    <option value="0" ' . $opcion2_estatus . '>Desactivado</option>
+                                    <option value="1" ' . $opcion3_estatus . '>Activado</option>
                                 </select>
                             </div>
                         </div>
@@ -464,12 +452,12 @@
                                     type="text"
                                     id="preciodescuento"
                                     class="form-control"
-                                    value="'.$precio1.'"
+                                    value="' . $precio1 . '"
                                     placeholder="se calcula automáticamente"
                                     readonly>
                             </div>
                         </div>';
-        /*
+    /*
         $form_desc.='
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -484,42 +472,42 @@
                             </div>
                         </div>';
         */
-        $form_desc.='
+    $form_desc .= '
                     </div>
                 </div>
             </div>
         ';
-        
-
-        return $form_desc;
-
-    }
 
 
-    function editar_empresa2($id){
-        $mysqli = conectar();
-        $html = "";
-        $query = $mysqli->prepare(" SELECT nombre_empresa,nombre_corto_empresa,rfc_empresa,telefono_empresa,email_empresa,paypal_clientid,openpay_merchantid,openpay_llaveprivada,openpay_llavepublica,transferencia_beneficiario,transferencia_banco,transferencia_clabe,establecimiento_beneficiario,establecimiento_banco,establecimiento_nocta,establecimiento_notarjeta,canastas_transferencia_beneficiario,canastas_transferencia_banco,canastas_transferencia_clabe,openpay_sandboxmode FROM empresa WHERE idsystemEmpresa = ?");
-        $query -> bind_param('i',$id);
-        $query -> execute();
-        $query -> bind_result($nombre,$nombre_corto,$rfc,$telefono,$email,$paypal_clientid,$openpay_merchantid,$openpay_llaveprivada,$openpay_llavepublica,$beneficiario,$banco,$clabe,$beneficiario_est,$banco_est,$nocta_est,$notarjeta_est,$canastas_traBen,$canastas_traBanco,$canastas_traClabe,$openpay_sandboxmode);
-        $query -> fetch();
-        $query -> close();
-        
-        $existe === false;
-        if($nombre){
+    return $form_desc;
+}
 
 
-            if($openpay_sandboxmode==1){
-                $openpay_sandbox_option1='';
-                $openpay_sandbox_option2='SELECTED';
-            }else{
-                $openpay_sandbox_option1='SELECTED';
-                $openpay_sandbox_option2='';
-            }
+function editar_empresa2($id)
+{
+    $mysqli = conectar();
+    $html = "";
+    $query = $mysqli->prepare(" SELECT nombre_empresa,nombre_corto_empresa,rfc_empresa,telefono_empresa,email_empresa,paypal_clientid,openpay_merchantid,openpay_llaveprivada,openpay_llavepublica,transferencia_beneficiario,transferencia_banco,transferencia_clabe,establecimiento_beneficiario,establecimiento_banco,establecimiento_nocta,establecimiento_notarjeta,canastas_transferencia_beneficiario,canastas_transferencia_banco,canastas_transferencia_clabe,openpay_sandboxmode FROM empresa WHERE idsystemEmpresa = ?");
+    $query->bind_param('i', $id);
+    $query->execute();
+    $query->bind_result($nombre, $nombre_corto, $rfc, $telefono, $email, $paypal_clientid, $openpay_merchantid, $openpay_llaveprivada, $openpay_llavepublica, $beneficiario, $banco, $clabe, $beneficiario_est, $banco_est, $nocta_est, $notarjeta_est, $canastas_traBen, $canastas_traBanco, $canastas_traClabe, $openpay_sandboxmode);
+    $query->fetch();
+    $query->close();
 
-            
-            $html='
+    $existe === false;
+    if ($nombre) {
+
+
+        if ($openpay_sandboxmode == 1) {
+            $openpay_sandbox_option1 = '';
+            $openpay_sandbox_option2 = 'SELECTED';
+        } else {
+            $openpay_sandbox_option1 = 'SELECTED';
+            $openpay_sandbox_option2 = '';
+        }
+
+
+        $html = '
                 <!-- text input -->
                 <div class="col-sm-12">
                     
@@ -530,7 +518,7 @@
                                 type="text"
                                 id="nombre"
                                 class="form-control"
-                                 value="'.$nombre.'"
+                                 value="' . $nombre . '"
                                 placeholder="Nombre empresa">
                         </div>
                     </div>
@@ -541,7 +529,7 @@
                                 type="text"
                                 id="nombre_corto"
                                 class="form-control"
-                                 value="'.$nombre_corto.'"
+                                 value="' . $nombre_corto . '"
                                 placeholder="Nombre corto empresa">
                         </div>
                     </div>
@@ -552,7 +540,7 @@
                             id="rfc"
                             class="form-control"
                             maxlength="13"
-                            value="'.$rfc.'"
+                            value="' . $rfc . '"
                             placeholder="RFC">
                     </div>
                     <div class="form-group">
@@ -562,7 +550,7 @@
                             id="telefono"
                             class="form-control"
                             maxlength="15"
-                            value="'.$telefono.'"
+                            value="' . $telefono . '"
                             placeholder="Teléfono">
                     </div>
                     <div class="form-group">
@@ -572,11 +560,11 @@
                             id="email"
                             class="form-control"
                             maxlength="40"
-                            value="'.$email.'"
+                            value="' . $email . '"
                             placeholder="Email">
                     </div>';
 
-            /*
+        /*
             $html.='     
                     <div class="form-group" >
                         <label>Paypal Client ID:</label>
@@ -590,7 +578,7 @@
                     </div>';
             */
 
-            $html.='         
+        $html .= '         
                     <div class="form-group">
                         <label>Openpay Merchant ID:</label>
                         <input
@@ -598,7 +586,7 @@
                             id="merchantid"
                             class="form-control"
                             maxlength="35"
-                            value="'.$openpay_merchantid.'"
+                            value="' . $openpay_merchantid . '"
                             placeholder="Openpay Merchant ID">
                     </div>
                     <div class="form-group" >
@@ -608,7 +596,7 @@
                             id="llavepublica"
                             class="form-control"
                             maxlength="100"
-                            value="'.$openpay_llavepublica.'"
+                            value="' . $openpay_llavepublica . '"
                             placeholder="Openpay llave pública">
                     </div>
                     <div class="form-group" >
@@ -618,19 +606,19 @@
                             id="llaveprivada"
                             class="form-control"
                             maxlength="100"
-                            value="'.$openpay_llaveprivada.'"
+                            value="' . $openpay_llaveprivada . '"
                             placeholder="Openpay llave privada">
                     </div>
                     <div class="form-group" >
                         <label>Openpay modo sandbox:</label>
                         <select class="form-control" id="openpay_sandbox">
-                            <option value="0" '.$openpay_sandbox_option1.'>No</option>
-                            <option value="1" '.$openpay_sandbox_option2.'>Si</option>
+                            <option value="0" ' . $openpay_sandbox_option1 . '>No</option>
+                            <option value="1" ' . $openpay_sandbox_option2 . '>Si</option>
                         </select>
                     </div>
                     ';
 
-            /*
+        /*
             $html.='
                     <div class="form-group" >
                         <label>Canastas beneficario de transferencia:</label>
@@ -743,7 +731,7 @@
                     </div>';
             */
 
-            $html.='        
+        $html .= '        
                     <div class="col-sm-12">
                         <input type="hidden" id="tipo" value="empresa">
                         <input type="hidden" id="id_editar" value="' . $id . '">
@@ -753,33 +741,71 @@
                 </div>
             
             ';
-            
-            $existe = true;
-            
-        }
-        
-        $mysqli->close();
-        
-        if ($existe === true) {
-            echo $html;
-        } else {
-            echo '<label>No se ha encontrado ninguna empresa </label>';
-        }
-    
+
+        $existe = true;
     }
 
-    function editar_diplomaCursoTaller($id){
-        $sku = ''; $idMadality = 0; $idCategory = 0; $nameProduct = ''; $durationProduct = ''; $shortDescription = ''; $longDescription = ''; $coursDescription = ''; $indludeDescription = ''; $linkProduct = ''; $thumbFacilitador = ''; $nameFacilitador = ''; $positionFacilitador = ''; $nameBlogNote = ''; $dateBlogNote = ''; $nameFailitadorBlogNote = ''; $linkBlogNote = ''; $fechaInicio = ''; $fechaFin = ''; $iva = 0; $precioMxn = 0; $precioMxnDescto = 0; $precioUsd = 0; $precioUsdDescto = 0; $thumbCours = ''; $thumbHead = ''; $isPublished = 0; $idDescto = 0; $thumbNote = ''; $typeDescto = 0; $formatDescto = ''; $quantityDescto  = 0; $quantityDescto2 = 0; $existenceDescto = 0; $validFrom = ''; $validTo = ''; $codeDescto = ''; $statusDescto = ''; $notesDescto = ''; $stock = 0;
-    
-        $contacto = '';
-        $direction = '';
-        $linkLocation = ''; 
-        $virtualNotes = '';
-        $virtualLink = ''; 
-        
-        $mysqli = conectar();
-        $html = "";
-        /*
+    $mysqli->close();
+
+    if ($existe === true) {
+        echo $html;
+    } else {
+        echo '<label>No se ha encontrado ninguna empresa </label>';
+    }
+}
+
+function editar_diplomaCursoTaller($id)
+{
+    $sku = '';
+    $idMadality = 0;
+    $idCategory = 0;
+    $nameProduct = '';
+    $durationProduct = '';
+    $shortDescription = '';
+    $longDescription = '';
+    $coursDescription = '';
+    $indludeDescription = '';
+    $linkProduct = '';
+    $thumbFacilitador = '';
+    $nameFacilitador = '';
+    $positionFacilitador = '';
+    $nameBlogNote = '';
+    $dateBlogNote = '';
+    $nameFailitadorBlogNote = '';
+    $linkBlogNote = '';
+    $fechaInicio = '';
+    $fechaFin = '';
+    $iva = 0;
+    $precioMxn = 0;
+    $precioMxnDescto = 0;
+    $precioUsd = 0;
+    $precioUsdDescto = 0;
+    $thumbCours = '';
+    $thumbHead = '';
+    $isPublished = 0;
+    $idDescto = 0;
+    $thumbNote = '';
+    $typeDescto = 0;
+    $formatDescto = '';
+    $quantityDescto  = 0;
+    $quantityDescto2 = 0;
+    $existenceDescto = 0;
+    $validFrom = '';
+    $validTo = '';
+    $codeDescto = '';
+    $statusDescto = '';
+    $notesDescto = '';
+    $stock = 0;
+
+    $contacto = '';
+    $direction = '';
+    $linkLocation = '';
+    $virtualNotes = '';
+    $virtualLink = '';
+
+    $mysqli = conectar();
+    $html = "";
+    /*
             $query = $mysqli->prepare("SELECT catPro.idsystemcatpro, catPro.catalogo_productos_sku AS sku, catProdModal.idsystemprodmod AS idMadality, catProdModal.modalidad_nombre, catCategProd.idsystemcatproon AS idCategory, 
             catCategProd.categorias_programas_nombre, catPro.catalogo_productos_nombre AS nameProduct, catPro.catalogo_productos_duracion AS durationProduct, catPro.catalogo_productos_descripcioncorta AS shortDescription, catPro.catalogo_productos_descripcionlarga AS longDescription, catPro.catalogo_productos_esquemacursos AS coursDescription, catPro.catalogo_productos_incluye, catPro.catalogo_productos_link, 
             catPro.catalogo_productos_thumbfacilitador, catPro.catalogo_productos_namefacilitador, catPro.catalogo_productos_positionfacilitador, catPro.catalogo_productos_fechainicio, catPro.catalogo_productos_fechafin, catPro.catalogo_productos_iva, catPro.catalogo_productos_preciomx, catPro.catalogo_productos_preciomx_descuento,  catPro.catalogo_productos_preciousd,
@@ -794,24 +820,24 @@
             WHERE catPro.idsystemcatpro = ?");
         */
 
-        if( $query = $mysqli->prepare("SELECT catPro.catalogo_productos_sku AS sku, catProdModal.idsystemprodmod AS idMadality, catCategProd.idsystemcatproon AS idCategory, catPro.catalogo_productos_nombre AS nameProduct, catPro.catalogo_productos_duracion AS durationProduct, catPro.catalogo_productos_descripcioncorta AS shortDescription, catPro.catalogo_productos_descripcionlarga AS longDescription, catPro.catalogo_productos_esquemacursos AS coursDescription, catPro.catalogo_productos_incluye AS indludeDescription, catPro.catalogo_productos_link AS linkProduct, catPro.catalogo_productos_thumbfacilitador AS thumbFacilitador, catPro.catalogo_productos_namefacilitador AS nameFacilitador, catPro.catalogo_productos_positionfacilitador AS positionFacilitador,  catPro.catalogo_productos_nameBlogNote AS nameBlogNote,  catPro.catalogo_productos_dateBlogNote AS dateBlogNote,  catPro.catalogo_productos_nameFailitadorBlogNote AS nameFailitadorBlogNote, catPro.catalogo_productos_linkBlogNote AS linkBlogNote, catPro.catalogo_productos_fechainicio AS fechaInicio, catPro.catalogo_productos_fechafin AS fechaFin, catPro.catalogo_productos_iva AS iva, catPro.catalogo_productos_preciomx AS precioMxn, catPro.catalogo_productos_preciomx_descuento AS precioMxnDescto,  catPro.catalogo_productos_preciousd AS precioUsd, catPro.catalogo_productos_preciousd_descuento AS precioUsdDescto, catPro.catalogo_productos_file_thumb AS thumbCours, catPro.catalogo_productos_thumb_encabezado AS thumbHead, catPro.catalogo_productos_publicado AS isPublished, catPro.descuentos_idsystemdescuento AS idDescto, catPro.catalogo_productos_file_promocion AS thumbNote ,catDescto.descuento_tipo AS typeDescto, catDescto.descuento_formato AS formatDescto, catDescto.descuento_cantidad AS quantityDescto, catDescto.descuento_cantidad2 AS quantityDescto2, catDescto.descuento_existencia AS existenceDescto, catDescto.descuento_valido_desde AS validFrom, catDescto.descuento_valido_hasta AS validTo, catDescto.descuento_codigo AS codeDescto, catDescto.descuento_estatus AS statusDescto, catDescto.descuento_notas AS notesDescto, catPro.catalogo_productos_stock AS stock,
-        catPro.contacto, presencial_direccion, presencial_linklocation, virtual_notas, virtual_link
+    if ($query = $mysqli->prepare("SELECT catPro.catalogo_productos_sku AS sku, catProdModal.idsystemprodmod AS idMadality, catCategProd.idsystemcatproon AS idCategory, catPro.catalogo_productos_nombre AS nameProduct, catPro.catalogo_productos_duracion AS durationProduct, catPro.catalogo_productos_descripcioncorta AS shortDescription, catPro.catalogo_productos_descripcionlarga AS longDescription, catPro.catalogo_productos_esquemacursos AS coursDescription, catPro.catalogo_productos_incluye AS indludeDescription, catPro.catalogo_productos_link AS linkProduct, catPro.catalogo_productos_thumbfacilitador AS thumbFacilitador, catPro.catalogo_productos_namefacilitador AS nameFacilitador, catPro.catalogo_productos_positionfacilitador AS positionFacilitador,  catPro.catalogo_productos_nameBlogNote AS nameBlogNote,  catPro.catalogo_productos_dateBlogNote AS dateBlogNote,  catPro.catalogo_productos_nameFailitadorBlogNote AS nameFailitadorBlogNote, catPro.catalogo_productos_linkBlogNote AS linkBlogNote, catPro.catalogo_productos_fechainicio AS fechaInicio, catPro.catalogo_productos_fechafin AS fechaFin, catPro.catalogo_productos_iva AS iva, catPro.catalogo_productos_preciomx AS precioMxn, catPro.catalogo_productos_preciomx_descuento AS precioMxnDescto,  catPro.catalogo_productos_preciousd AS precioUsd, catPro.catalogo_productos_preciousd_descuento AS precioUsdDescto, catPro.catalogo_productos_file_thumb AS thumbCours, catPro.catalogo_productos_thumb_encabezado AS thumbHead, catPro.catalogo_productos_publicado AS isPublished, catPro.descuentos_idsystemdescuento AS idDescto, catPro.catalogo_productos_file_promocion AS thumbNote ,catDescto.descuento_tipo AS typeDescto, catDescto.descuento_formato AS formatDescto, catDescto.descuento_cantidad AS quantityDescto, catDescto.descuento_cantidad2 AS quantityDescto2, catDescto.descuento_existencia AS existenceDescto, catDescto.descuento_valido_desde AS validFrom, catDescto.descuento_valido_hasta AS validTo, catDescto.descuento_codigo AS codeDescto, catDescto.descuento_estatus AS statusDescto, catDescto.descuento_notas AS notesDescto, catPro.catalogo_productos_stock AS stock,
+        catPro.contacto, presencial_direccion, presencial_linklocation, virtual_notas, virtual_link, catPro.typeTagImage
         FROM catalogo_productos AS catPro
         LEFT JOIN catalogo_producto_modalidad AS catProdModal ON (catPro.producto_modalidad_idsystemprodmod = catProdModal.idsystemprodmod)
         LEFT JOIN catalogo_categorias_programas AS catCategProd ON (catPro.categorias_programasonline_idsystemcatproon = catCategProd.idsystemcatproon)
         LEFT JOIN catalogo_descuentos AS catDescto ON (catPro.descuentos_idsystemdescuento = catDescto.idsystemdescuento)
-        WHERE catPro.idsystemcatpro = ?") ){
+        WHERE catPro.idsystemcatpro = ?")) {
 
-            $query -> bind_param('i',$id);
-            $query -> execute();
-            $query -> bind_result($sku, $idMadality, $idCategory, $nameProduct, $durationProduct, $shortDescription, $longDescription, $coursDescription, $indludeDescription, $linkProduct, $thumbFacilitador, $nameFacilitador, $positionFacilitador, $nameBlogNote, $dateBlogNote, $nameFailitadorBlogNote, $linkBlogNote, $fechaInicio, $fechaFin, $iva, $precioMxn, $precioMxnDescto, $precioUsd, $precioUsdDescto, $thumbCours, $thumbHead, $isPublished, $idDescto, $thumbNote, $typeDescto, $formatDescto, $quantityDescto, $quantityDescto2, $existenceDescto, $validFrom, $validTo, $codeDescto, $statusDescto, $notesDescto, $stock, $contacto, $direction, $linkLocation, $virtualNotes, $virtualLink );
-            $query -> fetch();
-            
-            $buttonCleanImg = "";
-            
-            $existe = false;
-            if($sku){
-                /*
+        $query->bind_param('i', $id);
+        $query->execute();
+        $query->bind_result($sku, $idMadality, $idCategory, $nameProduct, $durationProduct, $shortDescription, $longDescription, $coursDescription, $indludeDescription, $linkProduct, $thumbFacilitador, $nameFacilitador, $positionFacilitador, $nameBlogNote, $dateBlogNote, $nameFailitadorBlogNote, $linkBlogNote, $fechaInicio, $fechaFin, $iva, $precioMxn, $precioMxnDescto, $precioUsd, $precioUsdDescto, $thumbCours, $thumbHead, $isPublished, $idDescto, $thumbNote, $typeDescto, $formatDescto, $quantityDescto, $quantityDescto2, $existenceDescto, $validFrom, $validTo, $codeDescto, $statusDescto, $notesDescto, $stock, $contacto, $direction, $linkLocation, $virtualNotes, $virtualLink, $typeTagImage);
+        $query->fetch();
+
+        $buttonCleanImg = "";
+
+        $existe = false;
+        if ($sku) {
+            /*
                 
                 if($rutathumb!='' && is_null($rutathumb)==false){
     
@@ -822,166 +848,203 @@
                     $thumb='';
                 }
                 */
-                if( is_null($shortDescription) === false && $shortDescription != '' ){ $shortDescription = str_replace( '&', '&amp;', $shortDescription ); }
-                if( is_null($longDescription) === false && $longDescription != '' ){ $longDescription = str_replace( '&', '&amp;', $longDescription ); }
-                if( is_null($coursDescription) === false && $coursDescription != '' ){ $coursDescription = str_replace( '&', '&amp;', $coursDescription ); }
-                if( is_null($indludeDescription) === false && $indludeDescription != '' ){ $indludeDescription = str_replace( '&', '&amp;', $indludeDescription ); }
+            if (is_null($shortDescription) === false && $shortDescription != '') {
+                $shortDescription = str_replace('&', '&amp;', $shortDescription);
+            }
+            if (is_null($longDescription) === false && $longDescription != '') {
+                $longDescription = str_replace('&', '&amp;', $longDescription);
+            }
+            if (is_null($coursDescription) === false && $coursDescription != '') {
+                $coursDescription = str_replace('&', '&amp;', $coursDescription);
+            }
+            if (is_null($indludeDescription) === false && $indludeDescription != '') {
+                $indludeDescription = str_replace('&', '&amp;', $indludeDescription);
+            }
 
-                $lisCategories = '';
-                $lisCategories = lista_diplomasCusrosCategorias($idCategory);
+            $lisCategories = '';
+            $lisCategories = lista_diplomasCusrosCategorias($idCategory);
 
-                $modalities = '';
-                $modalities = lista_diplomasCusrosModalidad($idMadality);
+            $modalities = '';
+            $modalities = lista_diplomasCusrosModalidad($idMadality);
 
-                $optionDescto = '';
-                if( is_null($idDescto) === false && $idDescto > 0 ) { $optionDescto = "<option value='0'>No</option><option value='1' selected >Sí</option>"; }
-                else { $optionDescto = "<option value='0' selected >No</option><option value='1'>Sí</option>"; }
+            $optionDescto = '';
+            if (is_null($idDescto) === false && $idDescto > 0) {
+                $optionDescto = "<option value='0'>No</option><option value='1' selected >Sí</option>";
+            } else {
+                $optionDescto = "<option value='0' selected >No</option><option value='1'>Sí</option>";
+            }
 
-                $optionPublished = '';
-                if( $isPublished ) { $optionPublished = "<option value='0'>No</option><option value='1' selected >Sí</option>"; }
-                else { $optionPublished = "<option value='0' selected >No</option><option value='1'>Sí</option>"; }
-
-
-                /* [MOD OSW] */
-                
-                $imgThumbOne = 'images/logo_subir_imagen.png';
-                $imgThumbTwo = 'images/logo_subir_imagen.png';
-                $imgThumbThree = 'images/logo_subir_imagen.png';
-
-                $imgThumbMinOne = 'images/logo_subir_imagen.png';
-                $imgThumbMinTwo = 'images/logo_subir_imagen.png';
-                $imgThumbMinThree = 'images/logo_subir_imagen.png';
-
-                $imgThumbFacilitador = 'images/logo_subir_imagen.png';
-                $imgThumbNote = 'images/logo_subir_imagen.png';
-
-                if($thumbHead != ''){
-
-                    $imgsThumbHeader = explode(',', $thumbHead);
-
-                    if($imgsThumbHeader[0] != ""){
-
-                        $arrayPathFile = explode('/', $imgsThumbHeader[0]);
-                        $nameFile = $arrayPathFile[count($arrayPathFile)-1];
-                        $arrayNameFile = explode('_', $nameFile);
-                        $array2NameFile = explode('.', $arrayNameFile[1]);
-                        $nameNumberFile = $array2NameFile[0];
+            $optionPublished = '';
+            if ($isPublished) {
+                $optionPublished = "<option value='0'>No</option><option value='1' selected >Sí</option>";
+            } else {
+                $optionPublished = "<option value='0' selected >No</option><option value='1'>Sí</option>";
+            }
 
 
-                        if($nameNumberFile=='banner01'){ $imgThumbOne = $imgsThumbHeader[0]; }
-                        elseif($nameNumberFile=='banner02'){ $imgThumbTwo = $imgsThumbHeader[0]; }
-                        elseif($nameNumberFile=='banner03'){ $imgThumbThree = $imgsThumbHeader[0]; }
-                         
+            /* [MOD OSW] */
+
+            $imgThumbOne = 'images/logo_subir_imagen.png';
+            $imgThumbTwo = 'images/logo_subir_imagen.png';
+            $imgThumbThree = 'images/logo_subir_imagen.png';
+
+            $imgThumbMinOne = 'images/logo_subir_imagen.png';
+            $imgThumbMinTwo = 'images/logo_subir_imagen.png';
+            $imgThumbMinThree = 'images/logo_subir_imagen.png';
+
+            $imgThumbFacilitador = 'images/logo_subir_imagen.png';
+            $imgThumbNote = 'images/logo_subir_imagen.png';
+
+            if ($thumbHead != '') {
+
+                $imgsThumbHeader = explode(',', $thumbHead);
+
+                if ( count($imgsThumbHeader) == 1 && $imgsThumbHeader[0] != "") {
+
+                    $arrayPathFile = explode('/', $imgsThumbHeader[0]);
+                    $nameFile = $arrayPathFile[count($arrayPathFile) - 1];
+                    $arrayNameFile = explode('_', $nameFile);
+                    $array2NameFile = explode('.', $arrayNameFile[1]);
+                    $nameNumberFile = $array2NameFile[0];
+
+
+                    if ($nameNumberFile == 'banner01') {
+                        $imgThumbOne = $imgsThumbHeader[0];
+                    } elseif ($nameNumberFile == 'banner02') {
+                        $imgThumbTwo = $imgsThumbHeader[0];
+                    } elseif ($nameNumberFile == 'banner03') {
+                        $imgThumbThree = $imgsThumbHeader[0];
                     }
-
-                    if($imgsThumbHeader[1] != ""){ 
-                       
-
-                        $arrayPathFile = explode('/', $imgsThumbHeader[1]);
-                        $nameFile = $arrayPathFile[count($arrayPathFile)-1];
-                        $arrayNameFile = explode('_', $nameFile);
-                        $array2NameFile = explode('.', $arrayNameFile[1]);
-                        $nameNumberFile = $array2NameFile[0];
-
-                        if($nameNumberFile=='banner01'){ $imgThumbOne = $imgsThumbHeader[1];}
-                        elseif($nameNumberFile=='banner02'){ $imgThumbTwo = $imgsThumbHeader[1]; }
-                        elseif($nameNumberFile=='banner03'){ $imgThumbThree = $imgsThumbHeader[1]; }
-
-
-                        //$imgThumbTwo = $imgsThumbHeader[1]; 
-                    }
-
-                    if($imgsThumbHeader[2] != ""){ 
-
-                        $arrayPathFile = explode('/', $imgsThumbHeader[2]);
-                        $nameFile = $arrayPathFile[count($arrayPathFile)-1];
-                        $arrayNameFile = explode('_', $nameFile);
-                        $array2NameFile = explode('.', $arrayNameFile[1]);
-                        $nameNumberFile = $array2NameFile[0];
-
-                        if($nameNumberFile=='banner01'){ $imgThumbOne = $imgsThumbHeader[2]; }
-                        elseif($nameNumberFile=='banner02'){ $imgThumbTwo = $imgsThumbHeader[2]; }
-                        elseif($nameNumberFile=='banner03'){ $imgThumbThree = $imgsThumbHeader[2]; }
-
-                        //$imgThumbThree = $imgsThumbHeader[2]; 
-                    }
-                }   
-
-
-                if($thumbCours != ''){
-                    $imgsThumbMin = explode(',', $thumbCours);
-
-                    if($imgsThumbMin[0] != ""){
-
-                        $arrayPathFile = explode('/', $imgsThumbMin[0]);
-                        $nameFile = $arrayPathFile[count($arrayPathFile)-1];
-                        $arrayNameFile = explode('_', $nameFile);
-                        $array2NameFile = explode('.', $arrayNameFile[1]);
-                        $nameNumberFile = $array2NameFile[0];
-
-                        if($nameNumberFile=='thumbs01'){ $imgThumbMinOne = $imgsThumbMin[0]; }
-                        elseif($nameNumberFile=='thumbs02'){ $imgThumbMinTwo = $imgsThumbMin[0]; }
-                        elseif($nameNumberFile=='thumbs03'){ $imgThumbMinThree = $imgsThumbMin[0]; } 
-
-                        //$imgThumbMinOne = $imgsThumbMin[0]; 
-                    }
-
-                    if($imgsThumbMin[1] != ""){ 
-
-                        $arrayPathFile = explode('/', $imgsThumbMin[1]);
-                        $nameFile = $arrayPathFile[count($arrayPathFile)-1];
-                        $arrayNameFile = explode('_', $nameFile);
-                        $array2NameFile = explode('.', $arrayNameFile[1]);
-                        $nameNumberFile = $array2NameFile[0];
-
-                        if($nameNumberFile=='thumbs01'){ $imgThumbMinOne = $imgsThumbMin[1]; }
-                        elseif($nameNumberFile=='thumbs02'){ $imgThumbMinTwo = $imgsThumbMin[1]; }
-                        elseif($nameNumberFile=='thumbs03'){ $imgThumbMinThree = $imgsThumbMin[1]; } 
-
-                        //$imgThumbMinTwo = $imgsThumbMin[1]; 
-                    }
-
-                    if($imgsThumbMin[2] != ""){ 
-
-                        $arrayPathFile = explode('/', $imgsThumbMin[2]);
-                        $nameFile = $arrayPathFile[count($arrayPathFile)-1];
-                        $arrayNameFile = explode('_', $nameFile);
-                        $array2NameFile = explode('.', $arrayNameFile[1]);
-                        $nameNumberFile = $array2NameFile[0];
-
-                        if($nameNumberFile=='thumbs01'){ $imgThumbMinOne = $imgsThumbMin[2]; }
-                        elseif($nameNumberFile=='thumbs02'){ $imgThumbMinTwo = $imgsThumbMin[2]; }
-                        elseif($nameNumberFile=='thumbs03'){ $imgThumbMinThree = $imgsThumbMin[2]; } 
-
-                        //$imgThumbMinThree = $imgsThumbMin[2]; 
-                    }
-                }   
-
-
-                if($thumbFacilitador != ''){
-                    $imgsThumbFacilit = explode(',', $thumbFacilitador);
-                    $imgThumbFacilitador = $imgsThumbFacilit[0]; 
-                }
-                if($thumbNote != ''){
-                    $imgsThumbNot = explode(',', $thumbNote);
-                    $imgThumbNote = $imgsThumbNot[0]; 
-                    $buttonCleanImg = "<button type='button' class='btn botonFormulario' data-origin='update' id='btnDeleteImage' style='width:80%; margin:15px;' >Limpiar</button>";
                 }
 
+                if ( count($imgsThumbHeader) >= 2 && $imgsThumbHeader[1] != "") {
 
-                if( is_null($idDescto)==true && $idDescto==''){
-                   $idDescto = 0;
+
+                    $arrayPathFile = explode('/', $imgsThumbHeader[1]);
+                    $nameFile = $arrayPathFile[count($arrayPathFile) - 1];
+                    $arrayNameFile = explode('_', $nameFile);
+                    $array2NameFile = explode('.', $arrayNameFile[1]);
+                    $nameNumberFile = $array2NameFile[0];
+
+                    if ($nameNumberFile == 'banner01') {
+                        $imgThumbOne = $imgsThumbHeader[1];
+                    } elseif ($nameNumberFile == 'banner02') {
+                        $imgThumbTwo = $imgsThumbHeader[1];
+                    } elseif ($nameNumberFile == 'banner03') {
+                        $imgThumbThree = $imgsThumbHeader[1];
+                    }
+
+
+                    //$imgThumbTwo = $imgsThumbHeader[1]; 
                 }
 
-                $contact = '';
-                if($contacto != ''){
-                    $contact = json_decode($contacto);
+                if ( count($imgsThumbHeader) >= 3 && $imgsThumbHeader[2] != "" ) {
+
+                    $arrayPathFile = explode('/', $imgsThumbHeader[2]);
+                    $nameFile = $arrayPathFile[count($arrayPathFile) - 1];
+                    $arrayNameFile = explode('_', $nameFile);
+                    $array2NameFile = explode('.', $arrayNameFile[1]);
+                    $nameNumberFile = $array2NameFile[0];
+
+                    if ($nameNumberFile == 'banner01') {
+                        $imgThumbOne = $imgsThumbHeader[2];
+                    } elseif ($nameNumberFile == 'banner02') {
+                        $imgThumbTwo = $imgsThumbHeader[2];
+                    } elseif ($nameNumberFile == 'banner03') {
+                        $imgThumbThree = $imgsThumbHeader[2];
+                    }
+
+                    //$imgThumbThree = $imgsThumbHeader[2]; 
+                }
+            }
+
+
+            if ($thumbCours != '') {
+                $imgsThumbMin = explode(',', $thumbCours);
+
+                if ($imgsThumbMin[0] != "") {
+
+                    $arrayPathFile = explode('/', $imgsThumbMin[0]);
+                    $nameFile = $arrayPathFile[count($arrayPathFile) - 1];
+                    $arrayNameFile = explode('_', $nameFile);
+                    $array2NameFile = explode('.', $arrayNameFile[1]);
+                    $nameNumberFile = $array2NameFile[0];
+
+                    if ($nameNumberFile == 'thumbs01') {
+                        $imgThumbMinOne = $imgsThumbMin[0];
+                    } elseif ($nameNumberFile == 'thumbs02') {
+                        $imgThumbMinTwo = $imgsThumbMin[0];
+                    } elseif ($nameNumberFile == 'thumbs03') {
+                        $imgThumbMinThree = $imgsThumbMin[0];
+                    }
+
+                    //$imgThumbMinOne = $imgsThumbMin[0]; 
                 }
 
+                if ($imgsThumbMin[1] != "") {
 
-                $inputsDinamic = '';
-                if($idMadality == 1){
-                    $inputsDinamic = " 
+                    $arrayPathFile = explode('/', $imgsThumbMin[1]);
+                    $nameFile = $arrayPathFile[count($arrayPathFile) - 1];
+                    $arrayNameFile = explode('_', $nameFile);
+                    $array2NameFile = explode('.', $arrayNameFile[1]);
+                    $nameNumberFile = $array2NameFile[0];
+
+                    if ($nameNumberFile == 'thumbs01') {
+                        $imgThumbMinOne = $imgsThumbMin[1];
+                    } elseif ($nameNumberFile == 'thumbs02') {
+                        $imgThumbMinTwo = $imgsThumbMin[1];
+                    } elseif ($nameNumberFile == 'thumbs03') {
+                        $imgThumbMinThree = $imgsThumbMin[1];
+                    }
+
+                    //$imgThumbMinTwo = $imgsThumbMin[1]; 
+                }
+
+                if ( count($imgsThumbMin) >= 3 && $imgsThumbMin[2] != "") {
+
+                    $arrayPathFile = explode('/', $imgsThumbMin[2]);
+                    $nameFile = $arrayPathFile[count($arrayPathFile) - 1];
+                    $arrayNameFile = explode('_', $nameFile);
+                    $array2NameFile = explode('.', $arrayNameFile[1]);
+                    $nameNumberFile = $array2NameFile[0];
+
+                    if ($nameNumberFile == 'thumbs01') {
+                        $imgThumbMinOne = $imgsThumbMin[2];
+                    } elseif ($nameNumberFile == 'thumbs02') {
+                        $imgThumbMinTwo = $imgsThumbMin[2];
+                    } elseif ($nameNumberFile == 'thumbs03') {
+                        $imgThumbMinThree = $imgsThumbMin[2];
+                    }
+
+                    //$imgThumbMinThree = $imgsThumbMin[2]; 
+                }
+            }
+
+
+            if ($thumbFacilitador != '') {
+                $imgsThumbFacilit = explode(',', $thumbFacilitador);
+                $imgThumbFacilitador = $imgsThumbFacilit[0];
+            }
+            if ($thumbNote != '') {
+                $imgsThumbNot = explode(',', $thumbNote);
+                $imgThumbNote = $imgsThumbNot[0];
+                $buttonCleanImg = "<button type='button' class='btn botonFormulario' data-origin='update' id='btnDeleteImage' style='width:80%; margin:15px;' >Limpiar</button>";
+            }
+
+
+            if (is_null($idDescto) == true && $idDescto == '') {
+                $idDescto = 0;
+            }
+
+            $contact = '';
+            if ($contacto != '') {
+                $contact = json_decode($contacto);
+            }
+
+
+            $inputsDinamic = '';
+            if ($idMadality == 1) {
+                $inputsDinamic = " 
                     <div class='col col-md-6 col-lg-4 ' id='contentDirection' >
                         <div class='form-group'>
                             <label>Direccion *</label>
@@ -1010,8 +1073,8 @@
                         </div>
                     </div>
                     ";
-                }else if($idMadality == 2){
-                    $inputsDinamic = "
+            } else if ($idMadality == 2) {
+                $inputsDinamic = "
                     <div class='col col-md-6 col-lg-4 ' id='contentDirection' style='display:none;'>
                         <div class='form-group'>
                             <label>Direccion *</label>
@@ -1040,8 +1103,8 @@
                         </div>
                     </div>
                     ";
-                }else if($idMadality == 3){
-                    $inputsDinamic = "
+            } else if ($idMadality == 3) {
+                $inputsDinamic = "
                     <div class='col col-md-6 col-lg-4 ' id='contentDirection' >
                         <div class='form-group'>
                             <label>Direccion *</label>
@@ -1070,16 +1133,16 @@
                         </div>
                     </div>
                     ";
-                }
+            }
 
-                //$idDescto = 5;
+            //$idDescto = 5;
 
-                // include('includes/templates/crear/descuento-canastaproducto.php');
-                //$formDescto = formDescto();
+            // include('includes/templates/crear/descuento-canastaproducto.php');
+            //$formDescto = formDescto();
 
-                //$formDescto = formulario_descuento_producto($mysqli,$idDescto,$precioMxnDescto,'catalogo_descuentos');
+            //$formDescto = formulario_descuento_producto($mysqli,$idDescto,$precioMxnDescto,'catalogo_descuentos');
 
-                $html = "
+            $html = "
                     <input type='hidden' id='tipo' value='$id'>
                     <input type='hidden' id='thumbHead' value='$thumbHead'>
                     <input type='hidden' id='thumbCours' value='$thumbCours'>
@@ -1730,9 +1793,9 @@
                                             </select>
                                         </div>
                                     </div>";
-                                    //$formDescto
-                                    $html.=formulario_descuento_producto($mysqli,$idDescto,$precioMxnDescto,'catalogo_descuentos');
-                                    $html.="<div class='col col-md-6 col-lg-4'>
+            //$formDescto
+            $html .= formulario_descuento_producto($mysqli, $idDescto, $precioMxnDescto, 'catalogo_descuentos');
+            $html .= "<div class='col col-md-6 col-lg-4'>
                                         <div class='form-group'>
                                             <label>Publicar *</label>
                                             <select id='disponible' class='form-control'>
@@ -1785,7 +1848,7 @@
                                             <input
                                                 type='text'
                                                 id='whatsFacilitador'
-                                                value='".$contact->whats."'
+                                                value='" . $contact->whats . "'
                                                 class='form-control'
                                                 placeholder='1234567890'>
                                         </div>
@@ -1798,7 +1861,7 @@
                                                 type='text'
                                                 id='telFacilitador'
                                                 class='form-control'
-                                                value='".$contact->tel."'
+                                                value='" . $contact->tel . "'
                                                 placeholder='1234567890'>
                                         </div>
                                     </div>
@@ -1810,7 +1873,7 @@
                                                 type='text'
                                                 id='emailFacilitador'
                                                 class='form-control'
-                                                value='".$contact->email."'
+                                                value='" . $contact->email . "'
                                                 placeholder='correo@gmail.com'>
                                         </div>
                                     </div>
@@ -1959,7 +2022,15 @@
                                             value='$nameFailitadorBlogNote'>
                                     </div>
                                 </div>
-    
+                                <div class='col-sm-3'>
+                                    <label>Etiqueta de referencia</label>
+                                    <input
+                                            type='text'
+                                            id='typeTagImage'
+                                            class='form-control'
+                                            value='$typeTagImage'
+                                            placeholder='Diploma'>
+                                </div>
                                 <div class='col-sm-12'>
                                     <label> Imagen del certificado (jpg, jpeg, png - Máximo 5MB) </label>
                                 </div>
@@ -2064,37 +2135,35 @@
                         <a href='index.php?id=diploma_curos_talleres' class='btn botonFormulario' >Cerrar</a>
                     </div>
                 ";
-    
-                $existe = true;
-    
-            }
-            
-            $query -> close();
-        }
-        
-        $mysqli->close();
-        
-        if ($existe === true) {
-            echo $html;
-        } else {
-            echo "<label>No se ha encontrado ningún producto con ese ID </label>";
+
+            $existe = true;
         }
 
+        $query->close();
     }
 
-    function formDescto()
-    {
+    $mysqli->close();
 
-        date_default_timezone_set('America/Mexico_City');
-        $anio_actual=date('Y');
-        $anio_max= $anio_actual+10;
-        $startDate = inputs_fecha(1,'inicio',$anio_actual,$anio_max,0,0,0);
-        $endDate = inputs_fecha(2,'fin',$anio_actual,$anio_max,0,0,0);
+    if ($existe === true) {
+        echo $html;
+    } else {
+        echo "<label>No se ha encontrado ningún producto con ese ID </label>";
+    }
+}
 
-        $startTime = inputs_hora(1,'inicio',24,60);
-        $endTime = inputs_hora(2,'fin',24,60);
-        
-        return "
+function formDescto()
+{
+
+    date_default_timezone_set('America/Mexico_City');
+    $anio_actual = date('Y');
+    $anio_max = $anio_actual + 10;
+    $startDate = inputs_fecha(1, 'inicio', $anio_actual, $anio_max, 0, 0, 0);
+    $endDate = inputs_fecha(2, 'fin', $anio_actual, $anio_max, 0, 0, 0);
+
+    $startTime = inputs_hora(1, 'inicio', 24, 60);
+    $endTime = inputs_hora(2, 'fin', 24, 60);
+
+    return "
             <div class='card card-blue direct-chat direct-chat-dark' id='div_descuento' style='display:none;'>
                 <div class='card-header card-personalizado' >
                     <h3 class='card-title'>Asignar descuento</h3>
@@ -2187,6 +2256,4 @@
                 </div>
             </div>
         ";
-    }
-
-?>
+}

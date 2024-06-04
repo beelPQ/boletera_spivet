@@ -2,8 +2,8 @@
 <aside class="main-sidebar control-sidebar-dark elevation-4">
     <!-- Brand Logo -->
     <a href="index.php" class="brand-link">
-        <img src="images/logos/spivet.png" class="brand-image " >
-        <span class="brand-text font-weight-light" >DASHBOARD</span>
+        <img src="images/logos/spivet.png" class="brand-image ">
+        <span class="brand-text font-weight-light">DASHBOARD</span>
     </a>
 
     <!-- Sidebar -->
@@ -20,6 +20,11 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
+            <?php
+            $idEdit = '';
+            $exId = explode(':', $id);
+            if (count($exId) > 1) $idEdit = $exId[0];
+            ?>
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any
                         other icon font library -->
@@ -35,17 +40,17 @@
 
                         <?php if ($_SESSION['id_rol'] == 1) { ?>
                             <li class="nav-item">
-                                <a href="index.php?id=clientes" class="nav-link <?php if ($id === "clientes") { ?>active<?php } ?>">
+                                <a href="index.php?id=clientes" class="nav-link <?php if ($id === "clientes" || $idEdit == 'editar-clientes') { ?>active<?php } ?>">
                                     <i class="fas fa-user-friends"></i>
                                     <p>Clientes</p>
                                 </a>
                             </li>
                         <?php } ?>
 
-                        <?php if ($_SESSION['id_rol'] == 1 || $_SESSION['id_rol'] == 2 ) { ?>
+                        <?php if ($_SESSION['id_rol'] == 1 || $_SESSION['id_rol'] == 2) { ?>
                             <!-- Cursos y talleres -->
                             <li class="nav-item">
-                                <a href="index.php?id=diploma_curos_talleres" class="nav-link <?php if ($id === "diploma_curos_talleres") { ?>active<?php } ?>">
+                                <a href="index.php?id=diploma_curos_talleres" class="nav-link <?php if ($id === "diploma_curos_talleres" || $id === "crear_diplomasCurosTaller"  || $idEdit == 'editar-diplomasCurosTaller') { ?>active<?php } ?>">
                                     <i class="fas fa-chalkboard-teacher"></i>
                                     <p>Cursos/Capacitaciones</p>
                                 </a>
@@ -57,26 +62,26 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="index.php?id=cupones" class="nav-link <?php if ($id === "cupones") { ?>active<?php } ?>">
+                                <a href="index.php?id=cupones" class="nav-link <?php if ($id === "cupones" || $id === "crear_cupon" || $idEdit == 'editar-cupones' ) { ?>active<?php } ?>">
                                     <i class="fas fa-ticket-alt"></i>
                                     <p class="aside_opc">Cupones</p>
                                 </a>
                             </li>
-                            
+
                             <li class="nav-item">
-                                <a href="index.php?id=checkin" class="nav-link <?php if( $id == 'checkin' ) { ?>active<?php }?>">
+                                <a href="index.php?id=checkin" class="nav-link <?php if ($id == 'checkin') { ?>active<?php } ?>">
                                     <i class="fas fa-clipboard-check"></i>
                                     <p class="menu-text">Check-In</p>
                                 </a>
                             </li>
                             <!--<li class="nav-item">-->
-                            <!--    <a href="index.php?id=lista-cursos-design" class="nav-link <?php if( $id == 'lista-cursos-design' ) { ?>active<?php }?>">-->
+                            <!--    <a href="index.php?id=lista-cursos-design" class="nav-link <?php if ($id == 'lista-cursos-design') { ?>active<?php } ?>">-->
                             <!--        <i class="fas fa-edit"></i>-->
                             <!--        <p class="menu-text">Diploma</p>-->
                             <!--    </a>-->
                             <!--</li>-->
                         <?php } ?>
-                        
+
                         <?php if ($_SESSION['id_rol'] == 3) { ?>
                             <li class="nav-item">
                                 <a href="index.php?id=cursos_cobros" class="nav-link <?php if ($id === "cursos_cobros") { ?>active<?php } ?>">
@@ -86,9 +91,9 @@
                             </li>
                         <?php } ?>
 
-                         <?php if ($_SESSION['id_rol'] == 1) { ?>
+                        <?php if ($_SESSION['id_rol'] == 1) { ?>
                             <li class="nav-item">
-                                <a href="index.php?id=servicios" class="nav-link <?php if ($id === "servicios") { ?>active<?php } ?>">
+                                <a href="index.php?id=servicios" class="nav-link <?php if ($id === "servicios" || $id === 'crear_servicio' || $idEdit == 'editar-servicios') { ?>active<?php } ?>">
                                     <i class="fas fa-users-cog"></i>
                                     <p>Servicios</p>
                                 </a>
@@ -97,7 +102,7 @@
 
                         <?php if ($_SESSION['id_rol'] == 1) { ?>
                             <li class="nav-item">
-                                <a href="index.php?id=usuarios" class="nav-link <?php if ($id === "usuarios") { ?>active<?php } ?>">
+                                <a href="index.php?id=usuarios" class="nav-link <?php if ($id === "usuarios" || $id === "crear_usuario" || $idEdit == 'editar-usuarios' ) { ?>active<?php } ?>">
                                     <i class="fas fa-users"></i>
                                     <p>Usuarios</p>
                                 </a>
@@ -114,7 +119,7 @@
                         <?php } ?>
 
                         <?php if ($_SESSION['id_rol'] == 1) { ?>
-                            
+
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="fas fa-cog"></i>
@@ -124,7 +129,7 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview" style="display: none;">
-                                    <li class="nav-item <?php if( $id == 'lista-cursos-design' ) { ?>active<?php }?>">
+                                    <li class="nav-item <?php if ($id == 'lista-cursos-design') { ?>active<?php } ?>">
                                         <a href="index.php?id=lista-cursos-design" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Diseño</p>
@@ -150,8 +155,8 @@
                                     <!--</li>-->
                                 </ul>
                             </li>
-                                
-                             
+
+
                         <?php } ?>
                     </ul>
                 </li>

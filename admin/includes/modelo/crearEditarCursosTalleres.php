@@ -39,6 +39,11 @@ $twoMonth = '';
 $twoYear = '';
 $typeDescto = '';
 
+$existImageHead = '';
+$existImageBlog = '';
+$existImageProfil = '';
+$existImageThumd = '';
+
 $thumsHead = '';
 $thumsMini = '';
 $profile = '';
@@ -131,6 +136,8 @@ if( $method != '') {
         //echo $_POST['thumgBlog'];
         /* echo "llega asta aqui";
         die(); */
+
+        
         if( isset($_POST['existImageHead']) ) { $existImageHead = $_POST['existImageHead']; }
         if( isset($_POST['existImageBlog']) ) { $existImageBlog = $_POST['existImageBlog']; }
         if( isset($_POST['existImageProfil']) ) { $existImageProfil = $_POST['existImageProfil']; }
@@ -224,8 +231,7 @@ if( $method != '') {
             "emailFacilitador" => $emailFacilitador,
             "typeTagImage" => $typeTagImage
         ];
-       
-    
+
         $response = array();
         $response = processData($method, $dataPost);
         /*
