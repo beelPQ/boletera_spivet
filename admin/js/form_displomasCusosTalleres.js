@@ -498,7 +498,7 @@ const getDataForm = (idForm) => {
         if( idElement == 'whatsFacilitador' ) datosForm.whatsFacilitador = valueElement
         if( idElement == 'telFacilitador' ) datosForm.telFacilitador = valueElement
         if( idElement == 'emailFacilitador' ) datosForm.emailFacilitador = valueElement
-
+        if( idElement == 'typeTagImage' ) datosForm.typeTagImage = valueElement
     });
 
     const selects = idForm.querySelectorAll('select')

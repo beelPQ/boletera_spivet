@@ -613,7 +613,7 @@
                 // $btnDescto = '<button type="button" class="btn botonFormulario" onclick="modalDescuento('.$row['idsystemcatpro'].')">Ver</button>';
             // }
             // if( $row['catalogo_productos_publicado'] == 1){ $disponible='Sí'; }else{ $disponible='No'; }
-            $stock = $row['catalogo_productos_stock'];
+            // $stock = $row['catalogo_productos_stock'];
 
             $descriptionCorta = '';
             $objetivo = '';

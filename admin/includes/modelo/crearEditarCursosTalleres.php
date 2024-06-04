@@ -55,6 +55,8 @@ $whatsFacilitador = '';
 $telFacilitador = '';
 $emailFacilitador = '';
 
+$typeTagImage = '';
+
 //Verificamos el tipo de método para crear o actualizar datos
 if( isset($_POST['methodUsed']) ) { $method = $_POST['methodUsed']; }
 
@@ -156,6 +158,10 @@ if( $method != '') {
         if( isset($_POST['emailFacilitador']) ){
             $emailFacilitador = $_POST['emailFacilitador'];
         }
+        
+        if( isset($_POST["typeTagImage"]) ){
+            $typeTagImage = $_POST["typeTagImage"];
+        }
 
 
         $dataPost = [
@@ -215,7 +221,8 @@ if( $method != '') {
 
             "whatsFacilitador" => $whatsFacilitador,
             "telFacilitador" => $telFacilitador,
-            "emailFacilitador" => $emailFacilitador
+            "emailFacilitador" => $emailFacilitador,
+            "typeTagImage" => $typeTagImage
         ];
        
     
@@ -401,7 +408,8 @@ function processData($method, $data)
     $contact->email = $data['emailFacilitador'];
 
     $con = json_encode($contact);
-
+    
+    
     
 
     $dataPost = [
@@ -455,8 +463,8 @@ function processData($method, $data)
         "location" => $data['location'],
         "notes" => $data['notes'],
         "linkConnection" => $data['linkConnection'],
-        "contacto" => $con
-        
+        "contacto" => $con,
+        "typeTagImage" => $data['typeTagImage']
 
     ];
     
@@ -661,10 +669,11 @@ function update($dataPost, $dataDesctos)
             `presencial_linklocation` = ?,
             `virtual_notas` = ?,
             `virtual_link` = ?,
-            `contacto` = ?
+            `contacto` = ?,
+            `typeTagImage` = ?
         WHERE idsystemcatpro = ? ";
         $query = $mysqli->prepare($querySql);
-        $query -> bind_param('iiiiiissssssssssssssssdddddssssiisssssi', 
+        $query -> bind_param('iiiiiissssssssssssssssdddddssssiissssssi', 
             $dataPost['typePro'],
             $dataPost['idCompany'],
             $dataPost['category'],
@@ -703,6 +712,7 @@ function update($dataPost, $dataDesctos)
             $dataPost['notes'],
             $dataPost['linkConnection'],
             $dataPost['contacto'],
+            $dataPost['typeTagImage'],
             $dataPost['id']);
         $query -> execute();
         //$query -> fetch();
@@ -908,11 +918,12 @@ function create($dataPost, $dataDesctos) {
             `presencial_linklocation`,
             `virtual_notas`,
             `virtual_link`,
-            `contacto`
+            `contacto`,
+            `typeTagImage`
              )
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $query = $mysqli->prepare($querySql);
-        $query -> bind_param('isiiiiissssssssssssssssdddddssssiisssss',
+        $query -> bind_param('isiiiiissssssssssssssssdddddssssiissssss',
             $dataPost['typePro'],
             $dataPost['sku'],
             $dataPost['idCompany'],
@@ -951,7 +962,8 @@ function create($dataPost, $dataDesctos) {
             $dataPost['location'],
             $dataPost['notes'],
             $dataPost['linkConnection'],
-            $dataPost['contacto']
+            $dataPost['contacto'],
+            $dataPost['typeTagImage']
         );
         
 

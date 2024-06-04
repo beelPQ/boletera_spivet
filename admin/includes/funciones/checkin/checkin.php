@@ -235,25 +235,33 @@ if (isset($_POST["option"])) {
             $filter_lastname2 = "AND cli.clientes_apellido2 like '%$lastName2%' ";
         }
 
+        // ? Correción en consulta [Moroni - 04Jun2024]
+        $instruction = "SELECT del.participant_number, cli.clientes_nombre, cli.idsystemcli, cli.clientes_apellido1, cli.clientes_apellido2, 
+cli.clientes_telefono, cli.clientes_email, cli.clientes_photo, ti.modality, del.id_deliverable, del.checkin, tra.cobroscata_idregcobro, tra.cobroscata_status 
+FROM catalogo_cobros AS tra INNER JOIN catalogo_cobros_items AS ti ON (ti.cobroscata_idsystemcobrocat = tra.idsystemcobrocat) INNER JOIN catalogo_clientes AS cli ON (cli.idsystemcli = ti.clientes_idsystemcli) LEFT JOIN deliverables AS del ON (ti.id_deliverable=del.id_deliverable) WHERE ti.catalogo_productos_idsystemcatpro = $id_event AND tra.cobroscata_status = 1 $filter_name $filter_lastname1 $filter_lastname2
+GROUP BY del.participant_number, cli.clientes_nombre, cli.idsystemcli, cli.clientes_apellido1, cli.clientes_apellido2, cli.clientes_telefono, cli.clientes_email, cli.clientes_photo, ti.modality, del.id_deliverable, del.checkin, tra.cobroscata_idregcobro, tra.cobroscata_status ORDER BY cli.clientes_nombre";
 
-
-        $instruction = "SELECT cli.idsystemcli, cli.clientes_nombre, cli.clientes_apellido1, cli.clientes_apellido2, 
-        cli.clientes_telefono, cli.clientes_email, cli.clientes_photo, del.participant_number, 
-        ti.modality, del.id_deliverable, del.checkin, tra.cobroscata_idregcobro, tra.cobroscata_status
-        FROM catalogo_cobros AS tra 
-        INNER JOIN catalogo_cobros_items AS ti ON (ti.cobroscata_idsystemcobrocat = tra.idsystemcobrocat)
-        INNER JOIN catalogo_clientes AS cli ON (cli.idsystemcli = ti.clientes_idsystemcli)
-        INNER JOIN deliverables AS del ON (ti.id_deliverable=del.id_deliverable) 
-        WHERE ti.catalogo_productos_idsystemcatpro = $id_event 
-        AND tra.cobroscata_status = 1
-        $filter_name $filter_lastname1 $filter_lastname2
-        GROUP BY del.participant_number ORDER BY cli.clientes_nombre";
+        // $instruction = "SELECT cli.idsystemcli, cli.clientes_nombre, cli.clientes_apellido1, cli.clientes_apellido2, 
+        // cli.clientes_telefono, cli.clientes_email, cli.clientes_photo, del.participant_number, 
+        // ti.modality, del.id_deliverable, del.checkin, tra.cobroscata_idregcobro, tra.cobroscata_status
+        // FROM catalogo_cobros AS tra 
+        // INNER JOIN catalogo_cobros_items AS ti ON (ti.cobroscata_idsystemcobrocat = tra.idsystemcobrocat)
+        // INNER JOIN catalogo_clientes AS cli ON (cli.idsystemcli = ti.clientes_idsystemcli)
+        // INNER JOIN deliverables AS del ON (ti.id_deliverable=del.id_deliverable) 
+        // WHERE ti.catalogo_productos_idsystemcatpro = $id_event 
+        // AND tra.cobroscata_status = 1
+        // $filter_name $filter_lastname1 $filter_lastname2
+        // GROUP BY del.participant_number ORDER BY cli.clientes_nombre";
         // die($instruction );
 
         $consulta = $mysqli->query($instruction);
 
         $table = '';
         while ($row = mysqli_fetch_array($consulta)) {
+            $uriPhonto = "";
+            if( $row['clientes_photo'] !== '' && $row['clientes_photo'] != '-' ) {
+                $uriPhonto = '/images/clientes/fotos/' . $row['clientes_photo'];
+            }
             $table = $table . '
                     <tr>
                         <td>
@@ -267,7 +275,7 @@ if (isset($_POST["option"])) {
                         <td>' . $row['participant_number'] . '</td>
                         <td>
                             <figure>
-                                <img class="img_avatar_search_avanced" src="/images/clientes/fotos/' . $row['clientes_photo'] . '" alt="">
+                                <img class="img_avatar_search_avanced" src="'.$uriPhonto.'" alt="">
                             </figure>
                         </td>
                     </tr>
