@@ -42,3 +42,6 @@ admin/images/design_credencial/*.jpg
 admin/images/design_diploma/*.png
 admin/images/design_diploma/*.jpeg
 admin/images/design_diploma/*.jpg
+
+
+administrator/cache/_media_version/
