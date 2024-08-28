@@ -1,0 +1,64 @@
+.instalaciones {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 50px;
+}
+
+.instalaciones h1 {
+    color: var(--morado);
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.instalaciones__content {
+    display: flex;
+    gap: 86px;
+    margin-bottom: 70px;
+}
+
+.instalaciones__imagen img {
+    width: 100%;
+}
+
+.instalaciones__content > div {
+    width: 50%;
+}
+
+.instalaciones__intro {
+    font-size: 18px;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+
+@media only screen and (max-width: 768px) and (min-width: 300px)  {
+    
+    .instalaciones {
+        padding: 15px;
+    }
+
+    .instalaciones h1 {
+        font-size: 25px;
+        margin-bottom: 25px;
+    }
+
+    .instalaciones__content {
+        gap: 15px;
+        margin-bottom: 25px;
+        flex-flow: wrap;
+    }
+
+    .instalaciones__content > div {
+        width: 100%;
+    }
+
+    .instalaciones__intro {
+        font-size: 12px;
+    }
+
+}

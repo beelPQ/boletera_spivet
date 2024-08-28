@@ -1,0 +1,155 @@
+$color-title : #fff;
+$color-text : #fff;
+
+
+.background-home-image{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+
+/* .oferta-back-brandvalues{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+} */
+
+
+
+
+
+/* Seccion 5 */
+.content-integration{
+    text-align: center; 
+    padding-top: 3rem;
+    min-height: 300px;
+    color: #000;
+}
+
+
+
+
+@import "slider_principal";
+@import "oferta";
+@import "brand_values";
+@import "video";
+@import "alianzas";
+
+@media only screen and (max-width: 1350px) { 
+    #carouselPrincipal{
+        max-height: 510px;
+        .carousel-item { 
+            max-height: 510px!important;  
+            .image-slider{
+                height: 510px!important;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 900px) { 
+    #carouselPrincipal{
+        max-height: 400px;
+        .carousel-item { 
+            max-height: 400px!important;  
+            .image-slider{
+                height: 400px!important;
+            }
+        }
+    }
+    .content-brandvalues{
+        .brandvalues-info{
+            padding: 3rem 1rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    #carouselPrincipal{
+        max-height: 350px;
+        .carousel-item { 
+            max-height: 350px!important;  
+            .image-slider{
+                height: 350px!important;
+            }
+            .carousel-caption-text-advanced{
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                p{
+                    font-size: 15pt!important;
+                    margin-bottom: 2px;
+                }
+                span{
+                    font-size: 15pt!important;
+                }
+            }
+        }
+    } 
+    .content-brandvalues{ 
+        .brandvalues-info{
+            gap: 0.5rem;
+            flex-direction: column;
+            padding: 3rem 2rem;
+            .brandvalues-info-text-title{
+                width: 100%;
+            }
+            .brandvalues-info-text-detail{
+                width: 100%;
+            }
+        }
+    }
+
+    .content-video{
+        flex-direction: column;
+    }
+
+}
+@media only screen and (max-width: 650px) {
+    #carouselPrincipal{
+        max-height: 300px; 
+        .carousel-item { 
+            max-height: 300px!important;  
+            .image-slider{
+                height: 300px!important;
+            }
+        }
+        .carousel-caption-text-advanced{
+            font-size: 15px!important;
+        }
+    } 
+}
+
+@media only screen and (max-width: 550px) {
+    #carouselPrincipal{
+        max-height: 200px; 
+        .carousel-item { 
+            max-height: 200px!important;  
+            .image-slider{
+                height: 200px!important;
+            }
+            .carousel-caption-text-advanced{
+                p{
+                    font-size: 12pt!important;
+                    margin-bottom: 1px;
+                }
+                span{
+                    font-size: 12pt!important;
+                }
+            }
+        }
+    } 
+    .content-brandvalues{ 
+        .brandvalues-items{
+            .item{
+                min-height: 200px;
+                height: auto;
+                margin-bottom: 2rem;
+            }
+            
+        }
+    }
+}
+

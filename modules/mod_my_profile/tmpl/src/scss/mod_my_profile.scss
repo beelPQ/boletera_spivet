@@ -1,0 +1,166 @@
+
+$contentLeft: 30%;
+$contentRight: calc(100% - $contentLeft);
+
+%styleBorderContent {
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,.15);
+    border: solid 1px #838383;
+}
+.my_profile {
+    background-color: var(--bg-header_register);
+    height: auto;
+    min-height: calc(100vh - 343px);
+    position: relative;
+
+    &-content {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &-title {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 1rem;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 3rem;
+    }
+
+    &-left {
+        width: $contentLeft;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        .contentphoto {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            // justify-content: center;
+            align-items: center;
+            gap: .5rem;
+            @extend %styleBorderContent;
+            img#avatar {
+                width: 100%;
+                height: auto;
+                max-width: 200px;
+                &.changeimg {
+                    cursor: pointer;
+                }
+                &.invalid {
+                    border: 3px solid var(--bs-danger);
+                }
+            }
+            button.btn {
+                background-color: var(--amarillo);
+                color: var(--color_pq_text);
+                transition: box-shadow .3s ease;
+                font-size: 12px;
+                margin: .5rem;
+                &:hover {
+                    box-shadow: 0 4px 10px 0 rgba(0,0,0,.15);
+                }
+            }
+        }
+        .contentadvertising {
+            width: 100%;
+            min-height: 4rem;
+            @extend %styleBorderContent;
+            &::before {
+                content: 'Contenido publicitario';
+                display: block;
+                width: 100%;
+                height: 38px;
+                text-align: center;
+            }
+        }
+    }
+    &-right {
+        width: $contentRight;
+        padding: 1rem;
+        .contentform {
+            @extend %styleBorderContent;
+            &-title {
+                font-weight: bold;
+            }
+
+            .form {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                &_contentItem {
+                    position: relative;
+                    width: 100%;
+                    max-width: 360px;
+                    min-width: 260px;
+                    input, select {
+                        &:not(.is-invalid) {
+                            border: solid 1px #000;
+                        }
+                    }
+                    select {
+                        padding-right: 1.3rem;
+                        &.is-invalid {
+                            background-position: right calc(1.375em + .1875rem) center;
+                        }
+                    }
+                    .icon-select {
+                        position: absolute;
+                        right: 5px;
+                        top: 3rem;
+                    }
+                }
+            }
+        }
+    }
+    &-btnActions {
+        // @extend %styleBorderContent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.3rem;
+        width: 100%;
+        margin-top: 1rem;
+        position: sticky;
+        bottom: 0;
+        background-color: #fff;
+        border-top: 1px solid #c8c8c847;
+        box-shadow: 0 -2px 4px -4px rgba(0,0,0,.5);
+        z-index: 1;
+        padding: 1rem;
+        .btn_update {
+            width: 15rem;
+            height: 38px;
+            // background-color: var(--amarillo);
+            background-color: #000;
+            // color: var(--color_pq_text);
+            color: #fff;
+            transition: all .3s ease;
+            font-size: 12px;
+            margin: .5rem;
+            font-size: 1rem;
+            &:hover {
+                box-shadow: 0 4px 10px 0 rgba(0,0,0,.15);
+                background-color: var(--amarillo);
+                color: var(--color_pq_text);
+            }
+        }
+    }
+}
+
+.modal {
+    &-body {
+        max-width: 100%;
+        .img-container {
+            max-width: 100%;
+            img#imageCropper {
+                display: block;
+                max-width: 100%;
+            }
+        }
+    }
+}

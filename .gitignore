@@ -1,0 +1,47 @@
+# Eliminar los archivos o carpetas rastreados
+##  git rm -r --cached libraries media plugins
+#     Este comando eliminará las carpetas del índice de Git, pero las dejará en tu sistema de archivos.
+
+# Confirmar los cambios: Después de eliminar los archivos del índice, confirma los cambios.
+##  git commit -m "Remove libraries, media, and plugins from tracking"
+
+
+
+/.fleet
+/.idea
+/.vscode
+.DS_Store
+
+/administrator/cache/autoload_psr4.php
+
+/files/adjuntos/
+/files/comprobantes/
+
+# /api/
+# /libraries/
+# /media/
+# /plugins/
+# cache/
+# cli/
+# tmp/
+# includes/
+
+# /templates/spivet_pq_tm/php/dompdf/
+# templates/cassiopeia/
+
+/archivos/cursos_talleres/
+/boletera.zip
+/boletera.sql
+
+# configuration.php
+
+
+admin/images/design_credencial/*.png
+admin/images/design_credencial/*.jpeg
+admin/images/design_credencial/*.jpg
+admin/images/design_diploma/*.png
+admin/images/design_diploma/*.jpeg
+admin/images/design_diploma/*.jpg
+
+
+administrator/cache/_media_version/

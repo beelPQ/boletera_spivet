@@ -1,0 +1,657 @@
+:root {
+    
+   --color_primary_gt: #246e46; /* Color Marron*/
+    --color-orange-isd: #ee7728; /* Color naranja*/
+    --color-orange-rbg-light-isd: rgb(238 119 40 / 30%); 
+    --color_gray_dark_gt: #323e48;; /* Color gris oscuro*/
+    --color_yellow_gt: #ceb71b;; /* Color Amarillo*/
+
+    /* --color_primary_back_gt: rgba(0, 67, 31, 0.3); */
+    --color_primary_back_gt: rgba(0, 67, 31, 0.55);
+    --color_primary_gray_light_gt: rgba(0 0 0 / 25%);
+    --color_secondary_light: #d2edde;
+    /*   Para Spinner   */
+    --width-circle: 60px;
+    --color-dark: rgb(32, 32, 32);
+
+
+    --height_element: 40px;
+    --font_size_element: 14px;
+    --border_rafius_element: 20px;
+
+    --height_text_template: 1rem;
+    
+    
+    /* fondos botones, encabezados, lineas y titulos especiales */
+    --main-color: #f9c809;
+    /* fondo boton */
+    --secondary-color: #000;
+    
+    /* textos en fondos blancos o claros */
+    --main-color-text: #000;
+    /* textos en fondos oscuros o fuertes */
+    --secondary-color-text: #000;
+}
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    flex: 0 0 auto; /* No crecerá, no se encogerá, tamaño automático */
+    background-color: #ccc;
+}
+
+.content-page.content-min {
+    flex: 1; /* Se expandirá para llenar el espacio restante */
+    background-color: #f0f0f0;
+    overflow-y: auto; /* Agregar barra de desplazamiento vertical si el contenido es demasiado grande */
+}
+
+.content-page{
+    width:100%; 
+    background:#fff;
+    padding: 0 8rem;
+}
+.divContent{
+    padding: 2rem;
+}
+
+.msg-invalid{
+    color: #dc3545;
+}
+
+
+
+.final-message{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+.card-personalizado{
+    border: solid 1px var(--main-color) !important;
+    background-color: var(--main-color) !important;
+    padding: 8px 22.4px 8px 25.4px;
+    border-radius: 12px;
+
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: var(--secondary-color-text);
+}
+
+.card-personalizado span{
+  
+  float: right;
+  cursor: pointer;
+ 
+}
+
+.card .card-footer{
+  
+  text-align: center;
+  padding-top: 50px;
+ 
+}
+
+.col-card-content{
+    margin-bottom: 2rem;
+}
+
+.form-cell-field{
+    padding-bottom: 37px;
+}
+
+.form-cell-field2{
+    padding-bottom: 100px;
+}
+
+.customButton{
+
+    background-color: var(--secondary-color);
+    font-size: 14.4px;
+    font-weight: normal;
+    color: var(--secondary-color-text);
+    border-radius: 5px;
+
+    /*padding:15px 25px 15px 25px;*/
+    /*padding-bottom: 15px;*/
+    padding-top: 10px;
+    text-decoration: none;
+
+    width: 280px;
+    height: 38px;
+    border: transparent;
+
+    text-align: center;
+    cursor: pointer;
+}
+
+.customButton2{
+    width: 280px;
+    height: 38px;
+    border: transparent;
+    border-radius: 5px;
+    font-weight: normal;
+
+    color: var(--secondary-color-text);
+    background-color: var(--main-color);
+}
+
+input[type="file"]#comprobante {
+     width: 0.1px;
+     height: 0.1px;
+     opacity: 0;
+     overflow: hidden;
+     position: absolute;
+     z-index: -1;
+}
+
+label[for="comprobante"] {
+     background-color: var(--secondary-color);
+     /*color:var(--secondary-color-text);*/
+     color: #fff;
+    
+ }
+
+ .span_name_file_attached{
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #0bdd2c;
+ }
+
+.texto1{
+  font-size: 14.4px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.04;
+  letter-spacing: normal;
+  color: var(--main-color-text);
+}
+
+.texto2{
+    font-size: 14.4px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: var(--main-color-text);
+   
+}
+
+.texto3{
+    font-size: 14.4px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: var(--main-color-text); 
+}
+
+.label_formulario{
+  font-size: 14.4px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: var(--main-color-text);
+}
+
+.label_formulario2{
+  
+  font-size: 14.4px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.43;
+  letter-spacing: normal;
+  color: var(--main-color);
+}
+
+.input_formulario{
+  font-size: 14.4px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: var(--main-color-text);
+
+}
+
+
+.label_table{
+  font-size: 14.4px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.88;
+  letter-spacing: normal;
+  color: #000;
+}
+
+.input_table{
+  font-size: 14.4px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: var(--main-color-text);
+}
+
+
+.table-products-info{
+    width: 90%;
+}
+
+.table-products-info .celda1{
+    width: 33%;
+} 
+
+.table-products-info .celda1_1{
+    width: 52%;
+} 
+
+.table-products-info .celda1_2{
+    width: 15%;
+    padding-left: 29px;
+} 
+
+.table-products-info .cell-data{
+    padding-bottom: 35px;
+}
+
+.table-products-info .cell-data-pay{
+    padding-top: 35px;
+}
+
+.table-products-info .cell-data-pay2{
+    padding-top: 0px;
+}
+
+.table-products-info .linea_separador{
+    background-color: var(--main-color);
+    color:white;
+    padding-top:1px;
+} 
+
+
+.row-buttons-actions{
+    display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      gap: 1rem;
+}
+
+.ali-left{
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+}
+.ali-right{
+    display: flex;
+    justify-content: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Para spinner nuevo */
+
+.content-spinner {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #fff;
+    position: fixed;
+    z-index: 1055;
+    top: 0;
+}
+.content-spinner  .spinner-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+}
+.spinner-body .txtSpanSpinner {
+    max-width: 60px;
+    padding: 0px;
+    text-align: center;
+    color: var(--color_primary_gt);
+    /* animation: anim-fade-inout 2s linear infinite; */
+    position: relative;
+}
+
+
+
+.spinner-body .spinner-circle {
+    position: absolute;
+    width: var(--width-circle);
+    height: var(--width-circle);
+    border-radius: 50%;
+    border: 5px solid transparent;
+    /* background: rgb(1 24 70 / 14%); */
+    background: transparent;
+
+    /* animation: anim-fade-inout 2s linear infinite; */
+}
+
+.spinner-body .spinner-circle1 {
+    position: absolute;
+    width: calc( var(--width-circle) + 15px );
+    height: calc( var(--width-circle) + 15px );
+    border-radius: 50%;
+    border: 3px solid var(--color_primary_gt);
+    background: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: var(--color_primary_gt);
+    animation: spin-right 3s linear infinite;
+}
+.spinner-body .spinner-circle2 {
+    position: absolute;
+    width: calc( var(--width-circle) + 25px );
+    height: calc( var(--width-circle) + 25px );
+    border-radius: 50%;
+    border: 3px solid transparent;
+    background: transparent;
+    border-top-color: var(--color_primary_gt);
+    border-bottom-color: var(--color_primary_gt);
+    border-left-color: transparent;
+    animation: spin-left 4.5s linear infinite;
+}
+.spinner-body .spinner-circle3 {
+    position: absolute;
+    width: calc( var(--width-circle) + 35px );
+    height: calc( var(--width-circle) + 35px );
+    border-radius: 50%;
+    border: 3px solid transparent;
+    background: transparent;
+    border-top-color: transparent;
+    border-bottom-color: var(--color_primary_gt);
+    border-left-color: var(--color_primary_gt);
+    animation: spin-right 5s linear infinite;
+}
+.spinner-body .spinner-circle4 {
+    position: absolute;
+    width: calc( var(--width-circle) + 45px );
+    height: calc( var(--width-circle) + 45px );
+    border-radius: 50%;
+    border: 3px solid var(--color_primary_gt);
+    background: transparent;
+    border-top-color: var(--color_primary_gt);
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    animation: spin-right 4.3s linear infinite;
+}
+
+
+@keyframes spin-left {
+    0% {
+        background: transparent;
+        transform: rotate(720deg);
+    }
+}
+@keyframes spin-right {
+    0% {
+        background: transparent;
+        transform: rotate(-720deg);
+    }
+}
+
+h1.title-view {
+    margin-top: 2rem;
+    font-size: 34px;
+    color: var(--color-gray-dark-n-isd);
+    text-align: center;
+
+    font-size: 28px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.89;
+    letter-spacing: normal;
+    color: #246e46;
+}
+
+form#formPagoProducts{
+  margin-top:25px;
+  margin-bottom: 100px;
+}
+
+
+form#formPagoProducts h5 {
+    font-size: 14.4px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: var(--main-color);
+
+    margin-bottom: 45px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============  Estilos de Alerta  ============ */
+
+.swal-big{
+  width: 682px !important;
+}
+
+.swal2-customBtn1{
+  padding: 10.5px 74.5px !important;
+  border-radius: 5px !important;
+  background-color: var(--main-color) !important;
+
+  font-size: 14.4px !important;
+  font-weight: normal !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  letter-spacing: normal !important;
+  color: var(--secondary-color-text) !important;
+}
+
+.swal2-customBtn2{
+  padding: 10.5px 69.5px !important;
+  border-radius: 5px !important;
+  color: #fff!important;
+  border: solid 1px var(--secondary-color) !important;
+  background-color: var(--secondary-color) !important;
+
+  font-size: 14.4px !important;
+  font-weight: normal !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  letter-spacing: normal !important;
+  
+}
+
+.swal2-confirm.swal2-styled:focus{ box-shadow: none !important; }
+.swal2-confirm.swal2-styled:focus-visible{ outline: 0 !important; }
+
+.alertsw2_text1{
+  font-size: 14.4px !important;
+  font-weight: bold !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  letter-spacing: normal !important;
+  color: var(--main-color-text) !important;
+}
+
+.alertsw2_text2{
+  font-size: 14.4px !important;
+  font-weight: normal !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  letter-spacing: normal !important;
+  color: var(--main-color-text) !important;
+}
+
+
+@media screen and (max-width: 991px ) {
+
+    .mobil-center{
+      text-align: center;
+    }
+
+    .textsubheader{
+      padding-top:30px;
+      padding-bottom: 40px;
+    }
+
+    .space_desk{
+        display: none;
+      
+    }
+
+}
+
+@media screen and (max-width: 500px ) {
+
+  .successful__purchase__image__logo{
+      width: 168px;
+      height: 48.75px;
+  }
+
+  .customButton{
+      width: 175px;
+      font-size: 12px;
+  }
+
+  .customButton2{
+      width: 175px;
+      font-size: 12px;
+  }
+
+  .card-personalizado{
+    font-size: 12px;
+  }
+
+  .card-personalizado span svg{
+    width: 16px;
+    height: 16px;
+  }
+
+  .label_table{
+    font-size: 10px;
+  }
+
+  .input_table{
+    font-size: 10px;
+  }
+
+  .label_formulario2{
+    font-size: 10px;
+  }
+
+  .texto2{
+    font-size: 10px;
+  }
+
+  .texto3{
+    font-size: 10px;
+  }
+
+  .swal2-customBtn1{
+    padding: 10.5px 44.5px !important;
+    font-size: 12px !important;
+    
+  }
+
+  .swal2-customBtn2{
+    padding: 10.5px 44.5px !important;
+    font-size: 12px !important;
+    
+  }
+
+}
+@media screen and (max-width: 900px ) {
+    .content-page{
+        padding: 0 1rem;
+    }
+    .content-page.content-min{
+        overflow-y: unset;
+    }
+    
+}
+
+@media screen and (max-width: 768px ) {
+    .table-products-info .celda1_2{
+        padding-left: 2px;
+    }
+    
+    .row-buttons-actions{
+        flex-direction: column;
+        justify-content: center!important;
+    }
+    
+    .ali-left, .ali-right{
+        align-items: center;
+        justify-content: center!important;
+    }
+     
+}
+
+@media screen and (max-width: 400px ) {
+  .card-personalizado{
+    font-size: 9px;
+  }
+}
+
+
+
+
+
+

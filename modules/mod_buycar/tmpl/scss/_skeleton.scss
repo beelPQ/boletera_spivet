@@ -1,0 +1,33 @@
+//Color skeleton
+$background-color: #dfdfdf;
+$highlight-color: #f7f7f7ef;
+$animation-duration: 2s;
+
+// Define keyframes for the shimmer effect
+@keyframes shimmer {
+    0% {
+        background-position: -200%;
+    }
+
+    100% {
+        background-position: 200%;
+    }
+}
+
+// Style for the skeleton loader
+.skeleton-loader {
+    position: relative;
+
+    &::before {
+        content: '';
+        width: 101%;
+        height: 105%; // Adjust the height as needed 
+        background: linear-gradient(90deg, $background-color, $highlight-color, $background-color);
+        background-size: 200% 100%;
+        animation: shimmer $animation-duration infinite;
+        border-radius: 9px;
+        position: absolute;
+        z-index: 10;
+        left: 0;
+    }
+}

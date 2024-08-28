@@ -1,0 +1,138 @@
+.footer{
+    margin: 0;
+    background: #000;
+    min-height: 50px;
+    color: #fff;
+    &-data{
+        display: flex;
+        border-bottom: solid 1px white;
+        &-logo{
+            padding: 2rem 3rem;
+            border-right: solid 1px white;
+            img{
+                max-width: 200px;
+            }
+        }
+        &-info{
+            padding: 2rem 3rem;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            font-size: 15px;
+            &-col{ 
+                flex-basis: 30%;
+               
+                h1{ font-size: 20px; }
+                .item-footer-info{
+                    margin-top: 12px;
+                    display: flex;
+                    flex-direction: row;
+                   
+                    a{
+                        text-decoration: none;
+                        color: #fff;
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                    img{
+                        margin-right: 10px;
+                        
+                    }
+                }
+            } 
+        }
+    }
+    &-credits{
+        text-align: center;
+        padding: 1rem 10rem;
+        &-text{
+            color: white;
+        }
+        a{
+            text-decoration: none!important;
+            color: #fff;
+            transition: 0.5s;
+            &:hover{
+                color: #fffb00;
+            }
+        }
+    } 
+}
+
+@media only screen and (max-width: 1200px) { 
+    .footer{
+        &-data{
+            &-info{
+                font-size: 14px;
+                padding: 2rem 2rem;
+                justify-content: left;
+                &-col{ 
+                    flex-basis: 45%;
+                }
+            }
+        } 
+    }
+}
+
+
+@media only screen and (max-width: 850px) { 
+    .footer{
+        &-data{
+            //flex-direction: column;
+            &-info{
+                
+                font-size: 14px;
+                padding: 2rem 2rem;
+                justify-content: left;
+               
+                img{
+                    width: 25px;
+                }
+
+                &-col{ 
+                    flex-basis: 80%;
+                    margin-bottom: 1rem;
+                }
+            }
+        } 
+    }
+}
+
+@media only screen and (max-width: 800px) { 
+    .footer{
+        &-data{
+            flex-direction: column;
+            &-logo{
+                border-bottom: 1px solid #fff;
+                display: flex;
+                justify-content: center;
+            }
+            &-info{
+                &-col{ 
+                    flex-basis: 100%;
+                }
+            }
+        }
+        &-credits{
+            padding: 1rem 5rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) { 
+    .footer{
+        &-data{
+            &-info{
+                padding: 2rem 1.5rem;
+            }
+        }
+        &-credits{
+            padding: 1rem 2rem;
+        }
+    }
+}

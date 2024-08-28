@@ -1,0 +1,21 @@
+
+.img-container {
+    max-width: 450px;
+    max-height: 450px;
+}
+.img-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.content_preview_image .btn {
+    background-color: var(--amarillo);
+    color: var(--color_pq_text)
+    transition: box-shadow .3s ease infinite;
+    font-size: 12px;
+    margin: .5rem;
+}
+.content_preview_image .btn:hover {
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,.15);
+}

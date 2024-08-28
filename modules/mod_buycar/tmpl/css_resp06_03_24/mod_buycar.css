@@ -1,0 +1,242 @@
+body.site-pq {
+  background-color: #fff;
+}
+
+#headerContent {
+  z-index: 1000;
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+}
+
+.buycar_content {
+  height: 100%;
+  width: 100%;
+  margin-top: 120px;
+}
+.buycar_content .title__reg {
+  width: 100%;
+}
+.buycar_content .mainContent {
+  width: 1245px;
+  margin: auto;
+  margin-top: 91px;
+  display: flex;
+  flex-direction: row;
+}
+.buycar_content .mainContent .selectionProducts {
+  width: 818px;
+}
+.buycar_content .mainContent .selectionProducts .contentFilters {
+  width: 700px;
+}
+.buycar_content .mainContent .selectionProducts .contentProducts {
+  width: 700px;
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt {
+  width: 100%;
+  height: 346px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px #d1d1d1;
+  display: flex;
+  margin-bottom: 54px;
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__slider_image {
+  width: 40%;
+  height: 100%;
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__slider_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px 0px 0px 15px;
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__content {
+  background-color: #fff;
+  width: 60%;
+  height: 100%;
+  border-radius: 0px 15px 15px 0px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__content .card__gt__stock {
+  margin-bottom: 10px;
+  text-align: right;
+  font-family: Gotham;
+  font-size: 16px;
+  font-weight: bold;
+  color: #18ac00;
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__content .card__gt__amountPrice {
+  margin-bottom: 30px;
+  text-align: right;
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__content .card__gt__amountPrice span {
+  font-family: Gotham;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color_pq_text);
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__content .card__gt__amountPrice s {
+  font-family: Gotham;
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--color_pq_text);
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__content .card__gt__details {
+  margin-bottom: 30px;
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__content .card__gt__details .card__gt__details__name {
+  margin-bottom: 15px;
+  text-align: left;
+  font-family: Gotham;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color_pq_text);
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__content .card__gt__details .card__gt__details__prices {
+  margin-bottom: 15px;
+  text-align: left;
+  font-family: Gotham;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color_pq_secondary);
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__content .card__gt__details .card__gt__details__description {
+  text-align: left;
+  font-size: 14.4px;
+  font-weight: normal;
+  color: var(--color_pq_text);
+}
+.buycar_content .mainContent .selectionProducts .contentProducts .card__gt .card__gt__content .card__gt__details .card__gt__details__description .card__gt__modal__link {
+  background-color: #fff;
+  border: none;
+  font-weight: bold;
+}
+.buycar_content .mainContent .divContentSumPayDesk {
+  width: 427px;
+  height: fit-content;
+  padding: 31px 20px 42px 31px;
+  border-radius: 7px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+  border: solid 1px #838383;
+  background-color: var(--color_pq_primary);
+}
+@media (max-width: 1275px) {
+  .buycar_content .mainContent .selectionProducts {
+    width: 60%;
+  }
+  .buycar_content .mainContent .selectionProducts .contentFilters {
+    width: 90%;
+  }
+  .buycar_content .mainContent .selectionProducts .contentProducts {
+    width: 90%;
+  }
+  .buycar_content .mainContent .divContentSumPayDesk {
+    width: 40%;
+  }
+}
+@media (max-width: 1090px) {
+  .buycar_content .mainContent .selectionProducts {
+    width: 100%;
+  }
+  .buycar_content .mainContent .selectionProducts .contentFilters {
+    width: 95%;
+    margin: auto;
+  }
+  .buycar_content .mainContent .selectionProducts .contentProducts {
+    width: 95%;
+    margin: auto;
+  }
+  .buycar_content .mainContent .divContentSumPayDesk {
+    display: none;
+  }
+}
+@media (max-width: 1275px) {
+  .buycar_content .mainContent {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1090px) {
+  .buycar_content {
+    margin-top: 160px;
+  }
+}
+#contentSummaryPaymentMobile {
+  display: none;
+}
+
+#contentSummaryPaymentMobile *, #contentSummaryPaymentDesktop * {
+  background-color: var(--color_pq_text);
+  color: var(--color_pq_overscreen);
+}
+
+@media (max-width: 1090px) {
+  #contentSummaryPaymentMobile {
+    display: unset;
+  }
+}
+.label-deploySumPay {
+  position: absolute;
+  right: 48px;
+}
+
+.accordion-header-text {
+  margin-left: 25px;
+}
+
+.accordion-button::after {
+  background-image: url("../img/icons/icon_deploy.svg");
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: url("../img/icons/icon_deploy.svg");
+}
+
+.contentItemsCupon {
+  border-top: solid 1px var(--color_pq_overscreen);
+  border-bottom: solid 1px var(--color_pq_overscreen);
+  padding: 22px 5px;
+}
+
+.contentItemsTotal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 25px;
+}
+
+.contentItemsTotal div {
+  width: 50%;
+}
+
+.rowItemPayment {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 22px;
+}
+
+.itemPayment_name {
+  width: 50%;
+}
+
+.itemPayment_price {
+  width: 50%;
+  text-align: right;
+}
+
+.deleteProduct, .deleteLodging {
+  font-size: 12px;
+  color: #f00 !important;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=mod_buycar.css.map */

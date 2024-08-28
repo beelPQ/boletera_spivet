@@ -1,0 +1,106 @@
+[09-Mar-2020 18:40:17 UTC] PHP Fatal error:  Call to undefined function Conectarse() in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 3
+[09-Mar-2020 18:41:14 UTC] PHP Notice:  Undefined variable: password in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 9
+[09-Mar-2020 18:42:06 UTC] PHP Notice:  Undefined variable: password in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 9
+[31-Mar-2020 14:47:54 UTC] PHP Warning:  file_get_contents(https://www.google.com/finance/converter?a=1&amp;from=USD&amp;to=MXN): failed to open stream: HTTP request failed! HTTP/1.0 403 Forbidden
+ in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 23
+[31-Mar-2020 14:47:54 UTC] PHP Notice:  Undefined offset: 1 in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 25
+[31-Mar-2020 14:48:13 UTC] PHP Warning:  file_get_contents(https://www.google.com/finance/converter?a=1&amp;from=USD&amp;to=MXN): failed to open stream: HTTP request failed! HTTP/1.0 403 Forbidden
+ in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 23
+[31-Mar-2020 14:48:13 UTC] PHP Notice:  Undefined offset: 1 in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 25
+[31-Mar-2020 14:49:35 UTC] PHP Warning:  file_get_contents(https://www.google.com/finance/converter?a=1&amp;from=INR&amp;to=USD): failed to open stream: HTTP request failed! HTTP/1.0 403 Forbidden
+ in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 23
+[31-Mar-2020 14:49:35 UTC] PHP Notice:  Undefined offset: 1 in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 25
+[31-Mar-2020 14:55:04 UTC] PHP Warning:  file_get_contents(https://www.google.com/finance/converter?a=1&amp;from=USD&amp;to=MX%24): failed to open stream: HTTP request failed! HTTP/1.0 403 Forbidden
+ in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 23
+[31-Mar-2020 14:55:04 UTC] PHP Notice:  Undefined offset: 1 in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 25
+[31-Mar-2020 14:56:27 UTC] PHP Warning:  file_get_contents(https://www.google.com/finance/converter?a=1&amp;from=USD&amp;to=MX$): failed to open stream: HTTP request failed! HTTP/1.0 403 Forbidden
+ in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 20
+[31-Mar-2020 14:56:27 UTC] PHP Notice:  Undefined offset: 1 in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 22
+[31-Mar-2020 14:56:59 UTC] PHP Warning:  file_get_contents(https://www.google.com/finance/converter?a=1&amp;from=USD&amp;to=EUR): failed to open stream: HTTP request failed! HTTP/1.0 403 Forbidden
+ in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 20
+[31-Mar-2020 14:56:59 UTC] PHP Notice:  Undefined offset: 1 in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 22
+[31-Mar-2020 15:04:47 UTC] PHP Warning:  file_get_contents(http://www.google.com/finance/converter?a=1&amp;from=USD&amp;to=INR): failed to open stream: HTTP request failed! HTTP/1.0 403 Forbidden
+ in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 21
+[31-Mar-2020 15:04:47 UTC] PHP Notice:  Undefined offset: 1 in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 23
+[07-Apr-2020 18:59:47 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'pisql'@'p3plcpnl0497.prod.phx3.secureserver.net' (using password: YES) in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/conexion.php on line 3
+[07-Apr-2020 18:59:47 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/conexion.php on line 9
+[07-Apr-2020 18:59:47 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 12
+[07-Apr-2020 18:59:47 UTC] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 12
+[07-Apr-2020 19:02:11 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'pisql'@'p3plcpnl0497.prod.phx3.secureserver.net' (using password: YES) in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/conexion.php on line 3
+[07-Apr-2020 19:02:11 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/conexion.php on line 9
+[07-Apr-2020 19:10:28 UTC] PHP Warning:  mysqli_connect(): (HY000/2003): Can't connect to MySQL server on '200.33.10.15' (110) in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/conexion.php on line 3
+[07-Apr-2020 19:10:28 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/conexion.php on line 9
+[08-Apr-2020 14:27:07 UTC] PHP Notice:  crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash. in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 31
+[08-Apr-2020 14:27:07 UTC] PHP Notice:  crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash. in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/php/script.php on line 32
+[18-Aug-2020 19:53:06 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'useramdetna'@'ip-107-180-1-207.ip.secureserver.net' (using password: YES) in /home/q94pkepa41dt/public_html/afiliacion/admin/php/conexion.php on line 3
+[18-Aug-2020 19:53:06 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/q94pkepa41dt/public_html/afiliacion/admin/php/conexion.php on line 9
+[18-Aug-2020 19:53:06 UTC] PHP Fatal error:  Call to a member function query() on boolean in /home/q94pkepa41dt/public_html/afiliacion/admin/php/script.php on line 8
+[18-Aug-2020 19:53:57 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'useramdetna'@'ip-107-180-1-207.ip.secureserver.net' (using password: YES) in /home/q94pkepa41dt/public_html/afiliacion/admin/php/conexion.php on line 3
+[18-Aug-2020 19:53:57 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/q94pkepa41dt/public_html/afiliacion/admin/php/conexion.php on line 9
+[18-Aug-2020 19:53:57 UTC] PHP Fatal error:  Call to a member function query() on boolean in /home/q94pkepa41dt/public_html/afiliacion/admin/php/script.php on line 8
+[19-Aug-2020 17:35:58 UTC] PHP Fatal error:  Call to a member function bind_param() on boolean in /home/q94pkepa41dt/public_html/afiliacion/admin/php/script.php on line 12
+[19-Aug-2020 17:36:52 UTC] PHP Fatal error:  Call to a member function bind_param() on boolean in /home/q94pkepa41dt/public_html/afiliacion/admin/php/script.php on line 12
+[28-Oct-2020 00:55:02 UTC] PHP Warning:  mysqli_connect(): (HY000/2003): Can't connect to MySQL server on '107.180.100.187' (110) in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 4
+[28-Oct-2020 00:55:02 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 10
+[28-Oct-2020 00:55:02 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on bool in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php on line 6
+[28-Oct-2020 00:58:55 UTC] PHP Warning:  mysqli_connect(): (HY000/2003): Can't connect to MySQL server on '107.180.100.187' (110) in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 4
+[28-Oct-2020 00:58:55 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 10
+[28-Oct-2020 00:58:55 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on bool in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php on line 6
+[28-Oct-2020 01:12:33 UTC] PHP Warning:  mysqli_connect(): (HY000/2003): Can't connect to MySQL server on '107.180.100.187' (111) in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 4
+[28-Oct-2020 01:12:33 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 10
+[28-Oct-2020 01:12:33 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on bool in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php on line 6
+[28-Oct-2020 01:12:59 UTC] PHP Warning:  mysqli_connect(): (HY000/2005): Unknown MySQL server host '107.180.100.187:3306' (0) in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 4
+[28-Oct-2020 01:12:59 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 10
+[28-Oct-2020 01:12:59 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on bool in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php on line 6
+[28-Oct-2020 01:13:19 UTC] PHP Warning:  mysqli_connect(): (HY000/2003): Can't connect to MySQL server on '107.180.100.187' (111) in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 4
+[28-Oct-2020 01:13:19 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 10
+[28-Oct-2020 01:13:19 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on bool in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php on line 6
+[28-Oct-2020 01:13:40 UTC] PHP Warning:  mysqli_connect(): (HY000/2005): Unknown MySQL server host '107.180.100.187:3306' (0) in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 4
+[28-Oct-2020 01:13:40 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 10
+[28-Oct-2020 01:13:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on bool in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php on line 6
+[28-Oct-2020 01:15:02 UTC] PHP Warning:  mysqli_connect(): (HY000/2003): Can't connect to MySQL server on '107.180.100.187' (111) in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 4
+[28-Oct-2020 01:15:02 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 10
+[28-Oct-2020 01:15:02 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on bool in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php on line 6
+[28-Oct-2020 01:36:22 UTC] PHP Warning:  mysqli_connect(): (HY000/2003): Can't connect to MySQL server on '107.180.100.187' (111) in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 4
+[28-Oct-2020 01:36:22 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 10
+[28-Oct-2020 01:36:22 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on bool in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php on line 6
+[28-Oct-2020 01:40:46 UTC] PHP Warning:  mysqli_connect(): (HY000/2003): Can't connect to MySQL server on '107.180.100.187' (111) in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 4
+[28-Oct-2020 01:40:46 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 10
+[28-Oct-2020 01:40:46 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on bool in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php on line 7
+[28-Oct-2020 01:53:26 UTC] PHP Warning:  mysqli_connect(): (HY000/2003): Can't connect to MySQL server on '107.180.100.187' (111) in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 4
+[28-Oct-2020 01:53:26 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/conexion3.php on line 10
+[28-Oct-2020 01:53:26 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on bool in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/php/script3.php on line 7
+[25-Nov-2020 22:53:55 UTC] PHP Fatal error:  Uncaught Error: Unsupported operand types in /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/php/script3.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/php/script3.php on line 6

@@ -1,0 +1,210 @@
+.header__oferta_academica {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+/** alto de banner 540px estandar */
+.header__oferta_academica img {
+    width: 100%;
+    height: 540px;
+    object-position: right;
+    object-fit: contain;
+}
+/** Se modifico el porcentaje del graiante para que no sea visible el recorte de la imagen */
+.header__oferta_academica__contenido {
+    position: absolute;
+    width: 100%;
+    background: linear-gradient(90deg, #1E112C 31%, rgba(30, 17, 44, 0) 100%);
+    top: 0px;
+    height: 100%;
+    padding: 20% 50px 0%;
+}
+
+.header__oferta_academica__contenido h1 {
+    color: var(--amarillo);
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.header__oferta_academica__modalidad {
+    padding: 0px;
+    display: flex;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 25px;
+    margin-top: 30px;
+    justify-content: center;
+    gap: 50px;
+}
+
+.header__programa__modalidad__item, .header__programa__modalidad__item:hover{
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    word-wrap: break-word;
+    padding: 10px 40px;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    border-top: 1px solid #fff;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.header__programa__modalidad__item.active, .header__programa__modalidad__item:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+
+.oferta_academica__contenido {
+    padding-top: 40px;
+    position: relative;
+    float: left;
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+.oferta_academica__lista {
+    column-count: 2;
+    column-gap: 17%;
+    width: 100%;
+}    
+
+.oferta_academica__item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.oferta_academica__item h1{
+    display: block;
+    background: var(--morado);
+    border-bottom-right-radius: 19px;
+    border-top-right-radius: 19px;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    word-wrap: break-word;
+    margin-bottom: 25px;
+    margin-top: 20px;
+    padding: 14px 35px;
+    margin-right: 70px;
+}
+
+.oferta_academica__item a{
+    font-size: 16px;
+    font-weight: 500;
+    word-wrap: break-word;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 15px;
+    margin-left: 35px;
+    color: #000;
+}
+
+.oferta_academica__item a span{
+    border: 1px var(--morado) solid;
+    font-size: 10px;
+    font-weight: 500;
+    word-wrap: break-word;
+    margin-left: 12px;
+    padding: 1px 10px;
+    border-radius: 10px;
+    color: var(--morado);
+}
+
+@media only screen and (max-width: 1600px)  {
+    .header__oferta_academica img {
+        width: 100%;
+        height: auto;
+        object-position: none;
+        object-fit: contain;
+    }
+    .header__oferta_academica__contenido{
+        padding: 28% 50px 0%;
+    }
+}
+@media only screen and (max-width: 1250px)  {
+    .header__oferta_academica__contenido{
+        padding: 26% 50px 0%;
+    }
+}
+@media only screen and (max-width: 990px)  {
+     .header__oferta_academica__contenido {
+        padding: 24% 50px 0%;
+    }
+    .header__oferta_academica__modalidad  {
+        margin-top: 25px;
+    }
+}
+@media only screen and (max-width: 850px)  {
+    
+    .header__oferta_academica__modalidad  {
+        margin-top: 25px;
+    }
+}
+@media only screen and (max-width: 768px) and (min-width: 300px)  {
+    .header__oferta_academica__contenido {
+        padding: 15px;
+    }
+
+    .header__oferta_academica__contenido h1 {
+        font-size: 25px;
+    }
+
+    .header__oferta_academica__modalidad {
+        margin-bottom: 20px;
+        /*margin-top: 20px;*/
+        margin-top: 25%;
+        gap: 15px;
+    }
+
+    .header__programa__modalidad__item, .header__programa__modalidad__item:hover {
+        font-size: 12px;
+        padding: 5px 13px;
+    }
+
+    .oferta_academica__contenido {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .oferta_academica__lista {
+        column-count: 1;
+        width: 100%;
+    }
+
+    .oferta_academica__item {
+        margin-bottom: 5px;
+    }
+
+    .oferta_academica__item h1 {
+        background: var(--morado);
+        font-size: 16px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        padding: 10px 15px;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        margin-right: 0px;
+    }
+
+    .oferta_academica__item a {
+        font-size: 14px;
+        margin-bottom: 10px;
+        margin-left: 15px;
+    }
+    
+}
+
+@media only screen and (max-width: 500px)  {
+     .header__oferta_academica__modalidad {
+        margin-top: 20%;
+       
+    }
+}

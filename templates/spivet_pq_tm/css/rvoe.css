@@ -1,0 +1,158 @@
+.rvoe {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 15px 60px;
+}
+
+.rvoe h1 {
+    color: var(--morado);
+    font-size: 40px;
+    font-weight: 700;
+    /*text-transform: uppercase;*/
+    word-wrap: break-word;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 40px;
+}
+
+
+.rvoe p {
+    color: black;
+    font-size: 16px;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.rvoe__modalidad {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 60px;
+    justify-content: center;
+}
+
+.rvoe__modalidad a {
+    border: 1px #973F7D solid;
+    color: #973F7D !important;
+    font-size: 20px;
+    font-weight: 700;
+    word-wrap: break-word;
+    width: 23%;
+    border-radius: 7px;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.rvoe__modalidad .active {
+    color: #fff !important;
+    background: #973F7D !important;
+}
+
+.rvoe__lista {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    /*justify-content: space-evenly;*/
+    justify-content: center;
+}
+
+.rvoe__item img {
+    width: 100%;
+}
+
+
+.rvoe__item {
+    /*width: 25%;*/
+    width : 300px;
+    position: relative;
+    
+    view-timeline-name: --imagervoe;
+    view-timeline-axis: block;
+    
+    
+    animation-timeline: --imagervoe;
+    animation-name: showRvoe;
+    animation-range: entry 25% cover 50%;
+    animation-fill-mode: both; /* Indica la direcci贸n de la animaci贸n*/
+    
+}
+
+.rvoe__informacion {
+    position: absolute;
+    bottom: 0px;
+    padding: 20px;
+}
+
+.rvoe__numero {
+    color: var(--amarillo);
+    font-size: 16px;
+    font-weight: 700;
+    word-wrap: break-word;
+    margin-bottom: 15px;
+}
+
+.rvoe__carrera {
+    color: var(--blanco);
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    word-wrap: break-word;
+}
+
+
+@media only screen and (max-width: 768px) and (min-width: 300px)  {
+
+    .rvoe {
+        padding: 15px 15px;
+    }
+
+    .rvoe h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .rvoe p {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .rvoe__modalidad {
+        gap: 15px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+    }
+
+    .rvoe__modalidad a {
+        font-size: 14px;
+        width: 47%;
+        padding: 5px;
+    }
+
+    .rvoe__item {
+        /*width: 100%;*/
+        width: 250px;
+    }
+}
+
+@media only screen and (max-width: 570px){
+    .rvoe__item { 
+        width: 80%;
+    }
+}
+
+@keyframes showRvoe {
+    0% {
+        opacity: 0;
+        scale: 15%;
+    }
+    100% {
+        opacity: 1;
+        scale: 100%;
+    }
+}

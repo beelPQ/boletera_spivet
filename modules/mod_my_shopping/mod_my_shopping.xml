@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+	<name>mod_my_shopping</name>
+	<author>Piquero Tecnología y Deportes</author>
+	<creationDate>May-2024</creationDate>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>desarrollomg@piquero.com.mx</authorEmail>
+	<authorUrl>www.piquero.com.mx</authorUrl>
+	<version>1.0.0</version>
+	<description>Módulo para mostrar las compras realizadas por el usuario una vez logeado</description>
+	<files>
+        <filename>mod_my_shopping.xml</filename>
+        <filename module="mod_my_shopping">mod_my_shopping.php</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename> 
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic" >
+				<field 
+					name="sectionTitle"
+					type="text"
+					default=""
+					label="Título de la sección"
+					description="Este título se mostrará al incio de la sección" 
+				/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

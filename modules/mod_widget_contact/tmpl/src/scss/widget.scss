@@ -1,0 +1,147 @@
+.widget{
+    .contacto_flotante {
+        position: fixed;
+        bottom: 105px;
+        right: 29px;
+        z-index: 999;
+        #imgButtonWidget{
+            width: 60px;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            transition: 0.5s ease; 
+            &:hover{
+                width: 65px;
+                transform: rotate(360deg);
+                
+            }
+            &.btn-active{
+                &:hover{
+                    transition: 0.5s ease both; 
+                    width: 60px;
+                    transform: none;
+                }
+            }
+        }
+
+        &__item{
+            opacity : 0;
+            transition : 0.5s ease;
+        }
+        
+
+        .contacto_flotante__telefono {
+            position: absolute; 
+            top: 7px;
+            right: 6px;
+            transition : 0.5s; 
+        }
+        .contacto_flotante__whatsapp {
+            position: absolute;
+            bottom: 5px;
+            right: 3px;
+        }
+        .contacto_flotante__compartir {
+            position: absolute;
+            bottom: 4px;
+            right: 8px;
+        }
+        .contacto_flotante__ayuda {
+            position: absolute;
+            top: 6px;
+            right: 2px;
+        }
+
+        .flotante__show{
+            opacity : 1;
+            transition : 0.5s ease;
+
+            &.contacto_flotante__telefono {
+                top: -70px;
+                right: 10px;
+                transition: 0.5s;
+                position: absolute;
+                opacity: 1;
+            }
+            &.contacto_flotante__ayuda {
+                top: -30px;
+                right: 80px;
+                transition: 0.5s;
+                position: absolute;
+                opacity: 1;
+                cursor: pointer;
+            }
+            &.contacto_flotante__whatsapp {
+                position: absolute;
+                bottom: -30px;
+                right: 80px;
+            }
+            &.contacto_flotante__compartir {
+                bottom: -70px;
+                right: 8px;
+                transition: 0.5s;
+                position: absolute;
+                opacity: 1;
+                cursor: pointer;
+            }
+        } 
+    }
+}
+
+.content-shared {
+    border-radius: 10px;
+    background: #000;
+    transition: .6s;
+    width: 350px;
+    height: 220px;
+    padding: 1rem;
+    position: fixed;
+    z-index: 200000;
+    right: 0;
+    top: 5rem;
+
+    &.desactive-content{
+        transform: translateX(500px);
+    }
+
+    &.button-closed-shared{
+        border:none;
+        background: transparent;
+        float : right;
+        width: 20px;
+        height: 20px;
+        color: #fff; 
+    }
+}
+
+.shareon {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem auto;
+}
+.input-contain-url{
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    height: 35px;
+}
+.copy{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.copy .copy-button{
+    width: 240px;
+    height: 38px;
+    border: none;
+    border-radius: 5px;
+    background: #371f52;
+    color: #fff;
+    font-family: Poppins;
+    transition: 0.5s;
+}
+.copy .copy-button:hover{
+    background:#f1b42f;
+    color:#000;
+    transform: translateY(-4px);
+}

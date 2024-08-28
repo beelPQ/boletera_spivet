@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Carrito de compra</name>
+    <author>Piquero</author>
+    <version>1.0.0</version>
+    <description>Módulo que contiene el carrito para la compra de oferta/servicio</description>
+    <files>
+        <filename>mod_buycar.xml</filename>
+        <filename module="mod_buycar">mod_buycar.php</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename> 
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+
+                
+
+            </fieldset>
+        </fields>
+    </config>
+</extension>

@@ -1,0 +1,51 @@
+[28-Mar-2020 04:21:37 UTC] PHP Notice:  Undefined index: status in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/includes/reportes/reporte_empresas.php on line 28
+[28-Mar-2020 04:21:37 UTC] PHP Notice:  Undefined index: status in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/includes/reportes/reporte_empresas.php on line 31
+[28-Mar-2020 04:21:37 UTC] PHP Notice:  Undefined index: status in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/includes/reportes/reporte_empresas.php on line 34
+[28-Mar-2020 04:21:37 UTC] PHP Notice:  Undefined index: status in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/includes/reportes/reporte_empresas.php on line 37
+[28-Mar-2020 22:29:16 UTC] PHP Notice:  Undefined index: status in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/includes/reportes/reporte_empresas.php on line 28
+[28-Mar-2020 22:29:16 UTC] PHP Notice:  Undefined index: status in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/includes/reportes/reporte_empresas.php on line 31
+[28-Mar-2020 22:29:16 UTC] PHP Notice:  Undefined index: status in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/includes/reportes/reporte_empresas.php on line 34
+[28-Mar-2020 22:29:16 UTC] PHP Notice:  Undefined index: status in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/includes/reportes/reporte_empresas.php on line 37
+[02-Apr-2020 02:25:28 UTC] PHP Notice:  Undefined index: id in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/includes/reportes/reporte_configuracion.php on line 6
+[28-May-2020 14:43:42 UTC] PHP Notice:  Undefined index: id in /home/enbmexico/public_html/piquero.com.mx/iesde/admin/includes/reportes/reporte_configuracion.php on line 6
+[12-Aug-2020 21:40:33 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/enbmexico/public_html/piquero.com.mx/cai/admin/includes/reportes/reporte_prospecto.php on line 36
+[12-Aug-2020 21:42:01 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/enbmexico/public_html/piquero.com.mx/cai/admin/includes/reportes/reporte_prospecto.php on line 36
+[08-Sep-2020 23:33:14 UTC] PHP Notice:  Undefined index: aombre in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_prospectos2.php on line 40
+[09-Sep-2020 00:38:37 UTC] PHP Notice:  Undefined index: nombre_cortO in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_expos.php on line 31
+[09-Sep-2020 01:04:34 UTC] PHP Fatal error:  Call to a member function bind_param() on boolean in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_facturacion.php on line 37
+[09-Sep-2020 01:05:20 UTC] PHP Fatal error:  Call to a member function bind_param() on boolean in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_facturacion.php on line 37
+[09-Sep-2020 01:44:21 UTC] PHP Notice:  Undefined index: skuprograma in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_producto.php on line 59
+[09-Sep-2020 01:44:21 UTC] PHP Notice:  Undefined index: NombrePrograma in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_producto.php on line 61
+[09-Sep-2020 01:44:21 UTC] PHP Notice:  Undefined index: skuprograma in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_producto.php on line 59
+[09-Sep-2020 01:44:21 UTC] PHP Notice:  Undefined index: NombrePrograma in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_producto.php on line 61
+[09-Sep-2020 01:44:21 UTC] PHP Notice:  Undefined index: skuprograma in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_producto.php on line 59
+[09-Sep-2020 01:44:21 UTC] PHP Notice:  Undefined index: NombrePrograma in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_producto.php on line 61
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:35:58 UTC] PHP Notice:  Undefined index: idregcobro in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php on line 117
+[09-Sep-2020 16:39:46 UTC] PHP Notice:  Undefined index: id in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_configuracion.php on line 6
+[01-Nov-2020 20:03:34 UTC] PHP Fatal error:  Uncaught Error: Class 'ZipArchive' not found in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/Classes/PHPExcel/Writer/Excel2007.php:220
+Stack trace:
+#0 /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/includes/reportes/reporte_cobro.php(153): PHPExcel_Writer_Excel2007->save('/tmp/phpxltmpKu...')
+#1 {main}
+  thrown in /home/enbmexico/public_html/piquero.com.mx/caix20/caiv1/registro/admin/Classes/PHPExcel/Writer/Excel2007.php on line 220
+[26-Nov-2020 19:24:01 UTC] PHP Fatal error:  Uncaught Error: Class 'ZipArchive' not found in /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/Classes/PHPExcel/Writer/Excel2007.php:220
+Stack trace:
+#0 /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/includes/reportes/reporte_tienda_categoria.php(39): PHPExcel_Writer_Excel2007->save('/tmp/phpxltmpQ4...')
+#1 {main}
+  thrown in /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/Classes/PHPExcel/Writer/Excel2007.php on line 220
+[19-Dec-2020 00:09:22 UTC] PHP Notice:  Undefined index: IDsystemProspecto in /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/includes/reportes/reporte_solicitudes_terrenos.php on line 37
+[19-Dec-2020 00:09:22 UTC] PHP Notice:  Undefined index: IDsystemProspecto in /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/includes/reportes/reporte_solicitudes_terrenos.php on line 37
+[19-Dec-2020 00:09:22 UTC] PHP Notice:  Undefined index: IDsystemProspecto in /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/includes/reportes/reporte_solicitudes_terrenos.php on line 37
+[19-Dec-2020 00:18:46 UTC] PHP Notice:  Undefined index: IDsystemSolicitud in /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/includes/reportes/reporte_solicitudes_visitas.php on line 34
+[19-Dec-2020 00:18:46 UTC] PHP Notice:  Undefined index: IDsystemSolicitud in /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/includes/reportes/reporte_solicitudes_visitas.php on line 34
+[19-Dec-2020 00:18:46 UTC] PHP Notice:  Undefined index: IDsystemSolicitud in /home/u3bmtti5f9b8/public_html/estructura/components/dashadmin/includes/reportes/reporte_solicitudes_visitas.php on line 34

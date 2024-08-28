@@ -1,0 +1,244 @@
+.content-convenio{
+   font-family: Poppins;
+}
+
+.content-convenio .title-section{  
+    text-align: center; 
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+.content-convenio .title-section span{  
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: bold;
+    font-stretch: normal;
+    color: #993d86;
+}
+.content-convenio .convenio-cols{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;  
+    padding: 2rem 6rem;
+    background-image: url('/templates/cip/img/background_convenio.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 650px;
+}
+
+.content-convenio .convenio-cols .convenio-message{
+    flex-basis: 50%;  
+}
+
+.convenio-message .subtitle {
+    margin-top: 4rem;
+}
+.convenio-message .subtitle .subtitle-yellow{
+    color: #f1b42f;
+    font-size: 30px;
+    font-weight: bold;
+}
+.convenio-message .text{ 
+    margin-top: 2rem;
+}
+.convenio-message .text .subtitle-white-bold{
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+}
+.convenio-message .text .text-message{
+    color: #fff; 
+    font-size: 18px;
+    margin-top: 2rem;
+}
+
+
+.content-convenio .convenio-cols .convenio-form{
+    flex-basis: 50%;
+    justify-content: center;
+    display: flex;
+}
+.content-convenio .convenio-cols .convenio-form .card-form{
+    background: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 2rem 3rem;
+    width: 550px;
+}
+.card-form .title-form{
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+.card-form .title-form span{
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+}
+
+
+#formConvenioBeca .form-control.is-invalid, .form-select.is-invalid{
+    border: solid 2px #bb0404!important;
+    /* box-shadow: 0 0 0 .25rem rgba(168, 2, 2, 0.36)!important; */
+}
+#formConvenioBeca .form-control, .form-select{
+    border: solid 2px #973f7d!important;
+    height: 38px!important;
+    font-size: 13px !important;
+}
+
+.msg_error{
+    color: #bb0404;
+    font-size: 13px;
+}
+
+
+#formConvenioBeca .check-aviso{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+} 
+#formConvenioBeca .content-form-body-button{
+    margin-top: 2rem;
+}
+
+.content-form-body-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0rem;
+
+}
+
+
+
+.content-form-body-button .btn-send-data-convenio-beca{
+    width: 240px;
+    height: 38px;
+    border: none;
+    border-radius: 5px;
+    background: #993d86;
+    color: #fff;
+    transition: 0.5s;
+}
+.content-form-body-button .btn-send-data-convenio-beca:hover{
+    transform: translateY(-4px);
+    background: #f1b42f;
+    color: #000;
+}
+
+.btn-send-data-convenio-beca.btn-send-data-disabled{
+    opacity: 0.2;
+}
+
+.btn-send-data-convenio-beca.btn-send-data-disabled:hover{
+    background: #993d86;
+    color: #fff;
+    transform: translateY(0px);
+}
+
+.label-aviso-beca{
+    color: #000;
+    margin-left: 10px;
+}
+
+
+.label-aviso-beca a{
+    color: #000; 
+}
+
+.iti {
+  max-height: 2.5rem;
+  width: 100% !important;
+}
+
+
+@media only screen and (max-width: 1300px){
+    .content-convenio .convenio-cols{
+        padding: 2rem 4rem;
+        gap: 1rem;
+    }
+    .content-convenio .convenio-cols .convenio-message{
+        flex-basis: 55%;
+    }
+    .content-convenio .convenio-cols .convenio-form{
+        flex-basis: 42%;
+    }
+    .content-convenio .convenio-cols .convenio-form .card-form{
+        width: auto;
+        padding: 2rem 2rem;
+    }
+    .convenio-message .subtitle .subtitle-yellow {
+        color: #f1b42f;
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .convenio-message .text .subtitle-white-bold {
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 1300px){
+    .content-convenio .convenio-cols{
+        padding: 2rem 4rem;
+        gap: 1rem;
+    }
+    .content-convenio .convenio-cols .convenio-message{
+        flex-basis: 45%;
+    }
+    .content-convenio .convenio-cols .convenio-form{
+        flex-basis: 52%;
+    }
+    .content-convenio .convenio-cols .convenio-form .card-form{
+        width: auto;
+        padding: 2rem 2rem;
+    }
+    .convenio-message .subtitle .subtitle-yellow {
+        color: #f1b42f;
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .convenio-message .text .subtitle-white-bold {
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 900px){
+    .content-convenio .title-section span{
+        font-size: 25px;
+    }
+    .content-convenio .convenio-cols{
+        flex-direction: column;
+    }
+    
+}
+
+@media only screen and (max-width: 500px){
+    .content-convenio .title-section span{
+        font-size: 20px;
+    }
+    .content-convenio .convenio-cols{
+        padding: 1rem 1rem;
+    }
+    .card-form .title-form { 
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .convenio-message .subtitle .subtitle-yellow {
+        color: #f1b42f;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .convenio-message .text .subtitle-white-bold {
+        color: #fff;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    
+}

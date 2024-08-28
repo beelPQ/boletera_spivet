@@ -1,0 +1,282 @@
+
+    
+    #accoritionCarBuyForm{
+
+        .accordion-item{
+            button{
+                position: relative;
+                font-weight: bold;
+                .mark-important{
+                    color: var(--color_pq_secondary);
+                }
+
+                .status-section-final{
+                    position: absolute;
+                    right: 55px;
+                    width: 20px;
+                    height: 20px;
+                    background-image: url("../../tmpl/img/icons/final.svg");
+
+                }
+                
+                .status-section-unfinished{
+                    position: absolute;
+                    right: 55px;
+                    width: 20px;
+                    height: 20px;
+                    background-image: url("../../tmpl/img/icons/unfinished.svg");
+
+                }
+
+
+                &::after{
+                    background-image: url("../img/icons/collapse.svg");
+                    color: #fff;
+                }
+            }
+
+            .content-cards-courses{
+                /* padding: 2rem; */
+                font-family: 'Poppins';
+                .content-course{
+                    border: solid 1px black;
+                    border-radius: 10px;
+                    padding: 1rem;
+                    margin: 1.5rem 0;
+                    
+                    .course-info{
+                        justify-content: center;
+                        align-items: center;
+                        //font-family: Ubuntu;
+                        &-name{
+                            font-size: 16px;
+                            font-weight: bold;
+                            font-stretch: normal;
+                            font-style: normal;
+                            color: var(--color_pq_text);
+                            margin: 5px 0px;
+                            a{
+                                color: var(--color_pq_text);
+                                text-decoration: none; 
+                            }
+                        }
+                        &-date{
+                            font-size: 16px;
+                            font-weight: bold;
+                            font-stretch: normal;
+                            font-style: normal;
+                            color: var(--color_pq_secondary);
+                            margin: 5px 0px;
+                        }
+
+                        &-description{
+                            .button-view-info{
+                                background: transparent;
+                                border: none;
+                            }
+                            p{
+                                margin-bottom: 5px;
+                            }
+                            a{
+                                color: var(--color_pq_text);
+                                text-decoration: none;
+                                font-weight: bold;
+                                &:hover{
+                                    text-decoration: underline;
+                                }
+                            }
+
+                        }
+                        &-stock{
+                            font-size: 16px;
+                            margin: 1rem 0px;
+                            color: #18ac00;
+                            font-weight: bold;
+
+                        }
+                        &-amountPrice{
+                            font-size: 20px;
+                            font-weight: bold;
+                            s{
+                                font-size: 12px;
+                            }
+                        }
+                        &-button{
+                            margin: 1rem 0px;
+                        }
+                    }
+                }
+            }
+
+            .content-form-collapse{
+                padding: 1rem;
+
+                .title-form, .subtitle-action{
+                    //font-family: Ubuntu;
+                    font-size: 20px;
+                    font-weight: bold;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: normal;
+                    color: var(--color_pq_text);
+                    
+                }
+                #formPaymentCourses{
+                    margin-top: 1rem;
+
+                    .select-mod{
+                        position: relative;
+                        select{
+                            padding: 0px 1rem;
+                        }
+                        .icon-select{
+                            position: absolute;
+                            right: 20px;
+                            top: 50px;
+                        }
+                    }
+                }
+                #formDataPayment{
+                    .select-mod{
+                        position: relative;
+                        select{
+                            padding: 0px 1rem;
+                        }
+                        .icon-select{
+                            position: absolute;
+                            right: 20px;
+                            top: 50px;
+                        }
+                    }
+                }
+            }
+
+            .contentRadBtn-invoice{
+               
+                input[type="radio"]{
+                    display: none !important;
+                }
+                input[type="radio"]+label{
+                    flex-direction: column;
+                    position: relative;
+                    padding-left: 1.3em;
+                    margin-top: 1.3rem;
+                    margin-bottom: 1.3rem;
+                    margin-right: 2rem;
+                    display: flex;
+                    align-items: flex-start;
+                }
+
+                input[type="radio"]+label{
+                    &::before{
+                        display: block;
+                        position: absolute;
+                        content: ' ';
+                        border: 1px solid var(--color_pq_text);
+                        border-radius: 50%;
+                        width: .8em;
+                        height: .8em;
+                        left: 0.05em;
+                        top: 6px;
+                    }
+                }
+                input[type="radio"]:checked+label::before{
+                    background-color: var(--color_pq_text);
+                }
+            }
+
+            .iti__flag-container{
+                max-height: 40px;
+            }
+
+            .msg_error{
+                color: red;
+            }
+
+
+           
+            #formDataPayment{
+                .subtitle-action{
+                    //font-family: Ubuntu;
+                    font-size: 20px;
+                    font-weight: bold;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: normal;
+                    color: var(--color_pq_text);
+                }
+            }
+            
+
+             /*----------------------Estilos boton adjuntar------------------*/
+             .deleteFile{
+                color:green;
+                font-size: 14.4px;
+                
+            }
+
+            .btnCleanFile{
+                cursor:pointer;
+                margin-left: 5px;
+            }
+
+            .inputAttach {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
+
+            .labelAttach { 
+                background-color:var(--secondary-color-text-color);
+                color:var(--main-color);
+                border: 1px solid var(--color_pq_text);
+                font-weight: bold;
+                width: 240px;
+                height: 38px;
+                margin-top: 10px;
+                display: flex;
+                justify-content: center;
+                
+                align-items: center;
+            }
+
+            /* .textAttach{
+                color:var(--main-color);
+            } */
+
+            .hidden{
+                display: none;
+               
+            }
+            .show{
+                display: block;
+               
+            }
+            
+            /*----------------------Fin estilos boton adjuntar------------------*/
+
+            .content-button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .btn-views-products{
+                    width: 240px;
+                    height: 38px;
+                    background: var(--color_pq_text);
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    
+                }
+                
+            }
+
+
+
+
+        }
+    }

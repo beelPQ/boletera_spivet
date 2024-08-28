@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Inicio</name>
+    <author>Piquero Tecnologia Deportes</author>
+    <version>1.0.0</version>
+    <description>Módulo para inicio</description>
+    <files>
+        <filename>mod_inicio.xml</filename>
+        <filename module="mod_inicio">mod_inicio.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>  
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <!-- Slider principal -->
+                <field name="note1" type="note" label="(Todas las imágenes adjuntadas / videos serán mostrados en el slider primario) max 5 items" />
+
+                <field
+                    name="sliderPrincipal"
+                    type="subform"
+                    label="items slider principal"
+                    description="Subform Field Description"
+                    multiple="true"
+                    min="1"
+                    max="5">
+                    <form> 
+                        <field name="typeRecurso" type="list" default="" required="true" label="Seleccionar tipo de item" description="" >
+                            <option value="">Seleccionar</option>
+                            <option value="0">Imagen</option>
+                            <option value="1">Video</option>
+                        </field>
+                        <field name="imageSlider" type="media" label="Imagen de slider"  showon="typeRecurso:0" preview_width="10px" /> 
+                        <field name="uriVideoSlider" type="text" label="Link video carpeta (Media)" showon="typeRecurso:1" />
+
+                        <field name="showTextRecurso" type="list" default="" required="true" label="Mostrar texto en slider">
+                            <option value="">Seleccionar</option>
+                            <option value="0">No</option>
+                            <option value="1">Si</option>
+                        </field> 
+
+                        <!--<field name="typeTextVideo" type="list" default=""  label="Tipo de texto" showon="showTextRecurso:1">
+                            <option value="">Seleccionar</option>
+                            <option value="0">Normal</option>
+                            <option value="1">Avanzado</option>
+                        </field>-->
+                        
+                        
+                        <field name="titleRecurso" type="text" label="Titulo del item" showon="showTextRecurso:1" />
+                        <field name="descriptionRecurso" type="text" label="Descripción de Slider" showon="showTextRecurso:1" />
+                        <!--<field 
+                            name="textAdvanced_slider" 
+                            type="editor" 
+                            label="Descripcion video"
+                            description=""  
+                            filter="safehtml" 
+                            showon="typeTextVideo:1" /> -->
+                        <field name="myspacer1" type="spacer" hr="true" />
+                        <field
+                            name="RedireccionSlider"
+                            type="list"
+                            default="0" 
+                            label="Activar redireccionamiento en item">
+                            <option value="0">No</option>
+                            <option value="1">Si</option>
+                        </field> 
+                        <!--<field name="mytextvalue" type="text" default="Some text" label="Enter some text" description="" size="15" />-->
+                        <field
+                            name="typeRedirectItemSlider"
+                            type="list"
+                            default="0" 
+                            label="Tipo de redireccionamiento"
+                            showon="RedireccionSlider:1"
+                            >
+                            <option value="0">Misma ventana</option>
+                            <option value="1">Nueva ventana</option>
+                        </field>
+                        <field name="urlRedirectItemSlider" type="text" label="Url de dirección" showon="RedireccionSlider:1"/> 
+                    </form>
+                </field>
+
+
+                <!--<field name="colorTitles" type="color" label="Color de Titulos" description="" default=""/>
+                <field name="colorDescription" type="color" label="Color de Contenido" description="" default=""/>-->
+
+                
+            </fieldset>
+
+            <!-- Sección 2 Oferta -->
+            <fieldset name="section2" label="Sección 2 (Oferta)" class="options-form" >
+                <field name="note2" type="note" label="Sección de oferta. Requiere de interveción del administrador" />
+                <field
+                    name="actionShowSection2"
+                    type="list"
+                    default="1" 
+                    label="Mostrar sección oferta"
+                    description="Esta opción permite mostrar la Sección de quiero inscribirme"  >
+                    <option value="1">Si</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="titleOfertaSec2" type="text" label="Titulo de sección"  />
+                <field
+                    name="showInTypeBackground2"
+                    type="list"
+                    default="0" 
+                    label="Seleccionar tipo de fondo">
+                    <option value="0">Color Solido</option>
+                    <option value="1">Imagen</option>
+                </field>
+
+                <field name="colorBackgroundSec2" type="color" label="Color de fondo" showon="showInTypeBackground2:0" />
+                <field name="imageBackgroundSec2" type="media" label="Seleccionar imagen" showon="showInTypeBackground2:1" />
+                <field name="colorTitleOferta" type="color" label="Color de textos" description="" default="ffffff"/>
+            
+            </fieldset>
+
+            <!-- Sección 3 brand values -->
+            <fieldset name="section3" label="Sección 3 (Valores de marca)">
+                <field name="note3" type="note" label="Sección de Valores de marca, administra el contenido de los valores de la marca" />
+                <field
+                    name="actionShowSection3"
+                    type="list"
+                    default="1" 
+                    label="Mostrar sección de valores"
+                    description="Esta opción permite mostrar la Sección de quiero inscribirme"  >
+                    <option value="1">Si</option>
+                    <option value="0">JNO</option>
+                </field>
+                
+                <field name="titleBrandValues3" type="text" label="Titulo de sección"  /> 
+                <field name="textMainSec3" type="text" label="Texto principal"/>
+                <field name="textSecondarySec3" type="text" label="Texto secundario"/>
+                <field
+                    name="showInButtonRedirect3"
+                    type="list"
+                    default="0" 
+                    label="Visualizar boton de redireccionamiento ">
+                    <option value="0">No</option>
+                    <option value="1">Si</option>
+                </field>
+                <field name="textButtonExtra" type="text" label="Texto de boton" showon="showInButtonRedirect3:1"/>
+                <field name="urlButtonExtra" type="text" label="Url de direccion del boton extra" showon="showInButtonRedirect3:1"/>
+                 <field
+                    name="typeRedirectButton3"
+                    type="list"
+                    default="0" 
+                    label="Tipo de redireccionamiento">
+                    <option value="0">Misma ventana</option>
+                    <option value="1">Nueva ventana</option>
+                </field>
+                <field name="colorTextBrandValues" type="color" label="Color de textos" description="" default="ffffff"/>
+                <field
+                    name="showInTypeBackground3"
+                    type="list"
+                    default="0" 
+                    label="Seleccionar tipo de fondo">
+                    <option value="0">Color Solido</option>
+                    <option value="1">Imagen</option>
+                </field>
+
+                <field name="colorBackgroundSec3" type="color" label="Color de fondo" showon="showInTypeBackground3:0" />
+                <field name="imageBackgroundSec3" type="media" label="Seleccionar imagen" showon="showInTypeBackground3:1" />
+
+
+                <field
+                    name="itemValuesSec3"
+                    type="subform"
+                    label="items de Valores de marca max. 4"
+                    description="Subform Field Description"
+                    multiple="true"
+                    min="1"
+                    max="4">
+                    <form>  
+                        <field name="itemImageValueSec3" type="media" label="Icono / Imagen " /> 
+                        <field name="itemTitleValueSec3" type="text" label="Título de valor" /> 
+                        <field 
+                            name="itemDescriptionValueSec3" 
+                            type="textarea"
+                            default=""  
+                            rows="3"
+                            cols="100"
+                            filter="raw"
+                        />
+                        <field name="myspacer4" type="spacer" hr="true" />
+                        <field name="redirectItemBrandValues" type="list" default="0" required="true" label="Habilitar redireccionamiento por item" description="">
+                            <option value="">Seleccionar</option>
+                            <option value="1">Si</option>
+                            <option value="0">JNO</option>
+                        </field>
+                        <field
+                            name="typeRedirectItemBrandVal3"
+                            type="list"
+                            default="0" 
+                            label="Tipo de redireccionamiento"
+                            showon="redirectItemBrandValues:1" >
+                            <option value="0">Misma ventana</option>
+                            <option value="1">Nueva ventana</option>
+                        </field>
+                        <field name="urlRedirectItem" type="text" label="Url de redireccionamiento" showon="redirectItemBrandValues:1" /> 
+                    </form>
+                </field>
+
+
+            </fieldset> 
+
+            <!-- Sección 4 Video prom -->
+            <fieldset name="section4" label="Sección 4 (Video promoción)">
+                <field name="note4" type="note" label="Sección de Valores de marca, administra la información del video" />
+                <field
+                    name="actionShowSection4"
+                    type="list"
+                    default="1" 
+                    label="Mostrar sección de video promocional"
+                    description="Esta opción permite mostrar la Sección de quiero inscribirme"  >
+                    <option value="1">Si</option>
+                    <option value="0">JNO</option>
+                </field>
+
+                <field
+                    name="titleVideo" 
+                    type="text"  
+                    label="Titulo de Sección de video" description="Sección de video para promociones inicio"  />
+                <field 
+                    name="subtitleVideo" 
+                    type="text"
+                    label="Subtitilo de video" 
+                    description="Sección de video para promociones inicio"  /> 
+                <field 
+                    name="descriptionVideo" 
+                    type="editor" 
+                    label="Descripción video"
+                    description=""  
+                    filter="safehtml" /> 
+                    <field 
+                    name="linkVideo" 
+                    type="textarea" 
+                    label="Iframe o url de video" description="" rows="10" cols="10" filter="raw" />
+                    
+                <field name="videoOrientation" type="list" label="Posición de video" default="0">
+                    <option value="1">Derecha</option>
+                    <option value="0">Izquierda</option>
+                </field> 
+                <field name="colorTextVideo" type="color" label="Color de textos" description="" default="ffffff"/>
+                <field
+                    name="showInTypeBackground4"
+                    type="list"
+                    default="0" 
+                    label="Seleccionar tipo de fondo">
+                    <option value="0">Color Solido</option>
+                    <option value="1">Imagen</option>
+                </field>
+
+                <field name="colorBackgroundSec4" type="color" label="Color de fondo" showon="showInTypeBackground4:0" />
+                <field name="imageBackgroundSec4" type="media" label="Seleccionar imagen" showon="showInTypeBackground4:1" />
+            </fieldset>
+
+            <!-- Sección 5 integracion -->
+            <fieldset name="section5" label="Sección 5 (Integración)">
+                <field name="note5" type="note" label="Sección de integracion. Requiere de interveción del administrador" />
+                <field
+                    name="actionShowSection5"
+                    type="list"
+                    default="1" 
+                    label="Mostrar sección de integración"
+                    description="Esta opción permite mostrar la Sección de integracion"  >
+                    <option value="1">Si</option>
+                    <option value="0">JNO</option>
+                </field>
+
+                <field name="titleIntegration5" type="text" label="Título de sección"  /> 
+                <field name="colorTextIntegration" type="color" label="Color de textos" description="" default="ffffff"/>
+            </fieldset>
+            
+
+            <!-- Sección 6 Alianzas -->
+            <fieldset name="section6" label="Sección 6 (Slider Alianzas)">
+                <field name="note6" type="note" label="Sección de slider alianzas, administra los logos de empresas para el slider inferior" />
+                <field
+                    name="actionShowSection6"
+                    type="list"
+                    default="1" 
+                    label="Mostrar Sección de Alianzas"
+                    description="Esta opción permite mostrar la Sección de integracion"  >
+                    <option value="1">Si</option>
+                    <option value="0">JNO</option>
+                </field>
+                
+                <field name="titleAlianzas6" type="text" label="Título de sección"  />
+                <field name="colorTextAlianzas" type="color" label="Color de título" description="" default="ffffff"/>
+                <field
+                    name="showInTypeBackground6"
+                    type="list"
+                    default="0" 
+                    label="Seleccionar tipo de fondo">
+                    <option value="0">Color Solido</option>
+                    <option value="1">Imagen</option>
+                </field>
+
+                <field name="colorBackgroundSec6" type="color" label="Color de fondo" showon="showInTypeBackground6:0" />
+                <field name="imageBackgroundSec6" type="media" label="Seleccionar imagen" showon="showInTypeBackground6:1" />
+                <!-- https://swiperjs.com/get-started -->
+
+                <!-- Sección de Main Sponsor -->
+                <!-- <field
+                    name="addContentMain"
+                    type="radio"
+                    default="0"
+                    label="Agregar contenido de Main Sponsor"
+                    description="Active el contenido del Main Sponsor"
+                    class="btn-group btn-group-yesno">
+
+                    <option value="1">Agregar</option>
+                    <option value="0">No agregar</option>
+                </field>
+
+                <field
+                    name="titleSectionMainSponsor"
+                    type="text"
+                    default=""
+                    label="Titulo de Sección main sponsor"
+                    description="Nombre del sponsor principal"
+                    size="10" showon="addContentMain:1" />
+                <field
+                    name="imageMainSponsor"
+                    type="media"
+                    directory=""
+                    label="Logo  de slider"
+                    description="" showon="addContentMain:1" />
+
+                <field
+                    name="addLinkMain"
+                    type="radio"
+                    default="0"
+                    label="Agregar link"
+                    description="Agrega un redireccionamiento externo en el logo"
+                    class="btn-group btn-group-yesno" showon="addContentMain:1">
+
+                    <option value="1">Agregar</option>
+                    <option value="0">No agregar</option>
+                </field>
+                <field
+                    name="uriLinkMain"
+                    type="text"
+                    default=""
+                    label="URL"
+                    description="URL donde se redireccionará"
+                    size="10"
+                    showon="addLinkMain:1" />
+                    -->
+
+                <field name="spacer0" type="spacer" hr="true" />
+ 
+				<field name="contentSlidersSwiper" type="subform" label="Crear sliders" multiple="true">
+					<form>
+						<!-- Sliders -->
+                        <field
+                            name="imageSlider"
+                            type="media"
+                            directory=""
+                            label="Imagen de slider"
+                            description=""
+                        />
+                        <!--<field
+                            name="titleSlider"
+                            type="text"
+                            default=""
+                            label="Titulo de slider"
+                            description=""
+                            size="10"
+                        />
+                        <field
+                            name="descriptionSlider"
+                            type="textarea"
+                            default=""
+                            label="Descripción de slider"
+                            description=""
+                            rows="10"
+                            cols="50"
+                        />-->
+
+                        <field
+                            name="addLink"
+                            type="radio"
+                            default="0"
+                            label="Agregar link"
+                            description="Agrega un redireccionamiento externo en el logo"
+                            class="btn-group btn-group-yesno">
+
+                            <option value="1">Agregar</option>
+                            <option value="0">No agregar</option>
+                        </field>
+                        <field
+                            name="uriLink"
+                            type="text"
+                            default=""
+                            label="URL"
+                            description="URL donde se redireccionará"
+                            size="10"
+                            showon="addLink:1"
+                        />
+
+					</form>
+				</field> 
+            </fieldset> 
+        </fields>
+    </config>
+</extension>

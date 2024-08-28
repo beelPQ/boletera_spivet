@@ -1,0 +1,188 @@
+.claustro {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 15px 60px;
+}
+
+.claustro h1 {
+    color: var(--morado);
+    font-size: 40px;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    text-align: center;
+    margin-bottom: 60px;
+    margin-top: 40px;
+    font-weight: bold;
+}
+
+
+.claustro__lista {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.claustro__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.claustro__titulo {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    background: rgba(153, 61, 134, 0.60);
+    color: var(--blanco);
+    font-size: 16px;
+    font-weight: 700;
+    word-wrap: break-word;
+    padding: 10px;
+}
+
+.claustro__titulo span {
+    display: block;
+    font-weight: 400;
+}
+
+.claustro__item {
+    position: relative;
+    cursor: pointer;
+    width: 22.9%;
+    height: 281px;
+    border: 1px solid #e7e7e7;
+}
+
+
+.modal-backdrop {
+    background-color: rgb(255 255 255 / 76%);
+}
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 70% !important;
+    }
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-header {
+    background: var(--morado);
+}
+
+.modal-header h4 {
+    color: var(--blanco);
+    font-weight: 400;
+    text-transform: capitalize;
+    word-wrap: break-word;
+    font-size: 18px;
+}
+
+.modal-header .close {
+    padding: 0.9rem 1rem !important;
+}
+
+.close {
+    font-size: 1.7rem !important;
+    opacity: 1 !important;
+    color: var(--blanco) !important;
+}
+
+
+.claustro__modal {
+    display: flex;
+    gap: 30px;
+}
+
+.claustro__modal__imagen img {
+    width: 100%;
+}
+
+.claustro__modal__imagen span {
+    margin-bottom: 15px;
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.claustro__modal__imagen {
+    width: 30%;
+}
+
+.claustro__modal__informacion {
+    width: 70%;
+    color: black;
+    font-size: 14px;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.claustro__modal__informacion p {
+    margin-bottom: 5px;
+}
+
+.claustro__modal__titulo {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) and (min-width: 300px)  {
+
+    .claustro {
+        padding: 15px 15px;
+    }
+
+    .claustro h1 {
+        font-size: 25px;
+        margin-bottom: 25px;
+        margin-top: 25px;
+    }
+
+    .claustro__lista {
+        gap: 15px;
+    }
+
+    .claustro__item {
+        width: 47%;
+        height: 150px;
+    }
+
+    .claustro__titulo {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .modal-header h4 {
+        font-size: 16px;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    .claustro__modal {
+        flex-flow: wrap;
+        gap: 20px;
+    }
+
+    .claustro__modal__informacion,
+    .claustro__modal__imagen {
+        width: 100%;
+    }
+
+    .claustro__modal__informacion {
+        font-size: 14px;
+    }
+
+    .claustro__modal__titulo {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+}
