@@ -235,6 +235,8 @@
 					label=" Color de linea separadora menu"
 					description="Es la linea divisora entre las opciones principales y el submenú"
 				/>
+
+
 				<field type="spacer" name="spacer00" hr="true" />
 
 				<field name="addPrimayLogo" 

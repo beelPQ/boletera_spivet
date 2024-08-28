@@ -337,6 +337,14 @@
                     }, 500);
                 });
             }
+            else {
+                const row = document.createElement('tr');
+                const colNumber = document.createElement('td');
+                colNumber.setAttribute('colspan', 5);
+                colNumber.innerHTML = `<div class="justify-content-center" style="font-size: 1rem;" >🤷‍♂️No se tiene compras registradas</div>`;
+                row.appendChild(colNumber);
+                tbodyPayments.appendChild(row);
+            }
         })
         .catch( error => {
             console.log(error);

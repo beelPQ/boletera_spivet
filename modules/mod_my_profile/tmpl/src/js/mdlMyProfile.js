@@ -387,7 +387,7 @@
                         options.forEach(option => {
                             if (option.value == countryIdUser) {
                                 option.setAttribute('selected', 'selected');
-                                if (stateIdUser.trim() != '') {
+                                if (stateIdUser !== null && stateIdUser.trim() != '') {
                                     // state.setAttribute('disabled', true);
                                     getStates(countryIdUser, stateIdUser);
                                 }
@@ -400,9 +400,9 @@
                     tmpPhotoUser = `/images/clientes/fotos/${photoUser}`;
                     avatar.src = tmpPhotoUser;
                     // avatar.setAttribute('disabled', true);
-                    contentPreviewImg.removeAttribute('style');
-                    btnDeleteImg.removeAttribute('style');
                 }
+                contentPreviewImg.removeAttribute('style');
+                btnDeleteImg.removeAttribute('style');
 
             }).catch((err) => {
                 console.error(err)
@@ -419,6 +419,18 @@
 
     }
     document.addEventListener('DOMContentLoaded', () => {
+        // ? Forzamos el color del navbar una vez logeado el usuario
+        const headerContentGenSite = document.querySelector(`#headerContent`) || null;
+        const toPqoverlay = headerContentGenSite.querySelector(`#to_pqoverlay`) || null;
+        if( toPqoverlay !== null ) {
+            headerContentGenSite.classList.add('registered');
+            const hamburger = toPqoverlay.querySelector(`.hamburger`) || null;
+            if(hamburger!==null) hamburger.classList.add('invertcolor');
+            const pqOverlayScreen = toPqoverlay.querySelector(`#pqOverlayScreen`) || null;
+            if(pqOverlayScreen!==null) pqOverlayScreen.classList.add('registered');
+        }
+
+
         contentLeft = document.querySelector(`.my_profile-left`);
         formDataProfile = document.querySelector(`#formDataProfile`);
         contentPreviewImg = contentLeft.querySelector(`.content_preview_image`);

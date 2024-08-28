@@ -67,7 +67,7 @@
                 data: { option: 'busquedaManual', code: evalSearchClient, code2: parseInt(idEvent) },
                 dataType: "json",
                 beforeSend: function () {
-                    console.log('Procesando info...');
+                    // console.log('Procesando info...');
                 },
                 success:function(response){
                     const { status, message, description, data } = response;
@@ -92,6 +92,9 @@
      * @returns 
      */
     const createEstructura = (json) => {
+        // ? Condificón agregada [Moroni - 04Jun2024]
+        if( json.length == 0 )return;
+
         const { idParticipant, noTra, idsolicitud, idDeliverable, name, lastname1, lastname2, email, 
             phone, photo, checkin, modality, statusPay } = json[0];
         
@@ -239,7 +242,7 @@
             document.getElementById('btnSearchAvanced')
                 .addEventListener(`click`, searchAvancedClient);
         } else {
-            console.log(`no checkeado`)
+            // console.log(`no checkeado`)
         }
     }
     
@@ -269,7 +272,6 @@
                     // $("#loader").show();
                 },
                 success:function(resp){
-                    // console.log( resp );
                     customForm1.querySelector(`#dataSearch`).innerHTML = resp;
                     // document.getElementById('dataSearch').innerHTML = resp;
                     $(document).ready(function() {
@@ -656,7 +658,7 @@
             success: function (result) {
                 const { status, message, description, data } = result;
                 if (!status) {
-                    console.log(message);
+                    // console.log(message);
                     return;
                 }
 
@@ -889,12 +891,10 @@
     },false);
     
     window.addEventListener('load', () => {
-        
         if (document.getElementById('swtSearchAdvansed') !== null) {
             swtSearchAvansed = document.getElementById('swtSearchAdvansed');
             swtSearchAvansed.addEventListener('change', validaCheckbox);
         }
-
         setTimeout(()=>{
             // contentSpinnerPrimary.removeAttribute(`style`);
             // console.clear()

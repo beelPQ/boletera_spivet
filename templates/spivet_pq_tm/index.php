@@ -1,7 +1,5 @@
 <?php
 defined('_JEXEC') or die;
-use Joomla\CMS\Factory;
-
 $app  = JFactory::getApplication();
 $this->setHtml5(true);
 $params = $app->getTemplate(true)->params;
@@ -39,28 +37,24 @@ $txtcolorHeaderRegistered = $this->params->get('txtcolorHeaderRegistered') ??  '
 jimport('joomla.html.html');
 include JPATH_SITE . '/templates/spivet_pq_tm/php/utils.php';
 
-
-$document = Factory::getDocument();
+$document = JFactory::getDocument();
 // $document->addStyleSheet("$PATH_MODULE_SRC/css/mdlMyShopping.min.css", array('version' => 'auto'));
-$document->addScript("templates/spivet_pq_tm/js/script.js",  array('version' => 'auto'));
+$document->addScript("templates/spivet_pq_tm/js/script.min.js",  array('version' => 'auto'));
 // <script src="templates/spivet_pq_tm/js/script.js?v=time()"></script>
 
-// Obtener datos del usuario logeado
-$user = Factory::getUser();
+// ? Obtener datos del usuario logeado
+$user = JFactory::getUser();
 $userId = '';
 $userName = '';
 $userMail = '';
-if( $user->id > 0 ) {
+if ($user->id > 0) {
     // $userId = $user->id;
     $userId = "data-id='$user->id'";
     // $userName = $user->name;
     $userName = "data-name='$user->name'";
     // $userMail = $user->email;
     $userMail = "data-email='$user->email'";
-
-    // echo "<script>localStorage.setItem('loginRegisUser', 'success');</script>";
 }
-// echo json_encode($user);
 
 ?>
 <!DOCTYPE html>
@@ -79,16 +73,15 @@ if( $user->id > 0 ) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <style>
-        :root{
-            --bg-body : <?=$backgroundcolorBody?>;
-            --bg-header_scroll : <?=$bgcolorHeaderGuestScroll?>;
-            --bg-header_guest : <?=$bgcolorHeaderGuest?>;
-            --txt-header_guest : <?=$txtcolorHeaderGuest?>;
-            --bg-header_register : <?=$bgcolorHeaderRegistered?>;
-            --txt-header_register : <?=$txtcolorHeaderRegistered?>;
+        :root {
+            --bg-body: <?= $backgroundcolorBody ?>;
+            --bg-header_scroll: <?= $bgcolorHeaderGuestScroll ?>;
+            --bg-header_guest: <?= $bgcolorHeaderGuest ?>;
+            --txt-header_guest: <?= $txtcolorHeaderGuest ?>;
+            --bg-header_register: <?= $bgcolorHeaderRegistered ?>;
+            --txt-header_register: <?= $txtcolorHeaderRegistered ?>;
         }
     </style>
-
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>-->
     <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>-->
@@ -116,13 +109,9 @@ if( $user->id > 0 ) {
 
     <?php echo $tagsGoogle ?>
     <script src='https://www.google.com/recaptcha/api.js?render=6LevnX0pAAAAAM8b4qITJ6OHfpRdAZN1DF32xdpt'></script>
-    <script>
-        const urlGen = new URL(location.href);
-        urlGen.host.includes('.test') ? localStorage.setItem('inhost', 'local') : localStorage.setItem('inhost', 'server');
-    </script>
 </head>
 
-<body style="margin:0" class="spivet" <?=$userId?> <?=$userName?> <?=$userMail?> >
+<body style="margin:0" class="spivet" <?= $userId ?> <?= $userName ?> <?= $userMail ?>>
     <div class="spinner"><span class="loader"></span></div>
     <!-- Header -->
     <header id="headerContent" class="container-header anouncement-available">
@@ -138,27 +127,26 @@ if( $user->id > 0 ) {
         </div>
         <div class="header__menu"><i class="fas fa-bars"></i><span>MENÚ</span></div> -->
     </header>
-    <!-- Main -->
-    <?php if ($this->countModules('spivet_content', true)) : ?>
-        <jdoc:include type="modules" name="spivet_content" style="none" />
-    <?php else: ?>
-        <main>
-            <jdoc:include type="component" />
-        </main>
-    <?php endif; ?>
-    
 
-    <!-- Footer -->
+
+    <!-- Main -->
+    <?php if ($this->countModules('spivet_content', true)  > 0 ) : ?>
+        <jdoc:include type="modules" name="spivet_content" style="none" />
+    <?php endif; ?>
+    <main data-com="1" >
+        <jdoc:include type="component" />
+    </main>
+
     <?php if ($this->countModules('spivet_footer', true)) : ?>
         <jdoc:include type="modules" name="spivet_footer" style="none" />
     <?php endif; ?>
+
     <?php
     if ($url_actual == null) { ?>
         <!-- JS OWL -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/owl.carousel.min.js"></script> -->
         <!--  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
-    
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <!-- JS -->
         <!-- <script src="templates/spivet_pq_tm/js/inicio.js"></script> -->
@@ -188,6 +176,7 @@ if( $user->id > 0 ) {
     <!-- sweet alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- sweet alert -->
-    
+
 </body>
+
 </html>

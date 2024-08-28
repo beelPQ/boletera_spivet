@@ -180,12 +180,13 @@
      * @param Element pqOverlayScreen : Contenedor principal de los links en el menu hamburguesa
      */
     const viewSubitems = (pqOverlayScreen) => {
+        // console.clear();
         const listMenuSubItem = pqOverlayScreen.querySelectorAll(`ul.menu__sub__item`);
         listMenuSubItem.forEach(ulList => {
             if (!ulList.classList.contains(`primary`)) pqOverlayScreen.removeChild(ulList);
         });
 
-        const menuSubItem = pqOverlayScreen.querySelector(`ul.primary`);
+        const menuSubItem = pqOverlayScreen.querySelector(`ul.primary`)
         const items = menuSubItem.querySelectorAll('li')
         items.forEach(item => {
             // Ingresamos si hay submenus listos
@@ -333,13 +334,11 @@
                     inputCheck.addEventListener('click', () => {
                         if (pqOverlayScreen.classList.contains('show')) {
                             pqOverlayScreen.classList.replace(`show`, `hide`);
-                            // hamburger.classList.replace(`white`, `blue`);
-                            hamburger.classList.remove(`white`);
+                            hamburger.classList.replace(`white`, `blue`);
                         }
                         else if (pqOverlayScreen.classList.contains('hide')) {
                             pqOverlayScreen.classList.replace(`hide`, `show`);
-                            // hamburger.classList.replace(`blue`, `white`);
-                            hamburger.classList.add(`white`);
+                            hamburger.classList.replace(`blue`, `white`);
                         }
                         else {
                             pqOverlayScreen.classList.toggle(`show`);
@@ -352,7 +351,7 @@
                         // Mostramos el submenú
                         if (ulModMenu.classList.contains('view_submenu')) {
                             pqOverlayScreen.classList.add(`show_submenu`) // Mostramos clase de submenú
-                            ulModMenu.classList.add('mod-menu-show');
+                            ulModMenu.classList.add('mod-menu-show')
                             if (menuSub.length > 0) {
                                 menuSub[0].classList.add('show');
                                 // setTimeout(() => adEventSuboptionMenu(menuSub) , 100);
@@ -386,8 +385,8 @@
                     const itemsPrincipalMenu = modMenu.querySelectorAll('li')
                     itemsPrincipalMenu.forEach(item => {
                         if (item.childElementCount > 1) {
-                            item.querySelector('a').href = '#'
-                            // item.addEventListener('click', showSubMenu); // ? Evento click en opciones principales con submenus
+                            item.querySelector('a').href = '#';
+                            // item.addEventListener('click', showSubMenu); // ? Evento click en opciones principales con submenus [Moroni - 15May2024]
                         }
 
                         // ? Copiar url para iniciar sesión y eliminar elemento

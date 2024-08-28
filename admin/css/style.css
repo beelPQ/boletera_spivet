@@ -57,7 +57,17 @@ footer.main-footer{
     border-color:#000;
 }
 
-
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../images/spinner2.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+    display:none;
+}
 
 .botonFormulario{
     background-color:#000;
@@ -121,15 +131,6 @@ footer.main-footer{
   color: #246e46;
 }
 
-.textCanceled{
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #6e242b;
-}
-
 .textInactive{
   font-weight: bold;
   font-stretch: normal;
@@ -138,13 +139,6 @@ footer.main-footer{
   letter-spacing: normal;
   color: #ceb71b;
 }
-
-.textInactive.withClick{
-    cursor:pointer;
-    text-decoration: underline;
-}
-
-
 
 /*
 .modalCustom1 .modal-body{
@@ -400,43 +394,6 @@ a.btn.botonFormulario {
   --color-dark: rgb(32, 32, 32);
 }
 
-
-
-
-/*-------------SPINNER---------------------------------------- */
-
-.spinner {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  z-index: 1100;
-  background-color: rgba(0,0,0,.973);
-  overflow: hidden;
-  transition: .5s;
-}
-
-.spinner .loader {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  background-image: url("../images/spinner.gif");
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.spinner::after {
-  content: "Cargando";
-  position: absolute;
-  font-size: .8rem;
-  bottom: 35%;
-  color: #fff;
-}
-
-
-
 .content-spinner {
   width: 100%;
   height: 100vh;
@@ -534,7 +491,6 @@ a.btn.botonFormulario {
       transform: rotate(-720deg);
   }
 }
-/*-------------FIN SPINNER---------------------------------------- */
 
 
 

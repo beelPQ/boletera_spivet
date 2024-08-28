@@ -12,7 +12,7 @@ $document->addStyleSheet("$PATH_MODULE_SRC/css/mdlMyProfile.min.css", array('ver
 
 $document->addScript("https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js",  array('version' => 'auto'));
 $document->addScript("$pathExternalModule/assets/plugin/js/intlTelInput.min.js");
-$document->addScript("$PATH_MODULE_SRC/js/mdlMyProfile.js",  array('version' => 'auto'));
+$document->addScript("$PATH_MODULE_SRC/js/mdlMyProfile.min.js",  array('version' => 'auto'));
 
 $sectionTitle = $params->get('sectionTitle') ?? 'Compras';
 

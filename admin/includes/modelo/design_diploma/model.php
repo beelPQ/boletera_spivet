@@ -5,7 +5,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/admin/php/conexion.php");
 
     
-    require_once 'dompdf/autoload.inc.php';
+    require_once '../dompdf/autoload.inc.php';
     use Dompdf\Dompdf;
     use Dompdf\Options;
     
@@ -20,7 +20,7 @@
                 $con = conectar();
                 $querySelect = "SELECT ds.*, ffg.name_font FROM document_settings ds
                                 INNER JOIN fonts_for_desgin ffg ON ffg.id_font = ds.id_font
-                                WHERE id_producto = $idCourse  AND type_document = 'Certificado' AND ds.available = 1 ORDER BY id_document DESC LIMIT 1";      
+                                WHERE id_producto = $idCourse AND type_document = 'Certificado' AND ds.available = 1 ORDER BY id_document DESC LIMIT 1";      
                 // echo $querySelect;
                 $exectSelect = $con->query($querySelect);
                 if( $exectSelect->num_rows > 0 ){

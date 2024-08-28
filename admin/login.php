@@ -26,7 +26,7 @@ if (isset($_GET['cerrar_sesion'])) {
 	
 
 	<!--==============================================================================================-->
-	<script src='https://www.google.com/recaptcha/api.js?render=6LcEaIMpAAAAAPzYnPDhmD08YiC_sPf8Du9CjhQH'></script>
+	<script src='https://www.google.com/recaptcha/api.js?render=6LevnX0pAAAAAM8b4qITJ6OHfpRdAZN1DF32xdpt'></script>
 
 </head>
 

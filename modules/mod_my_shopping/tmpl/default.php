@@ -6,7 +6,7 @@ $PATH_MODULE = '/modules/mod_my_shopping';
 $PATH_MODULE_SRC = "$PATH_MODULE/tmpl/src";
 $document = Factory::getDocument();
 $document->addStyleSheet("$PATH_MODULE_SRC/css/mdlMyShopping.min.css", array('version' => 'auto'));
-$document->addScript("$PATH_MODULE_SRC/js/mdlMyShopping.js",  array('version' => 'auto'));
+$document->addScript("$PATH_MODULE_SRC/js/mdlMyShopping.min.js",  array('version' => 'auto'));
 
 $sectionTitle = $params->get('sectionTitle') ?? 'Compras';
 

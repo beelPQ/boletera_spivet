@@ -12,43 +12,27 @@ class Accion
 
 	public function create_payment_tickets($id_cobro)
 	{
-
 		$consulta = new Consulta();
 		$dataCobro = $consulta->getPayement($id_cobro);
-
 		$cobro_items = $consulta->getPaymentItems($id_cobro);
-
 		if (is_null($cobro_items) == false) {
-
 			while ($row = mysqli_fetch_array($cobro_items)) {
-
 				$dataProduct = $consulta->getProduct($row['catalogo_productos_idsystemcatpro']);
-
-
 				$text_barcode = $dataCobro['cobroscata_idregcobro'] . '_' . $dataProduct['catalogo_productos_sku'];
-
 				//Common::barcode('../../../../files/boletos/barcodes/'.$dataCobro['cobroscata_idtransaccion'].'_'.$dataProduct['catalogo_productos_sku'].'.png', $text_barcode,'70','vertical','Code128',false,2);
-
-
 				$htmlBoleto = helpperTemplateWeb::getTemplateTicket($row['idsystemcobrocataitem']);
-
 				//la ruta es a partir del sendMail.php, que es desde donde se llama esta funcion
 				//Common::generatePDF($htmlBoleto,'../../../../files/boletos/pdfs/'.$row['file_boleto']);
-
-
 			}
 		}
 	}
 
 	public function decrease_stock_discount($id_discount)
 	{
-
 		$myDatabase = new myDataBase();
 		$mysqli = $myDatabase->conect_mysqli();
 
 		if (is_null($mysqli) == false) {
-
-
 			$query = " SELECT 
 								idsystemdescuento,descuento_existencia
 							FROM catalogo_descuentos
@@ -118,8 +102,12 @@ class Accion
 				$cp = filter_var($_POST['cp'], FILTER_SANITIZE_STRING);
 				$towns = $_POST['towns'];
 				*/
-
-			$userId = Common::decrypt($_POST["userid"]) ?? 0; // ? ID de usuario logeado [Moroni // 13-May-2024]
+			
+			// ? ID de usuario logeado [Moroni // 13-May-2024]
+			$userId = $_POST["userid"] ?? 0;
+			if( $userId != 0 ) {
+				$userId = Common::decrypt($userId) ?? 0;
+			}
 			$name = $_POST['name'];
 			$lastname1 = $_POST['lastname1'];
 			$lastname2 = $_POST['lastname2'];
@@ -133,6 +121,8 @@ class Accion
 
 			date_default_timezone_set('America/Mexico_City');
 			$current_date = date("Y-m-d H:i:s");
+
+
 
 			$myDatabase = new myDataBase();
 			$mysqli = $myDatabase->conect_mysqli();
@@ -262,7 +252,6 @@ class Accion
 
 				$mysqli->close();
 			} else {
-
 				$response = [
 					'result' => 'error',
 					'message' => 'No se pudo conectar a la base de datos',
@@ -270,7 +259,6 @@ class Accion
 				];
 			}
 		} catch (Exception $e) {
-			//$e->getMessage()
 			$response = [
 				'result' => 'error',
 				'message' => $e->getMessage(),
@@ -632,9 +620,15 @@ class Accion
 
 	public function saveTransaction()
 	{
+
 		try {
+
 			$response_user = [];
-			$userId = Common::decrypt($_POST["userid"]) ?? 0;
+			// ? ID de usuario logeado [Moroni // 13-May-2024]
+			$userId = $_POST["userid"] ?? 0;
+			if( $userId != 0 ) {
+				$userId = Common::decrypt($userId) ?? 0;
+			}
 			if( $userId == 0 ) { // ? Creamos usuario cliente si no se encuentra el ID de usario cliente [Moroni - 14/May/2024]
 				$response_user = $this->createClient();
 				if ($response_user['result'] == 'success') {

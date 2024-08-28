@@ -1,6 +1,7 @@
 // :root{
 //     --background-navbar : #00000049;
 //     --backgorund-navbar-scroll : #0000009c;
+//     --bg-body : #000;
 // }
 body{
     background-color: var( --bg-body ) ; 
@@ -43,10 +44,8 @@ body{
             }
         }
     }
-    
 
-
-    // Estilos para formulario de logeo y registro
+    // ? Estilos para formulario de logeo y registro
     main {
         &.loginContent {
             width: 100%;
@@ -118,6 +117,33 @@ body{
                     }
                 }
 
+                .loginoptions_content {
+                    li {
+                        height: 37px;
+                        appearance: none;
+                        background-color: var(--bs-body-bg);
+                        background-clip: padding-box;
+                        border: var(--bs-border-width) solid var(--bs-border-color);
+                        border-radius: var(--bs-border-radius);
+                        display: flex;
+                        align-items: center;
+                        padding: .375rem .75rem;
+                        &:first-child {
+                            border-bottom-left-radius: 0;
+                            border-bottom-right-radius: 0;
+                        }
+                        &:last-child {
+                            border-top-left-radius: 0;
+                            border-top-right-radius: 0;
+                            border-top: transparent;
+                        }
+                        a {
+                            color: var(--bs-body-color);
+                            text-decoration: none;
+                        }
+                    }
+                }
+
             }
             .reset, .reset-confirm, .reset-complete {
                 legend {
@@ -127,7 +153,6 @@ body{
             }
         }
     }
-
 
 }
 
@@ -162,7 +187,6 @@ body{
 .header-black{ 
     background: #000;
 }
-
 
 
 

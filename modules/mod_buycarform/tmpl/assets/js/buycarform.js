@@ -87,8 +87,6 @@ const validateFormFinal = () => {
     let noErrorsSelect = 0;
     inputName.forEach(element => {
         if (element.id == "inputConsFiscal") {
-            if( document.querySelector(`#addInvoice_yes`).value.trim() != ' ') document.querySelector(`#addInvoice_yes`).classList.remove("is-invalid");
-            if( document.querySelector(`#addInvoice_no`).value.trim() != ' ') document.querySelector(`#addInvoice_no`).classList.remove("is-invalid");
             if (document.querySelector(`#addInvoice_yes`).checked) {
                 if (element.value != "") {
                 } else {
@@ -118,7 +116,6 @@ const validateFormFinal = () => {
         }
         //}
     });
-
     // const checkAviso = document.querySelector(`#checkAviso`);
     if (noErrors === 0 && noErrorsSelect === 0 /* && checkAviso.checked */) {
         statusErrorForm = 0;
@@ -165,6 +162,7 @@ const eventModalMP = (tipo) => {
 }
 
 (() => {
+    'use strict'
 
     const PATH_MODULE_TMPL = '/modules/mod_my_profile/tmpl';
     /**
@@ -255,6 +253,8 @@ const eventModalMP = (tipo) => {
                         options += `<option value="${element.id}">${element.town}</option>`;
                     });
                     document.querySelector(`#towns`).innerHTML = options;
+                } else {
+                    console.error(result);
                 }
             }).catch((err) => {
                 console.error(err)
@@ -401,9 +401,7 @@ const eventModalMP = (tipo) => {
         currentListCart.splice(indexProductCart, 1)
         localStorage.setItem("cart_products", JSON.stringify(currentListCart));
         if (localStorage.getItem(`cart_products`) && JSON.parse(localStorage.getItem(`cart_products`)).length <= 0) {
-            // location.href = "/servicios";
-            location.href = localStorage.getItem('inhost') !== null && localStorage.getItem('inhost') == 'server'
-                ? `${window.location.origin}/servicios` : `${window.location.origin}/index.php?option=com_blank&view=blank&Itemid=110`; // ? Redirección local
+            location.href = "/servicios";
         }
 
         //si se borraron todos los productos del carrito
@@ -533,9 +531,7 @@ const eventModalMP = (tipo) => {
                                 confirmButton: 'confirm-btn-alert',
                             }
                         }).then((result) => {
-                            // location.href = '/servicios';
-                            location.href = localStorage.getItem('inhost') !== null && localStorage.getItem('inhost') == 'server'
-                                ? `${window.location.origin}/servicios` : `${window.location.origin}/index.php?option=com_blank&view=blank&Itemid=110`; // ? Redirección local
+                            location.href = '/servicios';
                         })
                     }
                 })
@@ -549,9 +545,7 @@ const eventModalMP = (tipo) => {
                             confirmButton: 'confirm-btn-alert',
                         }
                     }).then((result) => {
-                        // location.href = '/servicios';
-                        location.href = localStorage.getItem('inhost') !== null && localStorage.getItem('inhost') == 'server'
-                            ? `${window.location.origin}/servicios` : `${window.location.origin}/index.php?option=com_blank&view=blank&Itemid=110`; // ? Redirección local
+                        location.href = '/servicios';
                     })
                     //return false;
                 });
@@ -653,7 +647,6 @@ const eventModalMP = (tipo) => {
      */
     const validateInput = (input) => {
         let errors = 0;
-        input.classList.remove('is-invalid');
         const stringValidatorEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
         const arrayInputValidation = [
             { input: "name", valMin: 2, messageLengt: "Numero de caracteres mayor a 2", messageVacio: "Nombre requerido" },
@@ -700,7 +693,6 @@ const eventModalMP = (tipo) => {
             { select: "optionsPayment", messageVacio: "Metodo de pago requerido" }];
 
         arraySelectValidation.forEach(element => {
-
             if (select.id == element.select) {
                 if (select.value.trim() !== "no_selected") {
                     deleteMsgError(select)
@@ -725,7 +717,8 @@ const eventModalMP = (tipo) => {
 
     const validateRecaptcha = (tipo) => {
         proccessPago(tipo);
-        /* grecaptcha.ready(function () {
+        return;
+        grecaptcha.ready(function () {
             grecaptcha.execute('6LevnX0pAAAAAM8b4qITJ6OHfpRdAZN1DF32xdpt', { action: 'formulario_pago' }).then(function (token) {
                 const dataVelidateR = new FormData();    //Se crea un objeto de tipo FormData para almacenar la informacion que se validara.
                 dataVelidateR.append('token', token);   //Se agrega la variable tipo al formdata.
@@ -748,7 +741,7 @@ const eventModalMP = (tipo) => {
                 }
                 xhrValRecaptcha.send(dataVelidateR);   //Enviamos los datos
             });
-        }); */
+        });
     }
 
     window.addEventListener('click', (e) => {
@@ -767,7 +760,8 @@ const eventModalMP = (tipo) => {
                 validateFormFinal();
             } else if (elementClass.contains('payment-button')) {
                 const avatar = document.querySelector(`img#avatar`) || null;
-                if (!avatar.src.includes('data:image') && !avatar.src.includes('/images/clientes/fotos')) { // ? Se agregó la validación de la ruta de las imagenes guardadas
+                // if (!avatar.src.includes('data:image')) {
+                if (!avatar.src.includes('data:image') && !avatar.src.includes('/images/clientes/fotos')) { // ? Se agregó la validación de la ruta de las imagenes guardadas [Moroni - 15May2024]
                     Swal.fire({
                         icon: 'warning',
                         title: 'Foto de usuario',
@@ -839,14 +833,15 @@ const eventModalMP = (tipo) => {
                 }
             }, 800);
         } else {
-            location.href = localStorage.getItem('inhost') !== null && localStorage.getItem('inhost') == 'server'
-                ? `${window.location.origin}/servicios` : `${window.location.origin}/index.php?option=com_blank&view=blank&Itemid=110`; // ? Redirección local
+            location.href = '/servicios';
         }
     }
 
-
-
-    // Definimos la función para el fade-in
+    /** Definimos la función para el fade-in
+     * 
+     * @param {*} element 
+     * @param {*} timeInterval 
+     */
     const fadeIn = (element, timeInterval = 50) => {
         let opacidad = 0;
         const intervalo = setInterval(function () {
@@ -859,7 +854,11 @@ const eventModalMP = (tipo) => {
             }
         }, timeInterval); // Intervalo de tiempo en milisegundos para la transición
     }
-    // Definimos la función para el fade-out
+    /** Definimos la función para el fade-out
+     * 
+     * @param {*} element 
+     * @param {*} timeInterval 
+     */
     const fadeOut = (element, timeInterval = 50) => {
         let opacidad = 1;
         const intervalo = setInterval(function () {
@@ -1024,12 +1023,13 @@ const eventModalMP = (tipo) => {
         saveDataService.innerHTML = `<i class="fas fa-circle-notch fa-pulse"></i>`;
 
         try{
+            skeletonForm();
             asyncData2(`${PATH_MODULE_TMPL}/controllers/mdlMyProfile.php`, `POST`, formUsDataService)
             .then( response => {
                 const { result, message, id_client } = response;
                 const msgAlert = message.trim() != '' ? message : `Datos actualizados correctamenete`;
 
-                if( id_client.trim() != '' && parseInt(id_client) > 0 ) {
+                if( id_client != '' && parseInt(id_client) > 0 ) {
                     document.body.setAttribute('data-name', `${namePut} ${surnamePut} ${secondSurnamePut}`);
                     document.body.setAttribute('data-email', emailPut);
                     saveDataService.innerHTML = `Actualizar`;
@@ -1038,8 +1038,10 @@ const eventModalMP = (tipo) => {
                     fadeOut(saveDataService, 20)
                     fadeIn(editDataService, 30);
                 }
-                else disabledEnabledForm(elementsForm, avatarImg);
-
+                else {
+                    disabledEnabledForm(elementsForm, avatarImg);
+                }
+                skeletonForm(false);
                 Swal.fire({
                     title: msgAlert,
                     // text: "Será redireccionada a la sección de servicios",
@@ -1052,6 +1054,7 @@ const eventModalMP = (tipo) => {
                 inputs.forEach( input => input.classList.remove(`is-invalid`) );
             })
             .catch( error => {
+                skeletonForm(false);
                 console.error( error );
                 saveDataService.innerHTML = `Actualizar`;
                 disabledEnabledForm(elementsForm, avatarImg);
@@ -1067,6 +1070,7 @@ const eventModalMP = (tipo) => {
             } )
         }
         catch( err ) {
+            skeletonForm(false);
             console.log( err );
             saveDataService.innerHTML = `Actualizar`;
             disabledEnabledForm(elementsForm, avatarImg);
@@ -1081,8 +1085,24 @@ const eventModalMP = (tipo) => {
             });
         }
     }
-
-
+    // ? Skeleton para el formulario de registro
+    const skeletonForm = (activeSkeleton = true) => {
+        const formDataPayment = document.querySelector(`#formDataPayment`);
+        const inputs = formDataPayment.querySelectorAll('input');
+        inputs.forEach( input => {
+            const parentInput = input.closest('.col-md-6');
+            if( parentInput !== null ) {
+                activeSkeleton ? parentInput.classList.add('skeleton') : parentInput.classList.remove('skeleton');
+            }
+        });
+        const selects = formDataPayment.querySelectorAll('select');
+        selects.forEach( select => {
+            const parentSelect = select.closest('.col-md-6');
+            if( parentSelect !== null ) {
+                activeSkeleton ? parentSelect.classList.add('skeleton') : parentSelect.classList.remove('skeleton');
+            }
+        });
+    }
     /** Llenado de datos de acuerdo al usuario registrado
      * 
      * @param {*} dataName 
@@ -1096,9 +1116,10 @@ const eventModalMP = (tipo) => {
             .then((result) => {
                 const { status, message, description, data } = result;
                 if (!status) {
+                    const descrip = description != '' ? description : `Recargue la página`;
                     Swal.fire({
                         title: message,
-                        text: description,
+                        text: descrip,
                         icon: "warning",
                         confirmButtonText: "Aceptar",
                         confirmButtonColor: "#000",
@@ -1200,7 +1221,7 @@ const eventModalMP = (tipo) => {
                         options.forEach(option => {
                             if (option.value == countryIdUser) {
                                 option.setAttribute('selected', 'selected');
-                                if (stateIdUser.trim() != '') {
+                                if (stateIdUser !== null && stateIdUser != '') {
                                     state.setAttribute('disabled', true);
                                     // state.setAttribute('readonly', true);
                                     state.classList.add('btn-disabled');
@@ -1352,6 +1373,8 @@ const eventModalMP = (tipo) => {
 
                     formTitleContent.appendChild(btnsEditData);
                 }
+
+                skeletonForm(false);
             }).catch((err) => {
                 console.error(err);
                 Swal.fire({
@@ -1367,7 +1390,21 @@ const eventModalMP = (tipo) => {
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        if (localStorage.getItem('loginRegisUser')) localStorage.removeItem('loginRegisUser'); // ? Eliminación de variable para verificar si se registro el usuario
+        skeletonForm();
+        // ? Eliminación de variable para verificar si se registro el usuario
+        if (localStorage.getItem('loginRegisUser')) localStorage.removeItem('loginRegisUser');
+
+        // ? Forzamos el color del navbar una vez logeado el usuario
+        const headerContentGenSite = document.querySelector(`#headerContent`) || null;
+        const toPqoverlay = headerContentGenSite.querySelector(`#to_pqoverlay`) || null;
+        if( toPqoverlay !== null ) {
+            headerContentGenSite.classList.add('registered');
+            const hamburger = toPqoverlay.querySelector(`.hamburger`) || null;
+            if(hamburger!==null) hamburger.classList.add('invertcolor');
+            const pqOverlayScreen = toPqoverlay.querySelector(`#pqOverlayScreen`) || null;
+            if(pqOverlayScreen!==null) pqOverlayScreen.classList.add('registered');
+        }
+
         initlTelInput();
         /**
          * *Inicia la validacion del formulario solo en los input text 
@@ -1457,10 +1494,6 @@ const eventModalMP = (tipo) => {
                     });
             });
         }
-
-        const backArrowForm = document.querySelector('#backArrowForm');
-        backArrowForm.href = localStorage.getItem('inhost') !== null && localStorage.getItem('inhost') == 'server'
-            ?  `${window.location.origin}/servicios` : `${window.location.origin}/index.php?option=com_blank&view=blank&Itemid=110`; // ? Redirección local
     });
     window.addEventListener('load', () => {
 
@@ -1485,17 +1518,16 @@ const eventModalMP = (tipo) => {
                 .then(response => {
                     if (response.isConfirmed) {
                         const path = window.location.origin;
-                        location.href = localStorage.getItem('inhost') !== null && localStorage.getItem('inhost') == 'server'
-                            ? `${path}/servicios` : `${path}/index.php?option=com_blank&view=blank&Itemid=110`; // ? Redirección local
+                        // location.href = `${path}/servicios`;
                     }
                 });
             return;
         }
         else {
             // ? Obtenemos datos del usuario si ya ha realizado al menos una compra
-            getAuthData(dataName, dataEmail);
+            setTimeout(() => getAuthData(dataName, dataEmail) , 1200);
         }
 
-        initfun();
+        setTimeout(() => initfun() , 50);
     });
 })()

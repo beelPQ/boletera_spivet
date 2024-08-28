@@ -13,7 +13,7 @@
             } 
             return $link; 
         }
-    } 
+    }
     class myDataBaseJoom { 
         public function conect_mysqli() {
             $config = new JConfig();

@@ -105,7 +105,6 @@
     $toMail = $email;
     $toNameMail = "A quien corresponda";
 
-
     try {
 
 

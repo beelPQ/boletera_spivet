@@ -110,17 +110,29 @@ Text::script('JHIDEPASSWORD');
 
         <?php
             $usersConfig = ComponentHelper::getParams('com_users'); ?>
-            <ul class="mod-login__options list-unstyled">
-                <li class="forgot_your_password"> // ? Clase agregada
+            <?php
+            // ? loginoptions_content:: Clase agregada 
+            ?>
+            <ul class="mod-login__options list-unstyled loginoptions_content"> 
+                <?php
+                // ? forgot_your_password:: Clase agregada 
+                ?>
+                <li class="forgot_your_password">
                     <a href="<?php echo Route::_('index.php?option=com_users&view=reset'); ?>">
                     <?php echo Text::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
                 </li>
-                <li class="forgot_your_username" > // ? Clase agregada
+                <?php
+                // ? forgot_your_username:: Clase agregada 
+                ?>
+                <li class="forgot_your_username" >
                     <a href="<?php echo Route::_('index.php?option=com_users&view=remind'); ?>">
                     <?php echo Text::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a>
                 </li>
                 <?php if ($usersConfig->get('allowUserRegistration')) : ?>
-                <li class="register" > // ? Clase agregada
+                <?php
+                // ? register:: Clase agregada 
+                ?>
+                <li class="register" >
                     <a href="<?php echo Route::_($registerLink); ?>">
                     <?php echo Text::_('MOD_LOGIN_REGISTER'); ?> <span class="icon-register" aria-hidden="true"></span></a>
                 </li>

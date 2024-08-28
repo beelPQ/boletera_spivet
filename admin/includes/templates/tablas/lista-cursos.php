@@ -16,7 +16,8 @@
                   <th>Modalidad</th> 
                   <th>Fecha inicio</th>
                   <th>Fecha fin</th> 
-                  <th>Diseñar</th>
+                  <th>Diseñar diploma</th>
+                  <th>Diseñar credencial</th>
                 </tr>
                 </thead>
                 <tbody align="center">

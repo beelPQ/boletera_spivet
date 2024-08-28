@@ -126,8 +126,6 @@ const initSdkMP = (type) => {
                     cardFormData.tmiduser = tmiduser;
                     cardFormData.tmemailuser = tmemailuser;
 
-
-
                     //  callback llamado cuando el usuario haga clic en el botón enviar los datos
                     //  ejemplo de envío de los datos recolectados por el Brick a su servidor
                     return new Promise((resolve, reject) => {

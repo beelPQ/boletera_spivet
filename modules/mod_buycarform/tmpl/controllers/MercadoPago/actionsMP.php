@@ -148,10 +148,13 @@ class actionsMP
 			$response = [];
 			//revisar resupuesta
 			//https://api.mercadopago.com/v1/payments/72442256906
-
+			$userId = $dataProcess["userid"] ?? 0;
+			if( $userId != 0 ) {
+				$userId = Common::decrypt($userId) ?? 0;
+			}
+			
 			$responsePayment = $this->createPaymentMPSDK($dataProcess);
 			if ($responsePayment['status'] == 'approved') {
-				$userId = Common::decrypt($dataProcess["userid"]) ?? 0;
 				$responseClient = [];
 				// ? Verificamos primero si es necesario crear o actualizar el usuario cliente [MOroni - 14 / May / 2024]
 				if( $userId == 0 ) {
@@ -160,11 +163,14 @@ class actionsMP
 						$userId = $responseClient['id_client'];
 					}
 				}
+
 				if ( $userId > 0 ) {
 					$response_payment = $this->createPayment($userId, $responsePayment['id'], $dataProcess);
 					if ($response_payment["result"] == "success") {
+
 						$response_payment_items = $this->createPaymentItems($userId, $response_payment['id_cobro'], $dataProcess);
 						if ($response_payment_items['result'] == 'success') {
+
 							$consulta = new Consulta();
 							$cobro = $consulta->getPayement($response_payment['id_cobro']);
 							//Creamos el html que aparecera como referecia de cobro exitoso
@@ -226,14 +232,14 @@ class actionsMP
 	 * clientes_photo >> -
 	 * 
 	 */
-
 	public function createClient($dataProcess, $updateInJommla = '')
 	{
 		try {
-			
-
 			$dataClient = [];
-			$userId = Common::decrypt($dataProcess["userid"]) ?? 0;
+			$userId = $dataProcess["userid"] ?? 0;
+			if( $userId != 0 ) {
+				$userId = Common::decrypt($userId) ?? 0;
+			}
 			// ? Validación para recibir datos del formulario de pago y actualización de perfil [13-May-2024 / Moroni Perez]
 			if( isset($dataProcess["formSenData"]) ) $dataClient = $dataProcess["formSenData"];
 			else {
@@ -249,7 +255,7 @@ class actionsMP
 				$dataClient['state'] = $dataProcess['state'];
 				$dataClient['photo'] = $dataProcess['avatar'];
 			}
-
+			
 			$name = $dataClient['name'];
 			$lastname1 = $dataClient['lastName1'];
 			$lastname2 = $dataClient['lastName2'];
@@ -261,8 +267,8 @@ class actionsMP
 			$country = $dataClient['country'];
 			$state = $dataClient['state'];
 
-			$acronymName = trim(substr($name, 0, 2)) . trim(substr($lastname1, 0, 1));
-			$acronymName = strtoupper($acronymName) . time();
+			$acronymName = trim(substr($name,0,2)).trim(substr($lastname1,0,1));
+			$acronymName = strtoupper($acronymName).time();
 			// $idSolicitud = $dataProcess["issuer_id"];
 			$photo = $dataClient['photo'];
 			$photoName = '';
@@ -287,7 +293,6 @@ class actionsMP
 					// 	return $response;
 				}
 			}
-			
 
 			date_default_timezone_set('America/Mexico_City');
 			$current_date = date("Y-m-d H:i:s");
@@ -391,17 +396,16 @@ class actionsMP
 					$query->bind_param('ssssssiiss', $name, $lastname1, $lastname2, $email, $telwhat, $cp, $country, $state, $photoName, $current_date);
 					$query->execute();
 					if ($query->affected_rows > 0) {
-	
+
 						$id_client = $query->insert_id;
 						$query->close();
-	
+
 						$query = $mysqli->prepare(" UPDATE catalogo_clientes SET 
 																clientes_idsolicitud=?
 														WHERE idsystemcli = ? ");
 						$query->bind_param('ii', $id_client, $id_client);
 						$query->execute();
 						$query->close();
-	
 						$response = [
 							'result' => 'success',
 							'message' => '',
@@ -409,7 +413,6 @@ class actionsMP
 						];
 					} else {
 						$query->close();
-	
 						$response = [
 							'result' => 'error',
 							'message' => 'No se pudo crear el cliente',
@@ -682,7 +685,6 @@ class actionsMP
 		return $response;
 	}
 
-	// ? Modificaciones documentadas
 	public function createPaymentItems($id_client, $id_cobro, $dataProcess)
 	{
 
@@ -701,14 +703,14 @@ class actionsMP
 			$name = trim($dataClient['name']);
 			$lastname1 = trim($dataClient['lastName1']);
 			$lastname2 = trim($dataClient['lastName2']);
-			if ($name != '') $name = substr($name, 0, 1);
-			if ($lastname1 != '') $lastname1 = substr($lastname1, 0, 1);
-			if ($lastname2 != '') $lastname2 = substr($lastname2, 0, 1);
-			$nameInitials = $name . $lastname1 . $lastname2;
+			if($name != '') $name = substr($name,0,1);
+			if($lastname1 != '') $lastname1 = substr($lastname1,0,1);
+			if($lastname2 != '') $lastname2 = substr($lastname2,0,1);
+			$nameInitials = $name.$lastname1.$lastname2;
 			$nameInitialsMayus = strtoupper($nameInitials);
 			$genParticipantNumber = $this->generateParticipantNumber();
-			if ($genParticipantNumber[0] == 1) {
-				$participantNumber = "P-$nameInitialsMayus" . $genParticipantNumber[1];
+			if($genParticipantNumber[0] == 1) {
+				$participantNumber = "P-$nameInitialsMayus".$genParticipantNumber[1];
 			}
 
 			$porcentaje_desc_cupon = 0;
@@ -722,15 +724,12 @@ class actionsMP
 			$products = json_decode($dataProducts);
 			$errormsg = '';
 			for ($i = 0; $i < count($products); $i++) {
-				$newParticipantNumber = 0;
-				$msgErrParticipant = "";
+				$newParticipantNumber = 0; $msgErrParticipant = "";
 				$newParticipant = $this->newParticipant($participantNumber);
-				$newParticipant[0] == 0 ? $msgErrParticipant = $newParticipant[1] : $newParticipantNumber = $newParticipant[1];
+				$newParticipant[0]==0 ? $msgErrParticipant = $newParticipant[1] : $newParticipantNumber = $newParticipant[1];
 
-				$preciobase = 0; // ? Se inicializó la variable [Moroni 09-May-2024]
-				$preciodescuento = 0; // ? Se inicializó la variable [Moroni 09-May-2024]
 				$id_product = Common::decrypt($products[$i]->code);
-				$moneda = $dataAmounts['moneda'] ?? 'MXN'; // ? Validación de Varibale en caso de no existir [Moroni 09-May-2024]
+				$moneda = $dataAmounts['moneda'];
 				$dataProduct = $consulta->getProduct($id_product);
 				if ($moneda == 'MXN') {
 					$preciobase = $dataProduct['catalogo_productos_preciomx'];
@@ -900,9 +899,9 @@ class actionsMP
 			} else {
 				$response = 1;
 			}
-			return [1, $response];
+			return [1,$response];
 		} catch (\Throwable $th) {
-			return [0, $th->getMessage()];
+			return [0,$th->getMessage()];
 		}
 	}
 	private function newParticipant($participantNumber)
@@ -914,13 +913,13 @@ class actionsMP
 			$query = $con->prepare("INSERT INTO `deliverables`(`participant_number`) VALUES (?)");
 			// Verificar si la preparación de la consulta tuvo éxito
 			if (!$query) {
-				return [0, "Error en la preparación de la consulta: " . $con->error];
+				return [0,"Error en la preparación de la consulta: " . $con->error];
 			}
 			$query->bind_param('s', $participantNumber);
 			$query->execute();
 			// Verificar si la ejecución de la consulta tuvo éxito
 			if ($query->errno) {
-				return [0, "Error al ejecutar la consulta: " . $query->error];
+				return [0,"Error al ejecutar la consulta: " . $query->error];
 			}
 
 			if ($query->affected_rows > 0) {
@@ -934,7 +933,7 @@ class actionsMP
 				return [0, "La inserción no afectó ninguna fila."];
 			}
 		} catch (\Throwable $th) {
-			return [0, $th->getMessage()];
+			return [0,$th->getMessage()];
 		}
 	}
 }

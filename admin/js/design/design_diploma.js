@@ -638,6 +638,7 @@
                     icon: "question",
                     showCancelButton: true, 
                     cancelButtonColor: "#d33",
+                    confirmButtonColor: "#000",
                     confirmButtonText: "Si guardar"
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -657,6 +658,7 @@
                     icon: "question",
                     showCancelButton: true, 
                     cancelButtonColor: "#d33",
+                    confirmButtonColor: "#000",
                     confirmButtonText: "Si continuar",
                     cancelButtonText: "Cancelar"
                 }).then((result) => {
@@ -677,6 +679,7 @@
                     icon: "question",
                     showCancelButton: true, 
                     cancelButtonColor: "#d33",
+                    confirmButtonColor: "#000",
                     confirmButtonText: "Si cancelar",
                     cancelButtonText: "No cancelar"
                 }).then((result) => {
@@ -691,6 +694,7 @@
                     icon: "question",
                     showCancelButton: true, 
                     cancelButtonColor: "#d33",
+                    confirmButtonColor: "#000",
                     confirmButtonText: "Si cancelar",
                     cancelButtonText: "No cancelar"
                 }).then((result) => {

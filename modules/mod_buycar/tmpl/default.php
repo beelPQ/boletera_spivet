@@ -95,11 +95,15 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
         </div>
     </div>
     
-    <div class="mainContent">
+    <div class="mainContent"> 
+       
+
         <div class="selectionProducts">
+
             <div class="contentFilters">
                 <!-- INPUT MULTILSELECT SEARCH -->
                 <div class="input-search">
+
                     <div class="input-search-filter flex">
                         <div id="contentSelectDesktop" class="content-multiselect">
                             <select id="typeFilterDesktop" multiple="multiple" class="input-select">
@@ -109,42 +113,70 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                         </div>
                         <span class="line-separator"></span>
                         <input type="text" class="form-control input-text" id="txtSearchDesktop" placeholder="Buscar servicio">
+
                         <svg id="btnSearchInputDesktop" class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.357 13.737a8.03 8.03 0 0 0 10.619.659l5.318 5.318a1 1 0 0 0 1.414-1.414l-5.318-5.318A8.04 8.04 0 0 0 2.357 2.36a8.042 8.042 0 0 0 0 11.376zm1.414-9.96A6.043 6.043 0 1 1 2 8.05a6 6 0 0 1 1.77-4.276v.002z" fill="#fff"/>
                         </svg>
+
                     </div>
                 </div>
                 <!-- INPUT MULTILSELECT SEARCH -->
+
             </div>
 
-            <div class="contentProducts" id="contentProducts"></div>
+
+            <div class="contentProducts" id="contentProducts">
+
+            </div>
 
             <div class="content-button">
                 <button id="btnViewProducts" class="btn-views-products">Ver mas</button>
             </div>
 
+
         </div>
 
+
+        
         <div class="divContentSumPayDesk" id="divContentSumPayDesk">
-            <div class="accordion accordion-flush" id="contentSummaryPaymentDesktop"> <?php //id se usa en el div de abajo ?>
+
+
+            <div class="accordion accordion-flush" id="contentSummaryPaymentDesktop"><?php //id se usa en el div de abajo 
+                                                                                        ?>
+
                 <div class="accordion-item border__decoration">
-                    <h2 class="accordion-header" id="headingSumPayDesktop"> <?php //id se usa en el div de abajo ?>
+
+                    <h2 class="accordion-header" id="headingSumPayDesktop"> <?php //id se usa en el div de abajo 
+                                                                            ?>
+
                         <button class="accordion-button clickDeploySumPayDesktop collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSumPayDesktop" aria-expanded="false" aria-controls="collapseSumPayDesktop">
+
                             <div type="button" class="position-relative clickDeploySumPayDesktop">
                                 <img class="clickDeploySumPayDesktop" src="modules/mod_buycar/tmpl/img/icons/icon_counter.svg">
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-light text-dark clickDeploySumPayDesktop counterItems circle-count-items">0</span>
                             </div>
+
                             <div class="accordion-header-text clickDeploySumPayDesktop">
                                 Total: <span id="strCurrencyTotal" class="label-currency clickDeploySumPayDesktop">MXN</span> <span class="label-total clickDeploySumPayDesktop" data-totalmxn="$0.00" data-totalusd="$0.00">$0.00</span>
                             </div>
-                            <span class="clickDeploySumPayDesktop label-deploySumPay" id="label-deploySumPayDesktop">Ver</span> <?php //id se usa en js ?>
+
+                            <span class="clickDeploySumPayDesktop label-deploySumPay" id="label-deploySumPayDesktop">Ver</span> <?php //id se usa en js 
+                                                                                                                                ?>
+
                         </button>
+
                     </h2>
 
-                    <div id="collapseSumPayDesktop" class="accordion-collapse collapse" aria-labelledby="headingSumPayDesktop" data-bs-parent="#contentSummaryPaymentDesktop"> <?php //id se usa en el button de arriba ?>
+
+                    <div id="collapseSumPayDesktop" class="accordion-collapse collapse" aria-labelledby="headingSumPayDesktop" data-bs-parent="#contentSummaryPaymentDesktop"> <?php //id se usa en el button de arriba 
+                                                                                                                                                                                ?>
                         <div class="accordion-body">
+
                             <div class="contentItemsCupon">
-                                <div class="contentItemsPayment"></div>
+
+                                <div class="contentItemsPayment">
+                                </div>
+
                                 <div class="contentCupon step3" hidden>
                                     <!--
                                     <div class="labelCupon">Cupón</div>
@@ -167,10 +199,16 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                                 <div style="font-weight: bold;">Total</div>
                                 <div align="right" style="font-weight: bold;"><span id="strCurrencyTotalCollapse" class="label-currency">MXN</span> <span class="label-total" data-totalmxn="$0.00" data-totalusd="$0.00">$0.00</span></div>
                             </div>
+
                         </div>
+
                     </div>
 
+
+
                 </div>
+
+
 
             </div>
 
@@ -178,9 +216,16 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                 <button class="payment-button btn-payment-view-one">Pagar</button>
             </div>
 
+
+
         </div><!-- end divContentSumPayDesk -->
 
+
+
     </div><!-- end mainContent -->
+
+    
+
 
 </div>
 <?php  if( $typePasarela["type"] === "MercadoPago" ){ ?>
@@ -193,6 +238,9 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
         <button class="btn-payment-movil btn-disabled" disabled>PAGAR</button>
     </div>
 </div>
+
+
+
 
 
 <?php
@@ -217,13 +265,17 @@ require_once($_SERVER['DOCUMENT_ROOT']."/modules/mod_buycarform/tmpl/controllers
                 </div>
                 <div class="mdlForm">
                     <!-- <h3 class="mdlForm-title">Datos personales</h3> -->
+                    
+
                     <!-- <section class="mdlForm-cardform my-4"></section> -->
                     <div id="cardPaymentBrick_container"></div>  <!-- contenedor de fomulario mpsdk -->
+
                     <div class="mdlForm-paybtn flex justify-content-center align-items-center p-4">
                         <input type="submit" value="Proceder al pago" class="btn btn_modalmp" id="btnContinuePay" disabled hidden>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

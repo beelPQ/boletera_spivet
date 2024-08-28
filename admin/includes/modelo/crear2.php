@@ -33,9 +33,9 @@ if(isset($accion)){
         $stock = filter_var($stock, FILTER_SANITIZE_NUMBER_INT);
         $fecha_descuento_inicio=date("Y-m-d H:i:s",strtotime($descuento_inicio.' '.$descuento_hora_inicio));
         $fecha_descuento_fin=date("Y-m-d H:i:s",strtotime($descuento_fin.' '.$descuento_hora_fin));
-        $codigo = filter_var($codigo, FILTER_SANITIZE_STRING);
+        // $codigo = filter_var($codigo, FILTER_SANITIZE_STRING);
         if($notas!=''){
-            $notas = filter_var($notas, FILTER_SANITIZE_STRING);
+            // $notas = filter_var($notas, FILTER_SANITIZE_STRING);
         }else{
             $notas = '';
         }

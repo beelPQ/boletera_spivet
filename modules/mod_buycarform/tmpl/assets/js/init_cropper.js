@@ -12,7 +12,7 @@ const btnDeleteImg = document.getElementById('btnDeleteImg') || null;
 const contentPreviewImg = document.querySelector('.content_preview_image') || null;
 let fileUpload = '';
 let done = '';
-let cropper;
+let cropper = '';
 
 let reader;
 let file;
@@ -69,17 +69,16 @@ if (input !== null) {
         }
     });
 }
-if (btnCloseModal !== null) {
+if(btnCloseModal!==null) {
     btnCloseModal.addEventListener('click', (e) => {
         //destroyCrop();
     });
 }
-if (btnCloseModalX !== null) {
+if(btnCloseModalX!==null) {
     btnCloseModalX.addEventListener('click', (e) => {
         //destroyCrop();
     });
 }
-
 export const deleteImageCropPreview = (avatarExternal = null) => {
     if (avatarExternal !== null) avatarImgG = avatarExternal;
     avatarImgG.src = `${location.origin}/modules/mod_buycarform/tmpl/assets/plugin/img/logo_subir_imagen.png`;
@@ -91,7 +90,7 @@ export const deleteImageCropPreview = (avatarExternal = null) => {
         }, 100);
     }
 }
-if (btnDeleteImg !== null) {
+if(btnDeleteImg!==null) {
     btnDeleteImg.addEventListener('click', (e) => {
         deleteImageCropPreview();
     });
@@ -117,7 +116,6 @@ if (btnSaveCrop !== null) {
         btnDeleteImg.style.display = "block";
     });
 }
-
 export function initCropperJs(avatar) {
     if (avatar !== null) {
         avatarImgG = avatar;

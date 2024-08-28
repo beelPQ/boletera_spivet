@@ -24,15 +24,6 @@ include_once('includes/templates/header.php');
   }else if($id === "cupones" && ($_SESSION['id_rol'] == 1 || $_SESSION['id_rol'] == 2 || $_SESSION['id_rol'] == 4) ){
 
     include_once('includes/templates/tablas/lista-cupones.php');
-    
-  }else if( $id == "lista-cursos-design" && $_SESSION['id_rol'] == 1){
-      
-    include_once('includes/templates/tablas/lista-cursos.php');
-
-    // Validacion para la creacion de diploma
-  }else if( (strpos($id, "design_diploma") !== false ) && $_SESSION['id_rol'] == 1){
-      
-    include_once('includes/templates/design/diploma.php');
 
   }else if($id === "servicios" && ($_SESSION['id_rol'] == 1 ) ){
 

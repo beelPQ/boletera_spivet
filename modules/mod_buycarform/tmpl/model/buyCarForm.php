@@ -144,7 +144,7 @@ class buyCarForm
             $myDatabase = new myDataBase();
             $con = $myDatabase->conect_mysqli();
             if (!is_null($con)) {
-                $sentence = "SELECT * FROM countries";
+                $sentence = "SELECT * FROM countries ORDER BY country ASC ";
                 $exec = $con->query($sentence);
 
                 while ($row = $exec->fetch_array(MYSQLI_ASSOC)) {
@@ -311,18 +311,22 @@ class buyCarForm
     {
         try {
             $dataResponse = [];
-            $id = Common::decrypt($idCrypt) ?? 0;
+            // ? ID de usuario logeado [Moroni // 13-May-2024]
+			$id = $idCrypt ?? 0;
+			if( $id != 0 ) {
+				$id = Common::decrypt($id) ?? 0;
+			}
+            // $id = Common::decrypt($idCrypt) ?? 0;
             $email = trim($emailUser) != '' ? trim($emailUser) : '';
             $myDatabase = new myDataBase();
-			$con = $myDatabase->conect_mysqli();
+            $con = $myDatabase->conect_mysqli();
             $query = '';
-            if( $id > 0 && $email == '' ) {
+            if ($id > 0 && $email == '') {
                 $query = "SELECT idsystemcli, clientes_nombre AS name, clientes_apellido1 AS surname, clientes_apellido2 AS secsurname, clientes_email AS email, clientes_telefono AS phone, clientes_codigopostal AS cPostal, id_municipio AS municipalyId, id_country AS countryId, id_state AS stateId, clientes_photo AS photo, clientes_status AS status FROM catalogo_clientes WHERE idsystemcli = $id";
-            }
-            elseif( $email != '') {
+            } elseif ($email != '') {
                 $query = "SELECT idsystemcli, clientes_nombre AS name, clientes_apellido1 AS surname, clientes_apellido2 AS secsurname, clientes_email AS email, clientes_telefono AS phone, clientes_codigopostal AS cPostal, id_municipio AS municipalyId, id_country AS countryId, id_state AS stateId, clientes_photo AS photo, clientes_status AS status FROM catalogo_clientes WHERE clientes_email = '$email'";
             }
-            if( $query == '' ) {
+            if ($query == '') {
                 die(json_encode([
                     "status" => false,
                     "message" => "Consulta no realizada",
@@ -330,9 +334,9 @@ class buyCarForm
                     "data" => []
                 ]));
             }
-			$exect = $con->query($query);
+            $exect = $con->query($query);
             if ($exect->num_rows > 0) {
-                while( $row = mysqli_fetch_assoc($exect) ) {
+                while ($row = mysqli_fetch_assoc($exect)) {
                     $row['id'] = Common::encrypt($row['idsystemcli']);
                     unset($row['idsystemcli']);
                     $dataResponse = $row;
@@ -347,7 +351,7 @@ class buyCarForm
             die(json_encode([
                 "status" => false,
                 "message" => "No se encontró el usuario",
-                "description" => $query,
+                "description" => '',
                 "data" => []
             ]));
         } catch (\Throwable $th) {

@@ -918,7 +918,14 @@
                                                             placeholder="Nombre del facilitador">
                                                     </div>
                                                 </div>
-
+                                                <div class="col-sm-3">
+                                                    <label>Etiqueta de referencia</label>
+                                                    <input
+                                                            type="text"
+                                                            id="typeTagImage"
+                                                            class="form-control"
+                                                            placeholder="Diploma">
+                                                </div>
                                                 <div class="col-sm-12">
                                                     <label>Imagen del certificado (jpg, jpeg, png - Máximo 5MB)</label>
                                                 </div>

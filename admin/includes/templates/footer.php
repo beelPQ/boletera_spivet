@@ -50,7 +50,7 @@
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
+<!-- <script src="dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <!--datatables-->
@@ -144,9 +144,19 @@
 
 
 <?php if( strpos($id, "design_diploma") !== false ){?>
-    <script src="js/design/design_diploma.js?v=<?= time() ?>"></script>
+    <script src="js/design/design_diploma.min.js?v=<?= time() ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
 <?php  } ?>
+
+<?php if( strpos($id, "design_credencial") !== false ){?>
+    <script src="js/design/design_credencial.min.js?v=<?= time() ?>"></script> 
+    <script src="https://unpkg.com/jquery@3/dist/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap@4/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
+    <script src="js/cropper/custom_functions_cropper.js?v=<?= time() ?>"></script> 
+    <script src="js/cropper/cropper.js?v=<?= time() ?>"></script> 
+<?php  } ?>
+
 <script src="js/acciones.js?v=<?= time() ?>"></script>
 <script>
   <?php if ($id == 'diploma_curos_talleres' || $id == 'cursos_cobros' || $id == 'cupones' || $id == 'clientes' || $id == 'servicios' || $id == 'usuarios' || $id == 'lista-cursos-design' ) { 

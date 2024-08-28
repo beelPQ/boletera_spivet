@@ -55,7 +55,6 @@ if ($typePasarela["type"] === "MercadoPago") {
 <link rel="stylesheet" type="text/css" href="modules/mod_buycarform/tmpl/assets/plugin/css/crop.css?v=<?=time()?>" />
 
 
-<!-- <a href="http://$domain/servicios" id="backArrowForm" > -->
 <?php
 //validacion de openpay
 if ($typePasarela["type"] === "OpenPay") { ?>
@@ -66,7 +65,7 @@ if ($typePasarela["type"] === "OpenPay") { ?>
     <div class="buycar flex flex-col">
         <div class="buycar-header flex flex-row">
             <div class="button-back">
-                <a href="#" id="backArrowForm" >
+                <a href="http://<?= $domain ?>/servicios">
                     <svg class="flecha-atras" width="16" height="28" viewBox="0 0 16 28" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="m13.8.6 2 2L4 14.3 15.8 26l-2 2L0 14.3 13.8.6z" fill="#000" />
@@ -134,7 +133,7 @@ if ($typePasarela["type"] === "OpenPay") { ?>
                         </div>
                         <div class="col-md-6 flex flex-col">
                             <label for="telwhat" class="form-label">WHATSAPP</label>
-                            <input type="text" class="form-control" id="telwhat" name="telwhat" maxlength="12">
+                            <input type="text" class="form-control" id="telwhat" name="telwhat" maxlength="10">
                         </div>
                         <div class="col-md-6">
                             <label for="cp" class="form-label">CODIGO POSTAL</label>
@@ -465,6 +464,6 @@ if ($typePasarela["type"] === "MercadoPago") {
 <script src="/modules/mod_buycarform/tmpl/assets/plugin/js/cropper.js?v=<?=time()?>"></script>
 <script src="/modules/mod_buycarform/tmpl/assets/js/transactionMP.js?v=<?=time()?>"></script>
 <script src="/modules/mod_buycarform/tmpl/assets/js/calculations.js?v=<?=time()?>"></script>
-<script src="/modules/mod_buycarform/tmpl/assets/js/buycarform.min.js?v=<?=time()?>"></script>
+<script src="/modules/mod_buycarform/tmpl/assets/js/buycarform.js?v=<?=time()?>"></script>
 <script src="/modules/mod_buycarform/tmpl/assets/js/transaction.js?v=<?=time()?>"></script>
 

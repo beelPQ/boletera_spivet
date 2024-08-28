@@ -6,6 +6,8 @@ const eventModalMP = (tipo) => {
 
 window.addEventListener('load', (event) => {
 
+
+
     const inputSearch = `
     <div class="input-search"> 
         <div class="input-search-filter flex">
@@ -80,7 +82,13 @@ window.addEventListener('load', (event) => {
                 <!--<div class="col-md-6">
 
                 </div>-->
+
+                
+
+           
+
             </form>
+
         </div>
     </div>
     `
@@ -99,7 +107,10 @@ window.addEventListener('load', (event) => {
                         <path d="M5.983 6.65c.007-.007.01-.018.017-.027l4.8-5.303a.827.827 0 0 0 0-1.08.029.029 0 0 0-.009-.006.643.643 0 0 0-.49-.234h-9.6a.652.652 0 0 0-.497.242L.2.239a.826.826 0 0 0 0 1.081l4.811 5.33a.638.638 0 0 0 .971 0z" fill="#000"/>
                     </svg>
                 </div>
-                <div class="col-md-6"></div>
+
+                <div class="col-md-6">
+                </div>
+
                 <div id="content_openpay_tdc" class="col-md-12 row g-3" hidden>
 
                     <div class="col-md-4" style="border-right: 1px solid #ccc;">
@@ -139,9 +150,12 @@ window.addEventListener('load', (event) => {
                         <input type="text" id="openpay_cvv" placeholder="3 o 4 dígitos" autocomplete="off" data-openpay-card="cvv2" maxlength="4">
                     </div>
 
-                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                    </div>
 
-                    <div class="col-md-3"></div>
+
+                    <div class="col-md-3">
+                    </div>
 
                     <div class="col-md-4"  style="text-align:right;" >
                         <label style="font-weight: 400;font-size: 12px;color: #444;">Transacciones realizadas vía:</label><br>
@@ -200,7 +214,6 @@ window.addEventListener('load', (event) => {
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingSumPayMobile"> <?php //id se usa en el div de abajo ?>
                     <button  class="accordion-button clickDeploySumPayMobile collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSumPayMobile" aria-expanded="false" aria-controls="collapseSumPayMobile">
-
                         <div type="button" class="position-relative clickDeploySumPayMobile" >
                           <img class="clickDeploySumPayMobile" src="/modules/mod_buycar/tmpl/img/icons/icon_counter.svg">
                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-light text-dark clickDeploySumPayMobile counterItems" >0</span>
@@ -320,38 +333,41 @@ window.addEventListener('load', (event) => {
     $('#typeFilterMovil').multiselect();
 
 
+
     const validateRecaptcha = (tipo) => {
-        proccessPago(tipo);
-        // grecaptcha.ready(function () {
-        //     grecaptcha.execute('6LevnX0pAAAAAM8b4qITJ6OHfpRdAZN1DF32xdpt', { action: 'formulario_pago' }).then(function (token) {
-        //         //console.log(token);
-        //         const dataVelidateR = new FormData();    //Se crea un objeto de tipo FormData para almacenar la informacion que se validara.
-        //         dataVelidateR.append('token', token);   //Se agrega la variable tipo al formdata.
-        //         const xhrValRecaptcha = new XMLHttpRequest(); //Se crea un objeto XML
-        //         xhrValRecaptcha.open('POST', '/modules/mod_buycarform/tmpl/model/validateRecaptcha.php', true);   //Se especifica en que metodo, a donde y si es asincrono.
-        //         xhrValRecaptcha.onload = function () {
-        //             const response = JSON.parse(this.response);
-        //             console.log(response);
-        //             if (!response.reqStatus) {
-        //                 Swal.fire(
-        //                     'Error en reCaptcha',    //TITLE
-        //                     'El reCaptcha no fue reconocido para este sitio',  //TEXT
-        //                     'error',  //TYPE
-        //                     'Aceptar'   //CONFIRMBUTTONTEXT
-        //                 );
-        //                 return;
-        //             } else {
-        //                 //eventModalMP(tipo);
-        //                 proccessPago(tipo);
-        //             }
-        //         }
-        //         xhrValRecaptcha.send(dataVelidateR);   //Enviamos los datos
-        //     });
-        // });
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LevnX0pAAAAAM8b4qITJ6OHfpRdAZN1DF32xdpt', { action: 'formulario_pago' }).then(function (token) {
+                //console.log(token);
+                const dataVelidateR = new FormData();    //Se crea un objeto de tipo FormData para almacenar la informacion que se validara.
+                dataVelidateR.append('token', token);   //Se agrega la variable tipo al formdata.
+                const xhrValRecaptcha = new XMLHttpRequest(); //Se crea un objeto XML
+                xhrValRecaptcha.open('POST', '/modules/mod_buycarform/tmpl/model/validateRecaptcha.php', true);   //Se especifica en que metodo, a donde y si es asincrono.
+                xhrValRecaptcha.onload = function () {
+                    const response = JSON.parse(this.response);
+                    console.log(response);
+                    if (!response.reqStatus) {
+                        Swal.fire(
+                            'Error en reCaptcha',    //TITLE
+                            'El reCaptcha no fue reconocido para este sitio',  //TEXT
+                            'error',  //TYPE
+                            'Aceptar'   //CONFIRMBUTTONTEXT
+                        );
+                        return;
+                    } else {
+                        //eventModalMP(tipo);
+                        proccessPago(tipo);
+                    }
+
+                }
+                xhrValRecaptcha.send(dataVelidateR);   //Enviamos los datos
+            });
+        });
     }
+
 
     document.addEventListener("click", (e) => {
         if (e.target) {
+
             let element = e.target;
             let elementID = e.target.id;
             let elementClass = e.target.classList;
@@ -360,10 +376,8 @@ window.addEventListener('load', (event) => {
                 btnSumPayChange('Mobile');
             } else if (elementClass.contains('clickDeploySumPayDesktop')) {
                 btnSumPayChange('Desktop');
-
             } else if (elementClass.contains('btnAdd')) {
                 let isInCart = verifyProductInCart(element.dataset.code);
-
                 if (isInCart == 0) {
                     if (element.dataset.modality == "Mixto") {
                         document.querySelector(`#btnModality`).click();
@@ -371,7 +385,6 @@ window.addEventListener('load', (event) => {
                         document.querySelector(`.modal-backdrop`).style.background = "transparent";
                         document.querySelector(`.main-backimage`).style.zIndex = "1";
                         document.querySelector(`#staticBackdrop`).style.background = "#0000009e";
-
                         const btnAccept = document.querySelector("#btnSelectionModality");
                         btnAccept.dataset.code = element.dataset.code;
                         btnAccept.dataset.name = element.dataset.name;
@@ -385,26 +398,24 @@ window.addEventListener('load', (event) => {
                     }
                     //addItem(element.dataset.code,element.dataset.name,element.dataset.pricemxn,element.dataset.priceusd,'Product');
                 }
+
+
             } else if (elementClass.contains('deleteProduct')) {
                 deleteProduct(element);
             } else if (elementClass.contains(`btn-payment-view-one`)) {
-                // localStorage.setItem("redirectToLoginServices", location.href);
-                localStorage.setItem("nextView", 1);
-
-                // ? Verificamos primero si existe un usario logeado
+                // ? Verificamos primero si existe un usario logeado [Moroni - 15May2024]
                 const inlogin = localStorage.getItem('inlogin') || '';
                 const dataId = document.body.getAttribute('data-id') || '';
                 const dataName = document.body.getAttribute('data-name') || '';
                 const dataEmail = document.body.getAttribute('data-email') || '';
-
+                localStorage.setItem('nextView', 1);
                 if (dataId == '' && dataName == '' && dataEmail == '') {
-
+                    // Verificamos que se haya seleccionado un producto
                     const textContentTotal = document.querySelector('.label-total')?.textContent;
                     const textTotalValue = textContentTotal !== undefined && parseFloat(textContentTotal.replace('$', '')) > 0 ? 
                         parseFloat(textContentTotal.replace('$', '')) : 0;
                     const subtotalTmp = localStorage.getItem('subtotal')??0;
                     const amountTmp = localStorage.getItem('amount')??0;
-
                     if( textTotalValue == 0 || parseFloat(textTotalValue) == 0 || parseFloat(textTotalValue) == 0) {
                         Swal.fire({
                             title: "No hay productos en el carrito",
@@ -415,8 +426,10 @@ window.addEventListener('load', (event) => {
                             allowOutsideClick: false,
                             allowEscapeKey: false
                         });
+                        localStorage.removeItem('nextView');
                         return;
                     }
+                    // Validación si la sesión esta activa pero los datos del usuario no
                     if(inlogin.trim() == '' ) {
                         Swal.fire({
                             title: "No se puede acceder al sguiente paso del proceso",
@@ -427,9 +440,10 @@ window.addEventListener('load', (event) => {
                             allowOutsideClick: false,
                             allowEscapeKey: false
                         });
+                        localStorage.removeItem('nextView');
                         return;
                     }
-
+                    // Mandamos al usuario al login antes de continuar
                     const spinner = document.querySelector(`.spinner`);
                     spinner.classList.add('logUser');
                     spinner.removeAttribute('style');
@@ -437,50 +451,30 @@ window.addEventListener('load', (event) => {
                     // Abrir una nueva ventana del navegador
                     // window.open(inlogin, '_blank');
                     window.open(inlogin, '_self');
+
                 }
-                else {
-                    // return;
+                else{
                     //if(localStorage.getItem("nextView")){}
-                    // const path = window.location.origin;
-                    // localStorage.setItem("nextView", 1);
-                    // location.href = `${path}/formulario-de-pago`;
-                    location.href = localStorage.getItem('inhost') !== null && localStorage.getItem('inhost') == 'server'
-                        ?  `${window.location.origin}/formulario-de-pag` : `${window.location.origin}/index.php?option=com_blank&view=blank&Itemid=109`; // ? Redirección local
+                    let path = window.location.origin;
+                    // localStorage.setItem("nextView", 1); // ? Comentado [Moroni - 15May2024]
+                    location.href = `${path}/formulario-de-pago`;
                 }
+
             } else if (elementID == "btnSelectionModality") {
                 let isInCart = verifyProductInCart(element.dataset.code);
                 if (isInCart == 0) {
                     addItem(element.dataset.code, element.dataset.name, element.dataset.pricemxn, element.dataset.priceusd, 'Product', element.dataset.modality);
                 }
                 $('#staticBackdrop').modal('hide')
+
             } else if (elementClass.contains('btnCleanFile')) {
                 document.querySelector('#' + element.dataset.idfile).value = '';
+
                 document.querySelector('#delete_' + element.dataset.idfile).value = '';
                 document.querySelector('#delete_' + element.dataset.idfile).setAttribute("hidden", "");
                 validateStep3();
+
             } else if (elementClass.contains('btn-payment-movil')) {
-
-                // ? Verificamos primero si existe un usario logeado
-                console.log('Pagar Movil');
-                const inlogin = localStorage.getItem('inlogin') || '';
-                const dataId = document.body.getAttribute('data-id') || '';
-                const dataName = document.body.getAttribute('data-name') || '';
-                const dataEmail = document.body.getAttribute('data-email') || '';
-                if (dataId == '' && dataName == '' && dataEmail == '') {
-
-                    const spinner = document.querySelector(`.spinner`);
-                    spinner.classList.add('logUser');
-                    spinner.removeAttribute('style');
-
-                    // Abrir una nueva ventana del navegador
-                    // window.open(inlogin, '_blank');
-                    window.open(inlogin, '_self');
-                }
-                else {
-                    validateRecaptcha("Movil");
-                }
-                return;
-
                 //document.querySelector(`.spinner`).style.display = 'flex'
 
                 //proccessPago();
@@ -499,21 +493,15 @@ window.addEventListener('load', (event) => {
         }
     })
 
-
     document.addEventListener("error", (e) => {
         if (e.target) {
             let element = e.target;
             let elementID = e.target.id;
             let elementClass = e.target.classList;
-
             if (elementClass.contains('imgFile')) {
                 element.src = 'modules/mod_buycar/tmpl/img/notfound.jpg';
             }
-
-
         }
-
-
     })
 
     /**

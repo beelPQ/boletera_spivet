@@ -29,7 +29,7 @@ echo "<script>
 		document.head.appendChild(styleModMenu);
 
 		const scriptModMenu = document.createElement('script');
-		scriptModMenu.src = '$baseurl/js/mod_script.js?v=$time';
+		scriptModMenu.src = '$baseurl/js/mod_script.min.js?v=$time';
 		document.head.appendChild(scriptModMenu);
 	})
 </script>";
