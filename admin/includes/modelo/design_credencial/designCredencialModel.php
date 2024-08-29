@@ -80,7 +80,7 @@
             }
         }
         
-        public function createPreviewDocument( $course, $structure, $orientation ){
+        public function createPreviewDocument( $course, $structure, $orientation, $fileName = '' ){
             
             try {
                 // $idEvent = decrypt($event);
@@ -344,15 +344,31 @@
                 // Renderizar la estructura HTML
                 $dompdf->render();
 
-               
                 $pdfOutput = $dompdf->output();
-                //Ruta de alamcenado de mockups de diploma
-                $pathSave = "../../../files/mockups/credencial/";
-                $nameDocument = "Credencial_mockup_".$idCourse.".pdf";
+
+                $pathSave = '';
+                $nameDocument = '';
+                if( $fileName == '' ){
+                    //Ruta de alamcenado de mockups de la credencial
+                    $pathSave = "../../../files/mockups/credencial/";
+                    $nameDocument = "Credencial_mockup_$idCourse.pdf";
+                }
+                else {
+                    // ? Si se ha generado la credencial desde el checkin, se alamcena en la carpeta de credenciales para su descarga
+                    //Ruta de alamcenado de mockups de la credencial
+                    $pathSave = "../../../images/clients/credentials/";
+                    $nameDocument = $fileName;
+                }
                 $doctoSave = file_put_contents($pathSave.$nameDocument, $pdfOutput);
+
+                if( !file_exists($pathSave) ) { mkdir($pathSave, 0777, true); }
+
+                // $doctoSave = file_put_contents($pathSave.$nameDocument, $pdfOutput);
+                // if( $fileName !== '') file_put_contents("../../../images/clients/credentials/$nameDocument", $pdfOutput);
                 if($doctoSave){
                     $respose = [
                         "status" => true,
+                        "message" => '',
                         "nameDocto" => $nameDocument   
                     ]; 
                 }else{
@@ -718,7 +734,8 @@
             $model->saveLogoCredencial( $_POST["idCourse"], $_POST["previewImage1"] ); 
         }
         if( $_POST["method"]  == "previewDesignDocument" ){
-            $model->createPreviewDocument( $_POST["idCourse"], $_POST["structure"], $_POST["orientation"] );
+            $fileName = isset($_POST["filename"]) ?$_POST["filename"] : '';
+            $model->createPreviewDocument( $_POST["idCourse"], $_POST["structure"], $_POST["orientation"], $fileName );
         }
         if( $_POST["method"] == "getDocumentIfExist" ){
             $model->getStructureDocument( $_POST["idCourse"] );

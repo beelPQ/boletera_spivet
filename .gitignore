@@ -49,3 +49,5 @@ admin/images/clients/
 
 
 administrator/cache/_media_version/
+
+/admin/includes/modelo/dompdf/vendor/
