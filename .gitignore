@@ -16,7 +16,8 @@
 
 /files/adjuntos/
 /files/comprobantes/
-admin/files/mockups/certificado/Diploma*.pdf
+/admin/images/backgrounds/*.mp4
+/admin/files/mockups/certificado/Diploma*.pdf
 
 # /api/
 # /libraries/
@@ -36,13 +37,15 @@ admin/files/mockups/certificado/Diploma*.pdf
 
 # configuration.php
 
-
+images/clientes/fotos/
 admin/images/design_credencial/*.png
 admin/images/design_credencial/*.jpeg
 admin/images/design_credencial/*.jpg
 admin/images/design_diploma/*.png
 admin/images/design_diploma/*.jpeg
 admin/images/design_diploma/*.jpg
+admin/files/mockups/credencial/
+admin/images/clients/
 
 
 administrator/cache/_media_version/

@@ -82,6 +82,7 @@ if ($_SESSION['id_logueo'] === "") {
   ?>
 
     <?php if( $id == 'checkin' ){ ?>
+        <link rel="stylesheet" href="css/design_credencial.min.css?v=<?= time() ?>"> 
         <link rel="stylesheet" href="css/checkin.min.css">
     <?php } ?>
     <?php if( strpos($id, "design_diploma") !== false ){?>

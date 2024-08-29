@@ -130,14 +130,14 @@
 
 <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.7/js/dataTables.checkboxes.min.js"></script>
 
-<?php if ($accion == 'editar-empresa' || $accion == 'editar_configuracion' || $accion === 'editar-cupones' ||  str_contains($id, 'editar-usuarios')) { ?>
+<?php if ($accion == 'editar-empresa' || $accion == 'editar_configuracion' || $accion === 'editar-cupones' ||  strpos($id, 'editar-usuarios')) { ?>
   <script src="js/editar.js?v=<?= time() ?>"></script>
 <?php } ?>
 
 <?php if( $id == 'checkin' ){ ?>
         <!-- input telefono con bandera  -->
         <!--<script src="tools/inputtelephone/js/intlTelInput.js"></script>-->
-        <script src="js/checkin/checkin.js"></script>
+        <script src="js/checkin/checkin.min.js?v=<?= time() ?>"></script>
 <?php } ?>
 
 <?php if( $id != 'checkin' ){ ?><script src="js/irEditar.js?v=<?= time() ?>"></script><?php } ?>
