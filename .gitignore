@@ -12,6 +12,10 @@
 /.vscode
 .DS_Store
 
+/admin/includes/funciones/checkin/vendor/
+/admin/includes/funciones/checkin/composer.lock
+/admin/includes/modelo/dompdf/vendor/
+
 /administrator/cache/autoload_psr4.php
 
 /files/adjuntos/

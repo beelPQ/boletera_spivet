@@ -126,8 +126,8 @@ const initSdkMP = (type) => {
                     cardFormData.tmiduser = tmiduser;
                     cardFormData.tmemailuser = tmemailuser;
 
-                    //  callback llamado cuando el usuario haga clic en el botón enviar los datos
-                    //  ejemplo de envío de los datos recolectados por el Brick a su servidor
+                    //  callback llamado cuando el usuario haga clic en el bot車n enviar los datos
+                    //  ejemplo de env赤o de los datos recolectados por el Brick a su servidor
                     return new Promise((resolve, reject) => {
                         fetch(`/modules/mod_buycarform/tmpl/model/MercadoPago/request.php`, {
                             method: "POST",

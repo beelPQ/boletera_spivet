@@ -23,6 +23,7 @@
     "issues": "https://github.com/ColorlibHQ/AdminLTE/issues"
   },
   "require": {
-    "google/recaptcha": "^1.2"
+    "google/recaptcha": "^1.2",
+    "phpmailer/phpmailer": "^6.9"
   }
 }

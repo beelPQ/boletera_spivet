@@ -256,6 +256,7 @@ const save_data = (code1, code2) => {
     // ? Datos del usuario desde Joomla
     formData.append('tmiduser', document.body.getAttribute('data-id') || 0);
     formData.append('tmemailuser', document.body.getAttribute('data-email') || '');
+
     formData.append("photoUser", document.querySelector("img#avatar").src);
     asyncData2(`/modules/mod_buycarform/tmpl/model/requests.php`, `POST`, formData)
         .then((result) => {

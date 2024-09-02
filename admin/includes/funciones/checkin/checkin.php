@@ -1,9 +1,22 @@
 <?php
+
+
 // require_once ('../general/pdf.php');
 
 
 // require_once ('../general/general.php');
 // require_once ('templates.php');
+
+// $pathRoot = $_SERVER['DOCUMENT_ROOT'];
+// require_once("$pathRoot/templates/spivet_pq_tm/php/email/PHPMailer/PHPMailer.php");
+// require_once("$pathRoot/templates/spivet_pq_tm/php/email/PHPMailer/SMTP.php");
+
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php';
+
+
 
 // Clave de encriptación (debe ser segura y de longitud adecuada para el algoritmo)
 $key = "Clav3 unica de 3ncryptac10n S3gUr4 256";
@@ -20,13 +33,6 @@ if (isset($_POST["option"])) {
     $id_user = $_SESSION['id_logueo'];
     // $response['idcli'] = $id_user;
 
-
-    // try {
-    // } catch (Exception $e) {
-    //     $reponse['message'] = "Excepción capturada";
-    //     $reponse['description'] = $e->getMessage();
-    //     die(json_encode($response));
-    // }
     if ($_POST["option"] == 'busquedaManual') {
         $mysqli = conectar();
         $participant_number = $_POST["code"];
@@ -36,47 +42,30 @@ if (isset($_POST["option"])) {
 
         // $response['id_event'] = $id_event;
 
-        /*
-            if($_POST["code2"]!=''){
-                $id_event = decrypt($_POST["code2"]);
-            }else{
-                $query = $mysqli->prepare(" SELECT rol.id_event
-                                            FROM users AS usr
-                                            INNER JOIN roles AS rol ON usr.id_role=rol.id
-                                            WHERE usr.id_user = ? AND usr.available = ?");
-                $query -> bind_param('ii',$id_user,$available);
-                $query -> execute();
-                $query -> bind_result($id_event);
-                $query -> fetch();
-                $query -> close();
-                
-            }
-            */
-
-        // die(json_encode( (int)$participant_number  ));
-
         $strQuery = "";
         // if( is_int($participant_number) ) {
         if ((int)$participant_number > 0) {
-            $strQuery = "SELECT del.participant_number, trans.cobroscata_idregcobro, cli.clientes_idsolicitud, cli.clientes_nombre,cli.clientes_apellido1,cli.clientes_apellido2, cli.clientes_email, cli.clientes_telefono, cli.clientes_photo, del.checkin, tranItem.modality, del.id_deliverable, del.participant_pin, del.file_qr1, del.file_qr2, del.file_credential, del.file_certificate, del.file_lodging
+            $strQuery = "SELECT del.participant_number, trans.cobroscata_idregcobro, cli.clientes_idsolicitud, cli.clientes_nombre,cli.clientes_apellido1,cli.clientes_apellido2, cli.clientes_email, cli.clientes_telefono, cli.clientes_photo, del.checkin, tranItem.modality, del.id_deliverable, del.participant_pin, del.file_qr1, del.file_qr2, del.file_credential, del.file_certificate, del.file_lodging, prod.catalogo_productos_fechafin
                 FROM deliverables AS del
                 INNER JOIN catalogo_cobros_items AS tranItem ON (tranItem.id_deliverable = del.id_deliverable)
                 LEFT JOIN catalogo_cobros AS trans ON (trans.idsystemcobrocat = tranItem.cobroscata_idsystemcobrocat)
                 LEFT JOIN catalogo_clientes AS cli ON (cli.idsystemcli = tranItem.clientes_idsystemcli)
-                WHERE tranItem.modality = 'Presencial'
-                AND trans.cobroscata_status = 1
+                LEFT JOIN catalogo_productos AS prod ON (tranItem.catalogo_productos_idsystemcatpro = prod.idsystemcatpro)     
+                WHERE trans.cobroscata_status = 1
                 AND tranItem.catalogo_productos_idsystemcatpro = $id_event
                 AND trans.cobroscata_idregcobro = $participant_number ";
+            // AND tranItem.modality = 'Presencial'
         } else {
-            $strQuery = "SELECT del.participant_number, trans.cobroscata_idregcobro, cli.clientes_idsolicitud, cli.clientes_nombre,cli.clientes_apellido1,cli.clientes_apellido2, cli.clientes_email, cli.clientes_telefono, cli.clientes_photo, del.checkin, tranItem.modality, del.id_deliverable, del.participant_pin, del.file_qr1, del.file_qr2, del.file_credential, del.file_certificate, del.file_lodging
+            $strQuery = "SELECT del.participant_number, trans.cobroscata_idregcobro, cli.clientes_idsolicitud, cli.clientes_nombre,cli.clientes_apellido1,cli.clientes_apellido2, cli.clientes_email, cli.clientes_telefono, cli.clientes_photo, del.checkin, tranItem.modality, del.id_deliverable, del.participant_pin, del.file_qr1, del.file_qr2, del.file_credential, del.file_certificate, del.file_lodging, prod.catalogo_productos_fechafin
             FROM deliverables AS del
             INNER JOIN catalogo_cobros_items AS tranItem ON (tranItem.id_deliverable = del.id_deliverable)
             INNER JOIN catalogo_cobros AS trans ON (trans.idsystemcobrocat = tranItem.cobroscata_idsystemcobrocat)
             INNER JOIN catalogo_clientes AS cli ON (cli.idsystemcli = tranItem.clientes_idsystemcli)
-            WHERE tranItem.modality = 'Presencial'
-            AND trans.cobroscata_status = 1
+            LEFT JOIN catalogo_productos AS prod ON (tranItem.catalogo_productos_idsystemcatpro = prod.idsystemcatpro)     
+            WHERE trans.cobroscata_status = 1
             AND tranItem.catalogo_productos_idsystemcatpro = $id_event
             AND del.participant_number = '$participant_number'";
+            // AND tranItem.modality = 'Presencial'
         }
 
         $query = $mysqli->prepare($strQuery);
@@ -115,7 +104,7 @@ if (isset($_POST["option"])) {
             die(json_encode($response));
         }
         // $query -> bind_result($existRow,$checkin,$credential,$name,$lastname1,$lastname2,$photo,$email,$phone,$noTra,$status,$tr_name,$idParticipant,$ev_name,$domain);
-        $query->bind_result($idParticipant, $idRegCobro, $idsolicitud, $name, $lastname1, $lastname2, $email, $phone, $photo, $checkin, $modality, $idDeliverable, $nip, $qr1, $qr2, $credential, $certificate, $lodging);
+        $query->bind_result($idParticipant, $idRegCobro, $idsolicitud, $name, $lastname1, $lastname2, $email, $phone, $photo, $checkin, $modality, $idDeliverable, $nip, $qr1, $qr2, $credential, $certificate, $lodging, $endDate);
         // $query -> fetch();
         $dataResult = array();
         // Iterar sobre las filas de resultados
@@ -134,13 +123,15 @@ if (isset($_POST["option"])) {
                 "modality" => $modality,
                 "statusPay" => "Pagado",
                 "idDeliverable" => encrypt($idDeliverable, $key),
+                "certificate" => $certificate != '-' && $certificate != '' ? $certificate : '',
                 "gafete" => $credential != '-' && $credential != '' ? $credential : '',
                 "pdf" => $credential != '-' && $credential != '' ? '/admin/images/clients/credentials/' . $credential : '',
+                "endDate" => "$endDate 23:59:59",
             ]);
         }
         $response['status'] = true;
         $response['message'] = "Registros encontrados";
-
+        // $response['description'] = $strQuery;
 
         $response['data'] = $dataResult;
         $query->close();
@@ -196,7 +187,7 @@ if (isset($_POST["option"])) {
             $response['domain'] = $domain;
             $response['code'] = encrypt($existRow);
 
-            $response['color'] = $color??'';
+            $response['color'] = $color ?? '';
         } else {
             $response = array();
             $response['response'] = 'error';
@@ -208,20 +199,6 @@ if (isset($_POST["option"])) {
         $mysqli = conectar();
         $available = 1;
         $id_event = $_POST["code"];
-        // if ($_POST["code"] != '') {
-        //     $id_event = decrypt($_POST["code"]);
-        // } else {
-        //     $query = $mysqli->prepare(" SELECT rol.id_event
-        //                                     FROM users AS usr
-        //                                     INNER JOIN roles AS rol ON usr.id_role=rol.id
-        //                                     WHERE usr.id_user = ? AND usr.available = ?");
-        //     $query->bind_param('ii', $id_user, $available);
-        //     $query->execute();
-        //     $query->bind_result($id_event);
-        //     $query->fetch();
-        //     $query->close();
-        // }
-
 
         $status = 'pagado';
         $participant_number = '';
@@ -248,21 +225,11 @@ if (isset($_POST["option"])) {
         }
 
         // ? Correción en consulta [Moroni - 04Jun2024]
-        // Se agregó AND ti.modality = 'Presencial' para que solo se muestren los participantes que están en presencial [MOroni - 29Aug2024]
-        $instruction = "SELECT del.participant_number, cli.clientes_nombre, cli.idsystemcli, cli.clientes_apellido1, cli.clientes_apellido2, cli.clientes_telefono, cli.clientes_email, cli.clientes_photo, ti.modality, del.id_deliverable, del.checkin, tra.cobroscata_idregcobro, tra.cobroscata_status FROM catalogo_cobros AS tra INNER JOIN catalogo_cobros_items AS ti ON (ti.cobroscata_idsystemcobrocat = tra.idsystemcobrocat) INNER JOIN catalogo_clientes AS cli ON (cli.idsystemcli = ti.clientes_idsystemcli) LEFT JOIN deliverables AS del ON (ti.id_deliverable=del.id_deliverable) WHERE ti.catalogo_productos_idsystemcatpro = $id_event AND tra.cobroscata_status = 1 AND ti.modality = 'Presencial' $filter_name $filter_lastname1 $filter_lastname2 GROUP BY del.participant_number, cli.clientes_nombre, cli.idsystemcli, cli.clientes_apellido1, cli.clientes_apellido2, cli.clientes_telefono, cli.clientes_email, cli.clientes_photo, ti.modality, del.id_deliverable, del.checkin, tra.cobroscata_idregcobro, tra.cobroscata_status ORDER BY cli.clientes_nombre";
+        // Considerar agregar la confición AND ti.modality = 'Presencial' para que solo se muestren los participantes que están en presencial [MOroni - 29Aug2024]
+        // Se agregó la confición AND del.participant_number <> '' para que solo se muestren los participantes que hayan sido registrados correctamente [MOroni - 29Aug2024]
+        $instruction = "SELECT del.participant_number, cli.clientes_nombre, cli.idsystemcli, cli.clientes_apellido1, cli.clientes_apellido2, cli.clientes_telefono, cli.clientes_email, cli.clientes_photo, ti.modality, del.id_deliverable, del.checkin, tra.cobroscata_idregcobro, tra.cobroscata_status, del.participant_pin, tra.cobroscata_idregcobro FROM catalogo_cobros AS tra INNER JOIN catalogo_cobros_items AS ti ON (ti.cobroscata_idsystemcobrocat = tra.idsystemcobrocat) INNER JOIN catalogo_clientes AS cli ON (cli.idsystemcli = ti.clientes_idsystemcli) LEFT JOIN deliverables AS del ON (ti.id_deliverable=del.id_deliverable) WHERE ti.catalogo_productos_idsystemcatpro = $id_event AND del.participant_number <> '' AND tra.cobroscata_status = 1 $filter_name $filter_lastname1 $filter_lastname2 GROUP BY del.participant_number, cli.clientes_nombre, cli.idsystemcli, cli.clientes_apellido1, cli.clientes_apellido2, cli.clientes_telefono, cli.clientes_email, cli.clientes_photo, ti.modality, del.id_deliverable, del.checkin, tra.cobroscata_idregcobro, tra.cobroscata_status, del.participant_pin, tra.cobroscata_idregcobro ORDER BY cli.clientes_nombre";
 
-        // $instruction = "SELECT cli.idsystemcli, cli.clientes_nombre, cli.clientes_apellido1, cli.clientes_apellido2, 
-        // cli.clientes_telefono, cli.clientes_email, cli.clientes_photo, del.participant_number, 
-        // ti.modality, del.id_deliverable, del.checkin, tra.cobroscata_idregcobro, tra.cobroscata_status
-        // FROM catalogo_cobros AS tra 
-        // INNER JOIN catalogo_cobros_items AS ti ON (ti.cobroscata_idsystemcobrocat = tra.idsystemcobrocat)
-        // INNER JOIN catalogo_clientes AS cli ON (cli.idsystemcli = ti.clientes_idsystemcli)
-        // INNER JOIN deliverables AS del ON (ti.id_deliverable=del.id_deliverable) 
-        // WHERE ti.catalogo_productos_idsystemcatpro = $id_event 
-        // AND tra.cobroscata_status = 1
-        // $filter_name $filter_lastname1 $filter_lastname2
-        // GROUP BY del.participant_number ORDER BY cli.clientes_nombre";
-
+        // die($instruction);
 
         $consulta = $mysqli->query($instruction);
 
@@ -272,12 +239,14 @@ if (isset($_POST["option"])) {
             if ($row['clientes_photo'] !== '' && $row['clientes_photo'] != '-') {
                 $uriPhonto = '/images/clientes/fotos/' . $row['clientes_photo'];
             }
-            $isDisabled = $row['modality'] == 'Virtual' ? 'disabled' : '';
+            $isDisabled = ''; // $row['modality'] == 'Virtual' ? 'disabled' : ''; // ? Se desactiva la opción de participantes virtuales
+            // $isDisabled = $row['participant_number'] == '' ? 'disabled' : ''; // ? Se desactiva la opción si no se detecta el número de participante
+
             $table = $table . '
                     <tr>
                         <td>
                             <div class="form-check radio_table">
-                                <input type="radio" id="" value="' . $row['participant_number'] . '" data-id="' . $row['participant_number'] . '" name="radios" '.$isDisabled.' >
+                                <input type="radio" id="" value="' . $row['participant_number'] . '" data-id="' . $row['participant_number'] . '" data-pin="' . $row['cobroscata_idregcobro'] . '" data-modality="' . $row['modality'] . '" name="radios" ' . $isDisabled . ' >
                             </div>
                         </td>
                         <td>' . $row['clientes_nombre'] . '</td>
@@ -329,244 +298,198 @@ if (isset($_POST["option"])) {
         $mysqli->close();
         die(json_encode($response));
     } else if ($_POST["option"] == 'generateCredential') {
-
+        $response['message'] = "La creación de la credencial no está disponible en este momento";
+        die(json_encode($response));
+    } else if ($_POST["option"] == 'sendEmailCredential') {
+        $response = [
+            'status' =>  false,
+            'message' =>  "",
+            'description' =>  "",
+            'data' =>  [],
+        ];
+        // Crear una instancia de PHPMailer
+        $mail = new PHPMailer(true);
         try {
-            // ? P-MPM4
-            // $reponse['description'] = $id_event;
-            // $reponse['data'] = $_POST;
-            // die(json_encode($response));
-    
+            $uriFile = $_POST["uriFile"] ?? '';
+            // $completePathFile = $_SERVER['DOCUMENT_ROOT'].$uriFile;
+            $completePathFile = $_SERVER['HTTP_ORIGIN'] . $uriFile;
+            $id_event = $_POST["course"] ?? '';
+            $participantNumber = $_POST["code"] ?? '';
+
             $mysqli = conectar();
-    
-            $id_deliverable = decrypt($_POST["code"], $key);
-            $available = 1;
-    
-            $id_event = 0;
-            if ($_POST["code2"] != '') {
-                $id_event =  strlen($_POST["code2"]) > 9 ? decrypt($_POST["code2"], $key) : $_POST["code2"];
-            } else {
-                $query = $mysqli->prepare(" SELECT rol.id_event
-                                                FROM users AS usr
-                                                INNER JOIN roles AS rol ON usr.id_role=rol.id
-                                                WHERE usr.id_user = ? AND usr.available = ?");
-                $query->bind_param('ii', $id_user, $available);
-                $query->execute();
-                $query->bind_result($id_event);
-                $query->fetch();
-                $query->close();
-            }
-    
-            // $reponse['description'] = $id_event;
-            // $reponse['data'] = $_POST;
-            // die(json_encode($response));
-    
-    
-            $query = $mysqli->prepare(" SELECT ev.id_event,ev.domain,ev.show_qr2,credential_version,
-                                                ow.phone, ow.email
-                                            FROM events AS ev
-                                            INNER JOIN owners AS ow ON ev.id_owner=ow.id_owner
-                                            WHERE ev.id_event = ? AND ev.available = ?");
+            $strQuery = "SELECT del.participant_number, trans.cobroscata_idregcobro, cli.clientes_idsolicitud, cli.clientes_nombre,cli.clientes_apellido1,cli.clientes_apellido2, cli.clientes_email, cli.clientes_telefono, cli.clientes_photo, del.checkin, tranItem.modality, del.id_deliverable, del.participant_pin, del.file_qr1, del.file_qr2, del.file_credential, del.file_certificate, del.file_lodging, prod.catalogo_productos_fechafin FROM deliverables AS del INNER JOIN catalogo_cobros_items AS tranItem ON (tranItem.id_deliverable = del.id_deliverable) INNER JOIN catalogo_cobros AS trans ON (trans.idsystemcobrocat = tranItem.cobroscata_idsystemcobrocat) INNER JOIN catalogo_clientes AS cli ON (cli.idsystemcli = tranItem.clientes_idsystemcli) LEFT JOIN catalogo_productos AS prod ON (tranItem.catalogo_productos_idsystemcatpro = prod.idsystemcatpro) WHERE trans.cobroscata_status = 1 AND tranItem.catalogo_productos_idsystemcatpro = $id_event AND del.participant_number = '$participantNumber'";
+            $query = $mysqli->prepare($strQuery);
+
             // Verificar si la preparación de la consulta tuvo éxito
             if (!$query) {
-                $response['status'] = false;
-                $response['message'] = "Error en la preparación de la consulta";
-                $response['description'] = $mysqli->error;
+                $response['message'] = "No se pudo enviar el correo";
+                $response['description'] = "Error en la preparación de la consulta" . $mysqli->error;
                 die(json_encode($response));
             }
-            $query->bind_param('ii', $id_event, $available);
+            // $query->bind_param('sii',$participant_number,$available,$id_event);
             $query->execute();
-            $query->bind_result($existEvent, $domain, $show_qr2, $justLabel, $ow_phone, $ow_email);
-            $query->fetch();
-            $query->close();
-    
-            $query = $mysqli->prepare(" SELECT del.id_deliverable,del.participant_number,
-                                                   cli.name,cli.lastname1,cli.lastname2,
-                                                   tr.name AS tr_name
-                                            FROM deliverables AS del
-                                            INNER JOIN transaction_items AS ti ON ti.id_deliverable=del.id_deliverable
-                                            INNER JOIN transactions AS tra ON tra.id_transaction=ti.id_transaction
-                                            INNER JOIN clients AS cli ON cli.id_client=tra.id_client
-                                            INNER JOIN general_items AS gi ON gi.id_general_item=ti.id_general_item
-                                            INNER JOIN detail_tickets AS dt ON dt.id_detail_ticket=gi.id_detail_ticket
-                                            INNER JOIN ticket_roles AS tr ON tr.id_ticket_role=dt.id_ticket_role
-                                            WHERE del.id_deliverable = ? AND del.available = ? AND tra.id_event = ?");
-            $query->bind_param('iii', $id_deliverable, $available, $id_event);
-            $query->execute();
-            $query->bind_result($existRow, $idParticipant, $name, $lastname1, $lastname2, $typeTicket);
-            $query->fetch();
-            $query->close();
-    
-            if ($existRow && $existEvent) {
-    
-                $credential = array();
-                $credential['id_deliverable'] = encrypt($id_deliverable);
-                $credential['idParticipant'] = $idParticipant;
-                $credential['name'] = $name;
-                $credential['lastname1'] = $lastname1;
-                $credential['lastname2'] = $lastname2;
-                $credential['typeTicket'] = $typeTicket;
-    
-                $credential['domain'] = $domain;
-                $credential['show_qr2'] = $show_qr2;
-                $credential['ow_phone'] = $ow_phone;
-                $credential['ow_email'] = $ow_email;
-    
-                $html = '';
-                /* if ($justLabel == 1) {
-                    $html = template_credential_justlabel($credential);
-                } else {
-                    $html = template_credential($credential);
-                } */
-                $namePdf = 'credential_' . $idParticipant . '.pdf';
-                $pathPdf = '../../../images/clients/credentials/' . $namePdf;
-    
-                // generatePDF($html, $pathPdf, 'letter', 'portrait');
-    
-    
-                $query = $mysqli->prepare("UPDATE deliverables SET file_credential=?  WHERE participant_number = ? ");
-                $query->bind_param('ss', $namePdf, $idParticipant);
-                $query->execute();
-                //$query -> fetch();
-                $query->close();
-    
-                $data = array();
-                $data['respuesta'] = 'success';
-                $data['pdf'] = '../images/clients/credentials/' . $namePdf;
-                $data['pdfName'] = $namePdf;
-            } else {
-    
-                $data = array();
-                $data['respuesta'] = 'error';
+            // Verificar si la ejecución de la consulta tuvo éxito
+            if ($query->errno) {
+                $response['message'] = "No se pudo enviar el correo";
+                $response['description'] = "Error al ejecutar la consulta" . $query->error;
+                die(json_encode($response));
             }
-    
+            // $query -> bind_result($existRow,$checkin,$credential,$name,$lastname1,$lastname2,$photo,$email,$phone,$noTra,$status,$tr_name,$idParticipant,$ev_name,$domain);
+            $query->bind_result($idParticipant, $idRegCobro, $idsolicitud, $name, $lastname1, $lastname2, $email, $phone, $photo, $checkin, $modality, $idDeliverable, $nip, $qr1, $qr2, $credential, $certificate, $lodging, $endDate);
+            // $query -> fetch();
+            $dataResult = array();
+            // Iterar sobre las filas de resultados
+            while ($query->fetch()) {
+                $dataResult = [
+                    "idParticipant" => $idParticipant,
+                    "noTra" => $idRegCobro,
+                    "idsolicitud" => encrypt($idsolicitud, $key),
+                    "name" => $name,
+                    "lastname1" => $lastname1,
+                    "lastname2" => $lastname2,
+                    "email" => $email,
+                    "phone" => $phone,
+                    "photo" => $photo,
+                    "checkin" => $checkin,
+                    "modality" => $modality,
+                    "statusPay" => "Pagado",
+                    "idDeliverable" => encrypt($idDeliverable, $key),
+                    "certificate" => $certificate != '-' && $certificate != '' ? $certificate : '',
+                    "gafete" => $credential != '-' && $credential != '' ? $credential : '',
+                    "pdf" => $credential != '-' && $credential != '' ? '/admin/images/clients/credentials/' . $credential : '',
+                    "endDate" => "$endDate 23:59:59",
+                ];
+            }
+
+            $query->close();
             $mysqli->close();
-    
-            // echo json_encode($data);
-            die(json_encode($data));
+            // Creación del HTML del correo
+            $tmplMailFile = tmplMailFile($dataResult, $completePathFile);
+
+
+            $hostMail = 'mail.spivet.com.mx';
+            $portMail = 465;
+            $smtpSecure = 'SSL';
+            $nameMail = 'notificador@spivet.com.mx';
+            $passMail = 'cin24.belmont';
+            $fromMail = 'notificador@spivet.com.mx';
+
+            // $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->CharSet = "utf-8";
+            $mail->SMTPDebug  = 0;
+            $mail->Host = $hostMail; //'sandbox.smtp.mailtrap.io';
+            $mail->SMTPAuth = true;
+            $mail->Port = $portMail; // 2525;
+            $mail->Username =  $nameMail; // 'd0295f0adca216';
+            $mail->Password = $passMail; //'4869fe0598e4b7';
+            $mail->SMTPSecure = $smtpSecure;
+            // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Habilitar encriptación
+            // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Habilitar encriptación
+
+            // Configuración del correo electrónico
+            $mail->setFrom($fromMail, 'Notificador prueba');       // Dirección del remitente
+            $mail->addAddress($dataResult['email'], 'Credencial el evento'); // Añadir un destinatario
+
+
+            // Añadir archivo adjunto
+            if($uriFile != '') $mail->addAttachment($_SERVER['DOCUMENT_ROOT'].$uriFile);    // Especifica la ruta al archivo adjunto
+
+            // Contenido del correo
+            $mail->isHTML(true);                             // Configurar el correo como HTML
+            $mail->Subject = 'Prueba de credencial';         // Asunto del correo
+            $mail->Body    = $tmplMailFile;                  // Cuerpo del mensaje en HTML
+            $mail->AltBody = 'Este es el mensaje del correo en texto plano'; // Cuerpo del mensaje en texto plano (para clientes que no soportan HTML)
+
+            // Enviar el correo
+            // $mail->send();
+            if (!$mail->send()) {
+                $response['message'] = "No se pudo enviar el correo";
+                $response['description'] = $mail->ErrorInfo;
+                echo $error;
+            } else {
+                $response['status'] = true;
+                $response['message'] = "El mensaje ha sido enviado";
+                $response['description'] = $_SERVER;
+            }
+
+            
+            $response['data'] = $dataResult;
+            die(json_encode($response));
         } catch (Exception $e) {
-            $reponse['message'] = "Excepción capturada";
-            $reponse['description'] = $e->getMessage();
+            $response['message'] = "Exception:  El mensaje no se pudo enviar.";
+            $response['description'] = $mail->ErrorInfo;
             die(json_encode($response));
         }
-    } else if ($_POST["option"] == 'generateEmailCredential') {
-
-        $mysqli = conectar();
-
-
-        $id_deliverable = decrypt($_POST["code"]);
-        $available = 1;
-
-
-        if ($_POST["code2"] != '') {
-            $id_event = decrypt($_POST["code2"]);
-        } else {
-            $query = $mysqli->prepare(" SELECT rol.id_event
-                                            FROM users AS usr
-                                            INNER JOIN roles AS rol ON usr.id_role=rol.id
-                                            WHERE usr.id_user = ? AND usr.available = ?");
-            $query->bind_param('ii', $id_user, $available);
-            $query->execute();
-            $query->bind_result($id_event);
-            $query->fetch();
-            $query->close();
-        }
-
-
-        $email = $_POST["email"];
-
-
-
-        $query = $mysqli->prepare(" SELECT ev.id_event,ev.domain,ev.logo,ev.name,
-                                               ow.whats_telegram
-                                        FROM events AS ev
-                                        INNER JOIN owners AS ow ON ev.id_owner=ow.id_owner
-                                        WHERE ev.id_event = ? AND ev.available = ?");
-        $query->bind_param('ii', $id_event, $available);
-        $query->execute();
-        $query->bind_result($existEvent, $domain, $logoEvent, $nameEvent, $ow_phone);
-        $query->fetch();
-        $query->close();
-
-        $query = $mysqli->prepare(" SELECT del.id_deliverable,del.participant_number,del.file_credential,
-                                               cli.name,cli.lastname1,cli.lastname2,
-                                               tra.id_secondary
-                                        FROM deliverables AS del
-                                        INNER JOIN transaction_items AS ti ON ti.id_deliverable=del.id_deliverable
-                                        INNER JOIN transactions AS tra ON tra.id_transaction=ti.id_transaction
-                                        INNER JOIN clients AS cli ON cli.id_client=tra.id_client
-                                        INNER JOIN general_items AS gi ON gi.id_general_item=ti.id_general_item
-                                        INNER JOIN detail_tickets AS dt ON dt.id_detail_ticket=gi.id_detail_ticket
-                                        INNER JOIN ticket_roles AS tr ON tr.id_ticket_role=dt.id_ticket_role
-                                        WHERE del.id_deliverable = ? AND del.available = ? AND tra.id_event = ?");
-        $query->bind_param('iii', $id_deliverable, $available, $id_event);
-        $query->execute();
-        $query->bind_result(
-            $existRow,
-            $idParticipant,
-            $credential,
-            $name,
-            $lastname1,
-            $lastname2,
-            $folio
-        );
-        $query->fetch();
-        $query->close();
-
-        if ($existEvent && $existRow) {
-
-            date_default_timezone_set('America/Mexico_City');
-            $current_date = date("d/m/Y H:i:s");
-
-            $dataEmail = array();
-            $dataEmail['domain'] = $domain;
-            $dataEmail['logoEvent'] = $logoEvent;
-            $dataEmail['whats_telegram'] = $ow_phone;
-
-            $dataEmail['idParticipant'] = $idParticipant;
-            $dataEmail['credential'] = $credential;
-            $dataEmail['name'] = $name;
-            $dataEmail['folio'] = $folio;
-            $dataEmail['current_date'] = $current_date;
-
-            $html = template_email_credential($dataEmail);
-
-            $data = array();
-            $data['respuesta'] = 'success';
-            $data['fromName'] = $nameEvent;
-            $data['subject'] = 'Gafete para ' . $nameEvent;
-            $data['bodyEmail'] = $html;
-            $data['toEmail'] = $email;
-            $data['toNameEmail'] = $name . ' ' . $lastname1 . ' ' . $lastname2;
-        } else {
-            $data = array();
-            $data['respuesta'] = 'error';
-        }
-
-        $mysqli->close();
-
-        echo json_encode($data);
     }
 
-    // ? Guardar el nombre del documento de la credencial
-    else if($_POST["option"]=='saveNameDocto'){
+
+    // ? Guardar el nombre del documento de la credencial en la tabla de deliverables
+    else if ($_POST["option"] == 'saveNameDocto') {
         $mysqli = conectar();
         $id_deliverable = decrypt($_POST["code"], $key);
         $nameDocto = $_POST["name"];
-        $type = $_POST["type"];
-        
-        $query = $mysqli->prepare("UPDATE deliverables SET file_credential=?  WHERE id_deliverable = ? ");
-        $query -> bind_param('ss',$nameDocto,$id_deliverable);
-        $query -> execute();
+        $type = $_POST["type"]; // ? diploma o credential
+        $queryPut = $type == 'diploma' ? "UPDATE deliverables SET file_certificate=?  WHERE id_deliverable = ? " : "UPDATE deliverables SET file_credential=?  WHERE id_deliverable = ? ";
+        $query = $mysqli->prepare($queryPut);
+        $query->bind_param('ss', $nameDocto, $id_deliverable);
+        $query->execute();
         //$query -> fetch();
-        $query -> close();
-        
+        $query->close();
+
         $data = array();
         $data['respuesta'] = 'success';
         $data['nameDocto'] = $nameDocto;
         echo json_encode($data);
     }
+}
 
 
+function tmplMailFile($data, $uriFile)
+{
+    $fullName = $data['name'] . " " . $data['lastname1'] . " " . $data['lastname2'];
+    $pathOrigin = $_SERVER['HTTP_ORIGIN'];
+    $currentDate = new DateTime();
+    $currentDate = $currentDate->format('d/m/Y');
+    $html = "
+    <head>
+        <style>
+            html {
+                font-family: 'Ubuntu', sans-serif;
+            }
+            .header {
+                width: 100%;
+                min-height: 15px;
+                background-color: #000;
+                padding: 5px;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                justify-content: space-between;
+            }
+            .header h1 {
+                margin: 0;
+            }
+
+            h3 span {
+                color: #ffc300;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='header'>
+            <img src='$pathOrigin/images/logos/spivet.png' alt='Boletera Spivet'>
+            <h1>Credential</h1>
+            <p>$currentDate </p>
+        </div>
+        <h4>Hola, $fullName!.</h4>
+        <p>Te invitamos a descargar la credencial de tu participante mediante el archivo adjunto.</p>
+        <p>Si no es posible descargar el archivo, pudes hacer click en el siguiente enlace: <a href='" . $uriFile . "' download >Descargar credencial</a></p>
+        <h3>Código del participante: <span>" . $data['idParticipant'] . "</span></h3>
+    </body>";
+    $html = str_replace('\r\n', '', $html);
+    return $html;
 }
 
 

@@ -67,9 +67,7 @@
         <div class="content-sections-mockup p-3 ">
             <div class="mb-3"> <strong class="anim-skeleton skeleton"> Boceto de diploma </strong> </div>
             <div class="content-general-dip" id="contentGeneral">
-                <div class="content-diploma anim-skeleton skeleton" id="contentDiploma">  
-               
-                </div>
+                <div class="content-diploma anim-skeleton skeleton" id="contentDiploma"></div>
             </div>
         </div>
     </div>

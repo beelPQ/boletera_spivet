@@ -359,9 +359,9 @@
                     $pathSave = "../../../images/clients/credentials/";
                     $nameDocument = $fileName;
                 }
+                if( !file_exists($pathSave) ) { mkdir($pathSave, 0777, true); }
                 $doctoSave = file_put_contents($pathSave.$nameDocument, $pdfOutput);
 
-                if( !file_exists($pathSave) ) { mkdir($pathSave, 0777, true); }
 
                 // $doctoSave = file_put_contents($pathSave.$nameDocument, $pdfOutput);
                 // if( $fileName !== '') file_put_contents("../../../images/clients/credentials/$nameDocument", $pdfOutput);

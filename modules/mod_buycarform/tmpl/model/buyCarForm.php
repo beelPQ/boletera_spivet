@@ -218,6 +218,7 @@ class buyCarForm
         }
     }
 
+
     /** Creamos a un nuevo cliente a partir del registro incial o desde la compra
      * @param {*} $dataPost : Datos post de la petición
      */
@@ -313,7 +314,7 @@ class buyCarForm
             $dataResponse = [];
             // ? ID de usuario logeado [Moroni // 13-May-2024]
 			$id = $idCrypt ?? 0;
-			if( $id != 0 ) {
+			if( strlen($id) > 9 ) {
 				$id = Common::decrypt($id) ?? 0;
 			}
             // $id = Common::decrypt($idCrypt) ?? 0;
@@ -330,7 +331,7 @@ class buyCarForm
                 die(json_encode([
                     "status" => false,
                     "message" => "Consulta no realizada",
-                    "description" => '',
+                    "description" => "",
                     "data" => []
                 ]));
             }

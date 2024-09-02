@@ -275,8 +275,8 @@
                             </div>
                         </div>
                     </section>
-                    <section class="content-general-dip gen-portrait" id="contentGeneral" hidden >
-                        <div class="content-diploma anim-skeleton orien-portrait" id="contentDiploma">  
+                    <section class="content-general-dip " id="contentGeneral" hidden >
+                        <div class="content-diploma anim-skeleton " id="contentDiploma">  
                             <div class="section1">
                                 <span class="sp-float"></span>
                                 <div id="bgTop" class="bg-top">
@@ -307,5 +307,8 @@
                                 <span class="sp-float"></span>
                             </div>
                         </div>
+                    </section>
+                    <section class="content-general-dip" id="contentGenDiploma" hidden >
+                        <div class="content-diploma anim-skeleton" id="contentDiploma"></div>
                     </section>
               <?php endif; ?>
