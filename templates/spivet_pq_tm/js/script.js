@@ -48,7 +48,7 @@
                         if (item.classList.contains('forgot_your_username')) loginOptions.removeChild(item); // ? Eiminamos la opción para recuperar el usuario
                     });
                 }
-                // ! Formulario de logeo desde la recuperación de contraseña 
+                // ! Formulario de logeo desde la recuperación de contraseña
                 if (document.querySelector(`.com-users-login`) && document.querySelector(`.com-users-login`).querySelector(`.com-users-login__options`)) { // ? Verificamos si existe el formulario de logeo
                     const loginOptions = document.querySelector(`.com-users-login`).querySelector(`.com-users-login__options`);
                     const items = loginOptions.querySelectorAll(`a`);
@@ -91,7 +91,7 @@
                             e.preventDefault();
                             let formData = new FormData();
                             formData.append("method", "user_auth");
-                            
+
                             let errorInForm = 0;
                             const inputs = contentRegist.querySelectorAll(`input`);
                             inputs.forEach(input => {
@@ -194,12 +194,12 @@
                                 iconEye.classList.add('fas', 'fa-eye-slash');
                                 inputPassToggle.querySelector(`.icon-fw.icon-eye-slash`).style.display = 'none';
                             }
-    
+
                             if( inputPassToggle.querySelector(`.visually-hidden`) ) {
                                 // inputPassToggle.querySelector(`.visually-hidden`).style.display = 'none';
                                 inputPassToggle.removeChild(inputPassToggle.querySelector(`.visually-hidden`));
                             }
-    
+
                             if( iconEye !== null) inputPassToggle.appendChild(iconEye);
                             inputPassToggle.addEventListener('click', () => {
                                 const inputPass = contentPass.querySelector('input');
@@ -258,6 +258,7 @@
                     }
                 }
             }, 500);
+            setTimeout(() => spinnerGenSite.style.display = 'none' , 1000);
         }
         catch (error) {
             console.error('Algo salio mal  ', error);
@@ -296,10 +297,8 @@
             //     spinnerGenSite.style.display = 'flex';
             //     location.reload();
             // } else spinnerGenSite.style.display = 'none';
-
-            spinnerGenSite.style.display = 'none';
-            console.clear();
         }, 500);
+        setTimeout(() => console.clear() , 1000);
     });
 
 })();

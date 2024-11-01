@@ -1,9 +1,11 @@
-/* slider principal */ 
+/* slider principal */
 #carouselPrincipal{
     max-height: 750px;
     .carousel-item {
         position: relative;
         max-height: 750px!important;
+        content-visibility: auto;
+        contain-intrinsic-size: 750px; /* Explained in the next section. */
         .image-slider{
             height: 750px!important;
             object-fit: cover;
@@ -16,6 +18,6 @@
             position: absolute;
             bottom: 0;
         }
-        
+
     }
 }

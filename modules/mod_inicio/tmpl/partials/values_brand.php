@@ -2,7 +2,7 @@
 <?php
 $showAction3 = $params->get("actionShowSection3");
 $titleValoresMarca = $params->get("titleBrandValues3");
-$arrayBrandValues = (array)$params->get("itemValuesSec3"); 
+$arrayBrandValues = (array)$params->get("itemValuesSec3");
 $titleInfoBrand = $params->get("textMainSec3");
 $descInfoBrand = $params->get("textSecondarySec3");
 $colorBack3 = $params->get("colorBackgroundSec3");
@@ -39,7 +39,7 @@ if($params->get("typeRedirectButton3") == 1){
             <?php if( $titleValoresMarca !== "" ){ ?>
             <h2 class="title"><?= $titleValoresMarca ?></h2>
             <?php } ?>
-        </div> 
+        </div>
         <div class="brandvalues-info"  style="color : <?= $colorTextBrandValues ?>">
             <div class="brandvalues-info-text-title">
                 <p><?= $titleInfoBrand ?></p>
@@ -61,9 +61,9 @@ if($params->get("typeRedirectButton3") == 1){
         <div class="brandvalues-items"  style="color : <?= $colorTextBrandValues ?>">
             <?php foreach ($arrayBrandValues as $valBrandValue) {  ?>
             <div class="item">
-              
+
                 <?php if( $valBrandValue->redirectItemBrandValues == 1 ){ ?>
-                    <?php 
+                    <?php
                         $urlRedirectItemBranVal = "#";
                         if($valBrandValue->urlRedirectItem != ""){
                             $urlRedirectItemBranVal = $valBrandValue->urlRedirectItem;
@@ -71,21 +71,21 @@ if($params->get("typeRedirectButton3") == 1){
                         $typeTedirectItem = "";
                         if( $valBrandValue->typeRedirectItemBrandVal3 == 1 ){
                             $typeTedirectItem = "target='_blank'";
-                        }    
+                        }
                     ?>
                     <a href="<?= $urlRedirectItemBranVal ?>" <?= $typeTedirectItem ?>  style="color : <?= $colorTextBrandValues ?>"  >
-                        <img src="<?= $valBrandValue->itemImageValueSec3 ?>" alt="">
+                        <img src="<?= $valBrandValue->itemImageValueSec3 ?>" alt="" loading="lazy" >
                         <p class="title-value"><?= $valBrandValue->itemTitleValueSec3 ?></p>
-                        <p class="description-value"><?= $valBrandValue->itemDescriptionValueSec3 ?></p> 
+                        <p class="description-value"><?= $valBrandValue->itemDescriptionValueSec3 ?></p>
                     </a>
                 <?php } else {  ?>
-                    <img src="<?= $valBrandValue->itemImageValueSec3 ?>" alt="">
+                    <img src="<?= $valBrandValue->itemImageValueSec3 ?>" alt="" loading="lazy" >
                     <p class="title-value"><?= $valBrandValue->itemTitleValueSec3 ?></p>
-                    <p class="description-value"><?= $valBrandValue->itemDescriptionValueSec3 ?></p> 
+                    <p class="description-value"><?= $valBrandValue->itemDescriptionValueSec3 ?></p>
                 <?php } ?>
-                
+
             </div>
             <?php } ?>
-        </div>      
+        </div>
     </div>
 <?php } ?>

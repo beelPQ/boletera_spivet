@@ -3,7 +3,7 @@
 
     /**
     **Funcion encargada de ejecutar una peticion al servidor
-    * @param {string} url direccion 
+    * @param {string} url direccion
     * @param {string} method tipo de metodo post o get
     * @param {object} formData objeto FormData que contiene los parametros a enviar
     * @returns json que contiene la respuesta del serividor
@@ -29,7 +29,7 @@
         asyncData(`/modules/mod_inicio/tmpl/model/oferta.php`, `POST`, formData)
             .then((result) => {
                 if (result.status) {
-                    
+
                     const contentMenuTypes = document.querySelector(`.content-oferta-items-menu`);
                     contentMenuTypes.innerHTML = "";
                     const buttonAll = document.createElement("button");
@@ -39,14 +39,14 @@
                     buttonAll.dataset.idtype = "todos";
                     buttonAll.type = "button";
                     contentMenuTypes.appendChild(buttonAll);
-                    
+
                     result.data.forEach((item, index) => {
-                        
+
                         const button = document.createElement("button");
                         button.classList.add("button-type-menu", "oferta-menu")
                         button.id = `btnMenuType-${index}`;
                         button.innerText = item.type
-                        button.dataset.idtype = item.idType; 
+                        button.dataset.idtype = item.idType;
                         button.type = "button";
 
                         contentMenuTypes.appendChild(button);
@@ -95,7 +95,7 @@
                             let image = oferta.imageThumb.replace(",", "");
                             imageThumb.src = image;
                         }else{
-                            imageThumb.src = "/images/Spivet/Oferta/thumb_temporal.png";    
+                            imageThumb.src = "/images/Spivet/Oferta/thumb_temporal.png";
                         }
                         imageThumb.classList.add("item-thumb");
                         const itemInfo = document.createElement("div");
@@ -133,7 +133,7 @@
         setTimeout(() => {
             let swiper = new Swiper(".mySwiperOferta", {
                 cssMode: true,
-                //lazy: true, 
+                //lazy: true,
                 slidesPerView: 5,
                 spaceBetween: 30,
                 //freeMode: true,
@@ -190,14 +190,14 @@
                     },
                   },
             });
-            
+
             setTimeout(() => {
-                removeSkeleton();  
-                  
+                removeSkeleton();
+
             }, 300);
             addStyleSrapper();
         }, 1500);
-        
+
     }
 
     /**
@@ -221,7 +221,7 @@
                 let image = oferta.imageThumb.replace(",", "");
                 imageThumb.src = image;
             }else{
-                imageThumb.src = "/images/Spivet/Oferta/thumb_temporal.png";    
+                imageThumb.src = "/images/Spivet/Oferta/thumb_temporal.png";
             }
             imageThumb.classList.add("item-thumb");
             const itemInfo = document.createElement("div");
@@ -242,7 +242,7 @@
             figure.appendChild(linkOferta);
             item.append(figure);
             contentItemsOferta.appendChild(item);
-        }); 
+        });
         initSwiperAlianza();
     }
 
@@ -251,18 +251,18 @@
      * Funcion que obtiene todas las ofertas por tipo
      * @param {string} typeSelected Id del tipo seleccionado
      */
-    const filterItemsOferts = (typeSelected) => { 
+    const filterItemsOferts = (typeSelected) => {
         let arrayItems = [];
         const itemsOferts = JSON.parse(sessionStorage.getItem("oferts"));
-        if(typeSelected != "todos"){ 
+        if(typeSelected != "todos"){
             itemsOferts.forEach(element => {
                 if(typeSelected == element.type){
                     arrayItems.push(element);
                 }
             });
-            createItemsOferts(arrayItems); 
-        }else 
-        createItemsOferts(itemsOferts);  
+            createItemsOferts(arrayItems);
+        }else
+        createItemsOferts(itemsOferts);
     }
 
 
@@ -307,12 +307,12 @@
             filterItemsOferts(idType);
         }
     })
-    
-    
+
+
      setTimeout(() => {
         getTypeOferts();
-        getOferta(); 
-        initSwiperAlianza();    
+        getOferta();
+        initSwiperAlianza();
         }, 1000);
     /**
      * Funcion que se ejecuta al terminar de cargar el dom
@@ -320,7 +320,7 @@
     window.addEventListener("DOMContentLoaded", () => {
         //Solo agregarlo cuando el mosulo esta en el servidor
         //getTypeOferts();
-        //getOferta(); 
-        //initSwiperAlianza();  
+        //getOferta();
+        //initSwiperAlianza();
     });
 })();

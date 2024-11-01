@@ -51,7 +51,7 @@
     }
 
     /** Agregamos la clase aal elemntos seleccionado que no haya sido activado
-     * 
+     *
      * @param {Element} pqOverlayScreen : Div contenedor de todos los menús
      * @param {Array} subMenus : Listado de submenús existentes
      * @param {Element} itemLink : Link seleccionado
@@ -70,7 +70,7 @@
         });
     }
     /** Eliminamos la clave active
-     * 
+     *
      * @param {Elelment} pqOverlayScreen : Div contenedor de todos los menús
     */
     const delActiveClass = (pqOverlayScreen) => {
@@ -79,7 +79,7 @@
     }
 
     /** Mandamos a cargar los servicios y cursos que exitan en la BD
-     * 
+     *
      */
     const getItems = (linkThis, typeProduct) => {
         //console.log(linkThis)
@@ -218,7 +218,7 @@
 
 
     /** Fución para mostrar submenú
-     * 
+     *
      * @param {Event} e : Evento del documento
     */
     const showSubMenu = (e) => {
@@ -259,7 +259,7 @@
     }
 
     /** Generamos el link a partir de la clase del elemento
-     * 
+     *
      * @param {Element} list : UL de federaciones
     */
     const replaceGenUri = (list) => {
@@ -416,6 +416,7 @@
                                 sessionStorage.clear();
                             });
                         }
+
                     });
 
                     /** Verificamos si se debe agregar o no el logo del sitio */
@@ -442,7 +443,7 @@
                     const lineIcon = document.createElement('div')
                     lineIcon.classList.add('line__spacer')
 
-                    /** Verificamos si necesitamos agregar el icono 
+                    /** Verificamos si necesitamos agregar el icono
                      * entre los títulos y los subtítulos
                      */
                     const iconmenu = dataAddMenu.getAttribute('data-iconmenu');
@@ -511,18 +512,12 @@
                     });
                 }
 
-                setTimeout(() => {
-                    if (document.querySelector(`.spinner`)) {
-                        document.querySelector(`.spinner`).style.display = "none";
-                    }
-                }, 1000);
-
+                // setTimeout(() => {
+                //     if (document.querySelector(`.spinner`)) {
+                //         document.querySelector(`.spinner`).style.display = "none";
+                //     }
+                // }, 1000);
             }
-
-
         }, 30);
-
-
-
     });
 })()

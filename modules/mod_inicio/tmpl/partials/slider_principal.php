@@ -1,5 +1,5 @@
 <?php
-//css : templates/spivet/css/inicio.min.css 
+//css : templates/spivet/css/inicio.min.css
 $arraySlider = (array)$params->get("sliderPrincipal");
 foreach ($arraySlider as $valRecurse) {
 }
@@ -8,19 +8,19 @@ foreach ($arraySlider as $valRecurse) {
 <div id="carouselPrincipal" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <?php $index = 0; ?>
-        <?php foreach ($arraySlider as $valRecurse) { ?> 
+        <?php foreach ($arraySlider as $valRecurse) { ?>
             <div class="carousel-item <?php if ($index == 0) { echo "active"; } ?>">
                 <?php if ($valRecurse->typeRecurso == 0) { ?>
-                    <?php 
+                    <?php
                         $image = "/images/Spivet/sliders/principal/FondoSlider.png";
                         if($valRecurse->imageSlider != ""){
                             $image = $valRecurse->imageSlider;
                         }
                     ?>
                     <?php if($valRecurse->RedireccionSlider == 0){ ?>
-                    <img src="<?= $image ?>" class="d-block w-100 image-slider" alt="...">
+                    <img src="<?= $image ?>" class="d-block w-100 image-slider" alt="..." loading="lazy" >
                     <?php } else { ?>
-                        <?php 
+                        <?php
                             $typeRedirecSlider = "";
                             $urlRedirec = "#";
                             if($valRecurse->urlRedirectItemSlider != ""){
@@ -28,10 +28,10 @@ foreach ($arraySlider as $valRecurse) {
                             }
                             if($valRecurse->typeRedirectItemSlider == 1){
                                 $typeRedirecSlider = "target='_blank'";
-                            }    
+                            }
                         ?>
                         <a href="<?= $urlRedirec ?>" <?= $typeRedirecSlider ?> >
-                            <img src="<?= $image ?>" class="d-block w-100 image-slider" alt="...">
+                            <img src="<?= $image ?>" class="d-block w-100 image-slider" alt="..." loading="lazy" >
                         </a>
                     <?php } ?>
                 <?php } else { ?>
@@ -40,7 +40,7 @@ foreach ($arraySlider as $valRecurse) {
                         <source src="<?= $valRecurse->uriVideoSlider ?>">
                     </video>
                     <?php } else { ?>
-                        <?php 
+                        <?php
                             $typeRedirecSlider = "";
                             $urlRedirec = "#";
                             if($valRecurse->urlRedirectItemSlider != ""){
@@ -48,7 +48,7 @@ foreach ($arraySlider as $valRecurse) {
                             }
                             if($valRecurse->typeRedirectItemSlider == 1){
                                 $typeRedirecSlider = "target='_blank'";
-                            }    
+                            }
                         ?>
                         <a href="<?= $urlRedirec ?>" <?= $typeRedirecSlider ?> >
                             <video class="carousel-item-video" onloadedmetadata="this.muted=true" autoplay loop>
@@ -68,7 +68,7 @@ foreach ($arraySlider as $valRecurse) {
                         <div class="carousel-caption-text-advanced">
                             <?= $valRecurse->textAdvanced_slider ?>
                         </div>
-                        <?php } ?>    
+                        <?php } ?>
                 <?php } ?>
             </div>
             <?php $index++; ?>

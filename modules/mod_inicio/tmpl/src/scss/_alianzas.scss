@@ -1,11 +1,13 @@
-    
+
     /* Seccion 6 */
     .content-alianzas{
-        text-align: center; 
+        text-align: center;
         padding-top: 3rem;
         min-height: 300px;
         color: #000;
         padding-bottom: 3rem;
+        content-visibility: auto;
+        contain-intrinsic-size: 300px; /* Explained in the next section. */
     }
 
     .items-carga{
@@ -27,7 +29,7 @@
             align-items: center;
             padding-top: 2rem;
             padding-bottom: 2rem;
-           
+
             .link-image-slide{
                 justify-content: center;
                 display: flex;
@@ -40,14 +42,14 @@
             }
             img {
                 display: block;
-                width: 60%; 
+                width: 60%;
                 object-fit: contain;
                 height: 200px;
-            } 
+            }
         }
         .swiper-button-prev, .swiper-button-next{
             color: #000!important;
         }
-    }    
+    }
 
 
