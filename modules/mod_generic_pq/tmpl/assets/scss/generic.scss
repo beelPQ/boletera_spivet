@@ -1,157 +1,66 @@
-    
-    @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
-    .flex{
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+.flex{
+    display: flex;
+}
+.main-backimage{
+    padding: 0!important;
+}
+.content-generic{
+    background: white ;
+    flex-direction: column;
+    font-family: 'Poppins';
+    &-header{
+        width: 100%;
+        height: 644px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+
         display: flex;
-    }
-
-    .main-backimage{
-        padding: 0!important;
-    }
-
-    .content-generic{
-        background: white ;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
-        font-family: 'Poppins';
-        &-header{
-            width: 100%;
-            height: 644px;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-
-            &-title{
-                text-align: center;
-                margin-top: 16rem;
-
-                .title{
-                    
-                    font-size: 22px;
-                    font-weight: bold;
-                    font-stretch: normal;
-                    font-style: normal;
-                    color: white;
-                }
-
-            }
-            &-desc{
-                margin-top: 2rem;
-                justify-content: center;
-                align-items: center;
-
-                .intro{ 
-                    width: 870px;
-                    
-                    font-size: 20px;
-                    font-weight: bold;
-                    font-stretch: normal;
-                    font-style: normal;
-                    color: white;
-                    text-align: center;
-                    
-                }
+        gap: 2rem;
+        &-title{
+            text-align: center;
+            .title{
+                font-size: clamp(18px, 2vw, 26px);
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                color: white;
             }
         }
-
-        &-info{
+        &-desc{
             justify-content: center;
             align-items: center;
-            &-detail{
-                font-size: 19px;
-                
-                padding: 4rem 4rem;
-                width: 100%;
-                text-align: left;
+            .intro{
+                width: 870px;
+                font-stretch: normal;
+                font-style: normal;
+                color: white;
+                text-align: center;
             }
         }
-
-       
-
     }
-
-
-    @media(max-width: 1200px) {
-        .content-generic{ 
-           
-            
+    &-info{
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        max-width: 1560px;
+        margin: 0 auto;
+        &-detail{
+            padding: 4rem 4rem;
+            width: 100%;
+            text-align: left;
         }
-
-
-
     }
-
-
-    @media(max-width: 980px) {
-        .content-generic{ 
-            &-header{ 
-                &-title{
-                    text-align: center;
-                    margin-top: 12rem;
-                    
-                }
-                &-desc{
-                   font-size: 15px;
-                }
-            }
-            &-info{
-               
-                &-detail{
-                    font-size: 15px;
-                   
-                }
-            }
-
-            
-        } 
-
+}
+@media(max-width: 800px) {
+    .content-generic{
+        &-header{
+            height: 500px;
+        }
     }
-
-    @media(max-width: 800px) {
-        .content-generic{ 
-            &-header{
-                /* width: 100%;
-                height: 644px;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center; */
-                height: 500px;
-                &-title{
-                    /* text-align: center;
-                    margin-top: 16rem; */
-    
-                    .title{
-                        
-                        font-size: 20px;
-                        font-weight: bold;
-                        font-stretch: normal;
-                        font-style: normal;
-                        color: white;
-                    }
-    
-                }
-                &-desc{
-                    margin-top: 2rem;
-                    justify-content: center;
-                    align-items: center;
-    
-                    .intro{ 
-                        width: 870px;
-                        
-                        font-size: 16px;
-                        font-weight: bold;
-                        font-stretch: normal;
-                        font-style: normal;
-                        color: white;
-                        text-align: center;
-                        
-                    }
-                }
-            } 
-            
-        } 
-    }
-
-    @media(max-width: 670px) {
-        .content-generic{  
-            
-        } 
-    }
+}

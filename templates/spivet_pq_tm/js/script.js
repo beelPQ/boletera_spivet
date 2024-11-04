@@ -65,6 +65,8 @@
                 // Verificamos si se ha creado el elmento main y si existe el footer
                 if (footerLog !== null && newMain !== null) {
                     newMain.classList.add('loginContent');
+                    const comUsersLogin = newMain.querySelector('.com-users-login') || null;
+                    if( comUsersLogin === null ) newMain.classList.remove('loginContent');
                     if (contentLogin !== null) newMain.appendChild(contentLogin); // ? Agregamos el formulario de logeo a la etiqueta main
                     // document.body.appendChild(newMain)
                     document.body.insertBefore(newMain, footerLog); // ? Agregamos la etiqueta main entre el header y footer
@@ -114,9 +116,7 @@
                                         : errorInForm+=1;
                                 }
                             });
-
                             if( errorInForm > 0 ) return;
-
                             authUser(`/modules/mod_buycarform/tmpl/model/buyCarForm.php`, `POST`, formData)
                             .then( response => {
                                 // console.clear();
@@ -150,7 +150,6 @@
                             });
                         });
                     }
-
                     // ? Verificamos si se ha completado el registro
                     if( document.querySelector(`.registration-complete`) ) {
                         const registrationComplete = document.querySelector(`.registration-complete`);
@@ -162,13 +161,11 @@
                         setTimeout(() => {
                             // Cerrar la ventana actual
                             window.close();
-
                             //  similar behavior as an HTTP redirect
                             // window.location.replace(url);
 
                             // similar behavior as clicking on a link
                             // window.location.href = 'http://boletera_spivet.test/';
-
                             localStorage.setItem('loginRegisUser', 'success'); // ? Variable indicadora de usuario registrado
                             // Recargar la página actual
                             // window.opener.location.reload(); // ? Recargar la página anterior
@@ -176,10 +173,8 @@
                             // ? Redireccionamos al login
                         }, 2800);
                     }
-
                     // if(document.querySelector(`.reset-confirm`)) document.querySelector(`.reset-confirm`).classList.add('container');
                     // if(document.querySelector(`.reset-complete`)) document.querySelector(`.reset-complete`).classList.add('container');
-
                     // ? Mostrar iconos eye con font awesome
                     if( document.querySelector(`.input-password-toggle`) ) {
                         const inputsPassToggle = document.querySelectorAll(`.input-password-toggle`);
@@ -219,15 +214,13 @@
                             });
                         });
                     }
-
-
                 }
                 else {
                     if (mainContent !== null) mainContent.classList.add('loginContent');
+                    const comUsersLogin = mainContent.querySelector('.com-users-login') || null;
+                    if( comUsersLogin === null ) mainContent.classList.remove('loginContent');
                 }
             }
-
-
             const verUserid = localStorage.getItem('userid') || '';
             if( localStorage.getItem('userid') !== null || verUserid != '' ) {
                 const toPqoverlay = headerContentGenSite!==null ? headerContentGenSite.querySelector(`#to_pqoverlay`) : null;
@@ -258,6 +251,17 @@
                     }
                 }
             }, 500);
+            setTimeout(() => {
+                const idPQOverlay = headerContentGenSite.querySelector(`#to_pqoverlay`) || null;
+                if( idPQOverlay !== null && !idPQOverlay.classList.contains('pqoverlay') ) {
+                    const timeFile = new Date().getTime();
+                    const styleModMenu = document.createElement('link');
+                    styleModMenu.href = `/modules/mod_curtain_menu/src/css/mod_style.min.css?v=${timeFile}`;
+                    styleModMenu.rel = 'stylesheet';
+                    document.head.appendChild(styleModMenu);
+                    idPQOverlay.classList.add('genOver');
+                }
+            }, 800);
             setTimeout(() => spinnerGenSite.style.display = 'none' , 1000);
         }
         catch (error) {
@@ -273,7 +277,6 @@
             });
         }
     });
-
     window.addEventListener('load', () => {
         setTimeout(() => {
             const dataEmail = document.body.getAttribute('data-email') || '';
@@ -297,8 +300,8 @@
             //     spinnerGenSite.style.display = 'flex';
             //     location.reload();
             // } else spinnerGenSite.style.display = 'none';
+            console.clear();
         }, 500);
-        setTimeout(() => console.clear() , 1000);
     });
 
 })();

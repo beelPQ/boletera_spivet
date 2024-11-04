@@ -39,6 +39,7 @@ body.spivet {
         margin-left: auto;
         box-sizing: border-box;
         font-family: 'Poppins'!important;
+        min-height: 4.5rem;
         .menu-title{
             color: var(--color_pq_secondary);
             margin-bottom: 2rem;
@@ -50,15 +51,15 @@ body.spivet {
             font-size: 0;
 
             .brand-logo-sm {
-                display: none; 
+                display: none;
             }
             .brand-logo-lg{
                 img{
                     width: 40%;
                 }
-                
+
             }
-            
+
         }
         .mod-menu {
             &:not(.nav) {
@@ -67,11 +68,11 @@ body.spivet {
                 align-items: center;
             }
 
-            
-    
+
+
             & li {
                 position: relative;
-            
+
 
                 &::after {
                     position: absolute;
@@ -85,13 +86,13 @@ body.spivet {
                     background-color: #fff;
                     opacity: .2;
                     transition: all .3s ease,background-color .3s ease;
-                    
+
                 }
 
                 & a{
                     text-decoration: none;
                 }
-                
+
                 &:hover {
                     &::after {
                         right: 0;
@@ -124,15 +125,15 @@ body.spivet {
                     margin-bottom: 2rem;
                 }
 
-                
-                
+
+
                 &.active {
                     &::after {
                         right: 0;
                         background-color: var(--color_pq_curtain);
                     }
                     & a {
-                        color: var(--color_pq_curtain); 
+                        color: var(--color_pq_curtain);
                     }
                 }
                 a {
@@ -150,9 +151,9 @@ body.spivet {
                         text-transform: capitalize;
                     }
                 }
-                
+
             }
-    
+
             .dropdown-menu {
                 background-color: var(--color_pq_head);
                 color: var(--color_pq_curtain);
@@ -176,12 +177,12 @@ body.spivet {
                             border-radius: 50%;
                         }
                     }
-                    &:not(.active) { 
+                    &:not(.active) {
                         & a { color: var(--color_pq_curtain); }
                     }
                 }
             }
-    
+
         }
 
         .textlink{
@@ -202,10 +203,15 @@ body.spivet {
         }
 
 
-
+        &.genOver {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 2rem;
+        }
     }
     // ===========================================
-    // ========= DISEÑO DE MENÚ CORTINA 
+    // ========= DISEÑO DE MENÚ CORTINA
     // ===========================================
     .pqoverlay {
         // background-color: var(--color_pq_head);
@@ -227,7 +233,7 @@ body.spivet {
             $lineMainTranslateYBe: -10px;
             $lineMainTranslateYAf: 10px;
             $heightLineSplit: 2px;
-            
+
             // $colorLinesHamburger: var(--color-registered);
             // &:not(.invertcolor) {
             //     $colorLinesHamburger: var(--color-guest);
@@ -319,7 +325,7 @@ body.spivet {
             // background-color: var(--color_pq_primary);
             //background-color: var(--bgcolor_pq_curtain);
             background-color: var(--bgcolor_pq_curtain);
-            
+
             &.show { animation: pqoverlay_show 0.5s ease both; }
             &.hide { animation: pqoverlay_hide 0.5s ease both; }
             & .line__spacer { display: none; }
@@ -506,7 +512,7 @@ body.spivet {
                                 }
 
                             }
-                            
+
                         }
                         &.active {
                             & a {
@@ -529,7 +535,7 @@ body.spivet {
                                 justify-content: flex-start;
                                 // font-size: 14px;
                             }
-                            
+
                             ul.small { // Lista hija (3er Nivel)
                                 // display: block;
                                 display: none;
@@ -662,7 +668,7 @@ body.spivet {
         //background-color: #f2f2f2;
         //padding: 10px;
         animation: desplazamiento 50s linear infinite; /* Ajusta la duración según tus preferencias */
-    } 
+    }
 }
 
 @keyframes adjust-header {
